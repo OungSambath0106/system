@@ -7,16 +7,21 @@ use App\Models\BoothCategory;
 use App\Models\BusinessSetting;
 use App\Models\PartnerCategory;
 use Illuminate\Routing\RouteGroup;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PackageController;
+use App\Http\Controllers\Web\HomeController;
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Web\VisitorController;
 use App\Http\Controllers\Backends\BlogController;
 use App\Http\Controllers\Backends\RoleController;
 use App\Http\Controllers\Backends\UserController;
+use App\Http\Controllers\Web\ExhibitorController;
 use App\Http\Controllers\Backends\BoothController;
 use App\Http\Controllers\Backends\EventController;
 use App\Http\Controllers\Backends\MediaController;
 use App\Http\Controllers\Backends\MovieController;
+use App\Http\Controllers\Web\ExhibitionController;
 use App\Http\Controllers\Backends\NoticeController;
 use App\Http\Controllers\Backends\SliderController;
 use App\Http\Controllers\Backends\ProductController;
@@ -32,10 +37,7 @@ use App\Http\Controllers\Backends\BoothCategoryController;
 use App\Http\Controllers\Backends\BusinessSettingController;
 use App\Http\Controllers\Backends\PartnerCategoryController;
 use App\Http\Controllers\Backends\ServiceForVisitorController;
-use App\Http\Controllers\Web\ExhibitionController;
-use App\Http\Controllers\Web\ExhibitorController;
-use App\Http\Controllers\Web\HomeController;
-use App\Http\Controllers\Web\VisitorController;
+use App\Http\Controllers\Website\HomeController as WebsiteHomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -62,7 +64,10 @@ Auth::routes();
 // save temp file
 Route::post('save_temp_file', [FileManagerController::class, 'saveTempFile'])->name('save_temp_file');
 
-Route::redirect('/', '/admin/dashboard');
+Route::get('/', function() {
+    return view('website.app');
+});
+Route::get('/home', [WebsiteHomeController::class, 'index'])->name('home');
 
 Route::post('save_temp_file', [FileManagerController::class, 'saveTempFile'])->name('save_temp_file');
 Route::get('remove_temp_file', [FileManagerController::class, 'removeTempFile'])->name('remove_temp_file');
@@ -104,6 +109,7 @@ Route::middleware(['auth','CheckUserLogin', 'SetSessionData'])->group(function (
     });
 
 });
+
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/logout', [LoginController::class,'logout'])->name('logout');
