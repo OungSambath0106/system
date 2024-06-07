@@ -2,7 +2,6 @@
     @media (min-width: 1024px)and (max-width: 1279px) {
         .content {
             min-height: 92vh;
-            padding-top: 4rem !important;
         }
 
         .card-title-outside {
@@ -30,7 +29,7 @@
         }
     }
 
-    @media (min-width: 565px) and (max-width: 1024px) {
+    @media (min-width: 565px) and (max-width: 1023px) {
         .card-title-outside {
             display: none;
         }
