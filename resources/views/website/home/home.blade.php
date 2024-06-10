@@ -4,24 +4,29 @@
 
     <div class="content">
         <div class="row gap-3 mx-0 justify-content-center">
-            <div class="card col-sm-3 col-3 col-lg-3 p-4 h-100 uiux-card">
+            <div class="card col-sm-3 col-3 col-lg-3 p-3 h-100 uiux-card">
                 <div class="card-title-outside p-1 text-center m-0">
                     <strong class="title w-100"> Ui/Ux </strong>
                 </div>
                 <div class="card-content px-0 pt-3 text-start">
                     <div class="card-img">
-                        <img src="{{ asset('upload/uiux/uiux.png') }}" alt="" height="190" width="190"
-                            class="img-fluid">
+                        <a href="#" class="icon">
+                            <i class="fas fa-chevron-right"></i>
+                        </a>
+                        <img src="{{ asset('upload/uiux/uiux.png') }}" alt="" class="img-fluid">
                     </div>
-                    <div class="text-description pt-2">
+                    <div class="center-card">
                         <div class="card-title-inside p-1 text-center m-0">
                             <strong class="title w-100"> Ui/Ux </strong>
                         </div>
-                        <span>
-                            Get Ready for UX Design Jobs with Hands-On Assignments. Learn How to Conduct User Research.
-                            Gain the Skills, Confidence, and Experience Needed to Launch Your Career in UX Design. Stand Out
-                            to Employers.
-                        </span>
+                        <div class="text-description">
+                            <span>
+                                Get Ready for UX Design Jobs with Hands-On Assignments. Learn How to Conduct User Research.
+                                Gain the Skills, Confidence, and Experience Needed to Launch Your Career in UX Design. Stand
+                                Out
+                                to Employers.
+                            </span>
+                        </div>
                         <div class="card-button-inside text-center mt-3">
                             <a href="" class="btn btn-sm btn-learn w-100"> Let's Learn </a>
                         </div>
@@ -31,23 +36,27 @@
                     <a href="" class="btn btn-sm btn-learn w-100"> Let's Learn </a>
                 </div>
             </div>
-            <div class="card col-sm-3 col-3 col-lg-3 p-4 h-100 uiux-card">
+            <div class="card col-sm-3 col-3 col-lg-3 p-3 h-100 uiux-card">
                 <div class="card-title-outside p-1 text-center m-0">
                     <strong class="title w-100"> Laravel </strong>
                 </div>
                 <div class="card-content px-0 pt-3 text-start">
                     <div class="card-img">
-                        <img src="{{ asset('upload/laravel/laravel.png') }}" alt="" height="190" width="190"
-                            class="img-fluid">
+                        <a href="#" class="icon">
+                            <i class="fas fa-chevron-right"></i>
+                        </a>
+                        <img src="{{ asset('upload/laravel/laravel.png') }}" alt="" class="img-fluid">
                     </div>
-                    <div class="text-description pt-2">
+                    <div class="center-card">
                         <div class="card-title-inside p-1 text-center m-0">
                             <strong class="title w-100"> Laravel </strong>
                         </div>
-                        <span>
-                            This course covers a range of topics such as Object Oriented Programming (OOP), UML, Design
-                            Patterns, Security in PHP, SOAP, htaccess, PHP Frameworks, PHP Best Practices and lots more.
-                        </span>
+                        <div class="text-description">
+                            <span>
+                                This course covers a range of topics such as Object Oriented Programming (OOP), UML, Design
+                                Patterns, Security in PHP, SOAP, htaccess, PHP Frameworks, PHP Best Practices and lots more.
+                            </span>
+                        </div>
                         <div class="card-button-inside text-center mt-3">
                             <a href="" class="btn btn-sm btn-learn w-100"> Let's Learn </a>
                         </div>
@@ -59,13 +68,15 @@
             </div>
             <div class="col-sm-6 col-6 col-lg-6 h-100">
                 <div class="row">
-                    <div class="col-sm-12 mb-3 p-0">
+                    <div class="col-sm-12 p-0">
                         <div class="card p-3 mb-3">
                             <div class="row">
                                 <div class="card-left col-md-4">
                                     <div class="card-img">
-                                        <img src="{{ asset('upload/react/react.png') }}" alt="" height="210"
-                                            width="210" class="img-fluid">
+                                        <a href="#" class="icon">
+                                            <i class="fas fa-chevron-right"></i>
+                                        </a>
+                                        <img src="{{ asset('upload/react/react.png') }}" alt="" class="img-fluid">
                                     </div>
                                 </div>
                                 <div class="card-right col-md-8">
@@ -88,12 +99,15 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="card p-3">
+                        <div class="card p-3 mb-3">
                             <div class="row">
                                 <div class="card-left col-md-4">
                                     <div class="card-img">
-                                        <img src="{{ asset('upload/flutter/flutter.png') }}" alt="" height="210"
-                                            width="210" class="img-fluid">
+                                        <a href="#" class="icon">
+                                            <i class="fas fa-chevron-right"></i>
+                                        </a>
+                                        <img src="{{ asset('upload/flutter/flutter.png') }}" alt=""
+                                            class="img-fluid">
                                     </div>
                                 </div>
                                 <div class="card-right col-md-8">

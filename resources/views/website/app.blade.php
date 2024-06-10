@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
-    @include('website.layout.header')
+@include('website.layout.header')
 
 <body>
     <div class="wrapper">

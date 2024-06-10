@@ -1,59 +1,5 @@
 <style>
-    @media (min-width: 1024px)and (max-width: 1279px) {
-        .content {
-            min-height: 92vh;
-        }
-
-        .card-title-outside {
-            display: none;
-        }
-
-        .card-title-inside {
-            margin-top: -4rem !important;
-            margin-bottom: 1rem !important;
-        }
-
-        .card-button-outside {
-            display: none;
-        }
-
-        .card-content .card-img {
-            width: 30%;
-            margin-right: 30px;
-        }
-    }
-
-    @media (min-width: 768px) {
-        .col-sm-3 {
-            width: 19%;
-        }
-    }
-
-    @media (min-width: 565px) and (max-width: 1023px) {
-        .card-title-outside {
-            display: none;
-        }
-
-        .card-title-inside {
-            margin-top: -.5rem !important;
-            margin-bottom: 1rem !important;
-        }
-
-        .card-button-outside {
-            display: none;
-        }
-
-        .card-content .card-img {
-            width: 30%;
-            margin-right: 30px;
-        }
-    }
-
     @media (min-width: 1279px) {
-        .content {
-            height: 90vh !important;
-        }
-
         .card-content .card-img {
             text-align: center;
         }
@@ -62,15 +8,78 @@
         .card-title-inside {
             display: none;
         }
+
+        .text-description {
+            padding: 0 .4rem;
+            font-size: .94rem !important;
+        }
+
+        .center-card {
+            margin-top: 1rem;
+        }
+
+        .col-sm-3 {
+            width: 18% !important;
+        }
     }
 
-    @media (max-width: 1279px) {
+    @media (min-width: 1138px)and (max-width: 1279px) {
+        .text-description {
+            padding: 0 .4rem;
+            font-size: .93rem !important;
+        }
+
+        .center-card {
+            margin-top: 1rem;
+        }
+
+        .card-title-inside {
+            display: none;
+        }
+
+        .card-button-outside {
+            display: none;
+        }
+
+        .col-sm-3 {
+            width: 18% !important;
+        }
+    }
+
+    @media (min-width: 768px) and (max-width: 1024px) {
+        .col-sm-3 {
+            width: 16%;
+        }
+
+        .text-description {
+            font-size: .95rem !important;
+        }
+    }
+
+    @media (min-width: 565px)and (max-width: 1138px) {
         .card {
             width: 100%;
         }
 
         .col-6 {
             padding-right: 0;
+        }
+
+        .card-title-outside {
+            display: none;
+        }
+
+        .card-title-inside {
+            margin-right: .7rem !important;
+        }
+
+        .card-button-outside {
+            display: none;
+        }
+
+        .card-content .card-img {
+            width: 30%;
+            margin-right: 30px;
         }
 
         .uiux-card .card-content,
@@ -81,21 +90,30 @@
             padding: 0 !important;
         }
 
-        .card-right .card-body .text-description {
+        .text-description {
             width: 100%;
             font-size: 1rem;
             padding: 0 2rem !important;
         }
 
-        .card-content .text-description {
+        .card-content .center-card {
             width: 90%;
             font-size: 1rem;
             padding: 0 !important;
         }
 
+        .card-content .center-card .text-description {
+            padding: 1rem 2rem !important;
+        }
+
         .card-button {
             width: 100%;
             padding: 10px;
+        }
+
+        .card-button-inside {
+            margin: 0 !important;
+            padding: 10px 1rem 10px .6rem;
         }
 
         .col-sm-6 {
@@ -112,13 +130,22 @@
 
         .card-left .card-img {
             text-align: center !important;
-            padding: .4rem !important;
         }
 
-        .card-button a {
-            padding: 7px;
+        .card-button-inside .card-button a,
+        .card-button-inside a {
+            padding: 5px;
             font-size: 1rem;
             width: 100%;
+        }
+
+        .icon {
+            width: 3.8vw !important;
+            height: 3.8vw !important;
+        }
+
+        .icon i {
+            font-size: 1.7vw !important;
         }
     }
 
@@ -135,7 +162,7 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            margin-top: 4rem;
+            margin-top: 3rem;
             padding-bottom: 0 !important;
         }
 
@@ -160,6 +187,7 @@
 
         .card-button-outside {
             margin: 0 !important;
+            padding: 1rem 0.7rem;
         }
 
         .card-button-outside a {
@@ -183,15 +211,16 @@
         .card-title {
             position: absolute;
             top: 0;
-            width: 85%;
+            width: 87%;
             margin-top: 1.5rem !important;
         }
 
         .card-title-outside {
             position: absolute;
             top: 0;
-            width: 85%;
+            width: 87%;
             margin-top: 1.5rem !important;
+            margin-left: 4px !important;
         }
 
         .card-title-inside {
@@ -249,16 +278,56 @@
     .card-button-inside,
     .card-button-outside {
         border: none;
-        padding: 0;
         text-transform: uppercase;
     }
 
     .card {
         border-radius: 16px;
-        background: rgba(255, 255, 255, 0.7)
+        background: rgba(255, 255, 255, 0.7);
+        transition: transform 0.4s ease;
+    }
+
+    .card:hover {
+        transform: scale(1.035);
     }
 
     .text-description {
         font-size: 14px;
+    }
+
+    .card-left {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .card-img {
+        position: relative;
+        display: inline-block;
+    }
+
+    .icon {
+        position: absolute;
+        background: rgba(255, 255, 255, 0.7);
+        width: 2.3vw;
+        height: 2.3vw;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        right: 0;
+        margin-right: 5%;
+        top: 50%;
+        transform: translateY(-50%);
+        text-decoration: none;
+    }
+
+    .icon i {
+        font-size: 1.1vw;
+        color: #FFFFFF;
+    }
+
+    .img-fluid {
+        border-radius: 18px;
     }
 </style>

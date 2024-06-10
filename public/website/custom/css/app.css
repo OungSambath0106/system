@@ -1,53 +1,60 @@
-*{
+* {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
-    font-family: 'Nunito';
+    font-family: "Nunito";
 }
 @font-face {
-    font-family: 'Nunito';
-    src: url(https://fonts.gstatic.com/s/nunito/v26/XRXI3I6Li01BKofiOc5wtlZ2di8HDLshdTA3j77e.woff2) format('woff2');
+    font-family: "Nunito";
+    src: url(https://fonts.gstatic.com/s/nunito/v26/XRXI3I6Li01BKofiOc5wtlZ2di8HDLshdTA3j77e.woff2)
+        format("woff2");
 }
-body{
-    background-color: #F2F6FF;
+body {
+    background-color: #f2f6ff;
 }
 .navbar .nav-leftside,
 .navbar .nav-center,
 .navbar .nav-rightside {
     flex-basis: auto;
 }
-.row{
-    margin-right: 0 !important;
-}
 .navbar {
-    background: rgb(246,250,255);
-    background: linear-gradient(90deg, rgba(246,250,255,1) 5%, rgba(155,202,255,1) 110%);
+    background: rgb(246, 250, 255);
+    background: linear-gradient(
+        90deg,
+        rgba(246, 250, 255, 1) 5%,
+        rgba(155, 202, 255, 1) 110%
+    );
 }
 .btn-primary {
-    background-color: #1577FF;
+    background-color: #1577ff;
 }
 .nav-rightside {
-    font-family: 'Nunito';
+    font-family: "Nunito";
 }
 .nav-link {
     border-radius: 10px;
-    color: #1577FF;
+    color: #1577ff;
     border: none;
     font-size: 1.3rem;
     font-weight: 600;
-    font-family: 'Nunito';
+    font-family: "Nunito";
 }
-.nav-link.active, .nav-link:hover {
+.nav-link.active,
+.nav-link:hover {
     background: rgb(243, 49, 247);
-    background: linear-gradient(90deg, rgba(243, 49, 247, 1) 8%, rgba(87, 158, 255, 1) 70%);
-    color: #F4F4F4 !important;
+    background: linear-gradient(
+        90deg,
+        rgba(243, 49, 247, 1) 8%,
+        rgba(87, 158, 255, 1) 70%
+    );
+    color: #f4f4f4 !important;
     border: none;
     transition: background-color 0.3s;
 }
-.main-footer{
-    background-color: #1577FF;
-    color: #F4F4F4;
-    font-family: 'Nunito';
+.main-footer {
+    background-color: #1577ff;
+    color: #f4f4f4;
+    font-family: "Nunito";
 }
 @media (min-width: 1279px) {
     .col-md-9 {
@@ -59,53 +66,70 @@ body{
     .nav-rightside {
         gap: 2.2rem !important;
     }
-    .btn-contact{
+    .btn-contact {
         margin-left: 3rem;
     }
     .nav-link {
-        padding: .5rem 1.25rem !important;
+        padding: 0.5rem 1.25rem !important;
     }
 }
 @media (max-width: 1279px) {
-    .nav-rightside {
-        gap: 1.4rem !important;
-    }
-    .btn-contact{
-        margin-left: 2rem;
-    }
-}
-@media (max-width: 990px) {
-    .navbar-toggler {
-        display: none;
-    }
-    .btn-contact{
-        margin-left: .3rem;
-    }
     .col-md-9 {
-        width: 75%;
+        width: 80%;
     }
     .col-md-3 {
-        width: 17%;
+        width: 20%;
     }
     .nav-rightside {
-        gap: .5rem !important;
+        gap: 1.8rem !important;
+    }
+    .btn-contact {
+        margin-left: 3rem;
+    }
+    .nav-link {
+        padding: 0.5rem 1.25rem !important;
     }
 }
-@media (max-width: 820px) {
+@media (max-width: 1138px) {
     .navbar-toggler {
         display: none;
     }
-    .btn-contact{
+    .btn-contact {
+        margin-left: 0.3rem;
+    }
+    .nav-link {
+        font-size: 1rem !important;
+        padding: 0.5rem 1.1rem !important;
+    }
+    .col-md-9 {
+        width: 81%;
+    }
+    .col-md-3 {
+        width: 19%;
+    }
+    .nav-rightside {
+        gap: 1rem !important;
+    }
+}
+@media (max-width: 822px) {
+    .navbar-toggler {
+        display: none;
+    }
+    .btn-contact {
         margin-top: 5px !important;
     }
     .nav-link {
         font-size: 1rem !important;
+        padding: 0.5rem 0.5rem !important;
+    }
+    .col-md-9 {
+        width: 81%;
+    }
+    .col-md-3 {
+        width: 19%;
     }
     .nav-rightside {
-        gap: .5rem !important;
-    }
-    .nav-rightside {
-        text-align: center;
+        gap: 1rem !important;
     }
 }
 @media (max-width: 705px) {
@@ -113,25 +137,37 @@ body{
         display: none;
     }
     .nav-link {
-        font-size: .8rem !important;
+        font-size: 0.8rem !important;
     }
     .nav-rightside {
-        gap: .1rem !important;
+        gap: 0.5rem !important;
     }
     .nav-rightside {
         text-align: center;
     }
-    .btn-contact{
-        font-size: .7rem !important;
+    .btn-contact {
+        font-size: 0.7rem !important;
         margin-top: 5px !important;
     }
+    .container-fluid {
+        padding-right: 0;
+    }
 }
+
 @media (max-width: 565px) {
+    .nav-rightside {
+        display: none;
+        opacity: 0;
+        transform: translateY(-20px);
+        transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .nav-rightside.show {
+        display: flex;
+        opacity: 1;
+        transform: translateY(0);
+    }
     .content {
         padding: 1.5rem 2.6rem !important;
-    }
-    .nav-rightside.hidden {
-        display: none !important;
     }
     .container-fluid {
         display: contents !important;
@@ -143,23 +179,26 @@ body{
         padding: 1rem 1.8rem !important;
     }
     .nav-link {
-        font-size: .8rem !important;
+        font-size: 0.8rem !important;
         width: 30%;
         text-align: center;
     }
     .nav-rightside {
-        gap: .5rem !important;
+        gap: 0.5rem !important;
         flex-direction: column;
         align-items: center;
         width: 100%;
-        display: none;
         margin-top: 3.5rem;
         padding: 1.5rem 0;
         position: absolute;
         top: 0;
         right: 0;
-        background: rgb(246,250,255);
-        background: linear-gradient(90deg, rgba(246,250,255,1) 5%, rgba(155,202,255,1) 110%);   
+        background: rgb(246, 250, 255);
+        background: linear-gradient(
+            90deg,
+            rgba(246, 250, 255, 1) 5%,
+            rgba(155, 202, 255, 1) 110%
+        );
         z-index: 1050;
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     }
@@ -171,7 +210,11 @@ body{
         font-size: 1.5rem;
         top: 0;
         right: 0;
-        margin-top: 1rem;
+        margin-top: 0.8rem;
         margin-right: 1rem;
+    }
+    .logo {
+        border-radius: 0 !important;
+        width: 26vw;
     }
 }

@@ -2,7 +2,7 @@
     <div class="container-fluid justify-content-around">
         <div class="nav-leftside text-center col-md-3">
             <a class="navbar-brand" href="">
-                <img src="{{ asset('upload/navbar/Cover.png') }}" alt="" height="45" width="115">
+                <img src="{{ asset('upload/navbar/Cover.png') }}" alt="" width="120" class="logo">
             </a>
         </div>
         <div class="nav-rightside justify-content-center col-md-9 d-flex gap-5 hidden" id="navRightside">
@@ -42,6 +42,15 @@
         navbartoggler.addEventListener('click', function(event) {
             event.preventDefault();
             navRightside.classList.toggle('hidden');
+            if (navRightside.classList.contains('hidden')) {
+                setTimeout(() => {
+                    navRightside.classList.remove('show');
+                }, 10);
+            } else {
+                setTimeout(() => {
+                    navRightside.classList.add('show');
+                }, 10);
+            }
         });
     });
 </script>
