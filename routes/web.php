@@ -68,47 +68,58 @@ Route::get('/', function() {
     return view('website.app');
 });
 Route::get('/home', [WebsiteHomeController::class, 'index'])->name('home');
+// Route::redirect('/', '/admin/dashboard');
+Route::get('/course-detail',function(){
+    return view('course-detail');
+});
+Route::get('/lession-detail',function(){
+    return view('lession-detail');
+});
+Route::get('/contact-us',function(){
+    return view('contact-us');
+});
+
 
 Route::post('save_temp_file', [FileManagerController::class, 'saveTempFile'])->name('save_temp_file');
 Route::get('remove_temp_file', [FileManagerController::class, 'removeTempFile'])->name('remove_temp_file');
 
 // back-end
-Route::middleware(['auth','CheckUserLogin', 'SetSessionData'])->group(function () {
+// Route::middleware(['auth','CheckUserLogin', 'SetSessionData'])->group(function () {
 
-    Route::group(['prefix'=>'admin', 'as'=>'admin.'], function () {
-        Route::get('/dashboard',[DashboardController::class, 'index'])->name('dashboard');
+//     Route::group(['prefix'=>'admin', 'as'=>'admin.'], function () {
+//         Route::get('/dashboard',[DashboardController::class, 'index'])->name('dashboard');
 
-        // setting
-        Route::group(['prefix' => 'setting', 'as' => 'setting.'], function () {
-            Route::get('/', [BusinessSettingController::class, 'index'])->name('index');
-            Route::put('/update', [BusinessSettingController::class, 'update'])->name('update');
+//         // setting
+//         Route::group(['prefix' => 'setting', 'as' => 'setting.'], function () {
+//             Route::get('/', [BusinessSettingController::class, 'index'])->name('index');
+//             Route::put('/update', [BusinessSettingController::class, 'update'])->name('update');
 
-            // language setup
-            Route::group(['prefix' => 'language', 'as' => 'language.'], function () {
-                Route::get('/', [LanguageController::class, 'index'])->name('index');
-                Route::get('/create', [LanguageController::class, 'create'])->name('create');
-                Route::post('/', [LanguageController::class, 'store'])->name('store');
-                Route::get('/edit', [LanguageController::class, 'edit'])->name('edit');
-                Route::put('/update', [LanguageController::class, 'update'])->name('update');
-                Route::delete('delete/', [LanguageController::class, 'delete'])->name('delete');
+//             // language setup
+//             Route::group(['prefix' => 'language', 'as' => 'language.'], function () {
+//                 Route::get('/', [LanguageController::class, 'index'])->name('index');
+//                 Route::get('/create', [LanguageController::class, 'create'])->name('create');
+//                 Route::post('/', [LanguageController::class, 'store'])->name('store');
+//                 Route::get('/edit', [LanguageController::class, 'edit'])->name('edit');
+//                 Route::put('/update', [LanguageController::class, 'update'])->name('update');
+//                 Route::delete('delete/', [LanguageController::class, 'delete'])->name('delete');
 
-                Route::get('/update-status', [LanguageController::class, 'updateStatus'])->name('update-status');
-                Route::get('/update-default-status', [LanguageController::class, 'update_default_status'])->name('update-default-status');
-                Route::get('/translate', [LanguageController::class, 'translate'])->name('translate');
-                Route::post('translate-submit/{lang}', [LanguageController::class, 'translate_submit'])->name('translate.submit');
-            });
-        });
+//                 Route::get('/update-status', [LanguageController::class, 'updateStatus'])->name('update-status');
+//                 Route::get('/update-default-status', [LanguageController::class, 'update_default_status'])->name('update-default-status');
+//                 Route::get('/translate', [LanguageController::class, 'translate'])->name('translate');
+//                 Route::post('translate-submit/{lang}', [LanguageController::class, 'translate_submit'])->name('translate.submit');
+//             });
+//         });
 
-        Route::resource('user', UserController::class);
+//         Route::resource('user', UserController::class);
 
-        Route::get('product-category/update_status', [CategoryController::class, 'updateStatus'])->name('product-category.update_status');
-        Route::resource('product-category', CategoryController::class);
+//         Route::get('product-category/update_status', [CategoryController::class, 'updateStatus'])->name('product-category.update_status');
+//         Route::resource('product-category', CategoryController::class);
 
-        Route::resource('product', ProductController::class);
+//         Route::resource('product', ProductController::class);
 
-    });
+//     });
 
-});
+// });
 
 
 Route::middleware(['auth'])->group(function () {
