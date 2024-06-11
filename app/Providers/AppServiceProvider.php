@@ -28,21 +28,21 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         // global variable
-        // view()->composer('*', function ($view) {
-        //     $business_setting = new BusinessSetting;
-        //     $languages = $business_setting->where('type', 'language')->first()->value;
+        view()->composer('*', function ($view) {
+            $business_setting = new BusinessSetting;
+            $languages = $business_setting->where('type', 'language')->first()->value;
 
-        //     $langs = array_reduce(json_decode($languages, true), function ($result, $language) {
-        //         if ($language['status'] == 1) {
-        //             $result[$language['name']] = $language['code'];
-        //         }
-        //         return $result;
+            $langs = array_reduce(json_decode($languages, true), function ($result, $language) {
+                if ($language['status'] == 1) {
+                    $result[$language['name']] = $language['code'];
+                }
+                return $result;
 
-        //     }, []);
+            }, []);
 
-        //     $view->with('current_locale', app()->getLocale());
-        //     $view->with('available_locales', $langs);
-        // });
+            $view->with('current_locale', app()->getLocale());
+            $view->with('available_locales', $langs);
+        });
         // view()->composer('*',function($view) {
         //     $view->with('user', Auth::user());
         //     $view->with('social', Social::all());

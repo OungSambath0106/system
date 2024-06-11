@@ -1,10 +1,10 @@
 <aside class="main-sidebar elevation-4 sidebar-light-info" style="">
     <!-- Brand Logo -->
-    <a href="../../index3.html" class="brand-link" style="">
-        <img src="{{ asset('uploads/company-logo.png') }}" alt="AdminLTE Logo" class="brand-image"
-            style="width: 100%;
-      object-fit: contain;margin-left: 0; height: 100px;max-height: 72px;">
-        {{-- <span class="brand-text font-weight-light">ONLINE SHOP</span> --}}
+    <a href="{{ route('admin.dashboard') }}" class="brand-link" style="">
+        <img src="@if (session()->has('app_logo') && file_exists('uploads/business_settings/' . session()->get('app_logo'))) {{ asset('uploads/business_settings/' . session()->get('app_logo')) }} @else {{ asset('uploads/image/default.png') }} @endif"
+            alt="AdminLTE Logo" class="brand-image pl-2 ml-2"
+            style="width: 100%; object-fit: contain; margin-left: 0; height: 60px; max-height: 60px;">
+        {{-- <span class="brand-text font-weight pl-2 ml-0 mt-2">{{ session()->get('app_name') }}</span> --}}
     </a>
 
 
@@ -40,9 +40,19 @@
                 <li class="nav-item">
                     <a href="{{ route('admin.dashboard') }}"
                         class="nav-link @if (request()->routeIs('admin.dashboard')) active @endif">
-                        <i class="nav-icon fas fa-tachometer-alt"></i>
+                        <i class="nav-icon fas fa-home"></i>
                         <p>
                             {{ __('Dashboard') }}
+                        </p>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a href="{{ route('admin.user.index') }}"
+                        class="nav-link @if (request()->routeIs('admin.user.index')) active @endif">
+                        <i class="nav-icon fas fa-user-alt"></i>
+                        <p>
+                            {{ __('User') }}
                         </p>
                     </a>
                 </li>

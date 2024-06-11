@@ -126,7 +126,7 @@
             </div>
         </li>
         <!-- Language Dropdown Menu -->
-        {{-- <li class="nav-item dropdown">
+        <li class="nav-item dropdown">
             <a class="nav-link" data-toggle="dropdown" href="#">
                 <i class="flag-icon flag-icon-{{ $current_locale == 'en' ? 'gb' : $current_locale }}"></i>
             </a>
@@ -149,7 +149,7 @@
                     @endif
                 @endforeach
             </div>
-        </li> --}}
+        </li>
 
         <li class="nav-item dropdown user-menu">
             <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
