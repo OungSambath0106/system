@@ -38,6 +38,9 @@ use App\Http\Controllers\Backends\BusinessSettingController;
 use App\Http\Controllers\Backends\PartnerCategoryController;
 use App\Http\Controllers\Backends\ServiceForVisitorController;
 use App\Http\Controllers\Website\HomeController as WebsiteHomeController;
+use App\Http\Controllers\Website\CourseController as WebsiteCourseController;
+use App\Http\Controllers\Website\ContactController as WebsiteContactController;
+use App\Http\Controllers\Website\LessonCategoryController as WebsiteLessonCategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -69,15 +72,10 @@ Route::get('/', function() {
 });
 Route::get('/home', [WebsiteHomeController::class, 'index'])->name('home');
 // Route::redirect('/', '/admin/dashboard');
-Route::get('/course-detail',function(){
-    return view('course-detail');
-});
-Route::get('/lession-detail',function(){
-    return view('lession-detail');
-});
-Route::get('/contact-us',function(){
-    return view('contact-us');
-});
+Route::get('/course-detail',[WebsiteCourseController::class,'index'])->name('coursedetail');
+Route::get('/lesson-detail',[WebsiteLessonCategoryController::class,'index'])->name('lessondetail');
+Route::get('/contact-us',[WebsiteContactController::class,'index'])->name('contactus');
+
 
 
 Route::post('save_temp_file', [FileManagerController::class, 'saveTempFile'])->name('save_temp_file');
