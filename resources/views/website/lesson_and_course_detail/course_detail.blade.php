@@ -3,7 +3,7 @@
     @include('website.lesson_and_course_detail.course_style')
     <style>
         .menuimg:hover {
-            cursor:pointer;
+            cursor: pointer;
         }
     </style>
     <div class="backimg2">
@@ -96,7 +96,7 @@
                             <p class="card-text-menu">Jump into UI/UX design with our Figma course, tailored for
                                 beginners
                                 and those looking to polish their design skills. Alongside using Figma, you'll
-                                leverage Mobbin to identify current UI patterns, enabling you to see effective design
+                                leverage Mobbin to identify current UI patterns, enabling you to see effective design
                                 solutions in action. The course covers how to organize elements on a page, play with
                                 color schemes and fonts, and ensure your designs respond well across different devices.
                             </p>
