@@ -3,7 +3,7 @@
     @include('website.lesson_and_course_detail.course_style')
     <style>
         .menuimg:hover {
-            cursor:pointer;
+            cursor: pointer;
         }
     </style>
     <div class="backimg2">
@@ -18,15 +18,12 @@
     <div class="buttomimg1">
         <img width="90%" src="/upload/social_media/Ellipse1.png" alt="err">
     </div>
-
     <div class="container">
         <div class="row ">
             <div class="col-12 col-md-12 col-lg-12">
                 <div class="card  justyfy-content-center">
                     <div class="col-12 d-flex ">
-
                         <img class="card-img-top" src="/upload/social_media/uxui.png" alt="not found">
-
                         <div class="card-body">
                             <h4 class="card-title" style="">UI UX Design</h4>
                             <span>Publish date 18-05-2024</span>

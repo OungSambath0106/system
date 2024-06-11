@@ -1108,6 +1108,7 @@
         }
 
     }
+
     @media screen and (min-width: 339px) and (max-width: 400px) {
         button:hover {
             color: rgba(21, 119, 255, 1) !important;
@@ -1538,7 +1539,7 @@
 
     }
 
-    .menuimg{
+    .menuimg {
         align-items: center;
         width: 35%;
         height: auto;
@@ -1547,7 +1548,6 @@
         /* display: inline-block; */
 
     }
-
 
     .card-menu {
         /* margin: 0; */
@@ -1641,5 +1641,4 @@
     .buttomimg2 img {
         width: 60%;
     }
-
 </style>
