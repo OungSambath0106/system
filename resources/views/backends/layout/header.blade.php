@@ -126,24 +126,30 @@
             </div>
         </li>
         <!-- Language Dropdown Menu -->
-        <li class="nav-item dropdown">
+        {{-- <li class="nav-item dropdown">
             <a class="nav-link" data-toggle="dropdown" href="#">
-                <i class="flag-icon flag-icon-{{ ($current_locale == 'en') ? 'gb' : $current_locale }}"></i>
+                <i class="flag-icon flag-icon-{{ $current_locale == 'en' ? 'gb' : $current_locale }}"></i>
             </a>
             <div class="dropdown-menu dropdown-menu-right p-0">
-                @foreach($available_locales as $locale_name => $available_locale)
-                    @if($available_locale === $current_locale)
-                        <a href="{{ route('change_language', $available_locale) }}" class="dropdown-item text-capitalize active">
-                            <i class="flag-icon flag-icon-{{ ($available_locale == 'en') ? 'gb' : $available_locale }} mr-2"></i> {{ $locale_name }}
+                @foreach ($available_locales as $locale_name => $available_locale)
+                    @if ($available_locale === $current_locale)
+                        <a href="{{ route('change_language', $available_locale) }}"
+                            class="dropdown-item text-capitalize active">
+                            <i
+                                class="flag-icon flag-icon-{{ $available_locale == 'en' ? 'gb' : $available_locale }} mr-2"></i>
+                            {{ $locale_name }}
                         </a>
                     @else
-                        <a href="{{ route('change_language', $available_locale) }}" class="dropdown-item text-capitalize">
-                            <i class="flag-icon flag-icon-{{ ($available_locale == 'en') ? 'gb' : $available_locale }} mr-2"></i> {{ $locale_name }}
+                        <a href="{{ route('change_language', $available_locale) }}"
+                            class="dropdown-item text-capitalize">
+                            <i
+                                class="flag-icon flag-icon-{{ $available_locale == 'en' ? 'gb' : $available_locale }} mr-2"></i>
+                            {{ $locale_name }}
                         </a>
                     @endif
                 @endforeach
             </div>
-        </li>
+        </li> --}}
 
         <li class="nav-item dropdown user-menu">
             <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" aria-expanded="false">

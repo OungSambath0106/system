@@ -38,18 +38,52 @@
                 <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
                 <li class="nav-item">
-                    <a href="{{ route('admin.dashboard') }}" class="nav-link @if(request()->routeIs('admin.dashboard')) active @endif">
-                    <i class="nav-icon fas fa-tachometer-alt"></i>
-                    <p>
-                        {{ __('Dashboard') }}
-
-                    </p>
+                    <a href="{{ route('admin.dashboard') }}"
+                        class="nav-link @if (request()->routeIs('admin.dashboard')) active @endif">
+                        <i class="nav-icon fas fa-tachometer-alt"></i>
+                        <p>
+                            {{ __('Dashboard') }}
+                        </p>
                     </a>
                 </li>
 
-                <li class="nav-item @if(request()->routeIs('admin.product*')) menu-is-opening menu-open @endif">
+                <li class="nav-item">
+                    <a href="#" class="nav-link @if (request()->routeIs('admin.course')) active @endif">
+                        <i class="nav-icon fas fa-tachometer-alt"></i>
+                        <p>
+                            {{ __('Course') }}
+                        </p>
+                    </a>
+                </li>
+
+                <li class="nav-item @if (request()->routeIs('admin.lesson*')) menu-is-opening menu-open @endif">
                     {{-- menu-open --}}
-                    <a href="#" class="nav-link @if(request()->routeIs('admin.product*')) active @endif">
+                    <a href="#" class="nav-link @if (request()->routeIs('admin.lesson*')) active @endif">
+                        <i class="nav-icon fa fa-boxes"></i>
+                        <p>
+                            {{ __('Lesson Setup') }}
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link @if (request()->routeIs('admin.lesson.*')) active @endif">
+                                <i class="fa-solid fa-circle nav-icon"></i>
+                                <p>{{ __('Lesson') }}</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link @if (request()->routeIs('admin.lesson-category*')) active @endif">
+                                <i class="fa-solid fa-circle nav-icon"></i>
+                                <p>{{ __('Lesson Category') }}</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li class="nav-item @if (request()->routeIs('admin.product*')) menu-is-opening menu-open @endif">
+                    {{-- menu-open --}}
+                    <a href="#" class="nav-link @if (request()->routeIs('admin.product*')) active @endif">
                         <i class="nav-icon fa fa-boxes"></i>
                         <p>
                             {{ __('Product Setup') }}
@@ -58,13 +92,15 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="{{ route('admin.product.index') }}" class="nav-link @if(request()->routeIs('admin.product.*')) active @endif">
+                            <a href="{{ route('admin.product.index') }}"
+                                class="nav-link @if (request()->routeIs('admin.product.*')) active @endif">
                                 <i class="fa-solid fa-circle nav-icon"></i>
                                 <p>{{ __('Product') }}</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('admin.product-category.index') }}" class="nav-link @if(request()->routeIs('admin.product-category*')) active @endif">
+                            <a href="{{ route('admin.product-category.index') }}"
+                                class="nav-link @if (request()->routeIs('admin.product-category*')) active @endif">
                                 <i class="fa-solid fa-circle nav-icon"></i>
                                 <p>{{ __('Category') }}</p>
                             </a>
@@ -73,7 +109,8 @@
                 </li>
 
                 <li class="nav-item">
-                    <a href="{{ route('admin.setting.index') }}" class="nav-link @if(request()->routeIs('admin.setting*')) active @endif">
+                    <a href="{{ route('admin.setting.index') }}"
+                        class="nav-link @if (request()->routeIs('admin.setting*')) active @endif">
                         <i class="nav-icon fas fa-cog"></i>
                         <p>
                             {{ __('Setting') }}
