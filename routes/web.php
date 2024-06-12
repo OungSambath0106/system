@@ -75,6 +75,7 @@ Route::get('/', function() {
 Route::get('/home', [WebsiteHomeController::class, 'index'])->name('home');
 // Route::redirect('/', '/admin/dashboard');
 Route::get('/course-detail',[WebsiteCourseController::class,'index'])->name('coursedetail');
+Route::get('/lessons-by-category/{categoryId}', [WebsiteCourseController::class, 'getLessonsByCategory']);
 Route::get('/lesson-detail',[WebsiteLessonCategoryController::class,'index'])->name('lessondetail');
 Route::get('/contact-us',[WebsiteContactController::class,'index'])->name('contactus');
 

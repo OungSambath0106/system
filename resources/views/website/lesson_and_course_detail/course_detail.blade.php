@@ -24,9 +24,7 @@
             <div class="col-12 col-md-12 col-lg-12">
                 <div class="card  justyfy-content-center">
                     <div class="col-12 d-flex ">
-
                         <img class="card-img-top" src="/upload/social_media/uxui.png" alt="not found">
-
                         <div class="card-body">
                             <h4 class="card-title" style="">UI UX Design</h4>
                             <span>Publish date 18-05-2024</span>
@@ -39,7 +37,6 @@
                             </p>
                         </div>
                     </div>
-                    {{-- </div> --}}
                 </div>
             </div>
         </div>
@@ -61,7 +58,7 @@
                         <div class="col-12">
                             <div class="group">
                                 <button type="button" class="form-control justify-content-between d-flex"
-                                    onclick="setActiveButton(this)">
+                                    onclick="loadLessons({{ $category->id }}, this)">
                                     <h6 class="mt-2">{{ $category->title }}</h6>
                                     <div class="round-circle">{{ $loop->iteration }}</div>
                                 </button>
@@ -72,20 +69,8 @@
             </div>
 
             <div class="col-12 col-md-6 col-lg-7">
-                <div class="card card-menu">
-                    <div class="col-12 d-flex">
-                        <img id="menu-img" class="menuimg" src="/upload/social_media/menu1.png" alt="Not found">
-                        <div class="card-body-menu">
-                            <h4 class="card-title">Introduction to UI/UX Design</h4>
-                            <p class="card-text-menu">Jump into UI/UX design with our Figma course, tailored for
-                                beginners
-                                and those looking to polish their design skills. Alongside using Figma, you'll
-                                leverage Mobbin to identify current UI patterns, enabling you to see effective design
-                                solutions in action. The course covers how to organize elements on a page, play with
-                                color schemes and fonts, and ensure your designs respond well across different devices.
-                            </p>
-                        </div>
-                    </div>
+                <div id="lessons-container">
+                    <!-- Lessons will be loaded here -->
                 </div>
             </div>
         </div>
@@ -104,6 +89,32 @@
 
             // Add active-button class to the clicked button
             button.classList.add('active-button');
+        }
+
+        function loadLessons(categoryId, button) {
+            setActiveButton(button);
+
+            fetch(`/lessons-by-category/${categoryId}`)
+                .then(response => response.json())
+                .then(lessons => {
+                    const lessonsContainer = document.getElementById('lessons-container');
+                    lessonsContainer.innerHTML = ''; // Clear previous lessons
+
+                    lessons.forEach(lesson => {
+                        const lessonCard = `
+                            <div class="card card-menu">
+                                <div class="col-12 d-flex">
+                                    <img id="menu-img" class="menuimg" src="/uploads/lessons/${lesson.thumbnail}" alt="Not found">
+                                    <div class="card-body-menu">
+                                        <h4 class="card-title"> ${lesson.title} </h4>
+                                        <p class="card-text-menu"> ${lesson.description} </p>
+                                    </div>
+                                </div>
+                            </div>
+                        `;
+                        lessonsContainer.insertAdjacentHTML('beforeend', lessonCard);
+                    });
+                });
         }
     </script>
 @endsection
