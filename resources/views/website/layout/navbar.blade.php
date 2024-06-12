@@ -1,7 +1,7 @@
 <nav class="navbar bg-body-tertiary">
     <div class="container-fluid justify-content-around">
         <div class="nav-leftside text-center col-md-3">
-            <a class="navbar-brand" href="">
+            <a class="navbar-brand" href="{{ route('home') }}">
                 <img src="@if (session()->has('app_logo') && file_exists('uploads/business_settings/' . session()->get('app_logo'))) {{ asset('uploads/business_settings/' . session()->get('app_logo')) }} @else {{ asset('uploads/image/default.png') }} @endif"
                     alt="" width="120" class="logo">
             </a>

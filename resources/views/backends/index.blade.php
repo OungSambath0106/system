@@ -58,11 +58,12 @@
                                     <div class="summary">
                                         <h4 class="title">Total Lessons</h4>
                                         <div class="info">
-                                            <strong class="amount">0</strong>
+                                            <strong class="amount">{{ $totallessons }}</strong>
                                         </div>
                                     </div>
                                     <div class="summary-footer">
-                                        <a href="#" class="text text-uppercase">Lessons List</a>
+                                        <a href="{{ route('admin.lesson.index') }}" class="text text-uppercase">Lessons
+                                            List</a>
                                     </div>
                                 </div>
                             </div>
