@@ -35,6 +35,8 @@ use App\Http\Controllers\Backends\MenuCategoryController;
 use App\Http\Controllers\Backends\PhotoGalleryController;
 use App\Http\Controllers\Backends\BoothCategoryController;
 use App\Http\Controllers\Backends\BusinessSettingController;
+use App\Http\Controllers\Backends\LessonCategoryController;
+use App\Http\Controllers\Backends\LessonController;
 use App\Http\Controllers\Backends\PartnerCategoryController;
 use App\Http\Controllers\Backends\ServiceForVisitorController;
 use App\Http\Controllers\Website\HomeController as WebsiteHomeController;
@@ -116,6 +118,12 @@ Route::middleware(['auth','CheckUserLogin', 'SetSessionData'])->group(function (
         Route::resource('product', ProductController::class);
 
         Route::resource('course', ProductController::class);
+
+        Route::get('lesson-category/update_status', [LessonCategoryController::class, 'updateStatus'])->name('lesson-category.update_status');
+        Route::resource('lesson-category', LessonCategoryController::class);
+
+        Route::get('lesson/update_status', [LessonController::class, 'updateStatus'])->name('lesson.update_status');
+        Route::resource('lesson', LessonController::class);
 
     });
 

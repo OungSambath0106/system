@@ -95,11 +95,10 @@
                                                         <div class="form-group">
                                                             <label
                                                                 for="company_address">{{ __('Company Address') }}</label>
-                                                            <input type="text" name="company_address"
-                                                                id="company_address" class="form-control"
-                                                                value="{{ $company_address }}">
+                                                            <textarea name="company_address" id="company_address" class="form-control">{{ $company_address }}</textarea>
                                                         </div>
                                                     </div>
+
                                                 </div>
                                             </div>
                                         </div>

@@ -2,7 +2,7 @@
     <!-- Brand Logo -->
     <a href="{{ route('admin.dashboard') }}" class="brand-link" style="">
         <img src="@if (session()->has('app_logo') && file_exists('uploads/business_settings/' . session()->get('app_logo'))) {{ asset('uploads/business_settings/' . session()->get('app_logo')) }} @else {{ asset('uploads/image/default.png') }} @endif"
-            alt="AdminLTE Logo" class="brand-image pl-2 ml-2"
+            alt="AdminLTE Logo" class="brand-image pt-2"
             style="width: 100%; object-fit: contain; margin-left: 0; height: 60px; max-height: 60px;">
         {{-- <span class="brand-text font-weight pl-2 ml-0 mt-2">{{ session()->get('app_name') }}</span> --}}
     </a>
@@ -11,14 +11,14 @@
 
     <!-- Sidebar -->
     <div class="sidebar os-theme-dark">
-        <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+        {{-- <div class="user-panel mt-3 pb-3 mb-3 d-flex">
             <div class="image">
-                {{-- <img src="{{ Session::get('current_user')->profile_photo_path }}" class="img-circle elevation-2" alt="User Image"> --}}
+                <img src="{{ Session::get('current_user')->profile_photo_path }}" class="img-circle elevation-2" alt="User Image">
             </div>
             <div class="info">
-                {{-- <a href="#" class="d-block">{{ Session::get('current_user')->name }}</a> --}}
+                <a href="#" class="d-block">{{ Session::get('current_user')->name }}</a>
             </div>
-        </div>
+        </div> --}}
         <!-- SidebarSearch Form -->
         {{-- <div class="form-inline">
         <div class="input-group" data-widget="sidebar-search">
@@ -32,7 +32,7 @@
       </div> --}}
 
         <!-- Sidebar Menu -->
-        <nav class="mt-2">
+        <nav class="mt-5">
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
                 data-accordion="false">
                 <!-- Add icons to the links using the .nav-icon class
@@ -77,13 +77,15 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="#" class="nav-link @if (request()->routeIs('admin.lesson.*')) active @endif">
+                            <a href="{{ route('admin.lesson.index') }}"
+                                class="nav-link @if (request()->routeIs('admin.lesson.*')) active @endif">
                                 <i class="fa-solid fa-circle nav-icon"></i>
                                 <p>{{ __('Lesson') }}</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link @if (request()->routeIs('admin.lesson-category*')) active @endif">
+                            <a href="{{ route('admin.lesson-category.index') }}"
+                                class="nav-link @if (request()->routeIs('admin.lesson-category*')) active @endif">
                                 <i class="fa-solid fa-circle nav-icon"></i>
                                 <p>{{ __('Lesson Category') }}</p>
                             </a>
@@ -91,8 +93,7 @@
                     </ul>
                 </li>
 
-                <li class="nav-item @if (request()->routeIs('admin.product*')) menu-is-opening menu-open @endif">
-                    {{-- menu-open --}}
+                {{-- <li class="nav-item @if (request()->routeIs('admin.product*')) menu-is-opening menu-open @endif">
                     <a href="#" class="nav-link @if (request()->routeIs('admin.product*')) active @endif">
                         <i class="nav-icon fa fa-boxes"></i>
                         <p>
@@ -116,7 +117,7 @@
                             </a>
                         </li>
                     </ul>
-                </li>
+                </li> --}}
 
                 <li class="nav-item">
                     <a href="{{ route('admin.setting.index') }}"

@@ -107,4 +107,25 @@
     .dropdown-item {
         cursor: pointer;
     }
+
+    /* Hide scrollbar for Chrome, Safari, and Opera */
+    ::-webkit-scrollbar {
+        display: none;
+    }
+
+    /* Hide scrollbar for Firefox */
+    * {
+        scrollbar-width: none;
+        /* Firefox */
+    }
+
+    /* Hide scrollbar for Internet Explorer, Edge */
+    * {
+        -ms-overflow-style: none;
+        /* IE and Edge */
+    }
+
+    .layout-navbar-fixed.sidebar-mini.sidebar-collapse.text-sm .wrapper .brand-link {
+        height: calc(4.9rem + 1px) !important;
+    }
 </style>
