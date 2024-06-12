@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Backends;
 
 use App\Http\Controllers\Controller;
 use App\Models\BusinessSetting;
+use App\Models\Course;
 use App\Models\LessonCategory;
 use App\Models\Translation;
 use Exception;
@@ -31,12 +32,13 @@ class LessonCategoryController extends Controller
      */
     public function create()
     {
+        $courses = Course::pluck('title', 'id');
         $language = BusinessSetting::where('type', 'language')->first();
         $language = $language->value ?? null;
         $default_lang = 'en';
         $default_lang = json_decode($language, true)[0]['code'];
 
-        return view('backends.lesson-category._create', compact('language', 'default_lang'));
+        return view('backends.lesson-category._create', compact('courses', 'language', 'default_lang'));
     }
 
     /**
@@ -49,6 +51,7 @@ class LessonCategoryController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'title' => 'required',
+            'course' => 'nullable',
         ]);
         
         $validatedData = $request->validate([
@@ -75,6 +78,7 @@ class LessonCategoryController extends Controller
 
             $category = new LessonCategory();
             $category->title = $request->title[array_search('en', $request->lang)];
+            $category->course_id = $request->course;
             $order = $validatedData['order'] ?? 1;
             $existingItem = LessonCategory::where('order', $order)->first();
 
@@ -137,12 +141,14 @@ class LessonCategoryController extends Controller
     public function edit($id)
     {
         $category = LessonCategory::withoutGlobalScopes()->with('translations')->findOrFail($id);
+        $courses = Course::pluck('title', 'id');
+
         $language = BusinessSetting::where('type', 'language')->first();
         $language = $language->value ?? null;
         $default_lang = 'en';
         $default_lang = json_decode($language, true)[0]['code'];
 
-        return view('backends.lesson-category._edit', compact('category', 'language', 'default_lang'));
+        return view('backends.lesson-category._edit', compact('category', 'courses', 'language', 'default_lang'));
     }
 
     /**
@@ -156,7 +162,11 @@ class LessonCategoryController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'title' => 'required',
-            // 'order' => 'required|integer',
+            'course' => 'nullable',
+        ]);
+
+        $validatedData = $request->validate([
+            'order' => 'nullable|integer|min:1|max:100',
         ]);
 
         if (is_null($request->title[array_search('en', $request->lang)])) {
@@ -179,15 +189,15 @@ class LessonCategoryController extends Controller
 
             $category = LessonCategory::findOrFail($id);
             $category->title = $request->title[array_search('en', $request->lang)];
-            $newOrder = $request->input('order');
-            if ($category->order != $newOrder) {
-                LessonCategory::where('order', '>=', $newOrder)
-                    ->where('id', '!=', $id)
-                    ->increment('order');
+            $category->course_id = $request->course;
+            $order = $validatedData['order'] ?? 1;
+            $existingItem = LessonCategory::where('order', $order)->first();
 
-                $category->order = $newOrder;
-                $category->save();
+            if ($existingItem) {
+                LessonCategory::where('order', '>=', $order)->increment('order');
             }
+
+            $category->order = $order;
             $category->save();
 
             $data = [];

@@ -4,6 +4,7 @@
             <tr>
                 <th>#</th>
                 <th>{{ __('Title') }}</th>
+                <th>{{ __('Course') }}</th>
                 <th>{{ __('Status') }}</th>
                 <th>{{ __('Action') }}</th>
             </tr>
@@ -13,6 +14,7 @@
                 <tr>
                     <td>{{ $loop->iteration }}</td>
                     <td>{{ $category->title }}</td>
+                    <td> {{ $category->course->title ?? 'Null' }} </td>
                     <td>
                         <div class="custom-control custom-switch">
                             <input type="checkbox" class="custom-control-input switcher_input status"

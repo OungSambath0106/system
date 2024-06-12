@@ -53,6 +53,22 @@
                 </div>
                 <div class="card-body">
                     <div class="row">
+                        <div class="form-group col-md-12 ">
+                            <label class="required_lable" for="course">{{ __('Course') }}</label>
+                            <select name="course" id="course"
+                                class="form-control select2 @error('course') is-invalid @enderror">
+                                <option value="">{{ __('Select Course') }}</option>
+                                @foreach ($courses as $id => $title)
+                                    <option value="{{ $id }}">{{ $title }}</option>
+                                @endforeach
+                            </select>
+                            @error('course')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+
                         <div class="form-group col-md-12">
                             <label class="required_lable" for="order">{{ __('Order') }}</label>
                             <input type="number" name="order" id="order" min="1" max="100"

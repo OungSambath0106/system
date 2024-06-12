@@ -94,7 +94,7 @@
                                         <label class="required_lable" for="category">{{ __('Category') }}</label>
                                         <select name="category" id="category"
                                             class="form-control select2 @error('category') is-invalid @enderror">
-                                            <option value="">{{ __('Select category') }}</option>
+                                            <option value="">{{ __('Select Category') }}</option>
                                             @foreach ($categories as $id => $title)
                                                 <option value="{{ $id }}">{{ $title }}</option>
                                             @endforeach
