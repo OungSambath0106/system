@@ -42,6 +42,10 @@ class SetSessionData
 
             $request->session()->put('app_name', $app_name);
 
+            $phone = @$business->where('type', 'phone')->first()->value;
+
+            $request->session()->put('phone', $phone);
+
             $telegram = @$business->where('type', 'telegram')->first()->value;
 
             $request->session()->put('telegram', $telegram);

@@ -59,7 +59,7 @@
                                 </div>
                                 <div class="texticon">
                                     <h5>About Club</h5>
-                                    <p>skills and knowledge to be learned, and how it will benefit the student.</p>
+                                    <p>{{ session()->get('about_club') }}</p>
                                 </div>
                             </div>
                             <div class="phone col-3 text-center">
@@ -67,20 +67,18 @@
                                     <i class="fa-solid fa-phone fa-lg" style="color: #ffffff;"></i>
 
                                 </div>
-                                <div class="texticon">
+                                <div class="texticon text-center">
                                     <h5>Phone Number</h5>
-                                    <p>(+855) 89 991 005</p>
-                                    <p>(+855) 89 991 005</p>
+                                    <p class="px-5" style="max-width: 99%;">{{ session()->get('phone') }}</p>
                                 </div>
                             </div>
                             <div class="telegram col-3 text-center">
                                 <div class="icon mx-auto mb-2">
                                     <img class="telegram" src="/upload/social_media/telegram.png" alt="">
                                 </div>
-                                <div class="texticon">
+                                <div class="texticon text-center">
                                     <h5>Telegram</h5>
-                                    <p>(+855) 89 991 005</p>
-                                    <p>(+855) 89 991 005</p>
+                                    <p class="px-5" style="max-width: 99%;">{{ session()->get('telegram') }}</p>
                                 </div>
                             </div>
                             <div class="location col-3 text-center">
@@ -89,8 +87,7 @@
                                 </div>
                                 <div class="texticon">
                                     <h5>Our Location</h5>
-                                    <p>Street 13, Siem Reap 17252. (Treang Village, Slorkram Commune, Siem Reap, Kingdom
-                                        of Cambodia)</p>
+                                    <p>{{ session()->get('company_address') }}</p>
                                 </div>
                             </div>
                         </div>
