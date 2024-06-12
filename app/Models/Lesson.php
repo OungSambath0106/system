@@ -3,10 +3,10 @@
 namespace App\Models;
 
 use App\helpers\AppHelper;
+use Illuminate\Support\Facades\App;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\App;
 
 class Lesson extends Model
 {

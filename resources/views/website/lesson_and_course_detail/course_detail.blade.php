@@ -54,97 +54,33 @@
                             <i class="fa-solid fa-magnifying-glass fa-lg"></i>
                         </div>
                     </div>
-                    <div class="col-12">
-                        <div class="group1">
-                            <label for="button1">Content Courses</label>
-                            <button type="button" id="button1" class="form-control">Introduction to UI/UX
-                                Design</button>
-                            <div class="round-circle1">1</div>
-                        </div>
+                    <div class="col-12 mt-3">
+                        <label>Content Courses</label>
                     </div>
-                    <div class="col-12">
-                        <div class="group2">
-                            <button type="button" id="button2" class="form-control">UI Kits and Templates</button>
-                            <div class="round-circle2">2</div>
+                    @foreach ($categories as $category)
+                        <div class="col-12">
+                            <div class="group">
+                                <button type="button" class="form-control justify-content-between d-flex"
+                                    onclick="setActiveButton(this)">
+                                    <h6 class="mt-2">{{ $category->title }}</h6>
+                                    <div class="round-circle">{{ $loop->iteration }}</div>
+                                </button>
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-12">
-                        <div class="group3">
-                            <button type="button" id="button3" class="form-control">Shapes, Gradients and
-                                Strokes</button>
-                            <div class="round-circle3">3</div>
-                        </div>
-                    </div>
-                    <div class="col-12">
-                        <div class="group4">
-                            <button type="button" id="button4" class="form-control">Icons, Typography, and
-                                Styles</button>
-                            <div class="round-circle4">4</div>
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
             </div>
 
             <div class="col-12 col-md-6 col-lg-7">
                 <div class="card card-menu">
                     <div class="col-12 d-flex">
-
                         <img id="menu-img" class="menuimg" src="/upload/social_media/menu1.png" alt="Not found">
-
                         <div class="card-body-menu">
                             <h4 class="card-title">Introduction to UI/UX Design</h4>
                             <p class="card-text-menu">Jump into UI/UX design with our Figma course, tailored for
                                 beginners
                                 and those looking to polish their design skills. Alongside using Figma, you'll
                                 leverage Mobbin to identify current UI patterns, enabling you to see effective design
-                                solutions in action. The course covers how to organize elements on a page, play with
-                                color schemes and fonts, and ensure your designs respond well across different devices.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="card card-menu">
-                    <div class="col-12 d-flex">
-                        <img id="menu-img" class="menuimg" src="/upload/social_media/menu1.png" alt="Not found">
-                        <div class="card-body-menu">
-                            <h4 class="card-title">UI DESIGN (USER INTERFACE DESIGN)</h4>
-                            <p class="card-text-menu">Jump into UI/UX design with our Figma course, tailored for
-                                beginners
-                                and those looking to polish their design skills. Alongside using Figma, you'll
-                                leverage Mobbin to identify current UI patterns, enabling you to see effective design
-                                solutions in action. The course covers how to organize elements on a page, play with
-                                color schemes and fonts, and ensure your designs respond well across different devices.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="card card-menu">
-                    <div class="col-12 d-flex">
-                        <img id="menu-img" class="menuimg" src="/upload/social_media/menu1.png" alt="Not found">
-                        <div class="card-body-menu">
-                            <h4 class="card-title" style="">UX DESIGN (USER EXPERIENCE DESIGN)</h4>
-                            <p class="card-text-menu">Jump into UI/UX design with our Figma course, tailored for
-                                beginners
-                                and those looking to polish their design skills. Alongside using Figma, you'll
-                                leverage Mobbin to identify current UI patterns, enabling you to see effective design
-                                solutions in action. The course covers how to organize elements on a page, play with
-                                color schemes and fonts, and ensure your designs respond well across different devices.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="card card-menu">
-                    <div class="col-12 d-flex">
-                        <img id="menu-img" class="menuimg" src="/upload/social_media/menu1.png" alt="Not found">
-                        <div class="card-body-menu">
-                            <h4 class="card-title" style="">UX DESIGN (USER EXPERIENCE DESIGN)</h4>
-                            <p class="card-text-menu">Jump into UI/UX design with our Figma course, tailored for
-                                beginners
-                                and those looking to polish their design skills. Alongside using Figma, you'll
-                                leverage Mobbin to identify current UI patterns, enabling you to see effective design
                                 solutions in action. The course covers how to organize elements on a page, play with
                                 color schemes and fonts, and ensure your designs respond well across different devices.
                             </p>
@@ -158,5 +94,16 @@
         document.getElementById("menu-img").addEventListener("click", function() {
             window.location.href = "http://example.com";
         });
+    </script>
+    <script>
+        function setActiveButton(button) {
+            // Remove active-button class from all buttons
+            document.querySelectorAll('.form-control').forEach(function(btn) {
+                btn.classList.remove('active-button');
+            });
+
+            // Add active-button class to the clicked button
+            button.classList.add('active-button');
+        }
     </script>
 @endsection
