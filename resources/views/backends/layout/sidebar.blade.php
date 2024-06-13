@@ -58,14 +58,13 @@
                 </li>
 
                 <li class="nav-item">
-                    <a href="#" class="nav-link @if (request()->routeIs('admin.course')) active @endif">
-                        <a href="{{ route('admin.course.index') }}"
-                            class="nav-link @if (request()->routeIs('admin.course*')) active @endif">
-                            <i class="nav-icon fas fa-tachometer-alt"></i>
-                            <p>
-                                {{ __('Course') }}
-                            </p>
-                        </a>
+                    <a href="{{ route('admin.course.index') }}"
+                        class="nav-link @if (request()->routeIs('admin.course*')) active @endif">
+                        <i class="nav-icon fas fa-tachometer-alt"></i>
+                        <p>
+                            {{ __('Course') }}
+                        </p>
+                    </a>
                 </li>
                 <li class="nav-item">
                     <a href="{{ route('admin.contact.index') }}"

@@ -7,9 +7,6 @@ use Illuminate\Support\Facades\App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Support\Facades\App;
-use Illuminate\Database\Eloquent\Builder;
-use App\helpers\AppHelper;
 
 class Course extends Model
 {
