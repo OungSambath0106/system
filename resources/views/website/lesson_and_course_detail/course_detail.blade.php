@@ -18,25 +18,25 @@
     <div class="buttomimg1">
         <img width="90%" src="/upload/social_media/Ellipse1.png" alt="err">
     </div>
-
     <div class="container">
         <div class="row ">
             <div class="col-12 col-md-12 col-lg-12">
                 <div class="card  justyfy-content-center">
-                    <div class="col-12 d-flex ">
-                        <img class="card-img-top" src="/upload/social_media/uxui.png" alt="not found">
-                        <div class="card-body">
-                            <h4 class="card-title" style="">UI UX Design</h4>
-                            <span>Publish date 18-05-2024</span>
-                            <p class="card-text">UI/UX design with our Figma course, tailored for beginners and
-                                those
-                                looking to polish their design skills. Alongside using Figma, you'll
-                                leverage Mobbin to
-                                identify current UI patterns, enabling you to see effective design solutions in
-                                action.
-                            </p>
+                    @foreach ($courses as $course)
+                        <div class="col-12 d-flex ">
+                            <img width="30%" height="auto"
+                                src="@if ($course->image && file_exists(public_path('uploads/course/' . $course->image))) {{ asset('uploads/course/' . $course->image) }}
+                 @else
+                    {{ asset('uploads/default.png') }} @endif"
+                                alt="" class="card-img-top">
+                            <div class="card-body">
+                                <h4 class="card-title">{{ $course->title }}</h4>
+                                <span>{{ $course->created_at }}</span>
+                                <p class="card-text">{{ $course->description }}</p>
+                            </div>
                         </div>
-                    </div>
+                    @endforeach
+                    {{-- </div> --}}
                 </div>
             </div>
         </div>

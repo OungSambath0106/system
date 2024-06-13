@@ -26,24 +26,53 @@
                                 </h4>
                             </div>
                             <div class="card-message">
-                                <form class="row d-flex gap-2 justify-content-center" action="your_action_url_here"
-                                    method="POST">
-                                    <div class="form-group col-5  mb-3">
+                                @if (session('success'))
+                                    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+                                    <script>
+                                        Swal.fire({
+                                            position: "top-end",
+                                            icon: "success",
+                                            title: "{{ session('success') }}", // Add quotes around the session value
+                                            showConfirmButton: false,
+                                            timer: 1700
+                                        });
+                                    </script>
+                                @endif
+
+                                <form class="row d-flex gap-2 justify-content-center"
+                                    action="{{ route('admin.contact.store') }}" method="POST">
+                                    @csrf
+                                    <div class="form-group col-5 mb-3">
                                         <label for="name" class="mb-2">Name</label>
                                         <input type="text" class="form-control" id="name" name="name"
                                             placeholder="Enter your name">
+                                        @error('name')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
                                     </div>
                                     <div class="form-group col-5 mb-3">
                                         <label for="email" class="mb-2">Email</label>
                                         <input type="email" class="form-control" id="email" name="email"
-                                            placeholder="Enter a valid email address">
+                                            placeholder="Enter a valid email address" required>
+                                        @error('email')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
                                     </div>
-
-                                    <div class="form-group col-10  mb-3">
-                                        <label for="name" class="mb-2">Message</label>
+                                    <div class="form-group col-10 mb-3">
+                                        <label for="message" class="mb-2">Message</label>
                                         <textarea name="message" id="message" cols="20" rows="5" class="form-control"
-                                            placeholder="Enter your message"></textarea>
+                                            placeholder="Enter your message" required></textarea>
+                                        @error('message')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
                                     </div>
+                                   <input type="hidden" name="isRead" value="0">
                                     <div class="form-group col-10 mt-4">
                                         <button type="submit" class="btn btn-primary col-12">Submit</button>
                                     </div>
@@ -96,4 +125,41 @@
             </div>
         </div>
     </div>
+    {{-- <script>
+        $(document).ready(function() {
+            // alert(1);
+            var success_audio = "{{ URL::asset('sound/success.wav') }}";
+            var error_audio = "{{ URL::asset('sound/error.wav') }}";
+            var success = new Audio(success_audio);
+            var error = new Audio(error_audio);
+
+            const Confirmation = Swal.mixin({
+                customClass: {
+                    confirmButton: 'btn btn-success',
+                    cancelButton: 'btn btn-danger'
+                },
+                buttonsStyling: false
+            });
+
+            @if (Session::has('msg'))
+                @if (Session::get('success') == true)
+                    toastr.options = {
+                        "closeButton": true,
+                        "progressBar": true
+                    }
+                    toastr.success("{{ Session::get('msg') }}");
+                    success.play();
+                @else
+                    toastr.options = {
+                        "closeButton": true,
+                        "progressBar": true
+                    }
+                    toastr.error("{{ Session::get('msg') }}");
+                    error.play();
+                @endif
+            @endif
+
+
+        });
+    </script> --}}
 @endsection

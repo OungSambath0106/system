@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Website;
 use App\Http\Controllers\Controller;
 use App\Models\Lesson;
 use App\Models\LessonCategory;
+use App\Models\Course;
 use Illuminate\Http\Request;
 
 class CourseController extends Controller
@@ -24,6 +25,8 @@ class CourseController extends Controller
     {
         $lessons = Lesson::where('category_id', $categoryId)->get();
         return response()->json($lessons);
+        $courses = Course::all();
+        return view('website.lesson_and_course_detail.course_detail',compact('courses'));
     }
 
     /**

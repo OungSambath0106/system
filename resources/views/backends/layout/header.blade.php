@@ -85,6 +85,8 @@
                     </div>
                 </a>
                 <div class="dropdown-divider"></div>
+              
+                {{-- <div class="dropdown-divider"></div>
                 <a href="#" class="dropdown-item">
                     <div class="media">
                         <img src="../../dist/img/user8-128x128.jpg" alt="User Avatar"
@@ -114,6 +116,8 @@
                         </div>
                     </div>
                 </a>
+                    <!-- Message End -->
+                </a> --}}
                 <div class="dropdown-divider"></div>
                 <a href="#" class="dropdown-item dropdown-footer">See All Messages</a>
             </div>

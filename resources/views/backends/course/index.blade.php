@@ -39,7 +39,7 @@
                                 </div>
                                 {{-- <span class="badge bg-warning total-count">{{ $grades->total() }}</span> --}}
                                 <div class="col-sm-6">
-                                    <a class="btn btn-primary float-right" href="{{ route('admin.product.create') }}">
+                                    <a class="btn btn-primary float-right" href="{{ route('admin.course.create') }}">
                                         <i class=" fa fa-plus-circle"></i>
                                         {{ __('Add New') }}
                                     </a>
