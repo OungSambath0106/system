@@ -129,7 +129,6 @@ Route::middleware(['auth', 'CheckUserLogin', 'SetSessionData'])->group(function 
 
         Route::delete('/contact-us/delete/{id}', [ContactController::class, 'destroy'])->name('contact.destroy');
         // update contact //
-        Route::post('/contact-us/mark-read/{id}', [ContactController::class, 'markAsRead'])->name('contact.markAsRead');
 
         //website contact//
         Route::post('/contact-us', [WebsiteContactController::class, 'store'])->name('contact.store');

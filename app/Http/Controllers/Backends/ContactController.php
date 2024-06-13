@@ -78,7 +78,9 @@ class ContactController extends Controller
     public function show($id)
     {
         $contact = ContactMessage::findOrFail($id);
-        $contact->isRead = 1;
+        if ($contact->isRead == 0) {
+            ContactMessage::whereIn('id')->update(['isRead' => 1]);
+        }
         $contact->save();
         return view('backends.contact_us.replysms', compact('contact'));
     }

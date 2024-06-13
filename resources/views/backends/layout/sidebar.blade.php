@@ -116,6 +116,30 @@
                     </ul>
                 </li>
 
+                 {{-- <li class="nav-item @if (request()->routeIs('admin.lesson*')) menu-is-opening menu-open @endif">
+                    <a href="#" class="nav-link @if (request()->routeIs('admin.lesson*')) active @endif">
+                        <i class="nav-icon fa fa-boxes"></i>
+                        <p>
+                            {{ __('Lesson Setup') }}
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link @if (request()->routeIs('admin.lesson.*')) active @endif">
+                                <i class="fa-solid fa-circle nav-icon"></i>
+                                <p>{{ __('Lesson') }}</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link @if (request()->routeIs('admin.lesson-category*')) active @endif">
+                                <i class="fa-solid fa-circle nav-icon"></i>
+                                <p>{{ __('Lesson Category') }}</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li> --}}
+
                 <li class="nav-item">
                     <a href="{{ route('admin.setting.index') }}"
                         class="nav-link @if (request()->routeIs('admin.setting*')) active @endif">
