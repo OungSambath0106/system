@@ -50,7 +50,7 @@
     }
 
     .card-img-top:hover {
-        transform: scale(1.1);
+        transform: scale(1.05) !important;
     }
 
     .card-img-top {
@@ -138,77 +138,20 @@
         color: rgba(161, 161, 161, 1);
     }
 
-    .group1 .round-circle1 {
+    .group .round-circle {
         border-radius: 50%;
         width: 35px;
         height: 35px;
-        line-height: 30px;
         text-align: center;
         align-content: center;
-        position: absolute;
-        right: 55px;
-        top: 41.5%;
-        transform: translateY(-50%);
         background: linear-gradient(90deg, rgba(243, 49, 247, 1) 0%, rgba(87, 158, 255, 1) 80%);
         color: white;
 
 
     }
 
-    .group2 .round-circle2 {
-        border-radius: 50%;
-        width: 35px;
-        height: 35px;
-        line-height: 30px;
-        text-align: center;
-        align-content: center;
-        position: absolute;
-        right: 55px;
-        top: 55.7%;
-        transform: translateY(-50%);
-        background: linear-gradient(90deg, rgba(243, 49, 247, 1) 0%, rgba(87, 158, 255, 1) 80%);
-
-        color: white;
-    }
-
-    .group3 .round-circle3 {
-        border-radius: 50%;
-        width: 35px;
-        height: 35px;
-        line-height: 30px;
-        text-align: center;
-        align-content: center;
-        position: absolute;
-        right: 55px;
-        top: 69.8%;
-        transform: translateY(-50%);
-        background: linear-gradient(90deg, rgba(243, 49, 247, 1) 0%, rgba(87, 158, 255, 1) 80%);
-
-        color: white;
-    }
-
-    .group4 .round-circle4 {
-        border-radius: 50%;
-        width: 35px;
-        height: 35px;
-        line-height: 30px;
-        text-align: center;
-        align-content: center;
-        display: inline-block;
-        position: absolute;
-        right: 55px;
-        top: 83.8%;
-        transform: translateY(-50%);
-        background: linear-gradient(90deg, rgba(243, 49, 247, 1) 0%, rgba(87, 158, 255, 1) 80%);
-
-        color: white;
-    }
-
-    .group1 button,
-    .group2 button,
-    .group3 button,
-    .group4 button {
-        padding: 10px 40px 10px 10px;
+    .group button {
+        /* padding: 10px 10px 10px 10px; */
         box-sizing: border-box;
         text-align: left;
         font-weight: 600;
@@ -216,13 +159,13 @@
         background-color: rgba(244, 244, 244, 1);
     }
 
-    #button1 {
+    .active-button {
         color: rgba(21, 119, 255, 1);
         background: linear-gradient(90deg, rgba(246, 250, 255, 1) 0%, rgba(155, 202, 255, 1) 80%);
     }
 
     button:hover {
-        color: rgba(21, 119, 255, 1);
+        color: rgba(21, 119, 255, 1) !important;
         background: linear-gradient(90deg, rgba(246, 250, 255, 1) 0%, rgba(155, 202, 255, 1) 80%);
     }
 
@@ -1612,7 +1555,7 @@
     }
 
     .card-menu:hover {
-        transform: scale(1.1);
+        transform: scale(1.07) !important;
     }
 
     .backimg1 {

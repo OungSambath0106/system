@@ -35,6 +35,8 @@ use App\Http\Controllers\Backends\MenuCategoryController;
 use App\Http\Controllers\Backends\PhotoGalleryController;
 use App\Http\Controllers\Backends\BoothCategoryController;
 use App\Http\Controllers\Backends\BusinessSettingController;
+use App\Http\Controllers\Backends\LessonCategoryController;
+use App\Http\Controllers\Backends\LessonController;
 use App\Http\Controllers\Backends\ContactController;
 use App\Http\Controllers\Backends\CourseController;
 use App\Http\Controllers\Backends\PartnerCategoryController;
@@ -75,9 +77,10 @@ Route::get('/', function () {
 });
 Route::get('/home', [WebsiteHomeController::class, 'index'])->name('home');
 // Route::redirect('/', '/admin/dashboard');
-Route::get('/course-detail', [WebsiteCourseController::class, 'index'])->name('coursedetail');
-Route::get('/lesson-detail', [WebsiteLessonCategoryController::class, 'index'])->name('lessondetail');
-Route::get('/contact-us', [WebsiteContactController::class, 'index'])->name('contactus');
+Route::get('/course-detail',[WebsiteCourseController::class,'index'])->name('coursedetail');
+Route::get('/lessons-by-category/{categoryId}', [WebsiteCourseController::class, 'getLessonsByCategory']);
+Route::get('/lesson-detail',[WebsiteLessonCategoryController::class,'index'])->name('lessondetail');
+Route::get('/contact-us',[WebsiteContactController::class,'index'])->name('contactus');
 
 
 
@@ -119,6 +122,12 @@ Route::middleware(['auth', 'CheckUserLogin', 'SetSessionData'])->group(function 
         Route::resource('product', ProductController::class);
 
         Route::resource('course', CourseController::class);
+
+        Route::get('lesson-category/update_status', [LessonCategoryController::class, 'updateStatus'])->name('lesson-category.update_status');
+        Route::resource('lesson-category', LessonCategoryController::class);
+
+        Route::get('lesson/update_status', [LessonController::class, 'updateStatus'])->name('lesson.update_status');
+        Route::resource('lesson', LessonController::class);
 
 
         Route::get('/contact-us', [ContactController::class, 'index'])->name('contact.index');

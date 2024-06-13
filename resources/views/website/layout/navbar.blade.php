@@ -1,15 +1,17 @@
 <nav class="navbar bg-body-tertiary">
     <div class="container-fluid justify-content-around">
         <div class="nav-leftside text-center col-md-3">
-            <a class="navbar-brand" href="">
-                <img src="{{ asset('upload/navbar/Cover.png') }}" alt="" width="120" class="logo">
+            <a class="navbar-brand" href="{{ route('home') }}">
+                <img src="@if (session()->has('app_logo') && file_exists('uploads/business_settings/' . session()->get('app_logo'))) {{ asset('uploads/business_settings/' . session()->get('app_logo')) }} @else {{ asset('uploads/image/default.png') }} @endif"
+                    alt="" width="120" class="logo">
             </a>
         </div>
         <div class="nav-rightside justify-content-center col-md-9 d-flex gap-5 hidden" id="navRightside">
             <a href="{{ route('home') }}" class="p-2 nav-link{{ Request::is('home') ? ' active' : '' }}" type="button">
                 Home
             </a>
-            <a href="{{ route('coursedetail') }}" class="p-2 nav-link{{ Route::is('coursedetail') ? ' active' : '' }}" type="button">
+            <a href="{{ route('coursedetail') }}" class="p-2 nav-link{{ Route::is('coursedetail') ? ' active' : '' }}"
+                type="button">
                 UI UX
             </a>
             <a href="" class="p-2 nav-link{{ Request::is('laravel') ? ' active' : '' }}" type="button">
@@ -21,6 +23,13 @@
             <a href="" class="p-2 nav-link{{ Request::is('flutter') ? ' active' : '' }}" type="button">
                 Flutter
             </a>
+            {{-- @foreach ($courses as $course)
+                <a href="{{ route('coursedetail', ['id' => $course->id]) }}"
+                    class="p-2 nav-link{{ Request::is('coursedetail/' . $course->id) ? ' active' : '' }}"
+                    type="button">
+                    {{ $course->title }}
+                </a>
+            @endforeach --}}
             <a href="{{ route('contactus') }}" class="btn btn-sm btn-primary h-50 mt-2 btn-contact" type="button"
                 style="border-radius: 8px;">
                 <i class="fas fa-headset"></i> Contact Us

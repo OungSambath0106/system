@@ -1,7 +1,7 @@
 <style>
     /* @media (min-width: 1279px) {
         .main-footer {
-            bottom: 0;
+            /* bottom: 0; */
         }
     } */
 
@@ -18,5 +18,5 @@
 </style>
 
 <footer class="main-footer text-start position-absolute bottom-auto w-100 px-5">
-    <strong>All rights reserved Shake Coder © 2024 · Terms of Services</strong>
+    <strong>{{ session()->get('copy_right_text') }}</strong>
 </footer>
