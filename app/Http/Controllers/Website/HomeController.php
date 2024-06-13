@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Website;
 
 use App\Http\Controllers\Controller;
+use App\Models\Course;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -14,7 +15,10 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('website.home.home');
+        // return view('website.home.home');
+
+        $courses = Course::all();
+        return view('website.home.home', compact('courses'));
     }
 
     /**

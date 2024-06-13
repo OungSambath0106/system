@@ -23,6 +23,13 @@
             <a href="" class="p-2 nav-link{{ Request::is('flutter') ? ' active' : '' }}" type="button">
                 Flutter
             </a>
+            {{-- @foreach ($courses as $course)
+                <a href="{{ route('coursedetail', ['id' => $course->id]) }}"
+                    class="p-2 nav-link{{ Request::is('coursedetail/' . $course->id) ? ' active' : '' }}"
+                    type="button">
+                    {{ $course->title }}
+                </a>
+            @endforeach --}}
             <a href="{{ route('contactus') }}" class="btn btn-sm btn-primary h-50 mt-2 btn-contact" type="button"
                 style="border-radius: 8px;">
                 <i class="fas fa-headset"></i> Contact Us
