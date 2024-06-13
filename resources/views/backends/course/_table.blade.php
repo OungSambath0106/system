@@ -4,38 +4,43 @@
             <tr>
                 <th>#</th>
                 <th class="">{{ __('Title') }}</th>
-                <th>{{ __('Image') }}</th>
                 <th>{{ __('Description') }}</th>
+                <th>{{ __('Image') }}</th>
                 <th>{{ __('Action') }}</th>
             </tr>
         </thead>
         <tbody>
-            {{-- @foreach ($course as $course)
+            @foreach ($courses as $course)
                 <tr>
                     <td>{{ $loop->iteration }}</td>
+                      <td>{{ $course->title}}</td>
+                    <td>{{ $course->description }}</td>
                     <td>
-                        <img src="
-                        @if ($user->image && file_exists(public_path('uploads/users/' . $user->image))) {{ asset('uploads/users/' . $user->image) }}
+                        <img width="30%" height="auto" src="
+                        @if ($course->image && file_exists(public_path('uploads/course/' . $course->image))) {{ asset('uploads/course/' . $course->image) }}
                         @else
-                            {{ asset('uploads/default-profile.png') }} @endif
+                            {{ asset('uploads/default.png') }} @endif
                         "
-                            alt="" class="profile_img_table user-image img-circle elevation-2">
+                            alt="" class="profile_img_table">
+
+                        {{-- <span class="ml-2">
+                            {{ $item->title }}
+                        </span> --}}
                     </td>
-                    <td>{{ $course-> }}</td>
-                    <td>{{ $course-> }}</td>
+
                     <td>
-                        <a href="{{ route('admin.product.edit', $course->id) }}" class="btn btn-info btn-sm btn-edit">
+                        <a href="{{ route('admin.course.edit', $course->id) }}" class="btn btn-info btn-sm btn-edit">
                             <i class="fas fa-pencil-alt"></i>
                             {{ __('Edit') }}
                         </a>
 
 
-                        <form action="{{ route('admin.product.destroy', $course->id) }}"
+                        <form action="{{ route('admin.course.destroy', $course->id) }}"
                             class="d-inline-block form-delete-{{ $course->id }}">
                             @csrf
                             @method('DELETE')
                             <button type="submit" data-id="{{ $course->id }}"
-                                data-href="{{ route('admin.product.destroy', $course->id) }}"
+                                data-href="{{ route('admin.course.destroy', $course->id) }}"
                                 class="btn btn-danger btn-sm btn-delete">
                                 <i class="fa fa-trash-alt"></i>
                                 {{ __('Delete') }}
@@ -43,7 +48,7 @@
                         </form>
                     </td>
                 </tr>
-            @endforeach --}}
+            @endforeach
         </tbody>
     </table>
 

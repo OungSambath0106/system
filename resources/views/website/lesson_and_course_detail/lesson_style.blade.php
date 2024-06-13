@@ -29,7 +29,8 @@
         margin-right: 53px;
         font-size: 20px;
     }
-    .col-7 h4{
+
+    .col-7 h4 {
         font-weight: 700;
     }
 
@@ -48,6 +49,64 @@
     .lessionimg img {
         width: 90%;
     }
+
+    /* -------Lesson video --------*/
+    /* .lessonimg {
+        position: relative;
+        display: inline-block;
+    } */
+
+    .playvideo {
+        position: absolute;
+        top: 45%;
+        left: 45%;
+        transform: translate(-50%, -50%);
+        background-color: rgba(21, 119, 255, 1);
+        border-radius: 50%;
+        width: 60px;
+        height: 60px;
+        text-align: center;
+        align-content: center;
+        border: 5px solid white;
+        padding-left: 4px;
+        padding-top: 5px;
+
+
+    }
+
+    .playvideo i {
+        color: #fff;
+        font-size: 27px;
+    }
+
+    .listimg {
+        position: relative;
+        display: inline-block;
+    }
+
+    .menuplayvideo {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: rgba(21, 119, 255, 1);
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border: 5px solid white;
+        cursor: pointer;
+        padding-left: 3px;
+    }
+
+    .menuplayvideo i {
+        color: #fff;
+        font-size: 25px;
+    }
+
+
 
     /* .lessionimg {
         display: flex;

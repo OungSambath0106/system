@@ -35,12 +35,15 @@ use App\Http\Controllers\Backends\MenuCategoryController;
 use App\Http\Controllers\Backends\PhotoGalleryController;
 use App\Http\Controllers\Backends\BoothCategoryController;
 use App\Http\Controllers\Backends\BusinessSettingController;
+use App\Http\Controllers\Backends\ContactController;
+use App\Http\Controllers\Backends\CourseController;
 use App\Http\Controllers\Backends\PartnerCategoryController;
 use App\Http\Controllers\Backends\ServiceForVisitorController;
 use App\Http\Controllers\Website\HomeController as WebsiteHomeController;
 use App\Http\Controllers\Website\CourseController as WebsiteCourseController;
 use App\Http\Controllers\Website\ContactController as WebsiteContactController;
 use App\Http\Controllers\Website\LessonCategoryController as WebsiteLessonCategoryController;
+use App\Models\Course;
 
 /*
 |--------------------------------------------------------------------------
@@ -67,14 +70,14 @@ Auth::routes();
 // save temp file
 Route::post('save_temp_file', [FileManagerController::class, 'saveTempFile'])->name('save_temp_file');
 
-Route::get('/', function() {
+Route::get('/', function () {
     return view('website.app');
 });
 Route::get('/home', [WebsiteHomeController::class, 'index'])->name('home');
 // Route::redirect('/', '/admin/dashboard');
-Route::get('/course-detail',[WebsiteCourseController::class,'index'])->name('coursedetail');
-Route::get('/lesson-detail',[WebsiteLessonCategoryController::class,'index'])->name('lessondetail');
-Route::get('/contact-us',[WebsiteContactController::class,'index'])->name('contactus');
+Route::get('/course-detail', [WebsiteCourseController::class, 'index'])->name('coursedetail');
+Route::get('/lesson-detail', [WebsiteLessonCategoryController::class, 'index'])->name('lessondetail');
+Route::get('/contact-us', [WebsiteContactController::class, 'index'])->name('contactus');
 
 
 
@@ -82,10 +85,10 @@ Route::post('save_temp_file', [FileManagerController::class, 'saveTempFile'])->n
 Route::get('remove_temp_file', [FileManagerController::class, 'removeTempFile'])->name('remove_temp_file');
 
 // back-end
-Route::middleware(['auth','CheckUserLogin', 'SetSessionData'])->group(function () {
+Route::middleware(['auth', 'CheckUserLogin', 'SetSessionData'])->group(function () {
 
-    Route::group(['prefix'=>'admin', 'as'=>'admin.'], function () {
-        Route::get('/dashboard',[DashboardController::class, 'index'])->name('dashboard');
+    Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
+        Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
         // setting
         Route::group(['prefix' => 'setting', 'as' => 'setting.'], function () {
@@ -115,14 +118,25 @@ Route::middleware(['auth','CheckUserLogin', 'SetSessionData'])->group(function (
 
         Route::resource('product', ProductController::class);
 
-        Route::resource('course', ProductController::class);
+        Route::resource('course', CourseController::class);
 
+
+        Route::get('/contact-us', [ContactController::class, 'index'])->name('contact.index');
+        //click view for reply sms//
+        Route::get('/contact-us/{id}', [ContactController::class, 'show'])->name('contact.replysms');
+        //sent sms//
+        Route::post('/contact-us/sent-sms', [ContactController::class, 'replycustomer'])->name('messages.sendReply');
+
+        Route::delete('/contact-us/delete/{id}', [ContactController::class, 'destroy'])->name('contact.destroy');
+        // update contact //
+        Route::post('/contact-us/mark-read/{id}', [ContactController::class, 'markAsRead'])->name('contact.markAsRead');
+
+        //website contact//
+        Route::post('/contact-us', [WebsiteContactController::class, 'store'])->name('contact.store');
     });
-
 });
 
 
 Route::middleware(['auth'])->group(function () {
-    Route::get('/logout', [LoginController::class,'logout'])->name('logout');
+    Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 });
-

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Website;
 
 use App\Http\Controllers\Controller;
+use App\Models\Course;
 use Illuminate\Http\Request;
 
 class CourseController extends Controller
@@ -14,7 +15,8 @@ class CourseController extends Controller
      */
     public function index()
     {
-        return view('website.lesson_and_course_detail.course_detail');
+        $courses = Course::all();
+        return view('website.lesson_and_course_detail.course_detail',compact('courses'));
     }
 
     /**

@@ -1093,6 +1093,34 @@
             margin: 10px 0;
         }
 
+
+        /* .listimg {
+            position: relative;
+            display: inline-block;
+        } */
+
+        /* .listimg .coursemenu{
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: rgba(21, 119, 255, 1);
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 5px solid white;
+            cursor: pointer;
+            padding-left: 3px;
+        }
+
+        .coursemenu i {
+            color: #fff;
+            font-size: 25px;
+        } */
+
         .card-body-menu {
             align-items: center !important;
 
