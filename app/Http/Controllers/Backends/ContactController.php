@@ -49,7 +49,7 @@ class ContactController extends Controller
             $data['message'] = $request->replymessage;
             $data['email'] = $request->customerEmail;
             Mail::send([], [], function ($message) use ($data) {
-                $message->to($data['email'], $data['email'])
+                $message->to($data['email'])
                     ->subject($data["title"])
                     ->setBody($data["message"]);
             });

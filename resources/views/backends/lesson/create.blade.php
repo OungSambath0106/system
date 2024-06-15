@@ -90,7 +90,7 @@
                             </div>
                             <div class="card-body">
                                 <div class="row">
-                                    <div class="form-group col-md-12 ">
+                                    <div class="form-group col-md-6 ">
                                         <label class="required_lable" for="category">{{ __('Category') }}</label>
                                         <select name="category" id="category"
                                             class="form-control select2 @error('category') is-invalid @enderror">
@@ -100,6 +100,21 @@
                                             @endforeach
                                         </select>
                                         @error('category')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label class="required_lable" for="type">{{ __('Type video') }}</label>
+                                        <select name="type" id="type"
+                                            class="form-control select2 @error('type') is-invalid @enderror">
+                                            <option value="">{{ __('Select type') }}</option>
+                                            <option value="video">{{ __('Video') }}</option>
+                                            <option value="url">{{ __('URL') }}</option>
+                                            <!-- Changed 'Url' to 'URL' for consistency -->
+                                        </select>
+                                        @error('type')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
                                             </span>
@@ -125,7 +140,20 @@
                                             </div>
                                         </div>
                                     </div>
-
+                                    {{-- <div class="form-group col-md-6 ">
+                                        <label class="required_lable" for="type">{{ __('Type video') }}</label>
+                                        <select name="type" id="type"
+                                            class="form-control select2 @error('type') is-invalid @enderror">
+                                            <option value="">{{ __('Select type') }}</option>
+                                            <option value="video">{{ __('Video') }}</option>
+                                            <option value="url">{{ __('Url') }}</option>
+                                        </select>
+                                        @error('type')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                    </div>
                                     <div class="form-group col-md-6">
                                         <div class="form-group">
                                             <label for="exampleInputFile">{{ __('Video') }}</label>
@@ -144,7 +172,32 @@
                                                     height="100%">
                                             </div>
                                         </div>
+                                    </div> --}}
+
+
+                                    <div id="videoUpload" class="form-group col-md-6" style="display: none;">
+                                        <label for="exampleInputFile">{{ __('Video') }}</label>
+                                        <div class="input-group">
+                                            <div class="custom-file">
+                                                <input type="hidden" name="video" class="image_names_hidden">
+                                                <input type="file" class="custom-file-input" id="exampleInputFile"
+                                                    name="video" accept="video/*">
+                                                <label class="custom-file-label"
+                                                    for="exampleInputFile">{{ __('Choose file') }}</label>
+                                            </div>
+                                        </div>
+                                        <div class="preview preview-multiple text-center border rounded mt-2"
+                                            style="height: 150px">
+                                            <img src="{{ asset('uploads/image/default.png') }}" alt=""
+                                                height="100%">
+                                        </div>
                                     </div>
+
+                                    <div id="urlInput" class="form-group col-md-6" style="display: none;">
+                                        <label for="videoUrl">{{ __('URL') }}</label>
+                                        <input type="url" class="form-control" id="videoUrl" name="url">
+                                    </div>
+
 
                                 </div>
                             </div>
@@ -220,6 +273,25 @@
             } else {
                 $('.no_translate_wrapper').removeClass('d-none');
             }
+        });
+    </script>
+    <script>
+        $(document).ready(function() {
+            $('#type').on('change', function() {
+                var selectedType = $(this).val();
+
+                if (selectedType === 'video') {
+                    $('#videoUpload').show();
+                    $('#urlInput').hide();
+                } else if (selectedType === 'url') {
+                    $('#videoUpload').hide();
+                    $('#urlInput').show();
+                } else {
+                    // Hide both if nothing is selected or an unexpected value is received
+                    $('#videoUpload').hide();
+                    $('#urlInput').hide();
+                }
+            });
         });
     </script>
 @endpush

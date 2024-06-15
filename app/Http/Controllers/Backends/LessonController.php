@@ -24,7 +24,7 @@ class LessonController extends Controller
     public function index()
     {
         $lessons = Lesson::latest('id')->paginate(10);
-        return view('backends.lesson.index',compact('lessons'));
+        return view('backends.lesson.index', compact('lessons'));
     }
 
     /**
@@ -53,16 +53,16 @@ class LessonController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'title' => 'required',
-            'category' => 'nullable',
+            'category' => 'required',
             'description' => 'required',
-            'thumbnail' => 'nullable',
-            'video' => 'nullable',
+            'type' => 'required',
         ]);
 
         if (is_null($request->title[array_search('en', $request->lang)])) {
             $validator->after(function ($validator) {
                 $validator->errors()->add(
-                    'title', 'Title field is required!'
+                    'title',
+                    'Title field is required!'
                 );
             });
         }
@@ -70,34 +70,39 @@ class LessonController extends Controller
         if (is_null($request->description[array_search('en', $request->lang)])) {
             $validator->after(function ($validator) {
                 $validator->errors()->add(
-                    'description', 'Description field is required!'
+                    'description',
+                    'Description field is required!'
                 );
             });
         }
 
         if ($validator->fails()) {
             return redirect()->back()
-                    ->withErrors($validator)
-                    ->withInput()
-                    ->with(['success' => 0, 'msg' => __('Invalid form input')]);
+                ->withErrors($validator)
+                ->withInput()
+                ->with(['success' => 0, 'msg' => __('Invalid form input')]);
         }
 
-        try{
+        try {
             DB::beginTransaction();
 
             $lesson = new Lesson();
             $lesson->title = $request->title[array_search('en', $request->lang)];
             $lesson->description = $request->description[array_search('en', $request->lang)];
             $lesson->category_id = $request->category;
+            $lesson->type = $request->type;
+
 
             if ($request->hasFile('thumbnail')) {
                 $lesson->thumbnail = ImageManager::upload('uploads/lessons/', $request->thumbnail);
             }
-
-            if ($request->hasFile('video')) {
-                $lesson->video = ImageManager::upload('uploads/lessons/', $request->video);
-            }           
-
+            if ($request->type === 'video') {
+                if ($request->hasFile('video')) {
+                    $lesson->video = ImageManager::upload('uploads/lessons/', $request->video);
+                }
+            } elseif ($request->type === 'url') {
+                $lesson->url = $request->url;
+            }
             $lesson->save();
 
             $data = [];
@@ -128,8 +133,7 @@ class LessonController extends Controller
                 'success' => 1,
                 'msg' => __('Created successfully')
             ];
-
-        }catch (\Exception $e) {
+        } catch (\Exception $e) {
             dd($e);
             DB::rollBack();
             $output = [
@@ -191,7 +195,8 @@ class LessonController extends Controller
         if (is_null($request->title[array_search('en', $request->lang)])) {
             $validator->after(function ($validator) {
                 $validator->errors()->add(
-                    'title', 'Title field is required!'
+                    'title',
+                    'Title field is required!'
                 );
             });
         }
@@ -199,19 +204,20 @@ class LessonController extends Controller
         if (is_null($request->description[array_search('en', $request->lang)])) {
             $validator->after(function ($validator) {
                 $validator->errors()->add(
-                    'description', 'Description field is required!'
+                    'description',
+                    'Description field is required!'
                 );
             });
         }
 
         if ($validator->fails()) {
             return redirect()->back()
-                    ->withErrors($validator)
-                    ->withInput()
-                    ->with(['success' => 0, 'msg' => __('Invalid form input')]);
+                ->withErrors($validator)
+                ->withInput()
+                ->with(['success' => 0, 'msg' => __('Invalid form input')]);
         }
 
-        try{
+        try {
             DB::beginTransaction();
 
             $lesson = Lesson::findOrFail($id);
@@ -259,8 +265,7 @@ class LessonController extends Controller
                 'success' => 1,
                 'msg' => __('Created successfully')
             ];
-
-        }catch (\Exception $e) {
+        } catch (\Exception $e) {
             dd($e);
             DB::rollBack();
             $output = [
@@ -283,8 +288,8 @@ class LessonController extends Controller
         try {
             DB::beginTransaction();
             $lesson = Lesson::findOrFail($id);
-            $translation = Translation::where('translationable_type','App\Models\Lesson')
-                                        ->where('translationable_id',$lesson->id);
+            $translation = Translation::where('translationable_type', 'App\Models\Lesson')
+                ->where('translationable_id', $lesson->id);
             $translation->delete();
             $lesson->delete();
 
@@ -308,7 +313,7 @@ class LessonController extends Controller
         return response()->json($output);
     }
 
-    public function updateStatus (Request $request)
+    public function updateStatus(Request $request)
     {
         try {
             DB::beginTransaction();

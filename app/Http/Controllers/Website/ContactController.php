@@ -65,15 +65,22 @@ class ContactController extends Controller
                 'message' => $request->message,
                 'isRead' => '0'
             ];
+            // HTML content for the email body
+            $htmlContent = "<p>Hello,</p>";
+            $htmlContent .= "<p>You have received a new message:</p>";
+            $htmlContent .= "<p><strong>Name:</strong> {$data['name']}</p>";
+            $htmlContent .= "<p><strong>Email:</strong> {$data['email']}</p>";
+            $htmlContent .= "<p><strong>Message:</strong>{$data['message']}</p>";
 
-            $data["title"]='New message';
-            Mail::send([], [], function ($message) use ($data) {
-                $message->to($data['email'], $data['email'])
-                ->subject($data["title"])
-                    ->setBody($data["message"]);
+            $data['email_recipient'] = env('MAIL_FROM_ADDRESS');
+            Mail::send([], [], function ($message) use ($data, $htmlContent) {
+                $message->to($data['email_recipient'])
+                    ->from($data["email"], $data["name"])
+                    ->subject('New Message from ' . $data["name"])
+                    ->setBody($htmlContent, 'text/html');
             });
 
-               $data = ContactMessage::create($request->all());
+            $data = ContactMessage::create($request->all());
 
             DB::commit();
             // $output = [
