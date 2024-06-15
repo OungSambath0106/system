@@ -5,36 +5,20 @@
                 <th>#</th>
                 <th class="">{{ __('Title') }}</th>
                 <th>{{ __('Description') }}</th>
-                <th>{{ __('Image') }}</th>
                 <th>{{ __('Action') }}</th>
             </tr>
         </thead>
         <tbody>
             @foreach ($courses as $course)
                 <tr>
-                    <td>{{ $loop->iteration }}</td>
-                      <td>{{ $course->title}}</td>
-                    <td>{{ $course->description }}</td>
-                    <td>
-                        <img width="30%" height="auto" src="
-                        @if ($course->image && file_exists(public_path('uploads/course/' . $course->image))) {{ asset('uploads/course/' . $course->image) }}
-                        @else
-                            {{ asset('uploads/default.png') }} @endif
-                        "
-                            alt="" class="profile_img_table">
-
-                        {{-- <span class="ml-2">
-                            {{ $item->title }}
-                        </span> --}}
-                    </td>
-
-                    <td>
+                    <td class="col-1">{{ $loop->iteration }}</td>
+                    <td class="col-2">{{ $course->title }}</td>
+                    <td class="col-7">{{ Str::limit($course->description, 100) }}</td>
+                    <td class="col-2">
                         <a href="{{ route('admin.course.edit', $course->id) }}" class="btn btn-info btn-sm btn-edit">
                             <i class="fas fa-pencil-alt"></i>
                             {{ __('Edit') }}
                         </a>
-
-
                         <form action="{{ route('admin.course.destroy', $course->id) }}"
                             class="d-inline-block form-delete-{{ $course->id }}">
                             @csrf
@@ -51,7 +35,6 @@
             @endforeach
         </tbody>
     </table>
-
     <div class="row">
         <div class="col-12 d-flex flex-row flex-wrap">
             <div class="row" style="width: -webkit-fill-available;">
@@ -63,6 +46,5 @@
             </div>
         </div>
     </div>
-
 
 </div>

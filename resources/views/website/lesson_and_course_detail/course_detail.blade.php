@@ -19,35 +19,31 @@
         <img width="90%" src="/upload/social_media/Ellipse1.png" alt="err">
     </div>
     <div class="container">
-        <div class="row ">
-            <div class="col-12 col-md-12 col-lg-12">
-                <div class="card  justyfy-content-center">
-                    @foreach ($courses as $course)
-                        <div class="col-12 d-flex ">
-                            <img width="30%" height="auto"
-                                src="@if ($course->image && file_exists(public_path('uploads/course/' . $course->image))) {{ asset('uploads/course/' . $course->image) }}
-                 @else
-                    {{ asset('uploads/default.png') }} @endif"
-                                alt="" class="card-img-top">
-                            <div class="card-body">
-                                <h4 class="card-title">{{ $course->title }}</h4>
-                                <span>{{ $course->created_at }}</span>
-                                <p class="card-text">{{ $course->description }}</p>
-                            </div>
+        <div class="row" style="margin-right: 0;">
+            <div class="col-12 col-md-12 col-lg-12 pl-0">
+                <div class="card justify-content-center">
+                    <div class="col-12 d-flex course-baner">
+                        <img width="30%" height="auto"
+                            src="@if ($course->image && file_exists(public_path('uploads/course/' . $course->image))) {{ asset('uploads/course/' . $course->image) }}
+                         @else
+                            {{ asset('uploads/default.png') }} @endif"
+                            alt="" class="card-img-top">
+                        <div class="card-body">
+                            <h4 class="card-title m-0">{{ $course->title }}</h4>
+                            <span>Publish date {{ $course->created_at->format('d-m-Y') }}</span>
+                            <p class="card-text mt-3">{{ $course->description }}</p>
                         </div>
-                    @endforeach
-                    {{-- </div> --}}
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="row">
-            <div class="col-12 col-md-6 col-lg-5">
+        <div class="row" style="margin-right: 0;">
+            <div class="col-12 col-md-6 col-lg-5 pl-0">
                 <div class="card search">
                     <div class="col-12">
                         <div class="group-search">
                             <label for="search">Search</label>
-                            <input type="text" name="" id="search" class="form-control"
-                                placeholder="Search Course">
+                            <input type="text" id="search" class="form-control" placeholder="Search Course">
                             <i class="fa-solid fa-magnifying-glass fa-lg"></i>
                         </div>
                     </div>
@@ -57,9 +53,10 @@
                     @foreach ($categories as $category)
                         <div class="col-12">
                             <div class="group">
-                                <button type="button" class="form-control justify-content-between d-flex"
+                                <button type="button"
+                                    class="form-control justify-content-between d-flex align-items-center"
                                     onclick="loadLessons({{ $category->id }}, this)">
-                                    <h6 class="mt-2">{{ $category->title }}</h6>
+                                    <h6 class="mt-2 btn-title">{{ $category->title }}</h6>
                                     <div class="round-circle">{{ $loop->iteration }}</div>
                                 </button>
                             </div>
@@ -67,20 +64,63 @@
                     @endforeach
                 </div>
             </div>
-
-            <div class="col-12 col-md-6 col-lg-7">
+            <div class="col-12 col-md-6 col-lg-7 pl-0">
                 <div id="lessons-container">
                     <!-- Lessons will be loaded here -->
                 </div>
             </div>
         </div>
     </div>
-    <script>
-        document.getElementById("menu-img").addEventListener("click", function() {
-            window.location.href = "http://example.com";
+    {{-- <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var defaultCategoryIds = [1, 6, 10, 14]; // Array of default category IDs
+            var lessonsContainer = document.getElementById('lessons-container');
+
+            // Function to load lessons for a single category
+            function loadSingleCategory(categoryId) {
+                var button = document.querySelector(`button[onclick="loadLessons(${categoryId}, this)"]`);
+
+                if (button) {
+                    console.log(`Loading lessons for default category ID: ${categoryId}`);
+                    loadLessons(categoryId, button);
+                } else {
+                    console.error(`Button for default category ID ${categoryId} not found.`);
+                }
+            }
+
+            // Load lessons for each default category ID
+            defaultCategoryIds.forEach(categoryId => {
+                loadSingleCategory(categoryId);
+            });
         });
-    </script>
-    <script>
+
+        function loadLessons(categoryId, button) {
+            console.log(`Loading lessons for category ID: ${categoryId}`);
+
+            // Highlight the selected category button
+            document.querySelectorAll('.group button').forEach(btn => btn.classList.remove('active'));
+            button.classList.add('active');
+
+            // Load the lessons for the selected category
+            fetch(`/lessons/${categoryId}`)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`Network response was not ok: ${response.statusText}`);
+                    }
+                    return response.text();
+                })
+                .then(html => {
+                    // Append the loaded HTML to the lessons container
+                    console.log(`Lessons loaded for category ID: ${categoryId}`);
+                    lessonsContainer.innerHTML += html; // Append instead of replacing
+                })
+                .catch(error => {
+                    console.error('Error loading lessons:', error);
+                    lessonsContainer.innerHTML +=
+                        `<p>Error loading lessons for category ${categoryId}. Please try again later.</p>`;
+                });
+        }
+
         function setActiveButton(button) {
             // Remove active-button class from all buttons
             document.querySelectorAll('.form-control').forEach(function(btn) {
@@ -102,7 +142,7 @@
 
                     lessons.forEach(lesson => {
                         const lessonCard = `
-                            <div class="card card-menu">
+                            <div class="card card-menu position-relative">
                                 <div class="col-12 d-flex">
                                     <img id="menu-img" class="menuimg" src="/uploads/lessons/${lesson.thumbnail}" alt="Not found">
                                     <div class="card-body-menu">
@@ -110,11 +150,103 @@
                                         <p class="card-text-menu"> ${lesson.description} </p>
                                     </div>
                                 </div>
+                                <a href="#" class="playvideo" data-id="${lesson.id}" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                    <i class="fa-solid fa-play fa-lg" style="color: white"></i>
+                                </a>
                             </div>
                         `;
                         lessonsContainer.insertAdjacentHTML('beforeend', lessonCard);
                     });
+                    lessonsContainer.addEventListener('click', function(event) {
+                        const target = event.target;
+                        if (target.closest('.playvideo')) {
+                            event.preventDefault();
+                            const lessonId = target.closest('.playvideo').getAttribute('data-id');
+                            window.location.href = `/lesson-detail/${lessonId}`;
+                        }
+                    });
                 });
+        }
+    </script> --}}
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var lessonsContainer = document.getElementById('lessons-container');
+
+            // Load lessons for the button where $loop->iteration == 1
+            var firstButton = document.querySelector('.group button .round-circle');
+            if (firstButton && firstButton.textContent.trim() == '1') {
+                var button = firstButton.closest('button');
+                var categoryId = button.getAttribute('onclick').match(/\d+/)[
+                    0];
+                loadLessons(categoryId, button);
+            }
+
+            // Add search functionality
+            var searchInput = document.getElementById('search');
+            searchInput.addEventListener('input', function() {
+                var query = searchInput.value.toLowerCase();
+                filterLessons(query);
+            });
+
+            function filterLessons(query) {
+                var lessons = lessonsContainer.querySelectorAll('.card.card-menu');
+                lessons.forEach(function(lesson) {
+                    var title = lesson.querySelector('.card-title').textContent.toLowerCase();
+                    if (title.includes(query)) {
+                        lesson.style.display = '';
+                    } else {
+                        lesson.style.display = 'none';
+                    }
+                });
+            }
+        });
+
+        function loadLessons(categoryId, button) {
+            setActiveButton(button);
+
+            fetch(`/lessons-by-category/${categoryId}`)
+                .then(response => response.json())
+                .then(lessons => {
+                    const lessonsContainer = document.getElementById('lessons-container');
+                    lessonsContainer.innerHTML = ''; // Clear previous lessons
+
+                    lessons.forEach(lesson => {
+                        const lessonCard = `
+                            <div class="card card-menu position-relative">
+                                <div class="col-12 d-flex">
+                                    <img id="menu-img" class="menuimg" src="/uploads/lessons/${lesson.thumbnail}" alt="Not found">
+                                    <div class="card-body-menu">
+                                        <h4 class="card-title"> ${lesson.title} </h4>
+                                        <p class="card-text-menu"> ${lesson.description} </p>
+                                    </div>
+                                </div>
+                                <a href="#" class="playvideo" data-id="${lesson.id}" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                    <i class="fa-solid fa-play fa-lg" style="color: white"></i>
+                                </a>
+                            </div>
+                        `;
+                        lessonsContainer.insertAdjacentHTML('beforeend', lessonCard);
+                    });
+
+                    lessonsContainer.addEventListener('click', function(event) {
+                        const target = event.target;
+                        if (target.closest('.playvideo')) {
+                            event.preventDefault();
+                            const lessonId = target.closest('.playvideo').getAttribute('data-id');
+                            window.location.href = `/lesson-detail/${lessonId}`;
+                        }
+                    });
+                });
+        }
+
+        function setActiveButton(button) {
+            // Remove active-button class from all buttons
+            document.querySelectorAll('.form-control').forEach(function(btn) {
+                btn.classList.remove('active-button');
+            });
+
+            // Add active-button class to the clicked button
+            button.classList.add('active-button');
         }
     </script>
 @endsection

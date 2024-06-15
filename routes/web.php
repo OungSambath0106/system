@@ -45,6 +45,8 @@ use App\Http\Controllers\Website\HomeController as WebsiteHomeController;
 use App\Http\Controllers\Website\CourseController as WebsiteCourseController;
 use App\Http\Controllers\Website\ContactController as WebsiteContactController;
 use App\Http\Controllers\Website\LessonCategoryController as WebsiteLessonCategoryController;
+use App\Http\Controllers\Website\LessondetailController;
+use App\Http\Controllers\Website\LessonDetailController as WebsiteLessonDetailController;
 use App\Models\Course;
 
 /*
@@ -77,9 +79,13 @@ Route::get('/', function () {
 });
 Route::get('/home', [WebsiteHomeController::class, 'index'])->name('home');
 // Route::redirect('/', '/admin/dashboard');
+
 Route::get('/course-detail',[WebsiteCourseController::class,'index'])->name('coursedetail');
+Route::get('/course/{id}', [WebsiteCourseController::class, 'show'])->name('course.show');
 Route::get('/lessons-by-category/{categoryId}', [WebsiteCourseController::class, 'getLessonsByCategory']);
-Route::get('/lesson-detail',[WebsiteLessonCategoryController::class,'index'])->name('lessondetail');
+
+Route::get('/lesson-detail/{id}', [WebsiteCourseController::class, 'showLessonDetail'])->name('lesson.detail');
+
 Route::get('/contact-us',[WebsiteContactController::class,'index'])->name('contactus');
 
 

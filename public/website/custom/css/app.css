@@ -155,19 +155,19 @@ body {
 }
 
 @media (max-width: 565px) {
-    .nav-rightside {
+    #navRightside {
         display: none;
-        opacity: 0;
-        transform: translateY(-20px);
-        transition: opacity 0.6s ease, transform 0.6s ease;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.5s ease-out;
     }
-    .nav-rightside.show {
+
+    #navRightside.show {
         display: flex;
-        opacity: 1;
-        transform: translateY(0);
+        max-height: 500px;
     }
     .content {
-        padding: 1.5rem 2.6rem !important;
+        padding: 1.5rem 1.25rem !important;
     }
     .container-fluid {
         display: contents !important;
@@ -176,7 +176,7 @@ body {
         padding-left: 1.4rem;
     }
     .container {
-        padding: 1rem 1.8rem !important;
+        padding: 1rem 0 !important;
     }
     .nav-link {
         font-size: 0.8rem !important;
@@ -188,8 +188,8 @@ body {
         flex-direction: column;
         align-items: center;
         width: 100%;
-        margin-top: 3.5rem;
-        padding: 1.5rem 0;
+        margin-top: 3.2rem;
+        padding: 0.3rem 0;
         position: absolute;
         top: 0;
         right: 0;
@@ -216,5 +216,8 @@ body {
     .logo {
         border-radius: 0 !important;
         width: 26vw;
+    }
+    .btn-contact {
+        margin-bottom: 10px !important;
     }
 }

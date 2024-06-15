@@ -82,7 +82,7 @@
                                                                 <label
                                                                     for="description_{{ $lang['code'] }}">{{ __('Description') }}({{ strtoupper($lang['code']) }})</label>
                                                                 <textarea type="text" id="description_{{ $lang['code'] }}"
-                                                                    class="form-control @error('description') is-invalid @enderror" name="description[]"
+                                                                    class="form-control summernote @error('description') is-invalid @enderror" name="description[]"
                                                                     placeholder="{{ __('Enter Description') }}" value="">{{ $translate[$lang['code']]['description'] ?? $lesson['description'] }}</textarea>
 
                                                                 @error('description')
@@ -158,10 +158,12 @@
                                                         for="exampleInputFile">{{ __('Choose file') }}</label>
                                                 </div>
                                             </div>
-                                            <div class="preview preview-multiple text-center border rounded mt-2"
+                                            <div class="preview text-center border rounded align-content-center mt-2"
                                                 style="height: 150px">
-                                                <img src="{{ asset('uploads/lessons/' . $lesson->video) }}"
-                                                    alt="" height="100%">
+                                                <video class="embed-responsive-item mt-1" controls style="height: 130px">
+                                                    <source src="{{ asset('uploads/lessons/' . $lesson->video) }}"
+                                                        type="video/mp4">
+                                                </video>
                                             </div>
                                         </div>
                                     </div>

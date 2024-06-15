@@ -2,8 +2,10 @@
 
 namespace App\Providers;
 
-use App\Models\BusinessSetting;
 use Carbon\Carbon;
+use App\Models\Course;
+use App\Models\BusinessSetting;
+use Illuminate\Support\Facades\View;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
@@ -49,6 +51,11 @@ class AppServiceProvider extends ServiceProvider
         //     // if you need to access in controller and views:
         //     Config::set('something', $something);
         // });
+
+        View::composer('*', function ($view) {
+            $courses = Course::paginate(10);
+            $view->with('courses', $courses);
+        });
 
         Paginator::useBootstrap();
         Schema::defaultStringLength(191);
