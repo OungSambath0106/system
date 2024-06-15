@@ -22,19 +22,22 @@
         <div class="row ">
             <div class="col-12 col-md-12 col-lg-12">
                 <div class="card  justyfy-content-center">
-                    @foreach ($courses as $course)
-                        <div class="col-12 d-flex ">
+                    @foreach ($courses  as $index => $course)
+                        @if ($index == 0)
+                             <div class="col-12 d-flex ">
                             <img width="30%" height="auto"
                                 src="@if ($course->image && file_exists(public_path('uploads/course/' . $course->image))) {{ asset('uploads/course/' . $course->image) }}
-                 @else
-                    {{ asset('uploads/default.png') }} @endif"
-                                alt="" class="card-img-top">
+                                 @else
+                                    {{ asset('uploads/default.png') }} @endif"
+                                         alt="" class="card-img-top">
                             <div class="card-body">
                                 <h4 class="card-title">{{ $course->title }}</h4>
                                 <span>{{ $course->created_at }}</span>
                                 <p class="card-text">{{ $course->description }}</p>
                             </div>
                         </div>
+                        @endif
+
                     @endforeach
                     {{-- </div> --}}
                 </div>

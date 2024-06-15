@@ -20,7 +20,7 @@ class ContactController extends Controller
     public function index()
     {
         $contacts = ContactMessage::latest('id')->paginate(10);
-        return view('backends.contact_us.index', compact('contacts'));
+        return view('backends.contact.index', compact('contacts'));
     }
 
     /**
@@ -79,10 +79,10 @@ class ContactController extends Controller
     {
         $contact = ContactMessage::findOrFail($id);
         if ($contact->isRead == 0) {
-            ContactMessage::whereIn('id')->update(['isRead' => 1]);
+            $contact->isRead = 1;
+            $contact->save();
         }
-        $contact->save();
-        return view('backends.contact_us.replysms', compact('contact'));
+        return view('backends.contact.replysms', compact('contact'));
     }
 
     /**
@@ -121,7 +121,7 @@ class ContactController extends Controller
             $contact = ContactMessage::findOrFail($id);
             $contact->delete();
             $contacts = ContactMessage::latest('id')->paginate(10);
-            $view = view('backends.contact_us._table', compact('contacts'))->render();
+            $view = view('backends.contact._table', compact('contacts'))->render();
 
             DB::commit();
             $output = [
@@ -142,7 +142,7 @@ class ContactController extends Controller
 
     public function replysms()
     {
-        return view('backends.contact_us.replysms');
+        return view('backends.contact.replysms');
     }
 
 }

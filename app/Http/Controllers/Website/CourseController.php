@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers\Website;
 
-use App\Http\Controllers\Controller;
-use App\Models\Lesson;
-use App\Models\LessonCategory;
 use App\Models\Course;
+use App\Models\Lesson;
 use Illuminate\Http\Request;
+use App\Models\ContactMessage;
+use App\Models\LessonCategory;
+use App\Http\Controllers\Controller;
 
 class CourseController extends Controller
 {
@@ -17,8 +18,9 @@ class CourseController extends Controller
      */
     public function index()
     {
+       $courses = Course::all();
         $categories = LessonCategory::orderBy('order', 'asc')->get();
-        return view('website.lesson_and_course_detail.course_detail', compact('categories'));
+        return view('website.lesson_and_course_detail.course_detail', compact('categories', 'courses'));
     }
 
     public function getLessonsByCategory($categoryId)

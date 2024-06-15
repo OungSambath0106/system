@@ -4,8 +4,8 @@
             <tr>
                 <th>#</th>
                 <th class="">{{ __('Title') }}</th>
-                <th>{{ __('Description') }}</th>
                 <th>{{ __('Image') }}</th>
+                <th>{{ __('Description') }}</th>
                 <th>{{ __('Action') }}</th>
             </tr>
         </thead>
@@ -13,13 +13,13 @@
             @foreach ($courses as $course)
                 <tr>
                     <td>{{ $loop->iteration }}</td>
-                      <td>{{ $course->title}}</td>
-                    <td>{{ $course->description }}</td>
+                    <td>{{ $course->title }}</td>
                     <td>
-                        <img width="30%" height="auto" src="
+                        <img width="50%" height="auto"
+                            src="
                         @if ($course->image && file_exists(public_path('uploads/course/' . $course->image))) {{ asset('uploads/course/' . $course->image) }}
                         @else
-                            {{ asset('uploads/default.png') }} @endif
+                            {{ asset('uploads/defualt.png') }} @endif
                         "
                             alt="" class="profile_img_table">
 
@@ -27,25 +27,29 @@
                             {{ $item->title }}
                         </span> --}}
                     </td>
+                    <td> {{ Str::limit( $course->description, 40) }}</td>
 
                     <td>
-                        <a href="{{ route('admin.course.edit', $course->id) }}" class="btn btn-info btn-sm btn-edit">
-                            <i class="fas fa-pencil-alt"></i>
-                            {{ __('Edit') }}
-                        </a>
+                        @if (auth()->user()->can('course.edit'))
+                            <a href="{{ route('admin.course.edit', $course->id) }}" class="btn btn-info btn-sm btn-edit">
+                                <i class="fas fa-pencil-alt"></i>
+                                {{ __('Edit') }}
+                            </a>
+                        @endif
 
-
-                        <form action="{{ route('admin.course.destroy', $course->id) }}"
-                            class="d-inline-block form-delete-{{ $course->id }}">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" data-id="{{ $course->id }}"
-                                data-href="{{ route('admin.course.destroy', $course->id) }}"
-                                class="btn btn-danger btn-sm btn-delete">
-                                <i class="fa fa-trash-alt"></i>
-                                {{ __('Delete') }}
-                            </button>
-                        </form>
+                        @if (auth()->user()->can('course.delete'))
+                            <form action="{{ route('admin.course.destroy', $course->id) }}"
+                                class="d-inline-block form-delete-{{ $course->id }}">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" data-id="{{ $course->id }}"
+                                    data-href="{{ route('admin.course.destroy', $course->id) }}"
+                                    class="btn btn-danger btn-sm btn-delete">
+                                    <i class="fa fa-trash-alt"></i>
+                                    {{ __('Delete') }}
+                                </button>
+                            </form>
+                        @endif
                     </td>
                 </tr>
             @endforeach

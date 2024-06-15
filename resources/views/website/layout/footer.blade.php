@@ -1,7 +1,7 @@
 <style>
     /* @media (min-width: 1279px) {
         .main-footer {
-            /* bottom: 0; */
+            bottom: auto;
         }
     } */
 

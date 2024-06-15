@@ -49,35 +49,7 @@
                         </div>
                     </section>
                 </div>
-                <div class="col-xs-6 col-md-3 col-sm-6 text-center">
-                    <section class="card bg-info">
-                        <div class="card-body">
-                            <div class="widget-summary">
-                                <div class="widget-summary-col">
-                                    <div class="summary">
-                                        <h4 class="title">Total Courses</h4>
-                                        <div class="info">
-                                            <strong class="amount">0</strong>
-                                        </div>
-                                    </div>
-                                    <div class="summary-footer">
-                                        <a href="#" class="text text-uppercase">
-                                            Courses List
-                                            <h4 class="title">Total Lessons</h4>
-                                            <div class="info">
-                                                <strong class="amount">3</strong>
-                                            </div>
-                                    </div>
-                                    <div class="summary-footer">
-                                        <a href="{{ route('admin.course.index') }}" class="text text-uppercase">
-                                            Lesson List
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </section>
-                </div>
+
                 <div class="col-xs-6 col-md-3 col-sm-6 text-center">
                     <section class="card bg-success">
                         <div class="card-body">
@@ -98,7 +70,7 @@
                         </div>
                     </section>
                 </div>
-                <div class="col-xs-6 col-md-4 col-sm-6 text-center">
+                <div class="col-xs-6 col-md-3 col-sm-6 text-center">
                     <section class="card bg-danger">
                         <div class="card-body">
                             <div class="widget-summary">
@@ -106,11 +78,12 @@
                                     <div class="summary">
                                         <h4 class="title">Total Unread Contact</h4>
                                         <div class="info">
-                                            <strong class="amount">0</strong>
+                                            <strong class="amount">{{ $totalunreadcontacts }}</strong>
                                         </div>
                                     </div>
                                     <div class="summary-footer">
-                                        <a href="#" class="text text-uppercase">Unread Contact List</a>
+                                        <a href="{{ route('admin.contact.index') }}" class="text text-uppercase">Contact
+                                            List</a>
                                     </div>
                                 </div>
                             </div>
@@ -135,14 +108,6 @@
                             style="display: block; height: 579px; width: 1159px;" class="chartjs-render-monitor"></canvas>
                     </div>
                 </section>
-                <h4 class="title">Total Contacts</h4>
-                <div class="info">
-                    <strong class="amount">{{ $totalcontacts }}</strong>
-                </div>
-            </div>
-            <div class="summary-footer">
-                <a href="{{ route('admin.course.index') }}" class="text text-uppercase">Recruitments
-                    List</a>
             </div>
         </div>
     </div>

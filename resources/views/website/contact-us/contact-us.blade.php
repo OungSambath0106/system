@@ -16,73 +16,192 @@
     </div>
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-11 mt-5">
+            <div class="col-10 mt-5 container-card">
                 <div class="card">
-                    <div class="col-8 mx-auto"> <!-- Add mx-auto class here -->
+                    <div class="col-10 mx-auto"> <!-- Add mx-auto class here -->
                         <div class="card-head">
                             <div class="card-text mb-5 mt-5">
                                 <h2 class="text-primary text-center">Contact Us</h2>
                                 <h4 class="text-primary text-center">Any questions or remarks? Just write us a message!
                                 </h4>
                             </div>
-                            <div class="card-message">
-                                @if (session('success'))
-                                    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-                                    <script>
-                                        Swal.fire({
-                                            position: "top-end",
-                                            icon: "success",
-                                            title: "{{ session('success') }}", // Add quotes around the session value
-                                            showConfirmButton: false,
-                                            timer: 1700
-                                        });
-                                    </script>
-                                @endif
+                            <div class="row justify-content-center">
+                                <div class="card-message col-12">
+                                    @if (session('success'))
+                                        <script>
+                                            Swal.fire({
+                                                icon: "success",
+                                                title: "{{ session('success') }}",
+                                                showConfirmButton: false,
+                                                timer: 1900
+                                            });
+                                        </script>
+                                    @endif
+                                    <form class=" d-flex flex-wrap  gap-2 justify-content-center"
+                                        action="{{ route('admin.contact.store') }}" method="POST">
+                                        @csrf
+                                        <div class="form-group col-5 mb-3">
+                                            <label for="name" class="mb-2">Name</label>
+                                            <input type="text" class="form-control" id="name" name="name"
+                                                placeholder="Enter your name">
+                                            @error('name')
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                            @enderror
+                                        </div>
+                                        <div class="form-group col-5 mb-3">
+                                            <label for="email" class="mb-2">Email</label>
+                                            <input type="email" class="form-control" id="email" name="email"
+                                                placeholder="Enter a valid email address" required>
+                                            @error('email')
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                            @enderror
+                                        </div>
+                                        <div class="form-group col-10 mb-3">
+                                            <label for="message" class="mb-2">Message</label>
+                                            <textarea name="message" id="message" cols="20" rows="5" class="form-control"
+                                                placeholder="Enter your message" required></textarea>
+                                            @error('message')
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                            @enderror
+                                        </div>
+                                        <input type="hidden" name="isRead" value="0">
+                                        <div class="form-group col-10 mt-4">
+                                            <button type="submit" class="btn btn-primary col-12">Submit</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
-                                <form class="row d-flex gap-2 justify-content-center"
-                                    action="{{ route('admin.contact.store') }}" method="POST">
-                                    @csrf
-                                    <div class="form-group col-5 mb-3">
-                                        <label for="name" class="mb-2">Name</label>
-                                        <input type="text" class="form-control" id="name" name="name"
-                                            placeholder="Enter your name">
-                                        @error('name')
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
-                                        @enderror
+                    <div class="card-footer">
+                        <div class="row  justify-content-center">
+                            <div class=" d-flex   p-2 gap-5 container-circle"> <!-- Adjusted for responsiveness -->
+                                <div class="club col-12 col-md-3 text-center mb-3 circle">
+                                    <!-- Adjusted for responsiveness -->
+                                    <div class="icon mx-auto mb-2">
+                                        <i class="fa-solid fa-person-running fa-lg" style="color: #ffffff;"></i>
                                     </div>
-                                    <div class="form-group col-5 mb-3">
-                                        <label for="email" class="mb-2">Email</label>
-                                        <input type="email" class="form-control" id="email" name="email"
-                                            placeholder="Enter a valid email address" required>
-                                        @error('email')
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
-                                        @enderror
+                                    <div class="texticon">
+                                        <h5>About Club</h5>
+                                        <p>{{ session()->get('about_club') }}</p>
                                     </div>
-                                    <div class="form-group col-10 mb-3">
-                                        <label for="message" class="mb-2">Message</label>
-                                        <textarea name="message" id="message" cols="20" rows="5" class="form-control"
-                                            placeholder="Enter your message" required></textarea>
-                                        @error('message')
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
-                                        @enderror
+                                </div>
+                                <div class="phone col-12 col-md-3 text-center mb-3 circle">
+                                    <!-- Adjusted for responsiveness -->
+                                    <div class="icon mx-auto mb-2">
+                                        <i class="fa-solid fa-phone fa-lg" style="color: #ffffff;"></i>
                                     </div>
-                                   <input type="hidden" name="isRead" value="0">
-                                    <div class="form-group col-10 mt-4">
-                                        <button type="submit" class="btn btn-primary col-12">Submit</button>
+                                    <div class="texticon text-center">
+                                        <h5>Phone Number</h5>
+                                        <p class="px-5">{{ session()->get('phone') }}</p>
                                     </div>
-                                </form>
+                                </div>
+                                <div class="telegram col-12 col-md-3 text-center mb-3 circle">
+                                    <!-- Adjusted for responsiveness -->
+                                    <div class="icon mx-auto mb-2">
+                                        <img class="telegram" src="/upload/social_media/telegram.png" alt="">
+                                    </div>
+                                    <div class="texticon text-center">
+                                        <h5>Telegram</h5>
+                                        <p class="px-5">{{ session()->get('telegram') }}</p>
+                                    </div>
+                                </div>
+                                <div class="location col-12 col-md-3 text-center mb-3 circle">
+                                    <!-- Adjusted for responsiveness -->
+                                    <div class="icon mx-auto mb-2">
+                                        <i class="fa-solid fa-location-dot fa-lg" style="color: #ffffff;"></i>
+                                    </div>
+                                    <div class="texticon">
+                                        <h5>Our Location</h5>
+                                        <p>{{ session()->get('company_address') }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    {{-- <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-10 mt-5">
+                <div class="card">
+                    <div class="card-body"> <!-- Added card-body for better structure -->
+                        <div class="col-10 mx-auto">
+                            <div class="card-head text-center"> <!-- Added text-center for better alignment -->
+                                <div class="card-text mb-5 mt-5">
+                                    <h2 class="text-primary">Contact Us</h2>
+                                    <h4 class="text-primary">Any questions or remarks? Just write us a message!</h4>
+                                </div>
+                                <div class="row justify-content-center"> <!-- Centered the form content -->
+                                    <div class="col-10">
+                                        @if (session('success'))
+                                            <script>
+                                                Swal.fire({
+                                                    icon: "success",
+                                                    title: "{{ session('success') }}",
+                                                    showConfirmButton: false,
+                                                    timer: 1900
+                                                });
+                                            </script>
+                                        @endif
+                                        <form class="d-flex flex-wrap gap-2 justify-content-center"
+                                            action="{{ route('admin.contact.store') }}" method="POST">
+                                            @csrf
+                                            <div class="form-group col-12 col-md-5 mb-3">
+                                                <!-- Adjusted for responsiveness -->
+                                                <label for="name" class="mb-2">Name</label>
+                                                <input type="text" class="form-control" id="name" name="name"
+                                                    placeholder="Enter your name">
+                                                @error('name')
+                                                    <span class="invalid-feedback" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                                @enderror
+                                            </div>
+                                            <div class="form-group col-12 col-md-5 mb-3">
+                                                <!-- Adjusted for responsiveness -->
+                                                <label for="email" class="mb-2">Email</label>
+                                                <input type="email" class="form-control" id="email" name="email"
+                                                    placeholder="Enter a valid email address" required>
+                                                @error('email')
+                                                    <span class="invalid-feedback" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                                @enderror
+                                            </div>
+                                            <div class="form-group col-12 mb-3"> <!-- Adjusted for responsiveness -->
+                                                <label for="message" class="mb-2">Message</label>
+                                                <textarea name="message" id="message" cols="20" rows="5" class="form-control"
+                                                    placeholder="Enter your message" required></textarea>
+                                                @error('message')
+                                                    <span class="invalid-feedback" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                                @enderror
+                                            </div>
+                                            <input type="hidden" name="isRead" value="0">
+                                            <div class="form-group col-12 mt-4">
+                                                <button type="submit" class="btn btn-primary col-12">Submit</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                     <div class="card-footer">
-                        <div class="d-flex justify-content-center p-2">
-                            <div class="club col-3 text-center">
+                        <div class="d-flex justify-content-center p-2 flex-wrap"> <!-- Adjusted for responsiveness -->
+                            <div class="club col-12 col-md-3 text-center mb-3"> <!-- Adjusted for responsiveness -->
                                 <div class="icon mx-auto mb-2">
                                     <i class="fa-solid fa-person-running fa-lg" style="color: #ffffff;"></i>
                                 </div>
@@ -91,26 +210,25 @@
                                     <p>{{ session()->get('about_club') }}</p>
                                 </div>
                             </div>
-                            <div class="phone col-3 text-center">
+                            <div class="phone col-12 col-md-3 text-center mb-3"> <!-- Adjusted for responsiveness -->
                                 <div class="icon mx-auto mb-2">
                                     <i class="fa-solid fa-phone fa-lg" style="color: #ffffff;"></i>
-
                                 </div>
                                 <div class="texticon text-center">
                                     <h5>Phone Number</h5>
-                                    <p class="px-5" style="max-width: 99%;">{{ session()->get('phone') }}</p>
+                                    <p>{{ session()->get('phone') }}</p>
                                 </div>
                             </div>
-                            <div class="telegram col-3 text-center">
+                            <div class="telegram col-12 col-md-3 text-center mb-3"> <!-- Adjusted for responsiveness -->
                                 <div class="icon mx-auto mb-2">
                                     <img class="telegram" src="/upload/social_media/telegram.png" alt="">
                                 </div>
                                 <div class="texticon text-center">
                                     <h5>Telegram</h5>
-                                    <p class="px-5" style="max-width: 99%;">{{ session()->get('telegram') }}</p>
+                                    <p>{{ session()->get('telegram') }}</p>
                                 </div>
                             </div>
-                            <div class="location col-3 text-center">
+                            <div class="location col-12 col-md-3 text-center mb-3"> <!-- Adjusted for responsiveness -->
                                 <div class="icon mx-auto mb-2">
                                     <i class="fa-solid fa-location-dot fa-lg" style="color: #ffffff;"></i>
                                 </div>
@@ -124,42 +242,6 @@
                 </div>
             </div>
         </div>
-    </div>
-    {{-- <script>
-        $(document).ready(function() {
-            // alert(1);
-            var success_audio = "{{ URL::asset('sound/success.wav') }}";
-            var error_audio = "{{ URL::asset('sound/error.wav') }}";
-            var success = new Audio(success_audio);
-            var error = new Audio(error_audio);
-
-            const Confirmation = Swal.mixin({
-                customClass: {
-                    confirmButton: 'btn btn-success',
-                    cancelButton: 'btn btn-danger'
-                },
-                buttonsStyling: false
-            });
-
-            @if (Session::has('msg'))
-                @if (Session::get('success') == true)
-                    toastr.options = {
-                        "closeButton": true,
-                        "progressBar": true
-                    }
-                    toastr.success("{{ Session::get('msg') }}");
-                    success.play();
-                @else
-                    toastr.options = {
-                        "closeButton": true,
-                        "progressBar": true
-                    }
-                    toastr.error("{{ Session::get('msg') }}");
-                    error.play();
-                @endif
-            @endif
-
-
-        });
-    </script> --}}
+    </div> --}}
 @endsection
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>

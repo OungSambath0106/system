@@ -229,7 +229,7 @@ class CourseController extends Controller
                 $imageName = now()->format('Y-m-d') . '-' . uniqid() . '.' . $image->getClientOriginalExtension();
 
                 // Move the uploaded file to the onboards directory
-                $image->move(public_path('uploads/onboards'), $imageName);
+                $image->move(public_path('uploads/course'), $imageName);
 
                 // Update the image attribute of the onboard model
                 $course->image = $imageName;

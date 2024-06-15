@@ -2,7 +2,7 @@
     <table class="table">
         <thead>
             <tr>
-                <th >#</th>
+                <th>#</th>
                 <th>{{ __('Image') }}</th>
                 <th>{{ __('First Name') }}</th>
                 <th>{{ __('Last Name') }}</th>
@@ -20,33 +20,38 @@
                     <td>{{ $loop->iteration }}</td>
                     <td>
                         <img src="
-                        @if ($user->image && file_exists(public_path('uploads/users/' . $user->image)))
-                            {{ asset('uploads/users/'. $user->image) }}
+                        @if ($user->image && file_exists(public_path('uploads/users/' . $user->image))) {{ asset('uploads/users/' . $user->image) }}
                         @else
-                            {{ asset('uploads/default-profile.png') }}
-                        @endif
-                        " alt="" class="profile_img_table">
+                            {{ asset('uploads/default-profile.png') }} @endif
+                        "
+                            alt="" class="profile_img_table">
                     </td>
                     <td>{{ $user->first_name }}</td>
                     <td>{{ $user->last_name }}</td>
-                    <td>{{$user->name}}</td>
+                    <td>{{ $user->name }}</td>
                     <td>{{ $user->phone }}</td>
                     <td>{{ $user->email }}</td>
                     <td>{{ $user->created_at->format('d M Y h:i A') }}</td>
                     <td>
-                        <a href="{{ route('admin.user.edit', $user->id) }}" class="btn btn-info btn-sm btn-edit">
-                            <i class="fas fa-pencil-alt"></i>
-                            {{ __('Edit') }}
-                        </a>
-
-                        <form action="{{ route('admin.user.destroy', $user->id) }}" class="d-inline-block form-delete-{{ $user->id }}">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" data-id="{{ $user->id }}" data-href="{{ route('admin.user.destroy', $user->id) }}" class="btn btn-danger btn-sm btn-delete">
-                                <i class="fa fa-trash-alt"></i>
-                                {{ __('Delete') }}
-                            </button>
-                        </form>
+                        @if (auth()->user()->can('user.edit'))
+                            <a href="{{ route('admin.user.edit', $user->id) }}" class="btn btn-info btn-sm btn-edit">
+                                <i class="fas fa-pencil-alt"></i>
+                                {{ __('Edit') }}
+                            </a>
+                        @endif
+                        @if (auth()->user()->can('user.delete'))
+                            <form action="{{ route('admin.user.destroy', $user->id) }}"
+                                class="d-inline-block form-delete-{{ $user->id }}">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" data-id="{{ $user->id }}"
+                                    data-href="{{ route('admin.user.destroy', $user->id) }}"
+                                    class="btn btn-danger btn-sm btn-delete">
+                                    <i class="fa fa-trash-alt"></i>
+                                    {{ __('Delete') }}
+                                </button>
+                            </form>
+                        @endif
                     </td>
                 </tr>
             @endforeach
