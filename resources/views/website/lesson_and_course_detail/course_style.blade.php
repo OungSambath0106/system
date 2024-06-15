@@ -212,7 +212,7 @@
         }
     }
 
-    @media screen and (min-width: 1200px) and (max-width: 1380px) {
+    @media screen and (min-width: 1200px) {
         p {
             margin-top: 0;
             font-size: 12px;
