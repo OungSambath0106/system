@@ -71,103 +71,6 @@
             </div>
         </div>
     </div>
-    {{-- <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            var defaultCategoryIds = [1, 6, 10, 14]; // Array of default category IDs
-            var lessonsContainer = document.getElementById('lessons-container');
-
-            // Function to load lessons for a single category
-            function loadSingleCategory(categoryId) {
-                var button = document.querySelector(`button[onclick="loadLessons(${categoryId}, this)"]`);
-
-                if (button) {
-                    console.log(`Loading lessons for default category ID: ${categoryId}`);
-                    loadLessons(categoryId, button);
-                } else {
-                    console.error(`Button for default category ID ${categoryId} not found.`);
-                }
-            }
-
-            // Load lessons for each default category ID
-            defaultCategoryIds.forEach(categoryId => {
-                loadSingleCategory(categoryId);
-            });
-        });
-
-        function loadLessons(categoryId, button) {
-            console.log(`Loading lessons for category ID: ${categoryId}`);
-
-            // Highlight the selected category button
-            document.querySelectorAll('.group button').forEach(btn => btn.classList.remove('active'));
-            button.classList.add('active');
-
-            // Load the lessons for the selected category
-            fetch(`/lessons/${categoryId}`)
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error(`Network response was not ok: ${response.statusText}`);
-                    }
-                    return response.text();
-                })
-                .then(html => {
-                    // Append the loaded HTML to the lessons container
-                    console.log(`Lessons loaded for category ID: ${categoryId}`);
-                    lessonsContainer.innerHTML += html; // Append instead of replacing
-                })
-                .catch(error => {
-                    console.error('Error loading lessons:', error);
-                    lessonsContainer.innerHTML +=
-                        `<p>Error loading lessons for category ${categoryId}. Please try again later.</p>`;
-                });
-        }
-
-        function setActiveButton(button) {
-            // Remove active-button class from all buttons
-            document.querySelectorAll('.form-control').forEach(function(btn) {
-                btn.classList.remove('active-button');
-            });
-
-            // Add active-button class to the clicked button
-            button.classList.add('active-button');
-        }
-
-        function loadLessons(categoryId, button) {
-            setActiveButton(button);
-
-            fetch(`/lessons-by-category/${categoryId}`)
-                .then(response => response.json())
-                .then(lessons => {
-                    const lessonsContainer = document.getElementById('lessons-container');
-                    lessonsContainer.innerHTML = ''; // Clear previous lessons
-
-                    lessons.forEach(lesson => {
-                        const lessonCard = `
-                            <div class="card card-menu position-relative">
-                                <div class="col-12 d-flex">
-                                    <img id="menu-img" class="menuimg" src="/uploads/lessons/${lesson.thumbnail}" alt="Not found">
-                                    <div class="card-body-menu">
-                                        <h4 class="card-title"> ${lesson.title} </h4>
-                                        <p class="card-text-menu"> ${lesson.description} </p>
-                                    </div>
-                                </div>
-                                <a href="#" class="playvideo" data-id="${lesson.id}" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                    <i class="fa-solid fa-play fa-lg" style="color: white"></i>
-                                </a>
-                            </div>
-                        `;
-                        lessonsContainer.insertAdjacentHTML('beforeend', lessonCard);
-                    });
-                    lessonsContainer.addEventListener('click', function(event) {
-                        const target = event.target;
-                        if (target.closest('.playvideo')) {
-                            event.preventDefault();
-                            const lessonId = target.closest('.playvideo').getAttribute('data-id');
-                            window.location.href = `/lesson-detail/${lessonId}`;
-                        }
-                    });
-                });
-        }
-    </script> --}}
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             var lessonsContainer = document.getElementById('lessons-container');
@@ -214,15 +117,17 @@
                         const lessonCard = `
                             <div class="card card-menu position-relative">
                                 <div class="col-12 d-flex">
-                                    <img id="menu-img" class="menuimg" src="/uploads/lessons/${lesson.thumbnail}" alt="Not found">
+                                    <div class=" card-img position-relative">
+                                        <img id="menu-img" class="menuimg" src="/uploads/lessons/${lesson.thumbnail}" alt="Not found">
+                                        <a href="#" class="playvideo" data-id="${lesson.id}" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                            <i class="fa-solid fa-play fa-lg" style="color: white"></i>
+                                        </a>
+                                    </div>
                                     <div class="card-body-menu">
                                         <h4 class="card-title"> ${lesson.title} </h4>
                                         <p class="card-text-menu"> ${lesson.description} </p>
                                     </div>
                                 </div>
-                                <a href="#" class="playvideo" data-id="${lesson.id}" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                    <i class="fa-solid fa-play fa-lg" style="color: white"></i>
-                                </a>
                             </div>
                         `;
                         lessonsContainer.insertAdjacentHTML('beforeend', lessonCard);

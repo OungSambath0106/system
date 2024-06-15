@@ -224,23 +224,13 @@
             background: linear-gradient(90deg, rgba(246, 250, 255, 1) 0%, rgba(155, 202, 255, 1) 80%);
         }
 
-        .playvideo {
-            background-color: rgba(21, 119, 255, 1);
-            border-radius: 50%;
-            width: 60px;
-            height: 60px;
-            text-align: center;
-            align-content: center;
-            border: 5px solid white;
-            padding-left: 4px;
-            padding-top: 5px;
-            position: absolute;
-            top: 50%;
-            left: 20%;
-            transform: translate(-50%, -50%);
-            z-index: 10;
-            cursor: pointer;
-            /* Optional: To indicate that the button is clickable */
+        .card-img {
+            align-items: center;
+            display: block;
+            width: 35%;
+            height: auto;
+            object-fit: content;
+            border-radius: 20px;
         }
     }
 
@@ -422,50 +412,12 @@
             display: inline-block;
             margin: 10px 0;
         }
-
-        .playvideo {
-            background-color: rgba(21, 119, 255, 1);
-            border-radius: 50%;
-            width: 60px;
-            height: 60px;
-            text-align: center;
-            align-content: center;
-            border: 5px solid white;
-            padding-left: 4px;
-            padding-top: 5px;
-            position: absolute;
-            top: 27% !important;
-            left: 50% !important;
-            transform: translate(-50%, -50%);
-            z-index: 10;
-            cursor: pointer;
-            /* Optional: To indicate that the button is clickable */
-        }
     }
 
     @media screen and (min-width: 768px) and (max-width: 989px) {
         button:hover {
             color: rgba(21, 119, 255, 1) !important;
             background: linear-gradient(90deg, rgba(246, 250, 255, 1) 0%, rgba(155, 202, 255, 1) 80%);
-        }
-
-        .playvideo {
-            background-color: rgba(21, 119, 255, 1);
-            border-radius: 50%;
-            width: 60px;
-            height: 60px;
-            text-align: center;
-            align-content: center;
-            border: 5px solid white;
-            padding-left: 4px;
-            padding-top: 5px;
-            position: absolute;
-            top: 23% !important;
-            left: 50% !important;
-            transform: translate(-50%, -50%);
-            z-index: 10;
-            cursor: pointer;
-            /* Optional: To indicate that the button is clickable */
         }
 
         .card {
@@ -672,11 +624,6 @@
 
         }
 
-        .playvideo {
-            top: 19% !important;
-            left: 50% !important;
-        }
-
         .card-img-top {
             width: 40% !important;
             height: auto;
@@ -726,11 +673,6 @@
             text-align: left;
             margin-bottom: 10px;
 
-        }
-
-        .playvideo {
-            top: 19% !important;
-            left: 50% !important;
         }
 
         .course-baner {
@@ -789,11 +731,6 @@
         button:hover {
             color: rgba(21, 119, 255, 1) !important;
             background: linear-gradient(90deg, rgba(246, 250, 255, 1) 0%, rgba(155, 202, 255, 1) 80%);
-        }
-
-        .playvideo {
-            top: 19% !important;
-            left: 50% !important;
         }
 
         .card {
@@ -914,7 +851,7 @@
         }
 
         .d-flex .menuimg {
-            width: 64%;
+            width: 80%;
             height: auto;
             display: inline-block;
             margin: 10px 0;
@@ -946,11 +883,6 @@
 
         .pl-0 {
             padding-right: 0 !important;
-        }
-
-        .playvideo {
-            top: 23% !important;
-            left: 50% !important;
         }
 
         .card {
@@ -1035,69 +967,6 @@
             top: 74.5%;
             transform: translateY(-50%);
             color: rgba(161, 161, 161, 1);
-        }
-
-        .group1 .round-circle1 {
-            line-height: 10px;
-            text-align: center;
-            align-content: center;
-            position: absolute;
-            right: 30px;
-            top: 40.4%;
-            width: 23px;
-            height: 23px;
-            font-size: 11px;
-        }
-
-        .group2 .round-circle2 {
-            line-height: 9px;
-            text-align: center;
-            align-content: center;
-            position: absolute;
-            right: 30px;
-            top: 55.5%;
-            width: 23px;
-            height: 23px;
-            font-size: 11px;
-        }
-
-        .group3 .round-circle3 {
-            line-height: 9px;
-            text-align: center;
-            align-content: center;
-            position: absolute;
-            right: 30px;
-            top: 71%;
-            width: 23px;
-            height: 23px;
-            font-size: 11px;
-        }
-
-        .group4 .round-circle4 {
-            line-height: 9px;
-            text-align: center;
-            align-content: center;
-            position: absolute;
-            right: 30px;
-            top: 86%;
-            width: 23px;
-            height: 23px;
-            font-size: 11px;
-
-        }
-
-        .group1 button,
-        .group2 button,
-        .group3 button,
-        .group4 button {
-            /* height: 35px; */
-            padding: 10px 20px 10px 10px;
-            box-sizing: border-box;
-            text-align: left;
-            font-size: 13px;
-
-            margin-bottom: 1rem;
-            background-color: rgba(244, 244, 244, 1);
         }
 
         .card-menu .d-flex {
@@ -1139,34 +1008,6 @@
             margin: 10px 0;
         }
 
-
-        /* .listimg {
-            position: relative;
-            display: inline-block;
-        } */
-
-        /* .listimg .coursemenu{
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background-color: rgba(21, 119, 255, 1);
-            border-radius: 50%;
-            width: 50px;
-            height: 50px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            border: 5px solid white;
-            cursor: pointer;
-            padding-left: 3px;
-        }
-
-        .coursemenu i {
-            color: #fff;
-            font-size: 25px;
-        } */
-
         .card-body-menu {
             align-items: center !important;
 
@@ -1191,11 +1032,6 @@
 
         .pl-0 {
             padding-right: 0 !important;
-        }
-
-        .playvideo {
-            top: 20% !important;
-            left: 50% !important;
         }
 
         .card {
@@ -1280,69 +1116,6 @@
             top: 74.5%;
             transform: translateY(-50%);
             color: rgba(161, 161, 161, 1);
-        }
-
-        .group1 .round-circle1 {
-            line-height: 10px;
-            text-align: center;
-            align-content: center;
-            position: absolute;
-            right: 30px;
-            top: 40.5%;
-            width: 23px;
-            height: 23px;
-            font-size: 11px;
-        }
-
-        .group2 .round-circle2 {
-            line-height: 9px;
-            text-align: center;
-            align-content: center;
-            position: absolute;
-            right: 30px;
-            top: 55.8%;
-            width: 23px;
-            height: 23px;
-            font-size: 11px;
-        }
-
-        .group3 .round-circle3 {
-            line-height: 9px;
-            text-align: center;
-            align-content: center;
-            position: absolute;
-            right: 30px;
-            top: 71%;
-            width: 23px;
-            height: 23px;
-            font-size: 11px;
-        }
-
-        .group4 .round-circle4 {
-            line-height: 9px;
-            text-align: center;
-            align-content: center;
-            position: absolute;
-            right: 30px;
-            top: 86%;
-            width: 23px;
-            height: 23px;
-            font-size: 11px;
-
-        }
-
-        .group1 button,
-        .group2 button,
-        .group3 button,
-        .group4 button {
-            /* height: 35px; */
-            padding: 10px 20px 10px 10px;
-            box-sizing: border-box;
-            text-align: left;
-            font-size: 12px;
-
-            margin-bottom: 1rem;
-            background-color: rgba(244, 244, 244, 1);
         }
 
         .card-menu .d-flex {
@@ -1407,11 +1180,6 @@
 
         .row>* {
             padding-right: 0;
-        }
-
-        .playvideo {
-            top: 25% !important;
-            left: 50% !important;
         }
 
         .card {
@@ -1511,69 +1279,6 @@
             color: rgba(161, 161, 161, 1);
         }
 
-        .group1 .round-circle1 {
-            line-height: 10px;
-            text-align: center;
-            align-content: center;
-            position: absolute;
-            right: 31px;
-            top: 40%;
-            width: 20px;
-            height: 20px;
-            font-size: 11px;
-        }
-
-        .group2 .round-circle2 {
-            line-height: 10px;
-            text-align: center;
-            align-content: center;
-            position: absolute;
-            right: 31px;
-            top: 55.2%;
-            width: 20px;
-            height: 20px;
-            font-size: 11px;
-        }
-
-        .group3 .round-circle3 {
-            line-height: 10px;
-            text-align: center;
-            align-content: center;
-            position: absolute;
-            right: 31px;
-            top: 69.9%;
-            width: 20px;
-            height: 20px;
-            font-size: 11px;
-        }
-
-        .group4 .round-circle4 {
-            line-height: 10px;
-            text-align: center;
-            align-content: center;
-            position: absolute;
-            right: 31px;
-            top: 85%;
-            width: 20px;
-            height: 20px;
-            font-size: 11px;
-
-        }
-
-        .group1 button,
-        .group2 button,
-        .group3 button,
-        .group4 button {
-            /* height: 35px; */
-            padding: 7px 20px 7px 10px;
-            box-sizing: border-box;
-            text-align: left;
-            font-size: 10px;
-
-            margin-bottom: 1rem;
-            background-color: rgba(244, 244, 244, 1);
-        }
-
         .card-menu .d-flex {
             flex-direction: column;
             align-items: center;
@@ -1663,7 +1368,7 @@
         padding-top: 5px;
         position: absolute;
         top: 50%;
-        left: 20%;
+        left: 50%;
         transform: translate(-50%, -50%);
         z-index: 10;
         cursor: pointer;
@@ -1675,18 +1380,15 @@
     }
 
     .menuimg {
-        /* width: 100%; */
+        width: 100%;
+        border-radius: 20px;
     }
 
-    .menuimg {
+    .card-img {
         align-items: center;
         display: block;
-        width: 35%;
         height: auto;
         object-fit: content;
-        border-radius: 20px;
-        /* display: inline-block; */
-
     }
 
     .card-menu {
@@ -1780,5 +1482,11 @@
 
     .buttomimg2 img {
         width: 60%;
+    }
+
+    .card-img {
+        justify-content: center;
+        align-content: center;
+        text-align: center;
     }
 </style>

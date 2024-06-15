@@ -221,3 +221,22 @@ body {
         margin-bottom: 10px !important;
     }
 }
+@media (max-width: 325px) {
+    .nav-rightside {
+        margin-top: 2.5rem;
+    }
+    .navbar-toggler {
+        position: absolute;
+        display: block;
+        background: none;
+        border: none;
+        font-size: 1.3rem;
+        top: 0;
+        right: 0;
+        margin-top: 0.5rem;
+        margin-right: 1rem;
+    }
+    .logo {
+        width: 24vw;
+    }
+}
