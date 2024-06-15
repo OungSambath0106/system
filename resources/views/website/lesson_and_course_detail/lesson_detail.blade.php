@@ -62,7 +62,7 @@
                                                         <h4> {{ $otherLesson->title }} </h4>
                                                     </div>
                                                     <div class="discription">
-                                                        <p> {{ $otherLesson->description }} </p>
+                                                        <p> {!! $otherLesson->description !!} </p>
                                                     </div>
                                                 </div>
                                             </div>

@@ -21,7 +21,7 @@
     }
 
     .discription p {
-        font-size: 10.75px;
+        font-size: 11.5px;
     }
 
     .col-7 p {
@@ -169,10 +169,18 @@
             max-width: 97% !important;
         }
     } */
-    @media (min-width: 1200px) {
+    @media (min-width: 1200.1px) {
 
         .col-5 {
             padding-left: 15px !important;
+        }
+
+        .listimg {
+            max-width: 34%;
+        }
+
+        .body-text {
+            max-width: 66%;
         }
     }
 
