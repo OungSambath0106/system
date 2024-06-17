@@ -77,16 +77,19 @@ Route::post('save_temp_file', [FileManagerController::class, 'saveTempFile'])->n
 // Route::get('/', function () {
 //     return view('website.app');
 // });
-// Route::get('/', [WebsiteHomeController::class, 'index'])->name('home');
 // Route::redirect('/', '/admin/dashboard');
 
-// Route::get('/course-detail',[WebsiteCourseController::class,'index'])->name('coursedetail');
-// Route::get('/course/{id}', [WebsiteCourseController::class, 'show'])->name('course.show');
-// Route::get('/lessons-by-category/{categoryId}', [WebsiteCourseController::class, 'getLessonsByCategory']);
+Route::middleware(['SetSessionData'])->group(function () {
+    Route::get('/', [WebsiteHomeController::class, 'index'])->name('home');
 
-// Route::get('/lesson-detail/{id}', [WebsiteCourseController::class, 'showLessonDetail'])->name('lesson.detail');
+    Route::get('/course-detail',[WebsiteCourseController::class,'index'])->name('coursedetail');
+    Route::get('/course/{id}', [WebsiteCourseController::class, 'show'])->name('course.show');
+    Route::get('/lessons-by-category/{categoryId}', [WebsiteCourseController::class, 'getLessonsByCategory']);
 
-// Route::get('/contact-us',[WebsiteContactController::class,'index'])->name('contactus');
+    Route::get('/lesson-detail/{id}', [WebsiteCourseController::class, 'showLessonDetail'])->name('lesson.detail');
+
+    Route::get('/contact-us',[WebsiteContactController::class,'index'])->name('contactus');
+});
 
 
 
@@ -151,16 +154,6 @@ Route::middleware(['auth', 'CheckUserLogin', 'SetSessionData'])->group(function 
 
         
     });
-    // Route::get('/', function () {
-    //     return view('website.app');
-    // });
-    Route::get('/course-detail', [WebsiteCourseController::class, 'index'])->name('coursedetail');
-    Route::get('/course/{id}', [WebsiteCourseController::class, 'show'])->name('course.show');
-    Route::get('/lessons-by-category/{categoryId}', [WebsiteCourseController::class, 'getLessonsByCategory']);
-    Route::get('/lesson-detail/{id}', [WebsiteCourseController::class, 'showLessonDetail'])->name('lesson.detail');
-    
-    Route::get('/contact-us',[WebsiteContactController::class,'index'])->name('contactus');
-    Route::get('/', [WebsiteHomeController::class, 'index'])->name('home');
 });
 
 
