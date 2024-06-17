@@ -67,16 +67,6 @@
                     </a>
                 </li>
 
-                <li class="nav-item">
-                    <a href="{{ route('admin.contact.index') }}"
-                        class="nav-link @if (request()->routeIs('admin.contact.index')) active @endif">
-                        <i class="nav-icon fas fa-tachometer-alt"></i>
-                        <p>
-                            {{ __('Mail') }}
-                        </p>
-                    </a>
-                </li>
-
                 <li class="nav-item @if (request()->routeIs('admin.lesson*')) menu-is-opening menu-open @endif">
                     {{-- menu-open --}}
                     <a href="#" class="nav-link @if (request()->routeIs('admin.lesson*')) active @endif">
@@ -136,7 +126,7 @@
 
                 <li class="nav-item @if (request()->routeIs('admin.contact*') || request()->routeIs('admin.email_config_form*')) menu-is-opening menu-open @endif">
                     <a href="#" class="nav-link @if (request()->routeIs('admin.contact*') || request()->routeIs('admin.email_config_form*')) active @endif">
-                          <i class="nav-icon  fa-solid fa-envelope"></i>
+                        <i class="nav-icon  fa-solid fa-envelope"></i>
                         <p>
                             {{ __('Message') }}
                             <i class="right fas fa-angle-left"></i>
