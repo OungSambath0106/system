@@ -48,7 +48,7 @@
                 <div class="row">
                     <div class="col-sm-12 p-0">
                         @foreach ($courses as $index => $course)
-                            @if ($index >= 2)
+                            @if ($index > 1 && $index <= 3)
                                 <div class="card p-3 mb-3">
                                     <div class="row">
                                         <div class="card-left col-md-4">

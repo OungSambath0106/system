@@ -77,7 +77,7 @@ Route::post('save_temp_file', [FileManagerController::class, 'saveTempFile'])->n
 // Route::get('/', function () {
 //     return view('website.app');
 // });
-// Route::get('/home', [WebsiteHomeController::class, 'index'])->name('home');
+// Route::get('/', [WebsiteHomeController::class, 'index'])->name('home');
 // Route::redirect('/', '/admin/dashboard');
 
 // Route::get('/course-detail',[WebsiteCourseController::class,'index'])->name('coursedetail');
