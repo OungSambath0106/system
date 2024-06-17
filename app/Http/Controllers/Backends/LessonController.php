@@ -2,16 +2,17 @@
 
 namespace App\Http\Controllers\Backends;
 
-use App\helpers\ImageManager;
-use App\Http\Controllers\Controller;
-use App\Models\BusinessSetting;
-use App\Models\Lesson;
-use App\Models\LessonCategory;
-use App\Models\Translation;
 use Exception;
+use App\Models\Lesson;
+use App\Models\Translation;
 use Illuminate\Http\Request;
+use App\helpers\ImageManager;
+use App\Models\LessonCategory;
+use App\Models\BusinessSetting;
 use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 
 class LessonController extends Controller
@@ -189,7 +190,7 @@ class LessonController extends Controller
             'category' => 'nullable',
             'description' => 'required',
             'thumbnail' => 'nullable',
-            'video' => 'nullable',
+            // 'video' => 'file|mimes:mp4,mov,avi,flv|max:20480'
         ]);
 
         if (is_null($request->title[array_search('en', $request->lang)])) {
@@ -225,14 +226,30 @@ class LessonController extends Controller
             $lesson->description = $request->description[array_search('en', $request->lang)];
             $lesson->category_id = $request->category;
 
+            if ($request->type === 'video') {
+                if ($request->hasFile('video')) {
+                    $lesson->video = ImageManager::update('uploads/lessons/', $lesson->video, $request->video);
+                }
+
+                // Clear URL if switching to video
+                $lesson->url = null;
+            } elseif ($request->type === 'url') {
+                $lesson->url = $request->url;
+
+                // Delete old video if exists
+                if ($lesson->video) {
+                    $oldVideoPath = public_path('uploads/lessons/' . $lesson->video);
+                    if (file_exists($oldVideoPath)) {
+                        unlink($oldVideoPath); // Delete the old video file
+                    }
+                    $lesson->video = null;
+                }
+            }
+            $lesson->type = $request->type;
+
             if ($request->hasFile('thumbnail')) {
                 $lesson->thumbnail = ImageManager::update('uploads/lessons/', $lesson->thumbnail, $request->thumbnail);
             }
-
-            if ($request->hasFile('video')) {
-                $lesson->video = ImageManager::update('uploads/lessons/', $lesson->video, $request->video);
-            }
-
             $lesson->save();
 
             $data = [];
