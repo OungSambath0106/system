@@ -24,15 +24,9 @@ class SetFrontendSession
         $app_logo = @$business->where('type', 'web_header_logo')->first()->value;
         $web_banner_logo = @$business->where('type', 'web_banner_logo')->first()->value;
 
-
-        
-        $pending_event = Event::where('start_date', '>=', now())->first();
-        $event_id = @$pending_event->id;
-
         $request->session()->put('copy_right_text', $copy_right_text);
         $request->session()->put('app_logo', $app_logo);
         $request->session()->put('web_banner_logo', $web_banner_logo);
-        $request->session()->put('event_id', $event_id);
 
         return $next($request);
     }
