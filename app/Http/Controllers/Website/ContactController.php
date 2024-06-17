@@ -70,7 +70,7 @@ class ContactController extends Controller
             $htmlContent .= "<p>You have received a new message:</p>";
             $htmlContent .= "<p><strong>Name:</strong> {$data['name']}</p>";
             $htmlContent .= "<p><strong>Email:</strong> {$data['email']}</p>";
-            $htmlContent .= "<p><strong>Message:</strong>{$data['message']}</p>";
+            $htmlContent .= "<p><strong>Message:</strong> {$data['message']}</p>";
 
             $data['email_recipient'] = env('MAIL_FROM_ADDRESS');
             Mail::send([], [], function ($message) use ($data, $htmlContent) {

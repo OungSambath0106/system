@@ -18,7 +18,7 @@
         <div class="row justify-content-center">
             <div class="col-10 mt-5 container-card">
                 <div class="card">
-                    <div class="col-10 mx-auto"> <!-- Add mx-auto class here -->
+                    <div class="col-10 mx-auto "> <!-- Add mx-auto class here -->
                         <div class="card-head">
                             <div class="card-text mb-5 mt-5">
                                 <h2 class="text-primary text-center">Contact Us</h2>
