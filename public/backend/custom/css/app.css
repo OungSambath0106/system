@@ -1,12 +1,28 @@
-
 body {
-    font-family: 'Open Sans', 'Roboto', 'Kantumruy Pro', sans-serif;
+    font-family: "Open Sans", "Roboto", "Kantumruy Pro", sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
 
-.sidebar-light-info .nav-sidebar>.nav-item>.nav-link.active{
-    background-color: #28914A !important;
+.sidebar-light-info .nav-sidebar > .nav-item > .nav-link.active {
+    background: rgb(243, 49, 247);
+    background: linear-gradient(
+        90deg,
+        rgba(243, 49, 247, 1) 8%,
+        rgba(87, 158, 255, 1) 70%
+    );
+}
+
+.sidebar-light-info .nav-sidebar > .nav-item > .nav-link:hover {
+    background: rgb(243, 49, 247);
+    background: linear-gradient(
+        90deg,
+        rgba(243, 49, 247, 1) 8%,
+        rgba(87, 158, 255, 1) 70%
+    );
+    color: #f4f4f4 !important;
+    border: none;
+    transition: background-color 0.3s;
 }
 
 .swal2-popup.swal2-toast.swal2-show {
@@ -22,13 +38,30 @@ img.profile_img_table {
 .swal2-actions {
     gap: 6px;
 }
-.text-sm .select2-container--default .select2-selection--single, select.form-control-sm~.select2-container--default .select2-selection--single {
+.text-sm .select2-container--default .select2-selection--single,
+select.form-control-sm
+    ~ .select2-container--default
+    .select2-selection--single {
     height: 38px;
 }
-.text-sm .select2-container--default .select2-selection--single .select2-selection__rendered, select.form-control-sm~.select2-container--default .select2-selection--single .select2-selection__rendered {
+.text-sm
+    .select2-container--default
+    .select2-selection--single
+    .select2-selection__rendered,
+select.form-control-sm
+    ~ .select2-container--default
+    .select2-selection--single
+    .select2-selection__rendered {
     margin-top: -3px;
 }
-.text-sm .select2-container--default .select2-selection--single .select2-selection__arrow, select.form-control-sm~.select2-container--default .select2-selection--single .select2-selection__arrow {
+.text-sm
+    .select2-container--default
+    .select2-selection--single
+    .select2-selection__arrow,
+select.form-control-sm
+    ~ .select2-container--default
+    .select2-selection--single
+    .select2-selection__arrow {
     top: 1px;
 }
 .preview-multiple img {
@@ -55,7 +88,7 @@ img.profile_img_table {
     line-height: 20px;
     border-radius: 50%;
     cursor: pointer;
-    transition: all .2s ease-in-out;
+    transition: all 0.2s ease-in-out;
 }
 .preview-multiple .img_container i:hover {
     color: #ebebeb;
@@ -65,7 +98,7 @@ img.profile_img_table {
 .custom-file-label {
     white-space: nowrap;
 }
-[class*=sidebar-light-] .nav-treeview>.nav-item>.nav-link {
+[class*="sidebar-light-"] .nav-treeview > .nav-item > .nav-link {
     padding-left: 24px;
 }
 .preview-multiple img {
@@ -92,7 +125,7 @@ img.profile_img_table {
     line-height: 20px;
     border-radius: 50%;
     cursor: pointer;
-    transition: all .2s ease-in-out;
+    transition: all 0.2s ease-in-out;
 }
 .preview-multiple .img_container i:hover {
     color: #ebebeb;
