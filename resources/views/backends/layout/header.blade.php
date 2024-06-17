@@ -46,7 +46,7 @@
                 <span class="badge badge-warning navbar-badge">5</span>
             </a>
             <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-                <span class="dropdown-item dropdown-header">5 Notifications</span>
+                <span class="dropdown-item dropdown-header">5</span>
                 <div class="dropdown-divider"></div>
                 <a href="#" class="dropdown-item">
                     <i class="fas fa-envelope mr-2"></i> 2 new messages
@@ -111,7 +111,7 @@
                     </div>
                 </a>
                 <div class="dropdown-divider"></div>
-              
+
                 {{-- <div class="dropdown-divider"></div>
                 <a href="#" class="dropdown-item">
                     <div class="media">
@@ -252,3 +252,4 @@
       </li> --}}
     </ul>
 </nav>
+

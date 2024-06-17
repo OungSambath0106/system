@@ -21,6 +21,7 @@ class ContactController extends Controller
      */
     public function index()
     {
+
         return view('website.contact-us.contact-us');
     }
 
@@ -56,25 +57,30 @@ class ContactController extends Controller
                 ->withInput()
                 ->with(['success' => 0, 'msg' => __('Invalid form input')]);
         }
-
         try {
             DB::beginTransaction();
-
             $data = [
                 'name' => $request->name,
                 'email' => $request->email,
                 'message' => $request->message,
                 'isRead' => '0'
             ];
+            // HTML content for the email body
+            $htmlContent = "<p>Hello,</p>";
+            $htmlContent .= "<p>You have received a new message:</p>";
+            $htmlContent .= "<p><strong>Name:</strong> {$data['name']}</p>";
+            $htmlContent .= "<p><strong>Email:</strong> {$data['email']}</p>";
+            $htmlContent .= "<p><strong>Message:</strong> {$data['message']}</p>";
 
-            $data["title"]='test';
-            Mail::send([], [], function ($message) use ($data) {
-                $message->to($data['email'], $data['email'])
-                ->subject($data["title"])
-                    ->setBody($data["message"]);
+            $data['email_recipient'] = env('MAIL_FROM_ADDRESS');
+            Mail::send([], [], function ($message) use ($data, $htmlContent) {
+                $message->to($data['email_recipient'])
+                    ->from($data["email"], $data["name"])
+                    ->subject('New Message from ' . $data["name"])
+                    ->setBody($htmlContent, 'text/html');
             });
 
-               $data = ContactMessage::create($request->all());
+            $data = ContactMessage::create($request->all());
 
             DB::commit();
             // $output = [
@@ -84,66 +90,15 @@ class ContactController extends Controller
 
 
         } catch (Exception $e) {
-            dd($e);
+            // dd($e);
             DB::rollBack();
             // $output = [
             //     'success' => 0,
             //     'msg' => __('Something went wrong')
             // ];
         }
-        return back()->with('success', 'Email successfully sent!');
+        return back()->with('success', 'Your message has been sent!');
     }
-    // public function store(Request $request)
-    // {
-    //     $validator = Validator::make($request->all(), [
-    //         'name' => 'required',
-    //         'email' => 'required|email',
-    //         'message' => 'required',
-    //     ]);
-
-    //     if ($validator->fails()) {
-    //         return redirect()->back()
-    //             ->withErrors($validator)
-    //             ->withInput()
-    //             ->with(['success' => 0, 'msg' => __('Invalid form input')]);
-    //     }
-
-    //     try {
-    //         DB::beginTransaction();
-
-    //         $data = [
-    //             'name' => $request->name,
-    //             'email' => $request->email,
-    //             'message' => $request->message
-    //         ];
-    //         // $data["title"] = 'test';
-    //         Mail::send([], [], function ($message) use ($data) {
-    //             $message->to($data['email'], $data['email'])
-    //             ->name($data["name"])
-    //             ->setBody($data["message"]);
-    //         });
-
-    //         $contactMessage = ContactMessage::create($request->all());
-
-    //         DB::commit();
-
-    //         $output = [
-    //             'success' => 1,
-    //             'msg' => __('Mail Sent successfully')
-    //         ];
-    //     } catch (Exception $e) {
-    //         DB::rollBack();
-    //         $output = [
-    //             'success' => 0,
-    //             'msg' => __('Something went wrong')
-    //         ];
-    //     }
-    //     return response()->json($output);
-    // }
-
-
-
-
 
     /**
      * Display the specified resource.

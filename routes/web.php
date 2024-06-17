@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Course;
 use App\Models\Category;
 use App\Models\MenuCategory;
 use App\helpers\ImageManager;
@@ -22,23 +23,25 @@ use App\Http\Controllers\Backends\EventController;
 use App\Http\Controllers\Backends\MediaController;
 use App\Http\Controllers\Backends\MovieController;
 use App\Http\Controllers\Web\ExhibitionController;
+use App\Http\Controllers\Backends\CourseController;
+use App\Http\Controllers\Backends\LessonController;
 use App\Http\Controllers\Backends\NoticeController;
 use App\Http\Controllers\Backends\SliderController;
+use App\Http\Controllers\Backends\ContactController;
 use App\Http\Controllers\Backends\ProductController;
 use App\Http\Controllers\Backends\CategoryController;
 use App\Http\Controllers\Backends\LanguageController;
 use App\Http\Controllers\Backends\DashboardController;
 use App\Http\Controllers\Backends\NewsletterController;
+use App\Http\Controllers\Backends\EmailConfigController;
 use App\Http\Controllers\Backends\EventDetailController;
 use App\Http\Controllers\Backends\FileManagerController;
 use App\Http\Controllers\Backends\MenuCategoryController;
 use App\Http\Controllers\Backends\PhotoGalleryController;
 use App\Http\Controllers\Backends\BoothCategoryController;
-use App\Http\Controllers\Backends\BusinessSettingController;
 use App\Http\Controllers\Backends\LessonCategoryController;
-use App\Http\Controllers\Backends\LessonController;
-use App\Http\Controllers\Backends\ContactController;
-use App\Http\Controllers\Backends\CourseController;
+use App\Http\Controllers\Backends\BusinessSettingController;
+use App\Http\Controllers\Backends\HeaderController;
 use App\Http\Controllers\Backends\PartnerCategoryController;
 use App\Http\Controllers\Backends\ServiceForVisitorController;
 use App\Http\Controllers\Website\HomeController as WebsiteHomeController;
@@ -47,7 +50,6 @@ use App\Http\Controllers\Website\ContactController as WebsiteContactController;
 use App\Http\Controllers\Website\LessonCategoryController as WebsiteLessonCategoryController;
 use App\Http\Controllers\Website\LessondetailController;
 use App\Http\Controllers\Website\LessonDetailController as WebsiteLessonDetailController;
-use App\Models\Course;
 
 /*
 |--------------------------------------------------------------------------
@@ -79,7 +81,7 @@ Route::post('save_temp_file', [FileManagerController::class, 'saveTempFile'])->n
 // });
 // Route::redirect('/', '/admin/dashboard');
 
-Route::middleware(['SetSessionData'])->group(function () {
+Route::middleware(['SetFrontendSession'])->group(function () {
     Route::get('/', [WebsiteHomeController::class, 'index'])->name('home');
 
     Route::get('/course-detail',[WebsiteCourseController::class,'index'])->name('coursedetail');
@@ -124,6 +126,7 @@ Route::middleware(['auth', 'CheckUserLogin', 'SetSessionData'])->group(function 
         });
 
         Route::resource('user', UserController::class);
+        Route::resource('role', RoleController::class);
 
         Route::get('product-category/update_status', [CategoryController::class, 'updateStatus'])->name('product-category.update_status');
         Route::resource('product-category', CategoryController::class);
@@ -144,15 +147,16 @@ Route::middleware(['auth', 'CheckUserLogin', 'SetSessionData'])->group(function 
         Route::get('/contact-us/{id}', [ContactController::class, 'show'])->name('contact.replysms');
         //sent sms//
         Route::post('/contact-us/sent-sms', [ContactController::class, 'replycustomer'])->name('messages.sendReply');
-
         Route::delete('/contact-us/delete/{id}', [ContactController::class, 'destroy'])->name('contact.destroy');
-        // update contact //
-        Route::post('/contact-us/mark-read/{id}', [ContactController::class, 'markAsRead'])->name('contact.markAsRead');
+
 
         //website contact//
         Route::post('/contact-us', [WebsiteContactController::class, 'store'])->name('contact.store');
 
-        
+        //Config Mail//
+        Route::get('/email-config', [EmailConfigController::class, 'showForm'])->name('email_config_form');
+        Route::post('/update-email-config', [EmailConfigController::class, 'updateConfig'])->name('update_email_config');
+
     });
 });
 

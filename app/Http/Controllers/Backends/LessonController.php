@@ -2,16 +2,17 @@
 
 namespace App\Http\Controllers\Backends;
 
-use App\helpers\ImageManager;
-use App\Http\Controllers\Controller;
-use App\Models\BusinessSetting;
-use App\Models\Lesson;
-use App\Models\LessonCategory;
-use App\Models\Translation;
 use Exception;
+use App\Models\Lesson;
+use App\Models\Translation;
 use Illuminate\Http\Request;
+use App\helpers\ImageManager;
+use App\Models\LessonCategory;
+use App\Models\BusinessSetting;
 use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 
 class LessonController extends Controller
@@ -24,7 +25,7 @@ class LessonController extends Controller
     public function index()
     {
         $lessons = Lesson::latest('id')->paginate(10);
-        return view('backends.lesson.index',compact('lessons'));
+        return view('backends.lesson.index', compact('lessons'));
     }
 
     /**
@@ -53,16 +54,16 @@ class LessonController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'title' => 'required',
-            'category' => 'nullable',
+            'category' => 'required',
             'description' => 'required',
-            'thumbnail' => 'nullable',
-            'video' => 'nullable',
+            'type' => 'required',
         ]);
 
         if (is_null($request->title[array_search('en', $request->lang)])) {
             $validator->after(function ($validator) {
                 $validator->errors()->add(
-                    'title', 'Title field is required!'
+                    'title',
+                    'Title field is required!'
                 );
             });
         }
@@ -70,34 +71,39 @@ class LessonController extends Controller
         if (is_null($request->description[array_search('en', $request->lang)])) {
             $validator->after(function ($validator) {
                 $validator->errors()->add(
-                    'description', 'Description field is required!'
+                    'description',
+                    'Description field is required!'
                 );
             });
         }
 
         if ($validator->fails()) {
             return redirect()->back()
-                    ->withErrors($validator)
-                    ->withInput()
-                    ->with(['success' => 0, 'msg' => __('Invalid form input')]);
+                ->withErrors($validator)
+                ->withInput()
+                ->with(['success' => 0, 'msg' => __('Invalid form input')]);
         }
 
-        try{
+        try {
             DB::beginTransaction();
 
             $lesson = new Lesson();
             $lesson->title = $request->title[array_search('en', $request->lang)];
             $lesson->description = $request->description[array_search('en', $request->lang)];
             $lesson->category_id = $request->category;
+            $lesson->type = $request->type;
+
 
             if ($request->hasFile('thumbnail')) {
                 $lesson->thumbnail = ImageManager::upload('uploads/lessons/', $request->thumbnail);
             }
-
-            if ($request->hasFile('video')) {
-                $lesson->video = ImageManager::upload('uploads/lessons/', $request->video);
-            }           
-
+            if ($request->type === 'video') {
+                if ($request->hasFile('video')) {
+                    $lesson->video = ImageManager::upload('uploads/lessons/', $request->video);
+                }
+            } elseif ($request->type === 'url') {
+                $lesson->url = $request->url;
+            }
             $lesson->save();
 
             $data = [];
@@ -128,8 +134,7 @@ class LessonController extends Controller
                 'success' => 1,
                 'msg' => __('Created successfully')
             ];
-
-        }catch (\Exception $e) {
+        } catch (\Exception $e) {
             dd($e);
             DB::rollBack();
             $output = [
@@ -185,13 +190,14 @@ class LessonController extends Controller
             'category' => 'nullable',
             'description' => 'required',
             'thumbnail' => 'nullable',
-            'video' => 'nullable',
+            // 'video' => 'file|mimes:mp4,mov,avi,flv|max:20480'
         ]);
 
         if (is_null($request->title[array_search('en', $request->lang)])) {
             $validator->after(function ($validator) {
                 $validator->errors()->add(
-                    'title', 'Title field is required!'
+                    'title',
+                    'Title field is required!'
                 );
             });
         }
@@ -199,19 +205,20 @@ class LessonController extends Controller
         if (is_null($request->description[array_search('en', $request->lang)])) {
             $validator->after(function ($validator) {
                 $validator->errors()->add(
-                    'description', 'Description field is required!'
+                    'description',
+                    'Description field is required!'
                 );
             });
         }
 
         if ($validator->fails()) {
             return redirect()->back()
-                    ->withErrors($validator)
-                    ->withInput()
-                    ->with(['success' => 0, 'msg' => __('Invalid form input')]);
+                ->withErrors($validator)
+                ->withInput()
+                ->with(['success' => 0, 'msg' => __('Invalid form input')]);
         }
 
-        try{
+        try {
             DB::beginTransaction();
 
             $lesson = Lesson::findOrFail($id);
@@ -219,14 +226,30 @@ class LessonController extends Controller
             $lesson->description = $request->description[array_search('en', $request->lang)];
             $lesson->category_id = $request->category;
 
+            if ($request->type === 'video') {
+                if ($request->hasFile('video')) {
+                    $lesson->video = ImageManager::update('uploads/lessons/', $lesson->video, $request->video);
+                }
+
+                // Clear URL if switching to video
+                $lesson->url = null;
+            } elseif ($request->type === 'url') {
+                $lesson->url = $request->url;
+
+                // Delete old video if exists
+                if ($lesson->video) {
+                    $oldVideoPath = public_path('uploads/lessons/' . $lesson->video);
+                    if (file_exists($oldVideoPath)) {
+                        unlink($oldVideoPath); // Delete the old video file
+                    }
+                    $lesson->video = null;
+                }
+            }
+            $lesson->type = $request->type;
+
             if ($request->hasFile('thumbnail')) {
                 $lesson->thumbnail = ImageManager::update('uploads/lessons/', $lesson->thumbnail, $request->thumbnail);
             }
-
-            if ($request->hasFile('video')) {
-                $lesson->video = ImageManager::update('uploads/lessons/', $lesson->video, $request->video);
-            }
-
             $lesson->save();
 
             $data = [];
@@ -259,8 +282,7 @@ class LessonController extends Controller
                 'success' => 1,
                 'msg' => __('Created successfully')
             ];
-
-        }catch (\Exception $e) {
+        } catch (\Exception $e) {
             dd($e);
             DB::rollBack();
             $output = [
@@ -283,8 +305,8 @@ class LessonController extends Controller
         try {
             DB::beginTransaction();
             $lesson = Lesson::findOrFail($id);
-            $translation = Translation::where('translationable_type','App\Models\Lesson')
-                                        ->where('translationable_id',$lesson->id);
+            $translation = Translation::where('translationable_type', 'App\Models\Lesson')
+                ->where('translationable_id', $lesson->id);
             $translation->delete();
             $lesson->delete();
 
@@ -308,7 +330,7 @@ class LessonController extends Controller
         return response()->json($output);
     }
 
-    public function updateStatus (Request $request)
+    public function updateStatus(Request $request)
     {
         try {
             DB::beginTransaction();

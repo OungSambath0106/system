@@ -1,4 +1,10 @@
 <style>
+    /* @media (min-width: 1279px) {
+        .main-footer {
+            bottom: auto;
+        }
+    } */
+
     @media (max-width: 565px) {
         .main-footer {
             padding: .7rem 1.5rem !important;

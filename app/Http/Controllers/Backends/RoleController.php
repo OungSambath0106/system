@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers\Backends;
 
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
 use Spatie\Permission\Models\Role;
+use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Redirect;
 use Spatie\Permission\Models\Permission;
@@ -15,8 +17,8 @@ class RoleController extends Controller
 {
     public function index()
     {
-       $roles = Role::paginate(10);
-       return view('backends.role.index',compact('roles'));
+        $roles = Role::paginate(10);
+        return view('backends.role.index', compact('roles'));
     }
     public function create()
     {
@@ -25,10 +27,13 @@ class RoleController extends Controller
 
     public function store(Request $request)
     {
-        $this->validate($request,[
+
+        $this->validate($request, [
             'name' => 'required',
             'permissions' => 'required'
         ]);
+
+
 
         $role_name      = $request->input('name');
         $permissions    = $request->input('permissions');
@@ -47,18 +52,16 @@ class RoleController extends Controller
             }
 
             $output = [
-                    'success' => 1,
-                    'msg' => __("user.role_add_sucessfully")
-                ];
-
-        }else {
+                'success' => 1,
+                'msg' => __("user.role_add_sucessfully")
+            ];
+        } else {
             $output = [
-                    'success' => 0,
-                        'msg' => __("user.role_already_exists")
-                    ];
+                'success' => 0,
+                'msg' => __("user.role_already_exists")
+            ];
         }
-
-        return redirect('roles')->with('status', $output);
+        return redirect()->route('admin.role.index')->with($output);
     }
 
     public function edit($id)
@@ -67,15 +70,15 @@ class RoleController extends Controller
 
         $role_permissions = [];
         foreach ($role->permissions as $role_perm) {
-        $role_permissions[] = $role_perm->name;
+            $role_permissions[] = $role_perm->name;
         }
-        return view('backends.role.edit',compact('role','role_permissions'));
+        return view('backends.role.edit', compact('role', 'role_permissions'));
     }
 
-    public function update(Request $request,$id)
+    public function update(Request $request, $id)
     {
 
-        $this->validate($request,[
+        $this->validate($request, [
             'name' => 'required'
         ]);
 
@@ -95,36 +98,59 @@ class RoleController extends Controller
             }
 
             $output = [
-                    'success' => 1,
-                    'msg' => __("user.role_add_sucessfully")
-                ];
-
-        }else {
-            $output = ['success' => 0,
-                        'msg' => __("user.role_already_exists")
-                    ];
+                'success' => 1,
+                'msg' => __("user.role_add_sucessfully")
+            ];
+        } else {
+            $output = [
+                'success' => 0,
+                'msg' => __("user.role_already_exists")
+            ];
         }
 
-        return redirect()->route('admin.roles.index')->with($output);
+        return redirect()->route('admin.role.index')->with($output);
     }
     private function __createPermissionIfNotExists($permissions)
     {
 
         $exising_permissions = Permission::whereIn('name', $permissions)
-                                    ->pluck('name')
-                                    ->toArray();
+            ->pluck('name')
+            ->toArray();
 
         $non_existing_permissions = array_diff($permissions, $exising_permissions);
         if (!empty($non_existing_permissions)) {
 
             foreach ($non_existing_permissions as $new_permission) {
                 $time_stamp = Carbon::now()->toDateTimeString();
-               Permission::create([
+                Permission::create([
                     'name' => $new_permission,
                     'guard_name' => 'web'
                 ]);
-
             }
         }
+    }
+    public function destroy($id)
+    {
+        try {
+            DB::beginTransaction();
+            $role = Role::findOrFail($id);
+            $role->delete();
+
+            $roles = Role::latest('id')->paginate(10);
+            $view = view('backends.role._table', compact('roles'))->render();
+            DB::commit();
+            $output = [
+                'status' => 1,
+                'view' => $view,
+                'msg' => __('Role Deleted successfully.')
+            ];
+        } catch (Exception $e) {
+            DB::rollBack();
+            $output = [
+                'success' => 0,
+                'msg' => __('Something went wrong')
+            ];
+        }
+        return response()->json($output);
     }
 }

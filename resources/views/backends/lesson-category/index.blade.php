@@ -38,12 +38,14 @@
                                     <h3 class="card-title">{{ __('Lesson Category List') }}</h3>
                                 </div>
                                 <div class="col-sm-6">
-                                    <a class="btn btn-primary btn-modal float-right" href="#"
-                                        data-href="{{ route('admin.lesson-category.create') }}" data-toggle="modal"
-                                        data-container=".modal_form">
-                                        <i class=" fa fa-plus-circle"></i>
-                                        {{ __('Add New') }}
-                                    </a>
+                                    @if (auth()->user()->can('lesson_categories.create'))
+                                        <a class="btn btn-primary btn-modal float-right" href="#"
+                                            data-href="{{ route('admin.lesson-category.create') }}" data-toggle="modal"
+                                            data-container=".modal_form">
+                                            <i class=" fa fa-plus-circle"></i>
+                                            {{ __('Add New') }}
+                                        </a>
+                                    @endif
                                 </div>
                             </div>
                         </div>

@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers\Website;
 
-use App\Http\Controllers\Controller;
-use App\Models\Lesson;
-use App\Models\LessonCategory;
 use App\Models\Course;
+use App\Models\Lesson;
 use Illuminate\Http\Request;
+use App\Models\ContactMessage;
+use App\Models\LessonCategory;
+use App\Http\Controllers\Controller;
 
 class CourseController extends Controller
 {
@@ -21,10 +22,10 @@ class CourseController extends Controller
     {
         $lessons = Lesson::where('category_id', $categoryId)->get();
         return response()->json($lessons);
-       
+
         return view('website.lesson_and_course_detail.course_detail',compact('courses'));
     }
-    
+
     public function show($id)
     {
         $course = Course::findOrFail($id);
@@ -35,7 +36,7 @@ class CourseController extends Controller
 
     public function showLessonDetail($id)
     {
-        $lesson = Lesson::find($id); 
+        $lesson = Lesson::find($id);
 
         if (!$lesson) {
             abort(404, 'Lesson not found');

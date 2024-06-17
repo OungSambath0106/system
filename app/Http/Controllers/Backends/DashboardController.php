@@ -13,10 +13,8 @@ class DashboardController extends Controller
     public function index()
     {
         $totallessons = Lesson::count();
-        $courses = Course::all();
-        $totalcourses = count($courses);
-        $contacts = ContactMessage::where('isRead',0)->get();
-        $totalcontacts = count($contacts);
-        return view('backends.index',compact('contacts','totalcourses', 'totalcontacts', 'totallessons'));
+        $totalcourses = Course::count();
+        $totalunreadcontacts = ContactMessage::where('isRead', 0)->count();
+        return view('backends.index', compact('totalcourses', 'totalunreadcontacts', 'totallessons'));
     }
 }

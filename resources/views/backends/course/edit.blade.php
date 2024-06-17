@@ -106,7 +106,7 @@
                             </div>
                             <div class="card-body">
                                 <div class="row">
-                                     <div class="form-group col-md-6">
+                                    <div class="form-group col-md-6">
                                         <div class="form-group">
                                             <label for="exampleInputFile">{{ __('Image') }}</label>
                                             <div class="input-group">
@@ -121,7 +121,7 @@
                                                 <img src="
                                                 @if ($course->image && file_exists(public_path('uploads/course/' . $course->image))) {{ asset('uploads/course/' . $course->image) }}
                                                 @else
-                                                    {{ asset('uploads/default.png') }} @endif
+                                                    {{ asset('uploads/defualt.png') }} @endif
                                                 "
                                                     alt="" height="100%">
                                             </div>
