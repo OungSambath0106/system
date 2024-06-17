@@ -147,7 +147,7 @@
         .container-md,
         .container-sm,
         .container-xl {
-            max-width: 97%;
+            max-width: 90%;
         }
     }
 
@@ -157,7 +157,7 @@
         .container-lg,
         .container-md,
         .container-sm {
-            max-width: 97%;
+            max-width: 90%;
         }
     }
 
@@ -166,7 +166,7 @@
         .container,
         .container-md,
         .container-sm {
-            max-width: 97% !important;
+            max-width: 90% !important;
         }
     } */
     @media (min-width: 1200.1px) {
@@ -215,7 +215,7 @@
         .container,
         .container-md,
         .container-sm {
-            max-width: 97% !important;
+            max-width: 90% !important;
         }
     }
 
@@ -223,7 +223,7 @@
 
         .container,
         .container-sm {
-            max-width: 97%;
+            max-width: 90%;
         }
     }
 

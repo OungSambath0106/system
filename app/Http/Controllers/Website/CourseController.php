@@ -28,21 +28,24 @@ class CourseController extends Controller
     public function show($id)
     {
         $course = Course::findOrFail($id);
-        $categories = $course->lessonCategories()->orderBy('order', 'asc')->get();
+        $categories = $course->lessonCategories()->where('status', 1)->orderBy('order', 'asc')->get();
         return view('website.lesson_and_course_detail.course_detail', compact('course', 'categories'));
     }
 
+
     public function showLessonDetail($id)
     {
-        $lesson = Lesson::find($id);   
-        $lessons = Lesson::where('category_id', $lesson->category_id)->get();
-        $course = $lesson->category->course;
+        $lesson = Lesson::find($id); 
 
         if (!$lesson) {
             abort(404, 'Lesson not found');
         }
 
+        $lessons = Lesson::where('category_id', $lesson->category_id)
+                        ->where('status', 1)
+                        ->get();
+        $course = $lesson->category->course;
+
         return view('website.lesson_and_course_detail.lesson_detail', compact('lesson', 'lessons', 'course'));
     }
-
 }

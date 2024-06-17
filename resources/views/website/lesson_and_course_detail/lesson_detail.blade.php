@@ -9,10 +9,12 @@
                         <h4 class="text-primary title-video py-2"> {{ $lesson->title }} </h4>
                         <div
                             class="lessoning mb-2 justify-content-center align-content-center text-center position-relative">
-                            <video class="show-video" width="100%" src="{{ asset('uploads/lessons/' . $lesson->video) }}"
+                            {{-- <video class="show-video" width="100%" src="{{ asset('uploads/lessons/' . $lesson->video) }}"
                                 disabled>
                                 Your browser does not support the video tag.
-                            </video>
+                            </video> --}}
+                            <img src="{{ asset('uploads/lessons/' . $lesson->thumbnail) }}" class="show-video" alt=""
+                                style="height: 50vh" width="100%">
                             <button class="playvideo" data-bs-toggle="modal" data-bs-target="#exampleModal">
                                 <i class="fa-solid fa-play fa-lg" style="color: white"></i>
                             </button>

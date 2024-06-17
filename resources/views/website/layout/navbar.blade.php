@@ -6,8 +6,8 @@
                     alt="" width="120" class="logo">
             </a>
         </div>
-        <div class="nav-rightside justify-content-center col-md-9 d-flex gap-5 hidden" id="navRightside">
-            <a href="{{ route('home') }}" class="p-2 nav-link{{ Request::is('home') ? ' active' : '' }}" type="button">
+        <div class="nav-rightside justify-content-between col-md-9 d-flex hidden" id="navRightside">
+            <a href="{{ route('home') }}" class="p-2 nav-link{{ Request::is('/') ? ' active' : '' }}" type="button">
                 Home
             </a>
             @if (isset($courses))
@@ -28,7 +28,7 @@
                     </a>
                 @endforeach
             @endif
-            <a href="{{ route('contactus') }}" class="btn btn-sm btn-primary h-50 mt-2 btn-contact" type="button"
+            <a href="{{ route('contactus') }}" class="btn btn-sm btn-primary h-50 btn-contact" type="button"
                 style="border-radius: 8px;">
                 <i class="fas fa-headset"></i> Contact Us
             </a>
