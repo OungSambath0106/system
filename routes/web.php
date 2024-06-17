@@ -48,12 +48,8 @@ use App\Http\Controllers\Website\HomeController as WebsiteHomeController;
 use App\Http\Controllers\Website\CourseController as WebsiteCourseController;
 use App\Http\Controllers\Website\ContactController as WebsiteContactController;
 use App\Http\Controllers\Website\LessonCategoryController as WebsiteLessonCategoryController;
-<<<<<<< HEAD
-=======
 use App\Http\Controllers\Website\LessondetailController;
 use App\Http\Controllers\Website\LessonDetailController as WebsiteLessonDetailController;
-use App\Models\Course;
->>>>>>> 28f34ecff493187b13a1165a1d4b6dfc5a82c20c
 
 /*
 |--------------------------------------------------------------------------
@@ -85,12 +81,6 @@ Route::post('save_temp_file', [FileManagerController::class, 'saveTempFile'])->n
 // });
 // Route::get('/home', [WebsiteHomeController::class, 'index'])->name('home');
 // Route::redirect('/', '/admin/dashboard');
-<<<<<<< HEAD
-Route::get('/course-detail', [WebsiteCourseController::class, 'index'])->name('coursedetail');
-Route::get('/lessons-by-category/{categoryId}', [WebsiteCourseController::class, 'getLessonsByCategory']);
-Route::get('/lesson-detail', [WebsiteLessonCategoryController::class, 'index'])->name('lessondetail');
-Route::get('/contact-us', [WebsiteContactController::class, 'index'])->name('contactus');
-=======
 
 // Route::get('/course-detail',[WebsiteCourseController::class,'index'])->name('coursedetail');
 // Route::get('/course/{id}', [WebsiteCourseController::class, 'show'])->name('course.show');
@@ -99,7 +89,6 @@ Route::get('/contact-us', [WebsiteContactController::class, 'index'])->name('con
 // Route::get('/lesson-detail/{id}', [WebsiteCourseController::class, 'showLessonDetail'])->name('lesson.detail');
 
 // Route::get('/contact-us',[WebsiteContactController::class,'index'])->name('contactus');
->>>>>>> 28f34ecff493187b13a1165a1d4b6dfc5a82c20c
 
 
 
@@ -161,14 +150,10 @@ Route::middleware(['auth', 'CheckUserLogin', 'SetSessionData'])->group(function 
         //website contact//
         Route::post('/contact-us', [WebsiteContactController::class, 'store'])->name('contact.store');
 
-<<<<<<< HEAD
         //Config Mail//
         Route::get('/email-config', [EmailConfigController::class, 'showForm'])->name('email_config_form');
         Route::post('/update-email-config', [EmailConfigController::class, 'updateConfig'])->name('update_email_config');
 
-=======
-        
->>>>>>> 28f34ecff493187b13a1165a1d4b6dfc5a82c20c
     });
     // Route::get('/', function () {
     //     return view('website.app');
@@ -177,7 +162,7 @@ Route::middleware(['auth', 'CheckUserLogin', 'SetSessionData'])->group(function 
     Route::get('/course/{id}', [WebsiteCourseController::class, 'show'])->name('course.show');
     Route::get('/lessons-by-category/{categoryId}', [WebsiteCourseController::class, 'getLessonsByCategory']);
     Route::get('/lesson-detail/{id}', [WebsiteCourseController::class, 'showLessonDetail'])->name('lesson.detail');
-    
+
     Route::get('/contact-us',[WebsiteContactController::class,'index'])->name('contactus');
     Route::get('/', [WebsiteHomeController::class, 'index'])->name('home');
 });
