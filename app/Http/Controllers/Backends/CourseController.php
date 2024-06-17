@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Backends;
 
+use App\helpers\ImageManager;
 use Exception;
 use App\Models\Course;
 use App\Models\Category;
@@ -51,6 +52,7 @@ class CourseController extends Controller
         $validator = Validator::make($request->all(), [
             'title' => 'required',
             'description' => 'required',
+            'image' => 'nullable',
 
         ]);
 
@@ -85,16 +87,9 @@ class CourseController extends Controller
             $course->title = $request->title[array_search('en', $request->lang)];
             $course->description = $request->description[array_search('en', $request->lang)];
 
-            if ($request->filled('images')) {
-                $course->image = $request->images;
-                $directory = public_path('uploads/course');
-                if (!File::exists($directory)) {
-                    File::makeDirectory($directory, 0777, true);
-                }
-
-                $image = File::move(public_path('/uploads/temp/' . $request->images), public_path('uploads/course/' . $request->images));
+            if ($request->hasFile('image')) {
+                $course->image = ImageManager::upload('uploads/course/', $request->image);
             }
-
 
             $course->save();
 
@@ -178,6 +173,7 @@ class CourseController extends Controller
         $validator = Validator::make($request->all(), [
             'title' => 'required',
             'description' => 'required',
+            'image' => 'nullable',
         ]);
 
         if (is_null($request->title[array_search('en', $request->lang)])) {
@@ -210,33 +206,11 @@ class CourseController extends Controller
             $course->title = $request->title[array_search('en', $request->lang)];
             $course->description = $request->description[array_search('en', $request->lang)];
 
-            $course->save();
-
             if ($request->hasFile('image')) {
-                // Delete the old image if it exists
-                if ($course->image) {
-                    $oldImagePath = public_path('uploads/course/' . $course->image);
-
-                    if (file_exists($oldImagePath)) {
-                        unlink($oldImagePath); // Delete the old image file
-                    }
-                }
-
-                // Upload and save the new image
-                $image = $request->file('image');
-
-                // Generate a unique filename based on current date and unique identifier
-                $imageName = now()->format('Y-m-d') . '-' . uniqid() . '.' . $image->getClientOriginalExtension();
-
-                // Move the uploaded file to the onboards directory
-                $image->move(public_path('uploads/course'), $imageName);
-
-                // Update the image attribute of the onboard model
-                $course->image = $imageName;
-
-                // Save the updated onboard model
-                $course->save();
+                $course->image = ImageManager::update('uploads/course/', $course->image, $request->image);
             }
+
+            $course->save();
 
 
             $data = [];

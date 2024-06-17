@@ -22,6 +22,11 @@ class Course extends Model
         return $this->translations[0]->value ?? $name;
     }
 
+    public function lessonCategories()
+    {
+        return $this->hasMany(LessonCategory::class);
+    }
+
     public function translations()
     {
         return $this->morphMany(Translation::class, 'translationable');

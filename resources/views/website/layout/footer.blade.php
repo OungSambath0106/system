@@ -7,8 +7,8 @@
 
     @media (max-width: 565px) {
         .main-footer {
-            padding: .7rem 2rem !important;
-            font-size: .6rem;
+            padding: .7rem 1.5rem !important;
+            font-size: .75rem;
         }
     }
 

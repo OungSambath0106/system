@@ -6,31 +6,29 @@
                     alt="" width="120" class="logo">
             </a>
         </div>
-        <div class="nav-rightside justify-content-center col-md-9 d-flex gap-5 hidden" id="navRightside">
-            <a href="{{ route('home') }}" class="p-2 nav-link{{ Request::is('home') ? ' active' : '' }}" type="button">
+        <div class="nav-rightside justify-content-between col-md-9 d-flex hidden" id="navRightside">
+            <a href="{{ route('home') }}" class="p-2 nav-link{{ Request::is('/') ? ' active' : '' }}" type="button">
                 Home
             </a>
-            <a href="{{ route('coursedetail') }}" class="p-2 nav-link{{ Route::is('coursedetail') ? ' active' : '' }}"
-                type="button">
-                UI UX
-            </a>
-            <a href="" class="p-2 nav-link{{ Request::is('laravel') ? ' active' : '' }}" type="button">
-                Laravel
-            </a>
-            <a href="" class="p-2 nav-link{{ Request::is('react-native') ? ' active' : '' }}" type="button">
-                React Native
-            </a>
-            <a href="" class="p-2 nav-link{{ Request::is('flutter') ? ' active' : '' }}" type="button">
-                Flutter
-            </a>
-            {{-- @foreach ($courses as $course)
-                <a href="{{ route('coursedetail', ['id' => $course->id]) }}"
-                    class="p-2 nav-link{{ Request::is('coursedetail/' . $course->id) ? ' active' : '' }}"
-                    type="button">
-                    {{ $course->title }}
-                </a>
-            @endforeach --}}
-            <a href="{{ route('contactus') }}" class="btn btn-sm btn-primary h-50 mt-2 btn-contact" type="button"
+            @if (isset($courses))
+                @foreach ($courses as $course)
+                    @php
+                        $isActive =
+                            Request::is('course/' . $course->id) ||
+                            (isset($currentCourse) && $currentCourse->id == $course->id) ||
+                            (isset($lesson) && $lesson->category->course->id == $course->id);
+                    @endphp
+                    <!-- Debugging -->
+                    {{-- <div>
+                        Course ID: {{ $course->id }} | Is Active: {{ $isActive ? 'Yes' : 'No' }}
+                    </div> --}}
+                    <a href="{{ route('course.show', ['id' => $course->id]) }}"
+                        class="p-2 nav-link{{ $isActive ? ' active' : '' }}" type="button">
+                        {{ $course->title }}
+                    </a>
+                @endforeach
+            @endif
+            <a href="{{ route('contactus') }}" class="btn btn-sm btn-primary h-50 btn-contact" type="button"
                 style="border-radius: 8px;">
                 <i class="fas fa-headset"></i> Contact Us
             </a>
@@ -40,26 +38,43 @@
         </a>
     </div>
 </nav>
-
 <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const navbartoggler = document.querySelector('.navbar-toggler');
+    function toggleNavbar() {
         const navRightside = document.getElementById('navRightside');
+        if (navRightside.classList.contains('show')) {
+            navRightside.classList.remove('show');
+            setTimeout(() => {
+                navRightside.style.display = 'none';
+            }, 500); // Match this to the CSS transition duration
+        } else {
+            navRightside.style.display = 'flex';
+            setTimeout(() => {
+                navRightside.classList.add('show');
+            }, 10); // Small delay to allow the display change to take effect
+        }
+    }
 
-        navRightside.classList.add('hidden');
+    // Optional: Ensure that the nav is hidden on page load for small screens
+    document.addEventListener('DOMContentLoaded', () => {
+        const navRightside = document.getElementById('navRightside');
+        if (window.innerWidth < 768) {
+            navRightside.classList.remove('show');
+            navRightside.style.display = 'none';
+        } else {
+            navRightside.classList.add('show');
+            navRightside.style.display = 'flex';
+        }
+    });
 
-        navbartoggler.addEventListener('click', function(event) {
-            event.preventDefault();
-            navRightside.classList.toggle('hidden');
-            if (navRightside.classList.contains('hidden')) {
-                setTimeout(() => {
-                    navRightside.classList.remove('show');
-                }, 10);
-            } else {
-                setTimeout(() => {
-                    navRightside.classList.add('show');
-                }, 10);
-            }
-        });
+    // Hide nav when clicking outside of it (optional enhancement)
+    document.addEventListener('click', (event) => {
+        const navRightside = document.getElementById('navRightside');
+        const toggler = document.querySelector('.navbar-toggler');
+        if (!navRightside.contains(event.target) && !toggler.contains(event.target)) {
+            navRightside.classList.remove('show');
+            setTimeout(() => {
+                navRightside.style.display = 'none';
+            }, 500); // Match this to the CSS transition duration
+        }
     });
 </script>

@@ -21,13 +21,17 @@
     }
 
     .discription p {
-        font-size: 10.75px;
+        font-size: 11.5px;
     }
 
     .col-7 p {
         margin-left: 0px;
-        margin-right: 53px;
+        padding-right: 15px;
         font-size: 20px;
+    }
+
+    .show-video {
+        border-radius: 20px;
     }
 
     .col-7 h4 {
@@ -51,16 +55,11 @@
     }
 
     /* -------Lesson video --------*/
-    /* .lessonimg {
-        position: relative;
-        display: inline-block;
-    } */
+    .lessoning {
+        padding-right: 15px;
+    }
 
     .playvideo {
-        position: absolute;
-        top: 45%;
-        left: 45%;
-        transform: translate(-50%, -50%);
         background-color: rgba(21, 119, 255, 1);
         border-radius: 50%;
         width: 60px;
@@ -70,8 +69,11 @@
         border: 5px solid white;
         padding-left: 4px;
         padding-top: 5px;
-
-
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 10;
     }
 
     .playvideo i {
@@ -106,16 +108,9 @@
         font-size: 25px;
     }
 
-
-
-    /* .lessionimg {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    } */
-
     .card-tittle h4 {
-        font-size: 17.4px;
+        font-size: 15px;
+        font-weight: 600;
         color: rgba(21, 119, 255, 1);
     }
 
@@ -128,7 +123,7 @@
     }
 
     .shadow {
-        margin-bottom: 10px;
+        margin-bottom: 20px;
     }
 
     .text-primary {
@@ -144,6 +139,93 @@
         max-height: 500px;
         overflow-y: auto;
     } */
+
+    /* @media (min-width: 1200px) {
+
+        .container,
+        .container-lg,
+        .container-md,
+        .container-sm,
+        .container-xl {
+            max-width: 90%;
+        }
+    }
+
+    @media (min-width: 990px) and (max-width: 1200px) {
+
+        .container,
+        .container-lg,
+        .container-md,
+        .container-sm {
+            max-width: 90%;
+        }
+    }
+
+    @media (min-width: 988.1px) and (max-width: 990px) {
+
+        .container,
+        .container-md,
+        .container-sm {
+            max-width: 90% !important;
+        }
+    } */
+    @media (min-width: 1200.1px) {
+
+        .col-5 {
+            padding-left: 15px !important;
+        }
+
+        .listimg {
+            max-width: 34%;
+        }
+
+        .body-text {
+            max-width: 66%;
+        }
+    }
+
+    @media (min-width: 600px) and (max-width: 1200px) {
+
+        .col-7 {
+            width: 65% !important;
+        }
+
+        .col-5 {
+            width: 35% !important;
+            padding-left: 15px !important;
+        }
+    }
+
+    @media (min-width: 768px) and (max-width: 1200px) {
+
+        .listimg {
+            padding: 20px !important;
+        }
+    }
+
+    @media (min-width: 600px) and (max-width: 768px) {
+
+        .listimg {
+            padding: .7rem !important;
+        }
+    }
+
+    @media (min-width: 768px) {
+
+        .container,
+        .container-md,
+        .container-sm {
+            max-width: 90% !important;
+        }
+    }
+
+    @media (min-width: 601px) {
+
+        .container,
+        .container-sm {
+            max-width: 90%;
+        }
+    }
 
     @media screen and (min-width: 989px) and (max-width: 1200px) {
         .text-primary {
@@ -185,7 +267,7 @@
         }
 
         .discription p {
-            font-size: 11px;
+            font-size: 13px;
 
         }
 
@@ -198,28 +280,12 @@
     @media screen and (min-width: 768px) and (max-width: 989px) {
         .text-primary {
             font-size: 25px;
-            margin: 0;
             text-align: left;
 
         }
 
         .col-7 p {
-            /* margin-left: 24px; */
-            margin-right: -9px;
             font-size: 17px;
-        }
-
-        .col-5 {
-            margin-top: 2.9rem;
-        }
-
-
-        .card-video {
-            gap: 1cm
-                /* display: flex;
-            justify-content: center;
-            align-content: center; */
-
         }
 
         .lessionimg img {
@@ -240,8 +306,8 @@
 
         .body-text {
             align-content: center;
-            padding-left: 31px;
-            padding-right: 31px;
+            padding-left: 20px;
+            padding-right: 20px;
         }
 
         .card-tittle {
@@ -249,7 +315,7 @@
         }
 
         .discription p {
-            font-size: 11px;
+            font-size: 13px;
 
         }
 
@@ -270,11 +336,6 @@
             font-size: 15px;
         }
 
-        .col-5 {
-            width: 50%;
-            margin-top: 2.4rem;
-        }
-
         .container .row {
             justify-content: center;
             align-content: center;
@@ -284,7 +345,6 @@
             font-size: 20px;
             margin-left: 0px;
             text-align: left;
-            margin-bottom: -2px;
         }
 
         h3 {
@@ -353,8 +413,6 @@
 
         .col-5 {
             width: 40%;
-            margin-top: 2rem;
-            ;
         }
 
         .container .row {
@@ -365,8 +423,6 @@
         .text-primary {
             font-size: 20px;
             margin-left: 0px;
-            /* text-align: left; */
-            margin-bottom: -5px;
         }
 
         .lessionimg {
@@ -423,6 +479,10 @@
             align-items: center;
         }
 
+        .container {
+            margin-top: 0 !important;
+        }
+
         .col-7 p {
             /* margin-left: 17px; */
             margin-right: 9px;
@@ -466,11 +526,15 @@
         }
 
         .col-7 {
-            width: 80%;
+            width: 90%;
         }
 
         .col-5 {
-            width: 80%;
+            width: 96%;
+        }
+
+        .card-body {
+            padding: 1rem 2rem !important;
         }
 
         .shadow .d-flex {
@@ -591,6 +655,32 @@
             margin-top: 5px;
         }
 
+    }
+
+    @media (max-width: 565px) {
+        .title-video {
+            margin-bottom: .3rem;
+        }
+
+        .playvideo {
+            width: 40px;
+            height: 40px;
+            padding-top: 0;
+        }
+
+        .playvideo i {
+            color: #fff;
+            font-size: 17px;
+        }
+
+        .lessoning {
+            padding: 0;
+        }
+
+        .discription {
+            margin-right: 0 !important;
+            padding: 0 5px !important;
+        }
     }
 
     @media screen and (max-width: 312px) {

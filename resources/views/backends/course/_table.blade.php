@@ -55,7 +55,6 @@
             @endforeach
         </tbody>
     </table>
-
     <div class="row">
         <div class="col-12 d-flex flex-row flex-wrap">
             <div class="row" style="width: -webkit-fill-available;">
@@ -67,6 +66,5 @@
             </div>
         </div>
     </div>
-
 
 </div>

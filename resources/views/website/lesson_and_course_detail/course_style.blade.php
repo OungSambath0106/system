@@ -23,7 +23,7 @@
     .card {
         margin: 20px;
         border: 1px solid #ddd;
-        border-radius: 14px;
+        border-radius: 30px;
         overflow: hidden;
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         display: flex;
@@ -57,9 +57,7 @@
         width: 30%;
         height: auto;
         object-fit: content;
-        border-radius: 11px;
-
-
+        border-radius: 30px;
     }
 
     .card-body {
@@ -146,8 +144,6 @@
         align-content: center;
         background: linear-gradient(90deg, rgba(243, 49, 247, 1) 0%, rgba(87, 158, 255, 1) 80%);
         color: white;
-
-
     }
 
     .group button {
@@ -169,16 +165,78 @@
         background: linear-gradient(90deg, rgba(246, 250, 255, 1) 0%, rgba(155, 202, 255, 1) 80%);
     }
 
-    @media screen and (min-width: 1200px) and (max-width: 1380px) {
+    @media (min-width: 1200px) {
+
+        .container,
+        .container-lg,
+        .container-md,
+        .container-sm,
+        .container-xl {
+            max-width: 92%;
+        }
+    }
+
+    @media (min-width: 768px) {
+
+        .container,
+        .container-md,
+        .container-sm {
+            max-width: 92%;
+        }
+    }
+
+    @media (min-width: 992px) {
+
+        .container,
+        .container-lg,
+        .container-md,
+        .container-sm {
+            max-width: 92%;
+        }
+    }
+
+    @media screen and (min-width: 768px) and (max-width: 989px) {
+
+        .container,
+        .container-md,
+        .container-sm {
+            max-width: 92%;
+        }
+    }
+
+    @media (min-width: 576px) {
+
+        .container,
+        .container-sm {
+            max-width: 92%;
+        }
+    }
+
+    @media screen and (min-width: 1200px) {
         p {
             margin-top: 0;
-            font-size: 12px;
+            font-size: 1rem;
             margin-bottom: 1rem;
         }
 
         button:hover {
             color: rgba(21, 119, 255, 1) !important;
             background: linear-gradient(90deg, rgba(246, 250, 255, 1) 0%, rgba(155, 202, 255, 1) 80%);
+        }
+
+        .card-img {
+            align-items: center;
+            display: block;
+            width: 35%;
+            height: auto;
+            object-fit: content;
+            border-radius: 20px;
+        }
+
+        .card-body-menu {
+            padding: 5px 10px !important;
+            margin-left: .75rem !important;
+            justify-content: start !important;
         }
     }
 
@@ -198,7 +256,6 @@
         }
 
         .card-img-top {
-            width: 40%;
             height: auto;
             object-fit: cover;
             border-radius: 20px;
@@ -217,7 +274,7 @@
             overflow: hidden;
             box-shadow: 0 2px 4px rgba(203, 59, 59, 0.1);
             display: flex;
-            padding: 1rem;
+            padding: 2rem;
             width: 100%;
         }
 
@@ -356,7 +413,7 @@
         }
 
         .d-flex .menuimg {
-            width: 70%;
+            width: 90%;
             height: auto;
             display: inline-block;
             margin: 10px 0;
@@ -378,25 +435,20 @@
 
         }
 
-        .card-img-top {
-            width: 40%;
-            height: auto;
-            object-fit: content;
-            border-radius: 20px;
-
-
-        }
-
         .search {
             height: auto;
-            margin: 20px;
+            margin: 20px 0 20px 20px;
             border: 1px solid #ddd;
             border-radius: 14px;
             overflow: hidden;
             box-shadow: 0 2px 4px rgba(203, 59, 59, 0.1);
             display: flex;
             /* flex-direction: row-reverse; */
-            padding: 1rem;
+            padding: 2rem;
+        }
+
+        .card-menu {
+            margin-left: 0 !important;
         }
 
         .card-body h4 {
@@ -551,7 +603,7 @@
         }
 
         .d-flex .menuimg {
-            width: 80%;
+            width: 90%;
             height: auto;
             display: inline-block;
             margin: 10px 0;
@@ -571,14 +623,65 @@
 
     }
 
-    @media screen and (max-width: 768px) {
+    @media screen and (width: 768px) {
         .card {
             text-align: left;
             margin-bottom: 10px;
 
         }
 
-        .d-flex {
+        .card-img-top {
+            width: 40% !important;
+            height: auto;
+            display: inline-block;
+        }
+
+        .card-body {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card-title {
+            margin-top: 0;
+            /* Ensure the title stays at the top */
+        }
+
+        .card-text {
+            margin-top: auto;
+            /* Push the text to the bottom */
+        }
+
+        .d-flex .menuimg {
+            width: 90%;
+            height: auto;
+            display: inline-block;
+            margin: 10px 0;
+        }
+
+        .card-body-menu {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-top: 20px;
+        }
+
+        .card-text-menu {
+            margin-top: auto;
+        }
+
+        .card-body h4 {
+            font-size: 25px !important;
+        }
+    }
+
+    @media screen and (max-width: 767.9px) {
+        .card {
+            text-align: left;
+            margin-bottom: 10px;
+
+        }
+
+        .course-baner {
             flex-direction: column;
             display: flex;
             align-items: center;
@@ -610,7 +713,7 @@
         }
 
         .d-flex .menuimg {
-            width: 80%;
+            width: 90%;
             height: auto;
             display: inline-block;
             margin: 10px 0;
@@ -650,8 +753,6 @@
             height: auto;
             object-fit: content;
             border-radius: 20px;
-
-
         }
 
         .card-body h4 {
@@ -673,13 +774,12 @@
 
         .search {
             height: auto;
-            margin: 20px;
+            margin: 20px 0 20px 20px;
             border: 1px solid #ddd;
             border-radius: 14px;
             overflow: hidden;
             box-shadow: 0 2px 4px rgba(203, 59, 59, 0.1);
             display: flex;
-            /* flex-direction: row-reverse; */
             padding: 1rem;
         }
 
@@ -724,69 +824,6 @@
             color: rgba(161, 161, 161, 1);
         }
 
-        .group1 .round-circle1 {
-            line-height: 10px;
-            text-align: center;
-            align-content: center;
-            position: absolute;
-            right: 44px;
-            top: 40.4%;
-            width: 26px;
-            height: 26px;
-            font-size: 12px;
-        }
-
-        .group2 .round-circle2 {
-            line-height: 9px;
-            text-align: center;
-            align-content: center;
-            position: absolute;
-            right: 44px;
-            top: 55.5%;
-            width: 26px;
-            height: 26px;
-            font-size: 12px;
-        }
-
-        .group3 .round-circle3 {
-            line-height: 9px;
-            text-align: center;
-            align-content: center;
-            position: absolute;
-            right: 44px;
-            top: 71%;
-            width: 26px;
-            height: 26px;
-            font-size: 12px;
-        }
-
-        .group4 .round-circle4 {
-            line-height: 9px;
-            text-align: center;
-            align-content: center;
-            position: absolute;
-            right: 44px;
-            top: 86%;
-            width: 26px;
-            height: 26px;
-            font-size: 12px;
-
-        }
-
-        .group1 button,
-        .group2 button,
-        .group3 button,
-        .group4 button {
-            /* height: 35px; */
-            padding: 10px 20px 10px 10px;
-            box-sizing: border-box;
-            text-align: left;
-            font-size: 13px;
-
-            margin-bottom: 1rem;
-            background-color: rgba(244, 244, 244, 1);
-        }
-
         .card-menu .d-flex {
             flex-direction: column;
             align-items: center;
@@ -820,7 +857,7 @@
         }
 
         .d-flex .menuimg {
-            width: 64%;
+            width: 90%;
             height: auto;
             display: inline-block;
             margin: 10px 0;
@@ -850,6 +887,10 @@
             background: linear-gradient(90deg, rgba(246, 250, 255, 1) 0%, rgba(155, 202, 255, 1) 80%);
         }
 
+        .pl-0 {
+            padding-right: 0 !important;
+        }
+
         .card {
             display: flex;
             justify-content: center;
@@ -894,7 +935,7 @@
             box-shadow: 0 2px 4px rgba(203, 59, 59, 0.1);
             display: flex;
             /* flex-direction: row-reverse; */
-            padding: 1rem;
+            padding: 1.5rem;
         }
 
         .group-search {
@@ -932,69 +973,6 @@
             top: 74.5%;
             transform: translateY(-50%);
             color: rgba(161, 161, 161, 1);
-        }
-
-        .group1 .round-circle1 {
-            line-height: 10px;
-            text-align: center;
-            align-content: center;
-            position: absolute;
-            right: 30px;
-            top: 40.4%;
-            width: 23px;
-            height: 23px;
-            font-size: 11px;
-        }
-
-        .group2 .round-circle2 {
-            line-height: 9px;
-            text-align: center;
-            align-content: center;
-            position: absolute;
-            right: 30px;
-            top: 55.5%;
-            width: 23px;
-            height: 23px;
-            font-size: 11px;
-        }
-
-        .group3 .round-circle3 {
-            line-height: 9px;
-            text-align: center;
-            align-content: center;
-            position: absolute;
-            right: 30px;
-            top: 71%;
-            width: 23px;
-            height: 23px;
-            font-size: 11px;
-        }
-
-        .group4 .round-circle4 {
-            line-height: 9px;
-            text-align: center;
-            align-content: center;
-            position: absolute;
-            right: 30px;
-            top: 86%;
-            width: 23px;
-            height: 23px;
-            font-size: 11px;
-
-        }
-
-        .group1 button,
-        .group2 button,
-        .group3 button,
-        .group4 button {
-            /* height: 35px; */
-            padding: 10px 20px 10px 10px;
-            box-sizing: border-box;
-            text-align: left;
-            font-size: 13px;
-
-            margin-bottom: 1rem;
-            background-color: rgba(244, 244, 244, 1);
         }
 
         .card-menu .d-flex {
@@ -1036,34 +1014,6 @@
             margin: 10px 0;
         }
 
-
-        /* .listimg {
-            position: relative;
-            display: inline-block;
-        } */
-
-        /* .listimg .coursemenu{
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background-color: rgba(21, 119, 255, 1);
-            border-radius: 50%;
-            width: 50px;
-            height: 50px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            border: 5px solid white;
-            cursor: pointer;
-            padding-left: 3px;
-        }
-
-        .coursemenu i {
-            color: #fff;
-            font-size: 25px;
-        } */
-
         .card-body-menu {
             align-items: center !important;
 
@@ -1076,16 +1026,21 @@
         .card-text-menu {
             margin-top: auto;
             font-size: 15px;
+            padding: 0 1.1rem;
         }
 
     }
 
-    @media screen and (min-width: 339px) and (max-width: 400px) {
+    @media screen and (min-width: 345px) and (max-width: 400px) {
         button:hover {
             color: rgba(21, 119, 255, 1) !important;
             background: linear-gradient(90deg, rgba(246, 250, 255, 1) 0%, rgba(155, 202, 255, 1) 80%);
         }
 
+        .pl-0 {
+            padding-right: 0 !important;
+        }
+
         .card {
             display: flex;
             justify-content: center;
@@ -1130,7 +1085,7 @@
             box-shadow: 0 2px 4px rgba(203, 59, 59, 0.1);
             display: flex;
             /* flex-direction: row-reverse; */
-            padding: 1rem;
+            padding: 1.5rem;
         }
 
         .group-search {
@@ -1170,69 +1125,6 @@
             color: rgba(161, 161, 161, 1);
         }
 
-        .group1 .round-circle1 {
-            line-height: 10px;
-            text-align: center;
-            align-content: center;
-            position: absolute;
-            right: 30px;
-            top: 40.5%;
-            width: 23px;
-            height: 23px;
-            font-size: 11px;
-        }
-
-        .group2 .round-circle2 {
-            line-height: 9px;
-            text-align: center;
-            align-content: center;
-            position: absolute;
-            right: 30px;
-            top: 55.8%;
-            width: 23px;
-            height: 23px;
-            font-size: 11px;
-        }
-
-        .group3 .round-circle3 {
-            line-height: 9px;
-            text-align: center;
-            align-content: center;
-            position: absolute;
-            right: 30px;
-            top: 71%;
-            width: 23px;
-            height: 23px;
-            font-size: 11px;
-        }
-
-        .group4 .round-circle4 {
-            line-height: 9px;
-            text-align: center;
-            align-content: center;
-            position: absolute;
-            right: 30px;
-            top: 86%;
-            width: 23px;
-            height: 23px;
-            font-size: 11px;
-
-        }
-
-        .group1 button,
-        .group2 button,
-        .group3 button,
-        .group4 button {
-            /* height: 35px; */
-            padding: 10px 20px 10px 10px;
-            box-sizing: border-box;
-            text-align: left;
-            font-size: 12px;
-
-            margin-bottom: 1rem;
-            background-color: rgba(244, 244, 244, 1);
-        }
-
         .card-menu .d-flex {
             flex-direction: column;
             align-items: center;
@@ -1263,6 +1155,7 @@
         .card-text-menu {
             margin-top: auto;
             /* Push the text to the bottom */
+            padding: 0 1.1rem;
         }
 
         .d-flex .menuimg {
@@ -1288,7 +1181,15 @@
 
     }
 
-    @media screen and (max-width: 339px) {
+    @media screen and (max-width: 345px) {
+        .card-baner {
+            padding-right: 0 !important;
+        }
+
+        .row>* {
+            padding-right: 0;
+        }
+
         .card {
             display: flex;
             justify-content: center;
@@ -1386,69 +1287,6 @@
             color: rgba(161, 161, 161, 1);
         }
 
-        .group1 .round-circle1 {
-            line-height: 10px;
-            text-align: center;
-            align-content: center;
-            position: absolute;
-            right: 31px;
-            top: 40%;
-            width: 20px;
-            height: 20px;
-            font-size: 11px;
-        }
-
-        .group2 .round-circle2 {
-            line-height: 10px;
-            text-align: center;
-            align-content: center;
-            position: absolute;
-            right: 31px;
-            top: 55.2%;
-            width: 20px;
-            height: 20px;
-            font-size: 11px;
-        }
-
-        .group3 .round-circle3 {
-            line-height: 10px;
-            text-align: center;
-            align-content: center;
-            position: absolute;
-            right: 31px;
-            top: 69.9%;
-            width: 20px;
-            height: 20px;
-            font-size: 11px;
-        }
-
-        .group4 .round-circle4 {
-            line-height: 10px;
-            text-align: center;
-            align-content: center;
-            position: absolute;
-            right: 31px;
-            top: 85%;
-            width: 20px;
-            height: 20px;
-            font-size: 11px;
-
-        }
-
-        .group1 button,
-        .group2 button,
-        .group3 button,
-        .group4 button {
-            /* height: 35px; */
-            padding: 7px 20px 7px 10px;
-            box-sizing: border-box;
-            text-align: left;
-            font-size: 10px;
-
-            margin-bottom: 1rem;
-            background-color: rgba(244, 244, 244, 1);
-        }
-
         .card-menu .d-flex {
             flex-direction: column;
             align-items: center;
@@ -1505,19 +1343,60 @@
         }
 
         .card-body-menu h4 {
-            font-size: 12px !important;
+            font-size: 15px !important;
         }
 
     }
 
+    @media (max-width: 565px) {
+        .group .form-control {
+            flex-direction: row;
+            justify-content: space-between;
+        }
+
+        .group .round-circle {
+            width: 25px !important;
+            height: 25px !important;
+        }
+
+        .group .btn-title {
+            margin-right: auto;
+        }
+    }
+
+    .playvideo {
+        background-color: rgba(21, 119, 255, 1);
+        border-radius: 50%;
+        width: 60px;
+        height: 60px;
+        text-align: center;
+        align-content: center;
+        border: 5px solid white;
+        padding-left: 4px;
+        padding-top: 5px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 10;
+        cursor: pointer;
+        /* Optional: To indicate that the button is clickable */
+    }
+
+    .card-menu {
+        position: relative;
+    }
+
     .menuimg {
+        width: 100%;
+        border-radius: 20px;
+    }
+
+    .card-img {
         align-items: center;
-        width: 35%;
+        display: block;
         height: auto;
         object-fit: content;
-        border-radius: 20px;
-        /* display: inline-block; */
-
     }
 
     .card-menu {
@@ -1533,7 +1412,7 @@
 
     .card-body-menu {
         padding: 10px;
-        margin-left: 1rem;
+        /* margin-left: 1rem; */
         flex: 1;
         display: flex;
         flex-direction: column;
@@ -1611,5 +1490,11 @@
 
     .buttomimg2 img {
         width: 60%;
+    }
+
+    .card-img {
+        justify-content: center;
+        align-content: center;
+        text-align: center;
     }
 </style>

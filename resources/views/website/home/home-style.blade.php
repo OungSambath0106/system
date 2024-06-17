@@ -1,5 +1,9 @@
 <style>
     @media (min-width: 1279px) {
+        .content {
+            height: 84.5vh;
+        }
+
         .card-content .card-img {
             text-align: center;
         }
@@ -21,9 +25,17 @@
         .col-sm-3 {
             width: 18% !important;
         }
+
+        .col-6 {
+            width: 55%;
+        }
     }
 
     @media (min-width: 1138px)and (max-width: 1279px) {
+        .content {
+            height: 84.5vh;
+        }
+
         .text-description {
             padding: 0 .4rem;
             font-size: .93rem !important;
@@ -44,6 +56,16 @@
         .col-sm-3 {
             width: 18% !important;
         }
+
+        .col-6 {
+            width: 55%;
+        }
+    }
+
+    @media (min-width: 1024px) and (max-width: 1138px) {
+        .row {
+            margin-right: 0 !important;
+        }
     }
 
     @media (min-width: 768px) and (max-width: 1024px) {
@@ -53,6 +75,10 @@
 
         .text-description {
             font-size: .95rem !important;
+        }
+
+        .row {
+            margin-right: 0 !important;
         }
     }
 
@@ -79,11 +105,11 @@
 
         .card-content .card-img {
             width: 30%;
+            height: 30%;
             margin-right: 30px;
         }
 
-        .uiux-card .card-content,
-        .laravel-card .card-content {
+        .right-card .card-content {
             display: flex;
             flex-direction: row;
             align-items: center;
@@ -154,8 +180,21 @@
             width: 100%;
         }
 
+        .mt--3 {
+            margin-top: .8rem !important;
+        }
+
         .card-body {
             padding: 0;
+        }
+
+        .icon {
+            width: 10vw !important;
+            height: 10vw !important;
+        }
+
+        .icon i {
+            font-size: 5vw !important;
         }
 
         .card .card-content {
@@ -164,10 +203,6 @@
             align-items: center;
             margin-top: 3rem;
             padding-bottom: 0 !important;
-        }
-
-        .col-sm-6 {
-            padding-right: 0;
         }
 
         .card .card-content .card-img {
@@ -256,7 +291,7 @@
         background-size: contain;
         background-repeat: no-repeat;
         background-position: center bottom;
-        padding: 2.6rem;
+        padding: 2.45rem;
     }
 
     .card-title,
@@ -309,8 +344,8 @@
     .icon {
         position: absolute;
         background: rgba(255, 255, 255, 0.7);
-        width: 2.3vw;
-        height: 2.3vw;
+        width: 3vw;
+        height: 3vw;
         border-radius: 50%;
         display: flex;
         align-items: center;
@@ -323,11 +358,20 @@
     }
 
     .icon i {
-        font-size: 1.1vw;
+        font-size: 1.5vw;
         color: #FFFFFF;
     }
 
     .img-fluid {
         border-radius: 18px;
+    }
+
+    .link-title {
+        text-decoration: none;
+        color: #000000;
+    }
+
+    .link-title:hover {
+        color: #000000;
     }
 </style>
