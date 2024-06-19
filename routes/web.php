@@ -156,6 +156,12 @@ Route::middleware(['auth', 'CheckUserLogin', 'SetSessionData'])->group(function 
         //Config Mail//
         Route::get('/email-config', [EmailConfigController::class, 'showForm'])->name('email_config_form');
         Route::post('/update-email-config', [EmailConfigController::class, 'updateConfig'])->name('update_email_config');
+        //header
+        Route::get('/header', [DashboardController::class, 'header']);
+
+        //auto count contact in header//
+        Route::get('/unread-messages-count', [DashboardController::class, 'unreadMessagesCount'])->name('unread.messages.count');
+
 
     });
 });

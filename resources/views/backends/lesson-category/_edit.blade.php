@@ -75,10 +75,11 @@
                             <select name="course" id="course"
                                 class="form-control select2 @error('course') is-invalid @enderror">
                                 <option value="">{{ __('Select course') }}</option>
-                                @foreach ($courses as $id => $title)
+                                @foreach ($courses as $id => $name)
                                     <option value="{{ $id }}"
-                                        {{ $id == $category->course_id ? 'selected' : '' }}>
-                                        {{ $title }}</option>
+                                        {{ $id === $category->course_id ? 'selected' : '' }}>
+                                        {{ $name->title }}</option>
+
                                 @endforeach
                             </select>
                             @error('course')

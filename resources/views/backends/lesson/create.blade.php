@@ -112,7 +112,7 @@
                                             <option value="">{{ __('Select type') }}</option>
                                             <option value="video">{{ __('Video') }}</option>
                                             <option value="url">{{ __('URL') }}</option>
-                                            <!-- Changed 'Url' to 'URL' for consistency -->
+
                                         </select>
                                         @error('type')
                                             <span class="invalid-feedback" role="alert">
@@ -180,18 +180,23 @@
                                         <div class="input-group">
                                             <div class="custom-file">
                                                 <input type="hidden" name="video" class="image_names_hidden">
-                                                <input type="file" class="custom-file-input" id="exampleInputFile"
-                                                    name="video" accept="video/*">
+                                                <input type="file" class="custom-file-input video-file-input"
+                                                    id="exampleInputFile" name="video" accept="video/*">
                                                 <label class="custom-file-label"
                                                     for="exampleInputFile">{{ __('Choose file') }}</label>
                                             </div>
                                         </div>
                                         <div class="preview preview-multiple text-center border rounded mt-2"
                                             style="height: 150px">
-                                            <img src="{{ asset('uploads/image/default.png') }}" alt=""
-                                                height="100%">
+                                            <video id="videoPreview" controls style="max-height: 150px; display: none;">
+                                                <source src="" id="videoPreviewSource">
+                                                Your browser does not support the video tag.
+                                            </video>
                                         </div>
                                     </div>
+
+
+
 
                                     <div id="urlInput" class="form-group col-md-6" style="display: none;">
                                         <label for="videoUrl">{{ __('URL') }}</label>
@@ -274,8 +279,7 @@
                 $('.no_translate_wrapper').removeClass('d-none');
             }
         });
-    </script>
-    <script>
+
         $(document).ready(function() {
             $('#type').on('change', function() {
                 var selectedType = $(this).val();
@@ -287,11 +291,33 @@
                     $('#videoUpload').hide();
                     $('#urlInput').show();
                 } else {
-                    // Hide both if nothing is selected or an unexpected value is received
                     $('#videoUpload').hide();
                     $('#urlInput').hide();
                 }
             });
+
+            // Trigger change event on page load to set the initial visibility
+            $('#type').trigger('change');
+        });
+
+        $('.video-file-input').change(function(e) {
+            var reader = new FileReader();
+            var preview = $(this).closest('.form-group').find('.preview video source');
+            var video = $(this).closest('.form-group').find('.preview video');
+            var label = $(this).siblings('.custom-file-label');
+
+            reader.onload = function(e) {
+                preview.attr('src', e.target.result);
+                video[0].load();
+                video.show(); // Ensure the video element is displayed
+            }
+
+            if (this.files && this.files[0]) {
+                reader.readAsDataURL(this.files[0]);
+                label.text(this.files[0].name);
+            } else {
+                label.text("{{ __('Choose file') }}");
+            }
         });
     </script>
 @endpush

@@ -18,7 +18,7 @@
         <div class="row justify-content-center">
             <div class="col-10 mt-5 container-card">
                 <div class="card">
-                    <div class="col-10 mx-auto "> <!-- Add mx-auto class here -->
+                    <div class="col-10 mx-auto ">
                         <div class="card-head">
                             <div class="card-text mb-5 mt-5">
                                 <h2 class="text-primary text-center">Contact Us</h2>
@@ -82,9 +82,9 @@
 
                     <div class="card-footer">
                         <div class="row  justify-content-center">
-                            <div class=" d-flex   p-2 gap-5 container-circle"> <!-- Adjusted for responsiveness -->
+                            <div class=" d-flex  p-2 container-circle">
                                 <div class="club col-12 col-md-3 text-center mb-3 circle">
-                                    <!-- Adjusted for responsiveness -->
+
                                     <div class="icon mx-auto mb-2">
                                         <i class="fa-solid fa-person-running fa-lg" style="color: #ffffff;"></i>
                                     </div>
@@ -94,7 +94,7 @@
                                     </div>
                                 </div>
                                 <div class="phone col-12 col-md-3 text-center mb-3 circle">
-                                    <!-- Adjusted for responsiveness -->
+
                                     <div class="icon mx-auto mb-2">
                                         <i class="fa-solid fa-phone fa-lg" style="color: #ffffff;"></i>
                                     </div>
@@ -104,7 +104,7 @@
                                     </div>
                                 </div>
                                 <div class="telegram col-12 col-md-3 text-center mb-3 circle">
-                                    <!-- Adjusted for responsiveness -->
+
                                     <div class="icon mx-auto mb-2">
                                         <img class="telegram" src="/upload/social_media/telegram.png" alt="">
                                     </div>
@@ -114,7 +114,7 @@
                                     </div>
                                 </div>
                                 <div class="location col-12 col-md-3 text-center mb-3 circle">
-                                    <!-- Adjusted for responsiveness -->
+
                                     <div class="icon mx-auto mb-2">
                                         <i class="fa-solid fa-location-dot fa-lg" style="color: #ffffff;"></i>
                                     </div>

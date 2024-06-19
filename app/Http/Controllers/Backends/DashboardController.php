@@ -17,4 +17,16 @@ class DashboardController extends Controller
         $totalunreadcontacts = ContactMessage::where('isRead', 0)->count();
         return view('backends.index', compact('totalcourses', 'totalunreadcontacts', 'totallessons'));
     }
+    public function header(){
+        $contacts = ContactMessage::where('isRead', 0)->latest()->take(4)->get();
+        $contactmail = ContactMessage::count();
+        // $latestContactMessage = ContactMessage::latest()->first();
+        // $time = $latestContactMessage ? $latestContactMessage->created_at->format('H:i') : null;
+        return view('backends.layout.header',compact('contacts','contactmail'));
+    }
+    public function unreadMessagesCount()
+    {
+        $unreadCount = ContactMessage::where('isRead', 0)->count();
+        return response()->json(['unread_count' => $unreadCount]);
+    }
 }

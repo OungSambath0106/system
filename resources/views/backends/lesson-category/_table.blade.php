@@ -14,7 +14,7 @@
                 <tr>
                     <td>{{ $loop->iteration }}</td>
                     <td>{{ $category->title }}</td>
-                    <td> {{ $category->course->title ?? 'Null' }} </td>
+                    <td> {{ $category->course->title ?? 'Null' }}</td>
                     <td>
                         <div class="custom-control custom-switch">
                             <input type="checkbox" class="custom-control-input switcher_input status"
