@@ -27,7 +27,7 @@
                             {{ $item->title }}
                         </span> --}}
                     </td>
-                    <td> {{ Str::limit( $course->description, 40) }}</td>
+                    <td> {{ Str::limit($course->description, 40) }}</td>
 
                     <td>
                         @if (auth()->user()->can('course.edit'))

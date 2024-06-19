@@ -47,16 +47,6 @@
                     </a>
                 </li>
 
-                {{-- <li class="nav-item">
-                    <a href="{{ route('admin.user.index') }}"
-                        class="nav-link @if (request()->routeIs('admin.user.index')) active @endif">
-                        <i class="nav-icon fas fa-user-alt"></i>
-                        <p>
-                            {{ __('User') }}
-                        </p>
-                    </a>
-                </li> --}}
-
                 <li class="nav-item">
                     <a href="{{ route('admin.course.index') }}"
                         class="nav-link @if (request()->routeIs('admin.course*')) active @endif">
@@ -80,14 +70,14 @@
                         <li class="nav-item">
                             <a href="{{ route('admin.lesson.index') }}"
                                 class="nav-link @if (request()->routeIs('admin.lesson.*')) active @endif">
-                                <i class="fa-solid fa-circle nav-icon"></i>
+                                <i class="nav-icon fa-solid fa-circle"></i>
                                 <p>{{ __('Lesson') }}</p>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a href="{{ route('admin.lesson-category.index') }}"
                                 class="nav-link @if (request()->routeIs('admin.lesson-category*')) active @endif">
-                                <i class="fa-solid fa-circle nav-icon"></i>
+                                <i class="nav-icon fa-solid fa-circle"></i>
                                 <p>{{ __('Lesson Category') }}</p>
                             </a>
                         </li>
@@ -135,7 +125,7 @@
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
                             <a href="{{ route('admin.contact.index') }}"
-                                class="nav-link @if (request()->routeIs('admin.contact.index')) active @endif">
+                                class="nav-link treeview-link @if (request()->routeIs('admin.contact.index')) active @endif">
                                 <i class="nav-icon fa-solid fa-message"></i>
 
                                 <p>
@@ -145,7 +135,7 @@
                         </li>
                         <li class="nav-item">
                             <a href="{{ route('admin.email_config_form') }}"
-                                class="nav-link @if (request()->routeIs('admin.email_config_form*')) active @endif">
+                                class="nav-link treeview-link @if (request()->routeIs('admin.email_config_form*')) active @endif">
                                 <i class="nav-icon fas fa-cog"></i>
                                 <p>
                                     {{ __('Email Config') }}

@@ -4,6 +4,9 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    <link rel="icon" type="image/x-icon"
+        href="{{ session()->has('app_icon') && file_exists(public_path('uploads/business_settings/' . session()->get('app_icon'))) ? asset('uploads/business_settings/' . session()->get('app_icon')) : asset('uploads/image/default-icon.png') }}">
+
     <title>{{ config('app.name', 'Laravel') }}</title>
     <!-- Fonts -->
     <link href='https://fonts.googleapis.com/css?family=Nunito' rel='stylesheet'>

@@ -53,13 +53,13 @@
                 </div>
                 <div class="card-body">
                     <div class="row">
-                        <div class="form-group col-md-12 ">
-                            <label class="required_lable" for="course">{{ __('Course') }}</label>
+                        <div class="form-group col-md-12">
+                            <label class="required_label" for="course">{{ __('Course') }}</label>
                             <select name="course" id="course"
                                 class="form-control select2 @error('course') is-invalid @enderror">
                                 <option value="">{{ __('Select Course') }}</option>
-                                @foreach ($courses as $id => $title)
-                                    <option value="{{ $id }}">{{ $title }}</option>
+                                @foreach ($courses as $course)
+                                    <option value="{{ $course->id }}">{{ $course->title }}</option>
                                 @endforeach
                             </select>
                             @error('course')

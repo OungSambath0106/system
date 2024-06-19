@@ -5,8 +5,9 @@ namespace App\Providers;
 use Carbon\Carbon;
 use App\Models\Course;
 use App\Models\BusinessSetting;
-use Illuminate\Support\Facades\View;
 use Illuminate\Pagination\Paginator;
+use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
 
@@ -60,6 +61,10 @@ class AppServiceProvider extends ServiceProvider
         Paginator::useBootstrap();
         Schema::defaultStringLength(191);
         Paginator::useBootstrap();
+
+        Gate::before(function ($user, $ability) {
+            return $user->hasRole('admin') ? true : null;
+        });
 
     }
 }

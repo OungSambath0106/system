@@ -79,7 +79,8 @@
             var firstButton = document.querySelector('.group button .round-circle');
             if (firstButton && firstButton.textContent.trim() == '1') {
                 var button = firstButton.closest('button');
-                var categoryId = button.getAttribute('onclick').match(/\d+/)[0];
+                var categoryId = button.getAttribute('onclick').match(/\d+/)[
+                    0];
                 loadLessons(categoryId, button);
             }
 
@@ -101,56 +102,56 @@
                     }
                 });
             }
+        });
 
-            function loadLessons(categoryId, button) {
-                setActiveButton(button);
+        function loadLessons(categoryId, button) {
+            setActiveButton(button);
 
-                fetch(`/lessons-by-category/${categoryId}`)
-                    .then(response => response.json())
-                    .then(lessons => {
-                        const lessonsContainer = document.getElementById('lessons-container');
-                        lessonsContainer.innerHTML = ''; // Clear previous lessons
+            fetch(`/lessons-by-category/${categoryId}`)
+                .then(response => response.json())
+                .then(lessons => {
+                    const lessonsContainer = document.getElementById('lessons-container');
+                    lessonsContainer.innerHTML = ''; // Clear previous lessons
 
-                        lessons.filter(lesson => lesson.status === 1).forEach(lesson => {
-                            const lessonCard = `
-                        <div class="card card-menu position-relative">
-                            <div class="col-12 d-flex">
-                                <div class=" card-img position-relative">
-                                    <img id="menu-img" class="menuimg" src="/uploads/lessons/${lesson.thumbnail}" alt="Not found">
-                                    <a href="#" class="playvideo" data-id="${lesson.id}" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                        <i class="fa-solid fa-play fa-lg" style="color: white"></i>
-                                    </a>
-                                </div>
-                                <div class="card-body-menu">
-                                    <h4 class="card-title"> ${lesson.title} </h4>
-                                    <p class="card-text-menu"> ${lesson.description} </p>
+                    lessons.forEach(lesson => {
+                        const lessonCard = `
+                            <div class="card card-menu position-relative">
+                                <div class="col-12 d-flex">
+                                    <div class=" card-img position-relative">
+                                        <img id="menu-img" class="menuimg" src="/uploads/lessons/${lesson.thumbnail}" alt="Not found">
+                                        <a href="#" class="playvideo" data-id="${lesson.id}" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                            <i class="fa-solid fa-play fa-lg" style="color: white"></i>
+                                        </a>
+                                    </div>
+                                    <div class="card-body-menu">
+                                        <h4 class="card-title"> ${lesson.title} </h4>
+                                        <p class="card-text-menu"> ${lesson.description} </p>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    `;
-                            lessonsContainer.insertAdjacentHTML('beforeend', lessonCard);
-                        });
-
-                        lessonsContainer.addEventListener('click', function(event) {
-                            const target = event.target;
-                            if (target.closest('.playvideo')) {
-                                event.preventDefault();
-                                const lessonId = target.closest('.playvideo').getAttribute('data-id');
-                                window.location.href = `/lesson-detail/${lessonId}`;
-                            }
-                        });
+                        `;
+                        lessonsContainer.insertAdjacentHTML('beforeend', lessonCard);
                     });
-            }
 
-            function setActiveButton(button) {
-                // Remove active-button class from all buttons
-                document.querySelectorAll('.form-control').forEach(function(btn) {
-                    btn.classList.remove('active-button');
+                    lessonsContainer.addEventListener('click', function(event) {
+                        const target = event.target;
+                        if (target.closest('.playvideo')) {
+                            event.preventDefault();
+                            const lessonId = target.closest('.playvideo').getAttribute('data-id');
+                            window.location.href = `/lesson-detail/${lessonId}`;
+                        }
+                    });
                 });
+        }
 
-                // Add active-button class to the clicked button
-                button.classList.add('active-button');
-            }
-        });
+        function setActiveButton(button) {
+            // Remove active-button class from all buttons
+            document.querySelectorAll('.form-control').forEach(function(btn) {
+                btn.classList.remove('active-button');
+            });
+
+            // Add active-button class to the clicked button
+            button.classList.add('active-button');
+        }
     </script>
 @endsection

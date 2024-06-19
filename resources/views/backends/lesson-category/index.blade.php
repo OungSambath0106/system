@@ -118,24 +118,26 @@
                 reverseButtons: true
             }).then((result) => {
                 if (result.isConfirmed) {
+                    var id = $(this).data('id');
 
-                    console.log(`.form-delete-${$(this).data('id')}`);
-                    var data = $(`.form-delete-${$(this).data('id')}`).serialize();
-                    // console.log(data);
                     $.ajax({
-                        type: "post",
+                        type: "DELETE",
                         url: $(this).data('href'),
-                        data: data,
-                        // dataType: "json",
+                        data: {
+                            _token: '{{ csrf_token() }}',
+                            id: id
+                        },
                         success: function(response) {
                             console.log(response);
                             if (response.status == 1) {
                                 $('.table-wrapper').replaceWith(response.view);
                                 toastr.success(response.msg);
                             } else {
-                                toastr.error(response.msg)
-
+                                toastr.error(response.msg);
                             }
+                        },
+                        error: function(xhr) {
+                            toastr.error('Something went wrong');
                         }
                     });
                 }

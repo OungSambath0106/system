@@ -4,8 +4,11 @@ body {
     -moz-osx-font-smoothing: grayscale;
 }
 
+.nav-icon {
+    scale: 0.8;
+}
+
 .sidebar-light-info .nav-sidebar > .nav-item > .nav-link.active {
-    background: rgb(243, 49, 247);
     background: linear-gradient(
         90deg,
         rgba(243, 49, 247, 1) 8%,
@@ -14,15 +17,24 @@ body {
 }
 
 .sidebar-light-info .nav-sidebar > .nav-item > .nav-link:hover {
-    background: rgb(243, 49, 247);
     background: linear-gradient(
         90deg,
         rgba(243, 49, 247, 1) 8%,
         rgba(87, 158, 255, 1) 70%
     );
-    color: #f4f4f4 !important;
+    color: #ffffffff !important;
     border: none;
     transition: background-color 0.3s;
+}
+
+[class*="sidebar-light-"] .nav-sidebar > .nav-item.menu-open > .nav-link,
+[class*="sidebar-light-"] .nav-sidebar > .nav-item:hover > .nav-link {
+    background: linear-gradient(
+        90deg,
+        rgba(243, 49, 247, 1) 8%,
+        rgba(87, 158, 255, 1) 70%
+    );
+    color: #ffffffff !important;
 }
 
 .swal2-popup.swal2-toast.swal2-show {
