@@ -27,11 +27,27 @@
                         <div class="modal-dialog modal-dialog-centered modal-lg">
                             <div class="modal-content">
                                 <div class="modal-body">
-                                    <video id="modalVideo" width="100%"
-                                        src="{{ asset('uploads/lessons/' . $lesson->video) }}" controls>
-                                        Your browser does not support the video tag.
-                                    </video>
+                                    @if ($lesson->type == 'video')
+                                        <video id="modalVideo" width="100%" controls>
+                                            <source src="{{ asset('uploads/lessons/' . $lesson->video) }}" type="video/mp4">
+                                            Your browser does not support the video tag.
+                                        </video>
+                                    @elseif ($lesson->type == 'url')
+                                        @php
+                                            // Check if the URL is a YouTube URL and convert it to the embed URL format
+                                            $url = $lesson->url;
+                                            if (strpos($url, 'youtube.com/watch') !== false) {
+                                                parse_str(parse_url($url, PHP_URL_QUERY), $query);
+                                                $url = 'https://www.youtube.com/embed/' . $query['v'];
+                                            } elseif (strpos($url, 'youtu.be/') !== false) {
+                                                $url = str_replace('youtu.be/', 'youtube.com/embed/', $url);
+                                            }
+                                        @endphp
+                                        <iframe id="modalIframe" width="100%" height="450" src="{{ $url }}" frameborder="0"
+                                            allowfullscreen></iframe>
+                                    @endif
                                 </div>
+
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                                     {{-- <button type="button" class="btn btn-primary">Save changes</button> --}}
@@ -78,7 +94,7 @@
             </div>
         </div>
     </div>
-    <script>
+    {{-- <script>
         document.addEventListener('DOMContentLoaded', function() {
             var modal = document.getElementById('exampleModal');
             var video = document.getElementById('modalVideo');
@@ -88,5 +104,25 @@
                 video.currentTime = 0; // Optionally reset video to start
             });
         });
-    </script>
+    </script> --}}
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var modalElement = document.getElementById('exampleModal');
+
+        modalElement.addEventListener('hide.bs.modal', function () {
+            var video = document.getElementById('modalVideo');
+            var iframe = document.getElementById('modalIframe');
+
+            if (video) {
+                video.pause();
+                video.currentTime = 0;
+            }
+
+            if (iframe) {
+                iframe.src = iframe.src;
+            }
+        });
+    });
+</script>
+
 @endsection

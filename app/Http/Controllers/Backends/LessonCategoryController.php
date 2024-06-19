@@ -21,6 +21,7 @@ class LessonCategoryController extends Controller
      */
     public function index()
     {
+
         $categories = LessonCategory::orderBy('order', 'asc')->paginate(10);
         return view('backends.lesson-category.index', compact('categories'));
     }
@@ -32,6 +33,7 @@ class LessonCategoryController extends Controller
      */
     public function create()
     {
+        // $courses = Course::pluck('title', 'id');
         $courses = Course::all();
         $language = BusinessSetting::where('type', 'language')->first();
         $language = $language->value ?? null;
@@ -68,9 +70,9 @@ class LessonCategoryController extends Controller
 
         if ($validator->fails()) {
             return redirect()->back()
-                    ->withErrors($validator)
-                    ->withInput()
-                    ->with(['success' => 0, 'msg' => __('Invalid form input')]);
+                ->withErrors($validator)
+                ->withInput()
+                ->with(['success' => 0, 'msg' => __('Invalid form input')]);
         }
 
         try {
@@ -109,7 +111,6 @@ class LessonCategoryController extends Controller
                 'success' => 1,
                 'msg' => __('Create successfully'),
             ];
-
         } catch (Exception $e) {
             DB::rollBack();
             $output = [
@@ -180,9 +181,9 @@ class LessonCategoryController extends Controller
     
         if ($validator->fails()) {
             return redirect()->back()
-                    ->withErrors($validator)
-                    ->withInput()
-                    ->with(['success' => 0, 'msg' => __('Invalid form input')]);
+                ->withErrors($validator)
+                ->withInput()
+                ->with(['success' => 0, 'msg' => __('Invalid form input')]);
         }
     
         try {
@@ -209,10 +210,12 @@ class LessonCategoryController extends Controller
             foreach ($request->lang as $index => $key) {
                 if ($request->title[$index] && $key != 'en') {
                     Translation::updateOrInsert(
-                        ['translationable_type' => 'App\Models\LessonCategory',
+                        [
+                            'translationable_type' => 'App\Models\LessonCategory',
                             'translationable_id' => $category->id,
                             'locale' => $key,
-                            'key' => 'title'],
+                            'key' => 'title'
+                        ],
                         ['value' => $request->title[$index]]
                     );
                 }
@@ -247,8 +250,8 @@ class LessonCategoryController extends Controller
         try {
             DB::beginTransaction();
             $category = LessonCategory::findOrFail($id);
-            $translation = Translation::where('translationable_type','App\Models\LessonCategory')
-                                        ->where('translationable_id',$category->id);
+            $translation = Translation::where('translationable_type', 'App\Models\LessonCategory')
+                ->where('translationable_id', $category->id);
 
             $translation->delete();
             $category->delete();
@@ -273,7 +276,7 @@ class LessonCategoryController extends Controller
         return response()->json($output);
     }
 
-    public function updateStatus (Request $request)
+    public function updateStatus(Request $request)
     {
         try {
             DB::beginTransaction();

@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use Carbon\Carbon;
 use App\Models\Course;
+use App\Models\ContactMessage;
 use App\Models\BusinessSetting;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\Gate;
@@ -66,5 +67,21 @@ class AppServiceProvider extends ServiceProvider
             return $user->hasRole('admin') ? true : null;
         });
 
+        // Using view composer to share data across all views
+        View::composer('backends.layout.header', function ($view) {
+            $view->with('contactmail', ContactMessage::count());
+            $view->with('contacts', ContactMessage::where('isRead', 0)->latest()->take(4)->get());
+
+            // $latestContactMessage = ContactMessage::latest()->first();
+            // if ($latestContactMessage) {
+            //     $view->with('latestContactMessage', $latestContactMessage);
+            //     $view->with('time', $latestContactMessage->created_at->format('H:i'));
+            // } else {
+            //     $view->with('latestContactMessage', null);
+            //     $view->with('time', null);
+            // }
+        });
+
     }
+
 }

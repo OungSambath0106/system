@@ -43,16 +43,18 @@
         <li class="nav-item dropdown">
             <a class="nav-link" data-toggle="dropdown" href="#">
                 <i class="fas fa-headset"></i>
-                <span class="badge badge-warning navbar-badge">5</span>
+                <span style="right: 7px;top: 5px;" class="badge badge-warning navbar-badge">{{ $contactmail }}</span>
             </a>
             <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-                <span class="dropdown-item dropdown-header">5</span>
+                <span class="dropdown-item dropdown-header">Message</span>
                 <div class="dropdown-divider"></div>
-                <a href="#" class="dropdown-item">
-                    <i class="fas fa-envelope mr-2"></i> 2 new messages
-                    <span class="float-right text-muted text-sm">3 mins</span>
-                </a>
-                <div class="dropdown-divider"></div>
+                @foreach ($contacts as $mail)
+                    <a href="{{ route('admin.contact.index') }}" class="dropdown-item">
+                        <i class="fas fa-envelope mr-2"></i> {{ $mail->name }}
+                        <span class="float-right text-muted text-sm">{{ $mail->created_at->format('H:i') }}</span>
+                    </a>
+                @endforeach
+                {{-- <div class="dropdown-divider"></div>
                 <a href="#" class="dropdown-item">
                     <i class="fas fa-users mr-2"></i> 2 friend requests
                     <span class="float-right text-muted text-sm">12 hours</span>
@@ -61,9 +63,10 @@
                 <a href="#" class="dropdown-item">
                     <i class="fas fa-file mr-2"></i> 1 new reports
                     <span class="float-right text-muted text-sm">2 days</span>
-                </a>
+                </a> --}}
                 <div class="dropdown-divider"></div>
-                <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
+                <a href="{{ route('admin.contact.index') }}" class="dropdown-item dropdown-footer">See All
+                    Notifications</a>
             </div>
         </li>
         <!-- Navbar Search -->
@@ -252,3 +255,33 @@
       </li> --}}
     </ul>
 </nav>
+
+<!-- Include jQuery -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function() {
+        // Function to update unread count
+        function updateUnreadCount() {
+            $.ajax({
+                url: "{{ route('admin.unread.messages.count') }}",
+                type: "GET",
+                dataType: "json",
+                success: function(response) {
+                    // Update the unread count in the badge
+                    $('.navbar-badge').text(response.unread_count);
+                },
+                error: function(xhr, status, error) {
+                    console.error("Error fetching unread count:", error);
+                }
+            });
+        }
+
+        // Initially fetch and update unread count
+        updateUnreadCount();
+
+        // Set interval to update unread count every 30 seconds (adjust as needed)
+        setInterval(function() {
+            updateUnreadCount();
+        }, 30000); // 30 seconds interval
+    });
+</script>

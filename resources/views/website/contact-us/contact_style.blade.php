@@ -69,8 +69,8 @@
     }
 
     .icon {
-        width: 90px;
-        height: 90px;
+        width: 85px;
+        height: 85px;
         background: linear-gradient(90deg, rgba(243, 49, 247, 1) 0%, rgba(87, 158, 255, 1) 90%);
         border-radius: 50%;
         display: flex;
@@ -80,7 +80,7 @@
 
     .fa-lg {
         color: #ffffff;
-        font-size: 3em;
+        font-size: 2.5em;
     }
 
     .icon img {
@@ -104,8 +104,8 @@
     }
 
     .px-5 {
-        padding-right: 1rem !important;
-        padding-left: 1rem !important;
+        padding-right: 3rem !important;
+        padding-left: 3rem !important;
     }
 
     h5 {

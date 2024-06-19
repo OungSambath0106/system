@@ -16,7 +16,10 @@
                     <td>{{ $loop->iteration }}</td>
                     <td> {{ $lesson->title }} </td>
                     <td> {{ $lesson->category->title }} </td>
-                    <td> {{ Str::limit($lesson->description, 40) }} </td>
+                    <td>
+                        {{ Str::limit($lesson->description, 40) }}
+                    </td>
+
                     <td>
                         <div class="custom-control custom-switch">
                             <input type="checkbox" class="custom-control-input switcher_input status"
@@ -33,7 +36,7 @@
                                 {{ __('Edit') }}
                             </a>
                         @endif
-                        
+
                         @if (auth()->user()->can('lesson.delete'))
                             <form action="{{ route('admin.lesson.destroy', $lesson->id) }}"
                                 class="d-inline-block form-delete-{{ $lesson->id }}">
