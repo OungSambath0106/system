@@ -5,7 +5,7 @@
                 <th>#</th>
                 <th class="">{{ __('Title') }}</th>
                 <th>{{ __('Category') }}</th>
-                <th>{{ __('Description') }}</th>
+                {{-- <th>{{ __('Description') }}</th> --}}
                 <th>{{ __('Status') }}</th>
                 <th>{{ __('Action') }}</th>
             </tr>
@@ -16,9 +16,9 @@
                     <td>{{ $loop->iteration }}</td>
                     <td> {{ $lesson->title }} </td>
                     <td> {{ $lesson->category->title }} </td>
-                    <td>
+                    {{-- <td>
                         {{ Str::limit($lesson->description, 40) }}
-                    </td>
+                    </td> --}}
 
                     <td>
                         <div class="custom-control custom-switch">

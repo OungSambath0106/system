@@ -29,10 +29,15 @@ class CourseController extends Controller
     public function show($id)
     {
         $course = Course::findOrFail($id);
-        $categories = $course->lessonCategories()->where('status', 1)->orderBy('order', 'asc')->get();
+        $categories = $course->lessonCategories()
+            ->where('status', 1)
+            ->orderBy('order', 'asc')
+            ->withCount(['lessons' => function ($query) {
+                $query->where('category_id', '!=', null); // Adjust this line if necessary
+            }])
+            ->get();
         return view('website.lesson_and_course_detail.course_detail', compact('course', 'categories'));
     }
-
 
     public function showLessonDetail($id)
     {

@@ -27,6 +27,11 @@ class LessonCategory extends Model
         return $this->belongsTo(Course::class, 'course_id');
     }
 
+    public function lessons()
+    {
+        return $this->hasMany(Lesson::class, 'category_id');
+    }
+
     public function translations()
     {
         return $this->morphMany(Translation::class, 'translationable');

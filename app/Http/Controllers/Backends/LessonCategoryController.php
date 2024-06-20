@@ -19,11 +19,25 @@ class LessonCategoryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
 
-        $categories = LessonCategory::orderBy('order', 'asc')->paginate(10);
-        return view('backends.lesson-category.index', compact('categories'));
+        // $categories = LessonCategory::orderBy('order', 'asc')->paginate(10);
+        $categories = LessonCategory::when($request->course_id, function ($query) use ($request) {
+            $query->where('course_id', $request->course_id);
+                })->orderBy('order', 'asc')
+                ->paginate(10);
+
+        $courses = Course::all();
+
+        if ($request->ajax()) {
+            $view = view('backends.lesson-category._table', compact('categories', 'courses'))->render();
+            return response()->json([
+                'view' => $view
+            ]);
+        }
+            
+        return view('backends.lesson-category.index', compact('categories', 'courses'));
     }
 
     /**

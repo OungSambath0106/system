@@ -5,10 +5,10 @@
             <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
         </li>
         <li class="nav-item d-none d-sm-inline-block">
-            <a href="../../index3.html" class="nav-link">Home</a>
+            <a href="{{ route('admin.dashboard') }}" class="nav-link">Home</a>
         </li>
         <li class="nav-item d-none d-sm-inline-block">
-            <a href="#" class="nav-link">Contact</a>
+            <a href="{{ route('admin.contact.index') }}" class="nav-link">Contact</a>
         </li>
     </ul>
 
@@ -51,134 +51,14 @@
                 @foreach ($contacts as $mail)
                     <a href="{{ route('admin.contact.index') }}" class="dropdown-item">
                         <i class="fas fa-envelope mr-2"></i> {{ $mail->name }}
-                        <span class="float-right text-muted text-sm">{{ $mail->created_at->format('H:i') }}</span>
+                        <span class="float-right text-muted text-sm">{{ $mail->created_at->format('D-M-Y H:i') }}</span>
                     </a>
                 @endforeach
-                {{-- <div class="dropdown-divider"></div>
-                <a href="#" class="dropdown-item">
-                    <i class="fas fa-users mr-2"></i> 2 friend requests
-                    <span class="float-right text-muted text-sm">12 hours</span>
-                </a>
-                <div class="dropdown-divider"></div>
-                <a href="#" class="dropdown-item">
-                    <i class="fas fa-file mr-2"></i> 1 new reports
-                    <span class="float-right text-muted text-sm">2 days</span>
-                </a> --}}
                 <div class="dropdown-divider"></div>
                 <a href="{{ route('admin.contact.index') }}" class="dropdown-item dropdown-footer">See All
                     Notifications</a>
             </div>
         </li>
-        <!-- Navbar Search -->
-        {{-- <li class="nav-item">
-            <a class="nav-link" data-widget="navbar-search" href="#" role="button">
-                <i class="fas fa-search"></i>
-            </a>
-            <div class="navbar-search-block">
-                <form class="form-inline">
-                    <div class="input-group input-group-sm">
-                        <input class="form-control form-control-navbar" type="search" placeholder="Search"
-                            aria-label="Search">
-                        <div class="input-group-append">
-                            <button class="btn btn-navbar" type="submit">
-                                <i class="fas fa-search"></i>
-                            </button>
-                            <button class="btn btn-navbar" type="button" data-widget="navbar-search">
-                                <i class="fas fa-times"></i>
-                            </button>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </li> --}}
-
-        <!-- Messages Dropdown Menu -->
-        <!-- <li class="nav-item dropdown">
-            <a class="nav-link" data-toggle="dropdown" href="#">
-                <i class="far fa-comments"></i>
-                <span class="badge badge-danger navbar-badge">3</span>
-            </a>
-            <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-                <a href="#" class="dropdown-item">
-                    <div class="media">
-                        <img src="../../dist/img/user1-128x128.jpg" alt="User Avatar"
-                            class="img-size-50 mr-3 img-circle">
-                        <div class="media-body">
-                            <h3 class="dropdown-item-title">
-                                Brad Diesel
-                                <span class="float-right text-sm text-danger"><i class="fas fa-star"></i></span>
-                            </h3>
-                            <p class="text-sm">Call me whenever you can...</p>
-                            <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
-                        </div>
-                    </div>
-                </a>
-                <div class="dropdown-divider"></div>
-
-                {{-- <div class="dropdown-divider"></div>
-                <a href="#" class="dropdown-item">
-                    <div class="media">
-                        <img src="../../dist/img/user8-128x128.jpg" alt="User Avatar"
-                            class="img-size-50 img-circle mr-3">
-                        <div class="media-body">
-                            <h3 class="dropdown-item-title">
-                                John Pierce
-                                <span class="float-right text-sm text-muted"><i class="fas fa-star"></i></span>
-                            </h3>
-                            <p class="text-sm">I got your message bro</p>
-                            <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
-                        </div>
-                    </div>
-                </a>
-                <div class="dropdown-divider"></div>
-                <a href="#" class="dropdown-item">
-                    <div class="media">
-                        <img src="../../dist/img/user3-128x128.jpg" alt="User Avatar"
-                            class="img-size-50 img-circle mr-3">
-                        <div class="media-body">
-                            <h3 class="dropdown-item-title">
-                                Nora Silvester
-                                <span class="float-right text-sm text-warning"><i class="fas fa-star"></i></span>
-                            </h3>
-                            <p class="text-sm">The subject goes here</p>
-                            <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
-                        </div>
-                    </div>
-                </a>
-                    <!-- Message End -->
-                </a> --}}
-                <div class="dropdown-divider"></div>
-                <a href="#" class="dropdown-item dropdown-footer">See All Messages</a>
-            </div>
-        </li> -->
-        <!-- Notifications Dropdown Menu -->
-        {{-- <li class="nav-item dropdown">
-            <a class="nav-link" data-toggle="dropdown" href="#">
-                <i class="far fa-bell"></i>
-                <span class="badge badge-warning navbar-badge">15</span>
-            </a>
-            <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-                <span class="dropdown-item dropdown-header">15 Notifications</span>
-                <div class="dropdown-divider"></div>
-                <a href="#" class="dropdown-item">
-                    <i class="fas fa-envelope mr-2"></i> 4 new messages
-                    <span class="float-right text-muted text-sm">3 mins</span>
-                </a>
-                <div class="dropdown-divider"></div>
-                <a href="#" class="dropdown-item">
-                    <i class="fas fa-users mr-2"></i> 8 friend requests
-                    <span class="float-right text-muted text-sm">12 hours</span>
-                </a>
-                <div class="dropdown-divider"></div>
-                <a href="#" class="dropdown-item">
-                    <i class="fas fa-file mr-2"></i> 3 new reports
-                    <span class="float-right text-muted text-sm">2 days</span>
-                </a>
-                <div class="dropdown-divider"></div>
-                <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
-            </div>
-        </li> --}}
-        <!-- Language Dropdown Menu -->
         <li class="nav-item dropdown">
             <a class="nav-link" data-toggle="dropdown" href="#">
                 <i class="flag-icon flag-icon-{{ $current_locale == 'en' ? 'gb' : $current_locale }}"></i>
@@ -206,19 +86,35 @@
 
         <li class="nav-item dropdown user-menu">
             <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                <img src="{{ asset('uploads/default-profile.png') }}" class="user-image img-circle elevation-2"
-                    alt="User Image">
+                {{-- <img src="{{ asset('uploads/default-profile.png') }}" class="user-image img-circle elevation-2"
+                    alt="User Image"> --}}
+                @if (Auth::user()->image)
+                    <img class="user-image img-circle elevation-2 object-fit-cover"
+                        src="{{ asset('uploads/users/' . Auth::user()->image) }}" alt="User Image">
+                @else
+                    <img class="img-circle elevation-2" src="{{ asset('uploads/default-profile.png') }}"
+                        alt="Default Profile Image">
+                @endif
                 {{-- <span class="d-none d-md-inline">veha</span> --}}
             </a>
             <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-right" style="left: inherit; right: 0px;">
                 <!-- User image -->
                 <li class="user-header bg-primary">
-                    <img src="{{ asset('uploads/default-profile.png') }}" class="img-circle elevation-2"
-                        alt="User Image">
+                    {{-- <img src="{{ asset('uploads/default-profile.png') }}" class="img-circle elevation-2"
+                        alt="User Image"> --}}
+                    @if (Auth::user()->image)
+                        <img class="img-circle elevation-2 object-fit-cover"
+                            src="{{ asset('uploads/users/' . Auth::user()->image) }}" alt="User Image">
+                    @else
+                        <img class="img-circle elevation-2" src="{{ asset('uploads/default-profile.png') }}"
+                            alt="Default Profile Image">
+                    @endif
 
-                    <p>
+                    <p class="justify-content-center">
                         {{-- {{ Session::get('current_user')->name }} --}}
-                        <small>Member since Nov. 2012</small>
+                    <h6>{{ Auth::user()->name }} | <small>Role :
+                            {{ implode(', ', Auth::user()->roles()->pluck('name')->toArray()) }}</small></h6>
+                    <small>Member since {{ Auth::user()->created_at->format('d-M-Y') }}</small>
                     </p>
                 </li>
                 <!-- Menu Body -->
@@ -238,7 +134,6 @@
                 </li>
                 <!-- Menu Footer-->
                 <li class="user-footer">
-                    {{-- <a href="{{ route('admin.edit-profile',Session::get('current_user')->id) }}" class="btn btn-default btn-flat">Profile</a> --}}
                     <a href="{{ route('logout') }}" class="btn btn-default btn-flat float-right">Sign out</a>
                 </li>
             </ul>
@@ -248,11 +143,6 @@
                 <i class="fas fa-expand-arrows-alt"></i>
             </a>
         </li>
-        {{-- <li class="nav-item">
-        <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#" role="button">
-          <i class="fas fa-th-large"></i>
-        </a>
-      </li> --}}
     </ul>
 </nav>
 
@@ -279,9 +169,9 @@
         // Initially fetch and update unread count
         updateUnreadCount();
 
-        // Set interval to update unread count every 30 seconds (adjust as needed)
+        // Set interval to update unread count every 2 seconds (adjust as needed)
         setInterval(function() {
             updateUnreadCount();
-        }, 30000); // 30 seconds interval
+        }, 2000); // 2 seconds interval
     });
 </script>

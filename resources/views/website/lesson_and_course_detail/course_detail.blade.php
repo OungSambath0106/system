@@ -57,7 +57,8 @@
                                     class="form-control justify-content-between d-flex align-items-center"
                                     onclick="loadLessons({{ $category->id }}, this)">
                                     <h6 class="mt-2 btn-title">{{ $category->title }}</h6>
-                                    <div class="round-circle">{{ $loop->iteration }}</div>
+                                    <div class="round-circle" hidden>{{ $loop->iteration }}</div>
+                                    <div class="round-circle">{{ $category->lessons_count }}</div>
                                 </button>
                             </div>
                         </div>
@@ -114,6 +115,10 @@
                     lessonsContainer.innerHTML = ''; // Clear previous lessons
 
                     lessons.forEach(lesson => {
+                        const truncatedDescription = lesson.description.length > 450 ?
+                            lesson.description.substring(0, 450) + '...' :
+                            lesson.description;
+
                         const lessonCard = `
                             <div class="card card-menu position-relative">
                                 <div class="col-12 d-flex">
@@ -125,7 +130,7 @@
                                     </div>
                                     <div class="card-body-menu">
                                         <h4 class="card-title"> ${lesson.title} </h4>
-                                        <p class="card-text-menu"> ${lesson.description} </p>
+                                        <p class="card-text-menu"> ${truncatedDescription} </p>
                                     </div>
                                 </div>
                             </div>

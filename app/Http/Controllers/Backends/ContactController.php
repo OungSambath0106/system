@@ -17,9 +17,16 @@ class ContactController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $contacts = ContactMessage::latest('id')->paginate(10);
+        // $contacts = ContactMessage::latest('id')->paginate(10);
+        $contacts = ContactMessage::when($request->start_date && $request->end_date, function ($query) use ($request) {
+            $query->whereDate('created_at', '>=', $request->start_date)
+                ->whereDate('created_at', '<=', $request->end_date);
+        })
+            ->latest('id')
+            ->paginate(10);
+
         return view('backends.contact.index', compact('contacts'));
     }
 

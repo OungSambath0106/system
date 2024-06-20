@@ -84,16 +84,35 @@
         bsCustomFileInput.init();
 
         // init summernote
+        // $('.summernote').summernote({
+        //     placeholder: '{{ __('Type something') }}',
+        //     tabsize: 2,
+        //     height: $('.summernote').data('height') ?? 300
+        // });
+        // $('.in_kind_support_summernote').summernote({
+        //     placeholder: '{{ __('Type something') }}',
+        //     tabsize: 2,
+        //     height: 100,
+        //     width: 500
+        // });
+
         $('.summernote').summernote({
-            placeholder: '{{ __("Type something") }}',
+            placeholder: '{{ __('Type something') }}',
             tabsize: 2,
-            height: $('.summernote').data('height') ?? 300
-        });
-        $('.in_kind_support_summernote').summernote({
-            placeholder: '{{ __("Type something") }}',
-            tabsize: 2,
-            height: 100,
-            width: 500
+            height: $('.summernote').data('height') ?? 300,
+            callbacks: {
+                onInit: function() {
+                    // Clean up initial content
+                    var initialContent = $('.summernote').summernote('code');
+                    var cleanedContent = initialContent.replace(/<p><br><\/p>/g, '');
+                    $('.summernote').summernote('code', cleanedContent);
+                },
+                onChange: function(contents, $editable) {
+                    // Optionally, clean up content on change if needed
+                    var cleanedContent = contents.replace(/<p><br><\/p>/g, '');
+                    $('.summernote').summernote('code', cleanedContent);
+                }
+            }
         });
 
         $('.datepicker').datepicker({
@@ -157,4 +176,3 @@
 </script>
 
 @stack('js')
-

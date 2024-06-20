@@ -32,6 +32,9 @@
 
     .show-video {
         border-radius: 20px;
+        height: 60vh;
+        width: 51vw;
+        object-fit: cover;
     }
 
     .col-7 h4 {

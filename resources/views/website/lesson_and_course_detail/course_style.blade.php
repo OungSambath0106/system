@@ -1023,6 +1023,12 @@
             font-size: 20px !important;
         }
 
+        .card-title {
+            padding: 0 1.1rem;
+            text-align: center;
+            justify-content: center;
+        }
+
         .card-text-menu {
             margin-top: auto;
             font-size: 15px;
@@ -1152,6 +1158,12 @@
             font-size: 19px;
         }
 
+        .card-title {
+            padding: 0 1.1rem;
+            text-align: center;
+            justify-content: center;
+        }
+
         .card-text-menu {
             margin-top: auto;
             /* Push the text to the bottom */
@@ -1188,6 +1200,12 @@
 
         .row>* {
             padding-right: 0;
+        }
+
+        .card-title {
+            padding: 0 .8rem;
+            text-align: center;
+            justify-content: center;
         }
 
         .card {
@@ -1320,6 +1338,7 @@
 
             margin-top: auto;
             /* Push the text to the bottom */
+            padding: 0 .7rem;
         }
 
         .d-flex .menuimg {

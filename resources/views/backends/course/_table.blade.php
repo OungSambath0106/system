@@ -22,12 +22,8 @@
                             {{ asset('uploads/defualt.png') }} @endif
                         "
                             alt="" class="profile_img_table">
-
-                        {{-- <span class="ml-2">
-                            {{ $item->title }}
-                        </span> --}}
                     </td>
-                    <td> {{ Str::limit($course->description, 40) }}</td>
+                    <td> {{ Str::limit($course->description, 50) }}</td>
 
                     <td>
                         @if (auth()->user()->can('course.edit'))

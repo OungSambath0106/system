@@ -27,6 +27,10 @@ body {
     transition: background-color 0.3s;
 }
 
+[class*="sidebar-light-"] .sidebar a {
+    color: #6c757d;
+}
+
 [class*="sidebar-light-"] .nav-sidebar > .nav-item.menu-open > .nav-link,
 [class*="sidebar-light-"] .nav-sidebar > .nav-item:hover > .nav-link {
     background: linear-gradient(

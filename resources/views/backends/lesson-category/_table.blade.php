@@ -24,28 +24,28 @@
                         </div>
                     </td>
                     <td>
-                         @if (auth()->user()->can('lesson_categories.edit'))
-                         <a href="#" data-href="{{ route('admin.lesson-category.edit', $category->id) }}"
-                             class="btn btn-info btn-sm btn-modal btn-edit" data-toggle="modal"
-                             data-container=".modal_form">
-                             <i class="fas fa-pencil-alt"></i>
-                             {{ __('Edit') }}
-                         </a>
-                             @endif
+                        @if (auth()->user()->can('lesson_categories.edit'))
+                            <a href="#" data-href="{{ route('admin.lesson-category.edit', $category->id) }}"
+                                class="btn btn-info btn-sm btn-modal btn-edit" data-toggle="modal"
+                                data-container=".modal_form">
+                                <i class="fas fa-pencil-alt"></i>
+                                {{ __('Edit') }}
+                            </a>
+                        @endif
 
-                          @if (auth()->user()->can('lesson_categories.delete'))
-                          <form action="{{ route('admin.lesson-category.destroy', $category->id) }}"
-                              class="d-inline-block form-delete-{{ $category->id }}">
-                              @csrf
-                              @method('DELETE')
-                              <button type="submit" data-id="{{ $category->id }}"
-                                  data-href="{{ route('admin.lesson-category.destroy', $category->id) }}"
-                                  class="btn btn-danger btn-sm btn-delete">
-                                  <i class="fa fa-trash-alt"></i>
-                                  {{ __('Delete') }}
-                              </button>
-                          </form>
-                             @endif
+                        @if (auth()->user()->can('lesson_categories.delete'))
+                            <form action="{{ route('admin.lesson-category.destroy', $category->id) }}"
+                                class="d-inline-block form-delete-{{ $category->id }}">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" data-id="{{ $category->id }}"
+                                    data-href="{{ route('admin.lesson-category.destroy', $category->id) }}"
+                                    class="btn btn-danger btn-sm btn-delete">
+                                    <i class="fa fa-trash-alt"></i>
+                                    {{ __('Delete') }}
+                                </button>
+                            </form>
+                        @endif
                     </td>
                 </tr>
             @endforeach

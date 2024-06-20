@@ -14,7 +14,7 @@
                                 Your browser does not support the video tag.
                             </video> --}}
                             <img src="{{ asset('uploads/lessons/' . $lesson->thumbnail) }}" class="show-video" alt=""
-                                style="height: 50vh" width="100%">
+                                height="100%" width="100%">
                             <button class="playvideo" data-bs-toggle="modal" data-bs-target="#exampleModal">
                                 <i class="fa-solid fa-play fa-lg" style="color: white"></i>
                             </button>
@@ -43,8 +43,8 @@
                                                 $url = str_replace('youtu.be/', 'youtube.com/embed/', $url);
                                             }
                                         @endphp
-                                        <iframe id="modalIframe" width="100%" height="450" src="{{ $url }}" frameborder="0"
-                                            allowfullscreen></iframe>
+                                        <iframe id="modalIframe" width="100%" height="450" src="{{ $url }}"
+                                            frameborder="0" allowfullscreen></iframe>
                                     @endif
                                 </div>
 
@@ -106,23 +106,22 @@
         });
     </script> --}}
     <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        var modalElement = document.getElementById('exampleModal');
+        document.addEventListener('DOMContentLoaded', function() {
+            var modalElement = document.getElementById('exampleModal');
 
-        modalElement.addEventListener('hide.bs.modal', function () {
-            var video = document.getElementById('modalVideo');
-            var iframe = document.getElementById('modalIframe');
+            modalElement.addEventListener('hide.bs.modal', function() {
+                var video = document.getElementById('modalVideo');
+                var iframe = document.getElementById('modalIframe');
 
-            if (video) {
-                video.pause();
-                video.currentTime = 0;
-            }
+                if (video) {
+                    video.pause();
+                    video.currentTime = 0;
+                }
 
-            if (iframe) {
-                iframe.src = iframe.src;
-            }
+                if (iframe) {
+                    iframe.src = iframe.src;
+                }
+            });
         });
-    });
-</script>
-
+    </script>
 @endsection
