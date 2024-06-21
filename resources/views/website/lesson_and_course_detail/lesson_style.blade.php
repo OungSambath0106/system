@@ -235,6 +235,11 @@
             font-size: 27px;
         }
 
+        .show-video {
+            height: 100%;
+            width: 100%;
+        }
+
         .col-7 p {
             margin-left: 0px;
             margin-right: 47px;
@@ -287,6 +292,11 @@
 
         }
 
+        .show-video {
+            height: 100%;
+            width: 100%;
+        }
+
         .col-7 p {
             font-size: 17px;
         }
@@ -331,6 +341,11 @@
 
         .col-7 {
             width: 65%;
+        }
+
+        .show-video {
+            height: 100%;
+            width: 100%;
         }
 
         .col-7 p {
@@ -407,6 +422,11 @@
             width: 50%;
         }
 
+        .show-video {
+            height: 100%;
+            width: 100%;
+        }
+
         .col-7 p {
             margin-left: 0px;
             margin-right: 29px;
@@ -480,6 +500,11 @@
         .justify-content-center .col-12 {
             flex-direction: column;
             align-items: center;
+        }
+
+        .show-video {
+            height: 100%;
+            width: 100%;
         }
 
         .container {
@@ -621,11 +646,11 @@
         }
 
         .col-7 {
-            width: 80%;
+            width: 90%;
         }
 
         .col-5 {
-            width: 80%;
+            width: 96%;
         }
 
         .shadow .d-flex {
@@ -658,6 +683,11 @@
             margin-top: 5px;
         }
 
+        .show-video {
+            height: 100%;
+            width: 100%;
+        }
+
     }
 
     @media (max-width: 565px) {
@@ -683,6 +713,11 @@
         .discription {
             margin-right: 0 !important;
             padding: 0 5px !important;
+        }
+
+        .show-video {
+            height: 100%;
+            width: 100%;
         }
     }
 
@@ -729,12 +764,11 @@
         }
 
         .col-7 {
-            width: 80%;
-
+            width: 90%;
         }
 
         .col-5 {
-            width: 80%;
+            width: 96%;
         }
 
         .shadow .d-flex {
@@ -773,6 +807,11 @@
 
         .d-flex .listimg {
             margin-top: 5px;
+        }
+
+        .show-video {
+            height: 100%;
+            width: 100%;
         }
 
     }
