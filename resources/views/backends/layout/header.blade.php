@@ -89,10 +89,10 @@
                 {{-- <img src="{{ asset('uploads/default-profile.png') }}" class="user-image img-circle elevation-2"
                     alt="User Image"> --}}
                 @if (Auth::user()->image)
-                    <img class="user-image img-circle elevation-2 object-fit-cover"
+                    <img class="user-image img-circle elevation-2 object-fit-cover "
                         src="{{ asset('uploads/users/' . Auth::user()->image) }}" alt="User Image">
                 @else
-                    <img class="img-circle elevation-2" src="{{ asset('uploads/default-profile.png') }}"
+                    <img class=" user-image img-circle elevation-2 object-fit-cover " src="{{ asset('uploads/default-profile.png') }}"
                         alt="Default Profile Image">
                 @endif
                 {{-- <span class="d-none d-md-inline">veha</span> --}}
