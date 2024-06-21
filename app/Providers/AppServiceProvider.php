@@ -7,6 +7,7 @@ use App\Models\Course;
 use App\Models\ContactMessage;
 use App\Models\BusinessSetting;
 use Illuminate\Pagination\Paginator;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\Schema;
@@ -80,6 +81,10 @@ class AppServiceProvider extends ServiceProvider
             //     $view->with('latestContactMessage', null);
             //     $view->with('time', null);
             // }
+        });
+
+        View::composer('*', function ($view) {
+            $view->with('user', Auth::user());
         });
 
     }

@@ -114,26 +114,18 @@
                         {{-- {{ Session::get('current_user')->name }} --}}
                     <h6>{{ Auth::user()->name }} | <small>Role :
                             {{ implode(', ', Auth::user()->roles()->pluck('name')->toArray()) }}</small></h6>
-                    <small>Member since {{ Auth::user()->created_at->format('d-M-Y') }}</small>
+                    {{-- <small>Member since {{ Auth::user()->created_at->format('d-M-Y') }}</small> --}}
                     </p>
-                </li>
-                <!-- Menu Body -->
-                <li class="user-body">
-                    <div class="row">
-                        <div class="col-4 text-center">
-                            <a href="#">Followers</a>
-                        </div>
-                        <div class="col-4 text-center">
-                            <a href="#">Sales</a>
-                        </div>
-                        <div class="col-4 text-center">
-                            <a href="#">Friends</a>
-                        </div>
-                    </div>
-                    <!-- /.row -->
                 </li>
                 <!-- Menu Footer-->
                 <li class="user-footer">
+                    @if ($user && $user->can('user.edit'))
+                        <a href="{{ route('admin.header.edit', $user->id) }}"
+                            class="btn btn-primary btn-flat float-left">
+                            <i class="fas fa-pencil-alt"></i>
+                            {{ __('Edit') }}
+                        </a>
+                    @endif
                     <a href="{{ route('logout') }}" class="btn btn-default btn-flat float-right">Sign out</a>
                 </li>
             </ul>
