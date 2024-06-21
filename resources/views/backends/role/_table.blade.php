@@ -14,13 +14,14 @@
                         <td>{{ $loop->iteration }}</td>
                         <td class="text-capitalize">{{ $row->name }}</td>
                         <td>
-                            @if ($row->name != 'Admin')
+                            @if ($row->name != 'admin')
                                 @if (auth()->user()->can('role.edit'))
-                                    <a href="{{ route('admin.role.edit', $row->id) }}" class="btn btn-sm btn-primary"><i
-                                            class="fas fa-pencil"></i> {{ __('Edit') }}</a>
+                                    <a href="{{ route('admin.role.edit', $row->id) }}" class="btn btn-sm btn-primary">
+                                        <i class="fas fa-pencil"></i> {{ __('Edit') }}
+                                    </a>
                                 @endif
 
-                                @if (auth()->user()->can('role.delete') && !in_array($row->name, ['Admin', 'Partner', 'Customer']))
+                                @if (auth()->user()->can('role.delete'))
                                     <form action="{{ route('admin.role.destroy', $row->id) }}"
                                         class="d-inline-block form-delete-{{ $row->id }}">
                                         @csrf
@@ -28,8 +29,7 @@
                                         <button type="submit" data-id="{{ $row->id }}"
                                             data-href="{{ route('admin.role.destroy', $row->id) }}"
                                             class="btn btn-danger btn-sm btn-delete">
-                                            <i class="fa fa-trash-alt"></i>
-                                            {{ __('Delete') }}
+                                            <i class="fa fa-trash-alt"></i> {{ __('Delete') }}
                                         </button>
                                     </form>
                                 @endif

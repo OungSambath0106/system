@@ -118,10 +118,10 @@
                                 @enderror
                                 <hr>
                                 <br>
-                                    <div class="col-12 mb-3">
-                                        <button type="button" id="check-all" class="btn btn-primary">Check All</button>
-                                    </div>
-                                <div>
+                                <div class="col-12 mb-3">
+                                    <button type="button" id="check-all" class="btn btn-primary">Check All</button>
+                                </div>
+                                <div class="User">
                                     <div class="d-flex">
                                         <label for="" class="mr-2 mb-3">{{ __('User Setup') }}</label>
                                     </div>
@@ -189,7 +189,12 @@
                                             </div>
                                         </div>
                                     </div>
-
+                                    <hr>
+                                </div>
+                                <div class="Role">
+                                    <div class="d-flex">
+                                        <label for="" class="mr-2 mb-3">{{ __('Role Setup') }}</label>
+                                    </div>
                                     <div class="row">
                                         <div class="col-md-3">
                                             <div class="form-group">
@@ -200,7 +205,8 @@
                                                                 value="role.view">
                                                             <span class="slider round"></span>
                                                         </label>
-                                                        <label class="ml-2" for="view_role">{{ __('View Role') }}</label>
+                                                        <label class="ml-2"
+                                                            for="view_role">{{ __('View Role') }}</label>
                                                     </div>
                                                 </div>
                                             </div>
@@ -254,7 +260,12 @@
                                             </div>
                                         </div>
                                     </div>
-
+                                    <hr>
+                                </div>
+                                <div class="Course">
+                                    <div class="d-flex">
+                                        <label for="" class="mr-2 mb-3">{{ __('Course Setup') }}</label>
+                                    </div>
                                     <div class="row">
                                         <div class="col-md-3">
                                             <div class="form-group">
@@ -320,7 +331,12 @@
                                             </div>
                                         </div>
                                     </div>
-
+                                    <hr>
+                                </div>
+                                <div class="Lesson">
+                                    <div class="d-flex">
+                                        <label for="" class="mr-2 mb-3">{{ __('Lesson Setup') }}</label>
+                                    </div>
                                     <div class="row">
                                         <div class="col-md-3">
                                             <div class="form-group">
@@ -386,7 +402,12 @@
                                             </div>
                                         </div>
                                     </div>
-
+                                    <hr>
+                                </div>
+                                <div class="Categories">
+                                    <div class="d-flex">
+                                        <label for="" class="mr-2 mb-3">{{ __('Categories Setup') }}</label>
+                                    </div>
                                     <div class="row">
                                         <div class="col-md-3">
                                             <div class="form-group">
@@ -398,7 +419,7 @@
                                                             <span class="slider round"></span>
                                                         </label>
                                                         <label class="ml-2"
-                                                            for="view_blog">{{ __('View Lesson_categories') }}</label>
+                                                            for="view_blog">{{ __('View Categories') }}</label>
                                                     </div>
                                                 </div>
                                             </div>
@@ -414,7 +435,7 @@
                                                             <span class="slider round"></span>
                                                         </label>
                                                         <label class="ml-2"
-                                                            for="blog_create">{{ __('Create Lesson_categories') }}</label>
+                                                            for="blog_create">{{ __('Create Categories') }}</label>
                                                     </div>
                                                 </div>
                                             </div>
@@ -431,7 +452,7 @@
                                                             <span class="slider round"></span>
                                                         </label>
                                                         <label class="ml-2"
-                                                            for="blog_edit">{{ __('Edit Lesson_categories') }}</label>
+                                                            for="blog_edit">{{ __('Edit Categories') }}</label>
                                                     </div>
                                                 </div>
                                             </div>
@@ -446,13 +467,18 @@
                                                             <span class="slider round"></span>
                                                         </label>
                                                         <label class="ml-2"
-                                                            for="blog_delete">{{ __('Delete Lesson_categories') }}</label>
+                                                            for="blog_delete">{{ __('Delete Categories') }}</label>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-
+                                    <hr>
+                                </div>
+                                <div class="Mail">
+                                    <div class="d-flex">
+                                        <label for="" class="mr-2 mb-3">{{ __('Message Setup') }}</label>
+                                    </div>
                                     <div class="row">
                                         <div class="col-md-3">
                                             <div class="form-group">
@@ -464,13 +490,13 @@
                                                             <span class="slider round"></span>
                                                         </label>
                                                         <label class="ml-2"
-                                                            for="contact_view">{{ __('View Message') }}</label>
+                                                            for="contact_view">{{ __('View_Reply Message') }}</label>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
 
-                                        <div class="col-md-3">
+                                        {{-- <div class="col-md-3">
                                             <div class="form-group">
                                                 <div class="input-group mb-3">
                                                     <div class="d-flex align-items-center">
@@ -486,7 +512,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
+                                        </div> --}}
                                         <div class="col-md-3">
                                             <div class="form-group">
                                                 <div class="input-group mb-3">
@@ -503,10 +529,8 @@
                                             </div>
                                         </div>
                                     </div>
-
                                     <hr>
                                 </div>
-
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
@@ -520,7 +544,6 @@
                                         </div>
                                     </div>
                                 </div>
-
                             </form>
                         </div>
                     </div>
@@ -531,14 +554,13 @@
     </section>
 @endsection
 @push('js')
-
-<script>
-    $(document).ready(function() {
-        $('#check-all').on('click', function() {
-            let checkboxes = $('input[type="checkbox"][name="permissions[]"]');
-            let allChecked = checkboxes.length === checkboxes.filter(':checked').length;
-            checkboxes.prop('checked', !allChecked);
+    <script>
+        $(document).ready(function() {
+            $('#check-all').on('click', function() {
+                let checkboxes = $('input[type="checkbox"][name="permissions[]"]');
+                let allChecked = checkboxes.length === checkboxes.filter(':checked').length;
+                checkboxes.prop('checked', !allChecked);
+            });
         });
-    });
-</script>
+    </script>
 @endpush

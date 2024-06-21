@@ -22,6 +22,9 @@ class ContactController extends Controller
         $contacts = ContactMessage::latest('id')->paginate(10);
         return view('backends.contact.index', compact('contacts'));
     }
+    // In ContactController.php
+
+
 
     /**
      * Show the form for creating a new resource.

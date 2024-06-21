@@ -1,4 +1,4 @@
-<div class="card-body p-0 table-wrapper " >
+<div class="card-body p-0 table-wrapper ">
     <table class="table">
         <thead>
             <tr>
@@ -7,7 +7,7 @@
                 <th>{{ __('Message') }}</th>
                 <th>{{ __('Email') }}</th>
                 <th>{{ __('isRead') }}</th>
-                {{-- <th>{{ __('Action') }}</th> --}}
+                <th>{{ __('Action') }}</th>
             </tr>
         </thead>
         <tbody>
@@ -20,8 +20,8 @@
                     <td>
                         <div class="custom-control custom-switch">
                             <input type="checkbox" class="custom-control-input switcher_input isRead"
-                                id="isRead{{ $contact->id }}" {{ $contact->isRead == 1 ? 'checked' : '' }} name="isRead"
-                                disabled>
+                                id="isRead{{ $contact->id }}" {{ $contact->isRead == 1 ? 'checked' : '' }}
+                                name="isRead" disabled>
                             <label class="custom-control-label" for="isRead{{ $contact->id }}"></label>
                         </div>
                     </td>
@@ -66,4 +66,3 @@
         </div>
     </div>
 </div>
-

@@ -22,10 +22,21 @@ class LessonController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $lessons = Lesson::latest('id')->paginate(10);
-        return view('backends.lesson.index', compact('lessons'));
+        $categories = LessonCategory::all();
+        $lessons = Lesson::when($request->category_id, function ($query) use ($request) {
+            $query->where('category_id', $request->category_id);
+        })->latest('id')->paginate(10);
+
+        if ($request->ajax()) {
+            $view = view('backends.lesson._table', compact('lessons', 'categories'))->render();
+            return response()->json([
+                'view' => $view
+            ]);
+        }
+
+        return view('backends.lesson.index', compact('lessons', 'categories'));
     }
 
     /**

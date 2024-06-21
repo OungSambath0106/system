@@ -43,7 +43,7 @@
                                                 $url = str_replace('youtu.be/', 'youtube.com/embed/', $url);
                                             }
                                         @endphp
-                                        <iframe id="modalIframe" width="100%" height="450" src="{{ $url }}" frameborder="0"
+                                        <iframe id="modalIframe" width="100%" height="500" src="{{ $url }}" frameborder="0"
                                             allowfullscreen></iframe>
                                     @endif
                                 </div>
