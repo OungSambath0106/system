@@ -696,14 +696,18 @@
         }
 
         .playvideo {
-            width: 40px;
-            height: 40px;
-            padding-top: 0;
+            width: 80px;
+            height: 80px;
+        }
+
+        .menuplayvideo {
+            width: 65px;
+            height: 65px;
         }
 
         .playvideo i {
             color: #fff;
-            font-size: 17px;
+            font-size: 30px;
         }
 
         .lessoning {
