@@ -92,24 +92,24 @@
 
                                 <div class="row">
                                     <div class="col-md-12">
-                                        @if ($role->name == 'customer' || $role->name == 'partner')
+                                        {{-- @if ($role->name == 'customer' || $role->name == 'partner')
                                             <Label class="border p-2">{{ $role->name }}</Label>
-                                        @endif
-                                        @if ($role->name != 'customer' && $role->name != 'partner')
-                                            <div class="form-group">
-                                                <label for="name">@lang('Name Position')</label>
-                                                <div class="input-group mb-3">
-                                                    <input type="text" value="{{ $role->name }}" name="name"
-                                                        class="form-control @error('name') is-invalid @enderror"
-                                                        placeholder="@lang('Type name permission')">
-                                                    @error('name')
-                                                        <div class="invalid-feedback">
-                                                            {{ $message }}
-                                                        </div>
-                                                    @enderror
-                                                </div>
+                                        @endif --}}
+                                        {{-- @if ($role->name != 'customer' && $role->name != 'partner') --}}
+                                        <div class="form-group">
+                                            <label for="name">@lang('Name Position')</label>
+                                            <div class="input-group mb-3">
+                                                <input type="text" value="{{ $role->name }}" name="name"
+                                                    class="form-control @error('name') is-invalid @enderror"
+                                                    placeholder="@lang('Type name permission')">
+                                                @error('name')
+                                                    <div class="invalid-feedback">
+                                                        {{ $message }}
+                                                    </div>
+                                                @enderror
                                             </div>
-                                        @endif
+                                        </div>
+                                        {{-- @endif --}}
                                     </div>
                                 </div>
 
@@ -119,11 +119,10 @@
                                 <div class="col-12 mb-3">
                                     <button type="button" id="check-all" class="btn btn-primary">Check All</button>
                                 </div>
-                                <div>
+                                <div class="User">
                                     <div class="d-flex">
                                         <label for="" class="mr-2 mb-3">{{ __('User Setup') }}</label>
                                     </div>
-
                                     <div class="row">
                                         <div class="col-md-3">
                                             <div class="form-group">
@@ -191,8 +190,12 @@
                                             </div>
                                         </div>
                                     </div>
-
-
+                                     <hr>
+                                </div>
+                                <div class="Role">
+                                    <div class="d-flex">
+                                        <label for="" class="mr-2 mb-3">{{ __('Role Setup') }}</label>
+                                    </div>
                                     <div class="row">
                                         <div class="col-md-3">
                                             <div class="form-group">
@@ -261,7 +264,12 @@
                                             </div>
                                         </div>
                                     </div>
-
+                                     <hr>
+                                </div>
+                                <div class="Course">
+                                    <div class="d-flex">
+                                        <label for="" class="mr-2 mb-3">{{ __('Course Setup') }}</label>
+                                    </div>
                                     <div class="row">
                                         <div class="col-md-3">
                                             <div class="form-group">
@@ -333,7 +341,12 @@
                                             </div>
                                         </div>
                                     </div>
-
+                                     <hr>
+                                </div>
+                                <div class="Lesson">
+                                    <div class="d-flex">
+                                        <label for="" class="mr-2 mb-3">{{ __('Lesson Setup') }}</label>
+                                    </div>
                                     <div class="row">
                                         <div class="col-md-3">
                                             <div class="form-group">
@@ -405,7 +418,12 @@
                                             </div>
                                         </div>
                                     </div>
-
+                                     <hr>
+                                </div>
+                                <div class="Categories">
+                                    <div class="d-flex">
+                                        <label for="" class="mr-2 mb-3">{{ __('Categories Setup') }}</label>
+                                    </div>
                                     <div class="row">
                                         <div class="col-md-3">
                                             <div class="form-group">
@@ -479,7 +497,12 @@
                                             </div>
                                         </div>
                                     </div>
-
+                                     <hr>
+                                </div>
+                                <div class="Email">
+                                    <div class="d-flex">
+                                        <label for="" class="mr-2 mb-3">{{ __('Mail Setup') }}</label>
+                                    </div>
                                     <div class="row">
                                         <div class="col-md-3">
                                             <div class="form-group">
@@ -535,7 +558,6 @@
                                     </div>
                                     <hr>
                                 </div>
-
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">

@@ -26,5 +26,6 @@
         crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     <script src="{{ asset('website/custom/js/app.js') }}"></script>
+     
     @stack('css')
 </head>

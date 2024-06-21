@@ -20,9 +20,14 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $users = User::latest('id')->paginate(10);
+        $users = User::when($request->start_date && $request->end_date, function ($query) use ($request) {
+            $query->whereDate('created_at', '>=', $request->start_date)
+                ->whereDate('created_at', '<=', $request->end_date);
+        })
+            ->latest('id')
+            ->paginate(10);
         return view('backends.user.index', compact('users'));
     }
 

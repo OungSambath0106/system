@@ -29,6 +29,9 @@ class ContactController extends Controller
 
         return view('backends.contact.index', compact('contacts'));
     }
+    // In ContactController.php
+
+
 
     /**
      * Show the form for creating a new resource.

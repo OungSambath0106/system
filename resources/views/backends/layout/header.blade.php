@@ -146,7 +146,7 @@
     </ul>
 </nav>
 
-<!-- Include jQuery -->
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
     $(document).ready(function() {
@@ -172,6 +172,6 @@
         // Set interval to update unread count every 2 seconds (adjust as needed)
         setInterval(function() {
             updateUnreadCount();
-        }, 2000); // 2 seconds interval
+        }, 3000); // 30 seconds interval
     });
 </script>

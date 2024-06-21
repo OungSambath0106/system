@@ -162,7 +162,6 @@ Route::middleware(['auth', 'CheckUserLogin', 'SetSessionData'])->group(function 
         //auto count contact in header//
         Route::get('/unread-messages-count', [DashboardController::class, 'unreadMessagesCount'])->name('unread.messages.count');
 
-
     });
 });
 

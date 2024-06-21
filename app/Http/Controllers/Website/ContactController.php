@@ -87,18 +87,15 @@ class ContactController extends Controller
             //     'success' => 1,
             //     'msg' => __('Mail Sent successfully')
             // ];
-
-
         } catch (Exception $e) {
-            // dd($e);
+            dd($e);
             DB::rollBack();
-            // $output = [
-            //     'success' => 0,
-            //     'msg' => __('Something went wrong')
-            // ];
         }
         return back()->with('success', 'Your message has been sent!');
     }
+
+
+
 
     /**
      * Display the specified resource.

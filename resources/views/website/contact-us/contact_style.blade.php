@@ -232,7 +232,7 @@
             position: relative;
               text-align: center !important;
             top: -26% !important;
-            gap: 2rem !important;
+            /* gap: 1rem !important; */
         }
 
 
@@ -251,10 +251,10 @@
             width: 70% !important;
         } */
 
-        /* .px-5 {
-            padding-right: 4rem !important;
-            padding-left: 4rem !important;
-        } */​
+        .px-5 {
+            padding-right: 2rem !important;
+            padding-left: 2rem !important;
+        }
         .icon {
             width: 70px;
             height: 70px;
