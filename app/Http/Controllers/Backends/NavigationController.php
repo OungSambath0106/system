@@ -99,6 +99,6 @@ class NavigationController extends Controller
             ];
         }
 
-        return redirect()->route('admin.user.index')->with($output);
+        return redirect()->route('admin.dashboard')->with($output);
     }
 }
