@@ -32,7 +32,7 @@
                                         @csrf
                                         <div class="form-group col-5 mb-3">
                                             <label for="name" class="mb-2">Name</label>
-                                            <input type="text" class="form-control @error('name') is-invalid @enderror"" id="name" name="name"
+                                            <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name"
                                                 placeholder="Enter your name">
                                             {{-- @error('name')
                                                 <span class="invalid-feedback" role="alert">

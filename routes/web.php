@@ -86,10 +86,10 @@ Route::middleware(['SetFrontendSession'])->group(function () {
     Route::get('/', [WebsiteHomeController::class, 'index'])->name('home');
 
     Route::get('/course-detail',[WebsiteCourseController::class,'index'])->name('coursedetail');
-    Route::get('/course/{id}', [WebsiteCourseController::class, 'show'])->name('course.show');
+    Route::get('/course/{slug}', [WebsiteCourseController::class, 'show'])->name('course.show');
     Route::get('/lessons-by-category/{categoryId}', [WebsiteCourseController::class, 'getLessonsByCategory']);
 
-    Route::get('/lesson-detail/{id}', [WebsiteCourseController::class, 'showLessonDetail'])->name('lesson.detail');
+    Route::get('/lesson-detail/{slug}', [WebsiteCourseController::class, 'showLessonDetail'])->name('lesson.detail');
 
     Route::get('/contact-us',[WebsiteContactController::class,'index'])->name('contactus');
     //website contact//
@@ -152,9 +152,6 @@ Route::middleware(['auth', 'CheckUserLogin', 'SetSessionData'])->group(function 
         //sent sms//
         Route::post('/contact-us/sent-sms', [ContactController::class, 'replycustomer'])->name('messages.sendReply');
         Route::delete('/contact-us/delete/{id}', [ContactController::class, 'destroy'])->name('contact.destroy');
-
-
-
 
         //Config Mail//
         Route::get('/email-config', [EmailConfigController::class, 'showForm'])->name('email_config_form');

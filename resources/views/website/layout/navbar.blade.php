@@ -14,15 +14,15 @@
                 @foreach ($courses as $course)
                     @php
                         $isActive =
-                            Request::is('course/' . $course->id) ||
-                            (isset($currentCourse) && $currentCourse->id == $course->id) ||
-                            (isset($lesson) && $lesson->category->course->id == $course->id);
+                            Request::is('course/' . $course->slug) ||
+                            (isset($currentCourse) && $currentCourse->slug == $course->slug) ||
+                            (isset($lesson) && $lesson->category->course->slug == $course->slug);
                     @endphp
                     <!-- Debugging -->
                     {{-- <div>
                         Course ID: {{ $course->id }} | Is Active: {{ $isActive ? 'Yes' : 'No' }}
                     </div> --}}
-                    <a href="{{ route('course.show', ['id' => $course->id]) }}"
+                    <a href="{{ route('course.show', ['slug' => $course->slug]) }}"
                         class="p-2 nav-link{{ $isActive ? ' active' : '' }}" type="button">
                         {{ $course->title }}
                     </a>
