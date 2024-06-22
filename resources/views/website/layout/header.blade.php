@@ -25,7 +25,10 @@
         integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css">
+    <link rel="stylesheet" href="{{ asset('website/sweetalert2/css/sweetalert2.min.css') }}">
+
     <script src="{{ asset('website/custom/js/app.js') }}"></script>
-     
     @stack('css')
 </head>
+

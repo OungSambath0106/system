@@ -90,8 +90,8 @@
     }
 
     .card-footer .container-circle {
-        position: absolute;
-        top: 65%;
+        position: relative;
+        top: -32%;
         display: flex;
         justify-content: center;
         align-content: center;

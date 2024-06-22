@@ -32,33 +32,33 @@
                                         @csrf
                                         <div class="form-group col-5 mb-3">
                                             <label for="name" class="mb-2">Name</label>
-                                            <input type="text" class="form-control" id="name" name="name"
+                                            <input type="text" class="form-control @error('name') is-invalid @enderror"" id="name" name="name"
                                                 placeholder="Enter your name">
-                                            @error('name')
+                                            {{-- @error('name')
                                                 <span class="invalid-feedback" role="alert">
                                                     <strong>{{ $message }}</strong>
                                                 </span>
-                                            @enderror
+                                            @enderror --}}
                                         </div>
                                         <div class="form-group col-5 mb-3">
                                             <label for="email" class="mb-2">Email</label>
                                             <input type="email" class="form-control @error('email') is-invalid @enderror"
                                                 id="email" name="email" placeholder="Enter a valid email address">
-                                            @error('email')
+                                            {{-- @error('email')
                                                 <span class="invalid-feedback" role="alert">
                                                     <strong>{{ $message }}</strong>
                                                 </span>
-                                            @enderror
+                                            @enderror --}}
                                         </div>
                                         <div class="form-group col-10 mb-3">
                                             <label for="message" class="mb-2">Message</label>
-                                            <textarea name="message" id="message" cols="20" rows="5" class="form-control"
+                                            <textarea name="message" id="message" cols="20" rows="5" class="form-control @error('message') is-invalid @enderror""
                                                 placeholder="Enter your message"></textarea>
-                                            @error('message')
+                                            {{-- @error('message')
                                                 <span class="invalid-feedback" role="alert">
                                                     <strong>{{ $message }}</strong>
                                                 </span>
-                                            @enderror
+                                            @enderror --}}
                                         </div>
                                         <input type="hidden" name="isRead" value="0">
                                         <div class="form-group col-10 mt-4">
@@ -122,16 +122,4 @@
         </div>
     </div>
 @endsection
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        @if (session('success'))
-            Swal.fire({
-                icon: "success",
-                title: "{{ session('success') }}",
-                showConfirmButton: false,
-                timer: 1900
-            });
-        @endif
-    });
-</script>
+

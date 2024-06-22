@@ -266,7 +266,7 @@ class CourseController extends Controller
             DB::beginTransaction();
             $course = Course::findOrFail($id);
             $translation = Translation::where('translationable_type', 'App\Models\Course')
-            ->where('translationable_id', $course->id);
+                ->where('translationable_id', $course->id);
             $translation->delete();
             $course->delete();
 

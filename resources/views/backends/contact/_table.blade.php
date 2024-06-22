@@ -14,7 +14,10 @@
             @foreach ($contacts as $contact)
                 <tr>
                     <td>{{ $loop->iteration }}</td>
-                    <td>{{ $contact->name }}</td>
+                    <td>
+                        {{ $contact->name }}
+                    </td>
+
                     <td>{{ $contact->message }}</td>
                     <td>{{ $contact->email }}</td>
                     <td>
