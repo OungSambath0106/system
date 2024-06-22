@@ -28,7 +28,7 @@
                             <div class="row justify-content-center">
                                 <div class="card-message col-12">
                                     <form class=" d-flex flex-wrap  gap-2 justify-content-center"
-                                        action="{{ route('admin.contact.store') }}" method="POST">
+                                        action="{{ route('contact.store') }}" method="POST">
                                         @csrf
                                         <div class="form-group col-5 mb-3">
                                             <label for="name" class="mb-2">Name</label>

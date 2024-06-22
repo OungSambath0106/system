@@ -92,6 +92,8 @@ Route::middleware(['SetFrontendSession'])->group(function () {
     Route::get('/lesson-detail/{id}', [WebsiteCourseController::class, 'showLessonDetail'])->name('lesson.detail');
 
     Route::get('/contact-us',[WebsiteContactController::class,'index'])->name('contactus');
+    //website contact//
+    Route::post('/contact-us', [WebsiteContactController::class, 'store'])->name('contact.store');
 });
 
 
@@ -152,8 +154,7 @@ Route::middleware(['auth', 'CheckUserLogin', 'SetSessionData'])->group(function 
         Route::delete('/contact-us/delete/{id}', [ContactController::class, 'destroy'])->name('contact.destroy');
 
 
-        //website contact//
-        Route::post('/contact-us', [WebsiteContactController::class, 'store'])->name('contact.store');
+
 
         //Config Mail//
         Route::get('/email-config', [EmailConfigController::class, 'showForm'])->name('email_config_form');
