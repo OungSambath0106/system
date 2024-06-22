@@ -319,11 +319,12 @@
     .card {
         border-radius: 16px;
         background: rgba(255, 255, 255, 0.7);
-        transition: transform 0.4s ease;
+        backdrop-filter: blur(25px);
+        transition: transform 0.35s ease-in-out;
     }
 
     .card:hover {
-        transform: scale(1.035);
+        transform: scale(1.015);
     }
 
     .text-description {

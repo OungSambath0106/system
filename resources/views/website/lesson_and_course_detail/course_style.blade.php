@@ -22,7 +22,8 @@
     } */
     .card {
         margin: 20px;
-        border: 1px solid #ddd;
+        border: none;
+        /* border: 1px solid #ddd; */
         border-radius: 30px;
         overflow: hidden;
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -91,7 +92,8 @@
     .search {
         height: auto;
         margin: 20px;
-        border: 1px solid #ddd;
+        border: none;
+        /* border: 1px solid #ddd; */
         border-radius: 14px;
         overflow: hidden;
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -1420,7 +1422,8 @@
 
     .card-menu {
         /* margin: 0; */
-        border: 1px solid #ddd;
+        border: none;
+        /* border: 1px solid #ddd; */
         border-radius: 14px;
         overflow: hidden;
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);

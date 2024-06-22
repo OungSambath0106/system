@@ -17,7 +17,7 @@
     }
 
     body {
-        background-color: #f4f4f4;
+        /* background-color: #f4f4f4; */
     }
 
     button {
@@ -30,6 +30,7 @@
         /* font-family: Arial, sans-serif; */
         font-family: 'Nunito', sans-serif;
         background: rgba(255, 255, 255, 0.7);
+        backdrop-filter: blur(25px);
         margin-bottom: 4rem;
     }
 
