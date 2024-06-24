@@ -17,14 +17,24 @@
                     <td>{{ $contact->name }}</td>
                     <td>{{ $contact->message }}</td>
                     <td>{{ $contact->email }}</td>
-                    <td>
+                    {{-- <td>
                         <div class="custom-control custom-switch">
                             <input type="checkbox" class="custom-control-input switcher_input isRead"
                                 id="isRead{{ $contact->id }}" {{ $contact->isRead == 1 ? 'checked' : '' }}
                                 name="isRead" disabled>
                             <label class="custom-control-label" for="isRead{{ $contact->id }}"></label>
                         </div>
+                    </td> --}}
+                    <td>
+                        <div>
+                            @if ($contact->isRead == 1)
+                                <span class="badge badge-success">Read</span>
+                            @else
+                                <span class="badge badge-danger">Unread</span>
+                            @endif
+                        </div>
                     </td>
+
                     <td>
                         @if (auth()->user()->can('contact.reply'))
                             <a href="#" data-href="{{ route('admin.contact.replysms', $contact->id) }}"
