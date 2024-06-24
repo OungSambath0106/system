@@ -45,7 +45,7 @@
 
     .form-group input {
         padding: 9px;
-        background-color: #f4f4f4;
+        background-color: #f4f4f485;
         border-radius: 20px;
         font-size: 13px;
         color: rgba(161, 161, 161, 1);
@@ -53,7 +53,7 @@
     }
 
     .form-group textarea {
-        background-color: #f4f4f4;
+        background-color: #f4f4f485;
         border-radius: 20px;
         font-size: 13px;
         color: rgb(215, 209, 209);
@@ -171,6 +171,11 @@
         left: 0;
         width: 100%;
 
+    }
+
+
+    .btn-primary {
+        border: none;
     }
 
     .buttomimg2 img {

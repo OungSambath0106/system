@@ -303,6 +303,7 @@
     }
 
     .btn-learn {
+        border: none;
         background: rgb(243, 49, 247);
         background: linear-gradient(90deg, rgba(243, 49, 247, 1) 8%, rgba(87, 158, 255, 1) 70%);
         color: #F4F4F4 !important;
