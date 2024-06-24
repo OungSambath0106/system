@@ -53,6 +53,7 @@
 <script src="{{ asset('backend/plugins/bs-custom-file-input/bs-custom-file-input.min.js') }}"></script>
 <script src="{{ asset('backend/plugins/daterangepicker/daterangepicker.js') }}"></script>
 <script src="{{ asset('js/compress.js') }}"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 {{ Session::has('message') }}
 
@@ -64,7 +65,7 @@
         $(document).on("click", ".btn-modal", function(e) {
             e.preventDefault();
             var container = $(this).data("container");
-                    
+
             $.ajax({
                 url: $(this).data("href"),
                 dataType: "html",
