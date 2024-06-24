@@ -303,6 +303,7 @@
     }
 
     .btn-learn {
+        border: none;
         background: rgb(243, 49, 247);
         background: linear-gradient(90deg, rgba(243, 49, 247, 1) 8%, rgba(87, 158, 255, 1) 70%);
         color: #F4F4F4 !important;
@@ -319,11 +320,12 @@
     .card {
         border-radius: 16px;
         background: rgba(255, 255, 255, 0.7);
-        transition: transform 0.4s ease;
+        backdrop-filter: blur(25px);
+        transition: transform 0.35s ease-in-out;
     }
 
     .card:hover {
-        transform: scale(1.035);
+        transform: scale(1.015);
     }
 
     .text-description {

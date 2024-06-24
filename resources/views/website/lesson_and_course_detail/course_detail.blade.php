@@ -124,12 +124,12 @@
                                 <div class="col-12 d-flex">
                                     <div class=" card-img position-relative">
                                         <img id="menu-img" class="menuimg" src="/uploads/lessons/${lesson.thumbnail}" alt="Not found">
-                                        <a href="#" class="playvideo" data-id="${lesson.id}" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                        <a href="#" class="playvideo" data-id="${lesson.slug}" data-bs-toggle="modal" data-bs-target="#exampleModal">
                                             <i class="fa-solid fa-play fa-lg" style="color: white"></i>
                                         </a>
                                     </div>
                                     <div class="card-body-menu">
-                                        <h4 class="card-title"> ${lesson.title} </h4>
+                                         <h4 class="card-title"> ${lesson.title} </h4>
                                         <p class="card-text-menu"> ${truncatedDescription} </p>
                                     </div>
                                 </div>

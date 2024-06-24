@@ -51,11 +51,12 @@ class ContactController extends Controller
             'email' => 'required|email',
             'message' => 'required',
         ]);
+
         if ($validator->fails()) {
             return redirect()->back()
                 ->withErrors($validator)
                 ->withInput()
-                ->with(['success' => 0, 'msg' => __('Invalid form input')]);
+                ->with(['success' => false, 'msg' => __('Invalid form input')]);
         }
         try {
             DB::beginTransaction();
@@ -81,17 +82,20 @@ class ContactController extends Controller
             });
 
             $data = ContactMessage::create($request->all());
-
             DB::commit();
-            // $output = [
-            //     'success' => 1,
-            //     'msg' => __('Mail Sent successfully')
-            // ];
+            $output = [
+                'success' => true,
+                'msg' => __('Your message has been sent!')
+            ];
         } catch (Exception $e) {
-            dd($e);
             DB::rollBack();
+            $output = [
+                'success' => false,
+                'msg' => __('Something went wrong')
+            ];
         }
-        return back()->with('success', 'Your message has been sent!');
+
+        return redirect()->back()->with($output);
     }
 
 

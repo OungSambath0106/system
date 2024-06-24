@@ -70,7 +70,7 @@ class AppServiceProvider extends ServiceProvider
 
         // Using view composer to share data across all views
         View::composer('backends.layout.header', function ($view) {
-            $view->with('contactmail', ContactMessage::count());
+            $view->with('contactmail', ContactMessage::where('isRead', 0)->latest()->count());
             $view->with('contacts', ContactMessage::where('isRead', 0)->latest()->take(4)->get());
 
             // $latestContactMessage = ContactMessage::latest()->first();

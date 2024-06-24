@@ -14,7 +14,10 @@
             @foreach ($contacts as $contact)
                 <tr>
                     <td>{{ $loop->iteration }}</td>
-                    <td>{{ $contact->name }}</td>
+                    <td>
+                        {{ $contact->name }}
+                    </td>
+
                     <td>{{ $contact->message }}</td>
                     <td>{{ $contact->email }}</td>
                     {{-- <td>
@@ -36,12 +39,12 @@
                     </td>
 
                     <td>
-                        @if (auth()->user()->can('contact.reply'))
+                        @if (auth()->user()->can('message.reply'))
                             <a href="#" data-href="{{ route('admin.contact.replysms', $contact->id) }}"
                                 class="btn btn-info btn-sm btn-modal view-btn" data-container=".modal_form"
                                 data-toggle="modal" data-id="{{ $contact->id }}">
                                 <i id="viewAndReplyIcon" class="fa-solid fa-comment-dots"></i>
-                                {{ __('View_and_Reply') }}
+                                {{ __('Reply Message') }}
                             </a>
                         @endif
                         @if (auth()->user()->can('contact.delete'))

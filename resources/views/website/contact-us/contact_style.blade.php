@@ -17,7 +17,7 @@
     }
 
     body {
-        background-color: #f4f4f4;
+        /* background-color: #f4f4f4; */
     }
 
     button {
@@ -30,6 +30,7 @@
         /* font-family: Arial, sans-serif; */
         font-family: 'Nunito', sans-serif;
         background: rgba(255, 255, 255, 0.7);
+        backdrop-filter: blur(25px);
         margin-bottom: 4rem;
     }
 
@@ -44,7 +45,7 @@
 
     .form-group input {
         padding: 9px;
-        background-color: #f4f4f4;
+        background-color: #f4f4f485;
         border-radius: 20px;
         font-size: 13px;
         color: rgba(161, 161, 161, 1);
@@ -52,7 +53,7 @@
     }
 
     .form-group textarea {
-        background-color: #f4f4f4;
+        background-color: #f4f4f485;
         border-radius: 20px;
         font-size: 13px;
         color: rgb(215, 209, 209);
@@ -90,8 +91,8 @@
     }
 
     .card-footer .container-circle {
-        position: absolute;
-        top: 65%;
+        position: relative;
+        top: -32%;
         display: flex;
         justify-content: center;
         align-content: center;
@@ -170,6 +171,11 @@
         left: 0;
         width: 100%;
 
+    }
+
+
+    .btn-primary {
+        border: none;
     }
 
     .buttomimg2 img {

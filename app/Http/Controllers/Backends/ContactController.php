@@ -23,15 +23,10 @@ class ContactController extends Controller
         $contacts = ContactMessage::when($request->start_date && $request->end_date, function ($query) use ($request) {
             $query->whereDate('created_at', '>=', $request->start_date)
                 ->whereDate('created_at', '<=', $request->end_date);
-        })
-            ->latest('id')
-            ->paginate(10);
+        })->latest('id')->paginate(10);
 
         return view('backends.contact.index', compact('contacts'));
     }
-    // In ContactController.php
-
-
 
     /**
      * Show the form for creating a new resource.
@@ -52,6 +47,7 @@ class ContactController extends Controller
     public function store(Request $request)
     {
     }
+
     public function replycustomer(Request $request)
     {
         try {
@@ -63,12 +59,14 @@ class ContactController extends Controller
                     ->subject($data["title"])
                     ->setBody($data["message"]);
             });
+
             $output = [
                 'success' => 1,
-                'msg' => __('Reply Mail successfully')
+                'msg' => __('Mail sent successfully')
             ];
-        } catch (Exception $e) {
+        } catch (\Exception $e) {
             dd($e);
+            DB::rollBack();
             $output = [
                 'success' => 0,
                 'msg' => __('Something went wrong')
@@ -128,10 +126,12 @@ class ContactController extends Controller
     {
         try {
             DB::beginTransaction();
+
             $contact = ContactMessage::findOrFail($id);
             $contact->delete();
             $contacts = ContactMessage::latest('id')->paginate(10);
             $view = view('backends.contact._table', compact('contacts'))->render();
+
 
             DB::commit();
             $output = [
@@ -154,5 +154,4 @@ class ContactController extends Controller
     {
         return view('backends.contact.replysms');
     }
-
 }

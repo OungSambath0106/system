@@ -190,7 +190,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                     <hr>
+                                    <hr>
                                 </div>
                                 <div class="Role">
                                     <div class="d-flex">
@@ -264,7 +264,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                     <hr>
+                                    <hr>
                                 </div>
                                 <div class="Course">
                                     <div class="d-flex">
@@ -341,7 +341,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                     <hr>
+                                    <hr>
                                 </div>
                                 <div class="Lesson">
                                     <div class="d-flex">
@@ -418,7 +418,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                     <hr>
+                                    <hr>
                                 </div>
                                 <div class="Categories">
                                     <div class="d-flex">
@@ -497,7 +497,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                     <hr>
+                                    <hr>
                                 </div>
                                 <div class="Email">
                                     <div class="d-flex">
@@ -509,13 +509,13 @@
                                                 <div class="input-group mb-3">
                                                     <div class="d-flex align-items-center">
                                                         <label class="switch">
-                                                            <input type="checkbox" id="contact_view"
-                                                                @if (in_array('contact.view', $role_permissions)) checked @endif
-                                                                name="permissions[]" value="contact.view">
+                                                            <input type="checkbox" id="message_view"
+                                                                @if (in_array('message.view', $role_permissions)) checked @endif
+                                                                name="permissions[]" value="message.view">
                                                             <span class="slider round"></span>
                                                         </label>
                                                         <label class="ml-2"
-                                                            for="contact_view">{{ __('View Message') }}</label>
+                                                            for="message_view">{{ __('View Message') }}</label>
                                                     </div>
                                                 </div>
                                             </div>
@@ -526,15 +526,14 @@
                                                 <div class="input-group mb-3">
                                                     <div class="d-flex align-items-center">
                                                         <!-- Rounded switch -->
-
                                                         <label class="switch">
-                                                            <input type="checkbox" id="contact_reply"
-                                                                @if (in_array('contact.reply', $role_permissions)) checked @endif
-                                                                name="permissions[]" value="contact.reply">
+                                                            <input type="checkbox" id="message_reply"
+                                                                @if (in_array('message.reply', $role_permissions)) checked @endif
+                                                                name="permissions[]" value="message.reply">
                                                             <span class="slider round"></span>
                                                         </label>
                                                         <label class="ml-2"
-                                                            for="contact_reply">{{ __('Reply Message') }}</label>
+                                                            for="message_reply">{{ __('Reply Message') }}</label>
                                                     </div>
                                                 </div>
                                             </div>
@@ -558,6 +557,154 @@
                                     </div>
                                     <hr>
                                 </div>
+                                <div class="EmailConfig">
+                                    <div class="d-flex">
+                                        <label for="" class="mr-2 mb-3">{{ __('Config Email') }}</label>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <div class="form-group">
+                                                <div class="input-group mb-3">
+                                                    <div class="d-flex align-items-center">
+                                                        <label class="switch">
+                                                            <input type="checkbox" id="configemail_view"
+                                                                @if (in_array('configemail.view', $role_permissions)) checked @endif
+                                                                name="permissions[]" value="configemail.view">
+                                                            <span class="slider round"></span>
+                                                        </label>
+                                                        <label class="ml-2"
+                                                            for="configemail_view">{{ __('View Config Email') }}</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-3">
+                                            <div class="form-group">
+                                                <div class="input-group mb-3">
+                                                    <div class="d-flex align-items-center">
+                                                        <label class="switch">
+                                                            <input type="checkbox" id="emailconfig_update"
+                                                                @if (in_array('emailconfig.update', $role_permissions)) checked @endif
+                                                                name="permissions[]" value="emailconfig.update">
+                                                            <span class="slider round"></span>
+                                                        </label>
+                                                        <label class="ml-2"
+                                                            for="emailconfig_update">{{ __('Update EmailConfig') }}</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                </div>
+                                <div class="Setting">
+                                    <div class="d-flex">
+                                        <label for="" class="mr-2 mb-3">{{ __('Setting Setup') }}</label>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <div class="form-group">
+                                                <div class="input-group mb-3">
+                                                    <div class="d-flex align-items-center">
+                                                        <label class="switch">
+                                                            <input type="checkbox" id="setting_view"
+                                                                @if (in_array('setting.view', $role_permissions)) checked @endif
+                                                                name="permissions[]" value="setting.view">
+                                                            <span class="slider round"></span>
+                                                        </label>
+                                                        <label class="ml-2"
+                                                            for="setting_view">{{ __('View Setting') }}</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-3">
+                                            <div class="form-group">
+                                                <div class="input-group mb-3">
+                                                    <div class="d-flex align-items-center">
+                                                        <label class="switch">
+                                                            <input type="checkbox" id="setting_update"
+                                                                @if (in_array('setting.update', $role_permissions)) checked @endif
+                                                                name="permissions[]" value="setting.update">
+                                                            <span class="slider round"></span>
+                                                        </label>
+                                                        <label class="ml-2"
+                                                            for="setting_update">{{ __('Update Setting') }}</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-3">
+                                            <div class="form-group">
+                                                <div class="input-group mb-3">
+                                                    <div class="d-flex align-items-center">
+                                                        <label class="switch">
+                                                            <input type="checkbox" id="language_create"
+                                                                @if (in_array('language.create', $role_permissions)) checked @endif
+                                                                name="permissions[]" value="language.create">
+                                                            <span class="slider round"></span>
+                                                        </label>
+                                                        <label class="ml-2"
+                                                            for="language_create">{{ __('Create Language') }}</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="form-group">
+                                                <div class="input-group mb-3">
+                                                    <div class="d-flex align-items-center">
+                                                        <label class="switch">
+                                                            <input type="checkbox" id="language_edit"
+                                                                @if (in_array('language.edit', $role_permissions)) checked @endif
+                                                                name="permissions[]" value="language.edit">
+                                                            <span class="slider round"></span>
+                                                        </label>
+                                                        <label class="ml-2"
+                                                            for="language_edit">{{ __('Edit Language') }}</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="form-group">
+                                                <div class="input-group mb-3">
+                                                    <div class="d-flex align-items-center">
+                                                        <label class="switch">
+                                                            <input type="checkbox" id="language_translate"
+                                                                @if (in_array('language.translate', $role_permissions)) checked @endif
+                                                                name="permissions[]" value="language.translate">
+                                                            <span class="slider round"></span>
+                                                        </label>
+                                                        <label class="ml-2"
+                                                            for="language_translate">{{ __('Translate Language') }}</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="form-group">
+                                                <div class="input-group mb-3">
+                                                    <div class="d-flex align-items-center">
+                                                        <label class="switch">
+                                                            <input type="checkbox" id="language_delete"
+                                                                @if (in_array('language.delete', $role_permissions)) checked @endif
+                                                                name="permissions[]" value="language.delete">
+                                                            <span class="slider round"></span>
+                                                        </label>
+                                                        <label class="ml-2"
+                                                            for="language_delete">{{ __('Delete Language') }}</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <hr>
+                                </div>
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
@@ -571,11 +718,9 @@
                                         </div>
                                     </div>
                                 </div>
-
                             </form>
                         </div>
                     </div>
-
                 </div>
             </div>
         </div>

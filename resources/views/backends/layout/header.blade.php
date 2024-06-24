@@ -92,8 +92,8 @@
                     <img class="user-image img-circle elevation-2 object-fit-cover "
                         src="{{ asset('uploads/users/' . Auth::user()->image) }}" alt="User Image">
                 @else
-                    <img class=" user-image img-circle elevation-2 object-fit-cover " src="{{ asset('uploads/default-profile.png') }}"
-                        alt="Default Profile Image">
+                    <img class=" user-image img-circle elevation-2 object-fit-cover "
+                        src="{{ asset('uploads/default-profile.png') }}" alt="Default Profile Image">
                 @endif
                 {{-- <span class="d-none d-md-inline">veha</span> --}}
             </a>
@@ -139,7 +139,8 @@
 </nav>
 
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+{{-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> --}}
+@push('js')
 <script>
     $(document).ready(function() {
         // Function to update unread count
@@ -158,12 +159,16 @@
             });
         }
 
-        // Initially fetch and update unread count
-        updateUnreadCount();
+        // Initially fetch and update unread count with a delay
+        setTimeout(function() {
+            updateUnreadCount();
+        }, 3000); // 3 seconds delay
 
-        // Set interval to update unread count every 2 seconds (adjust as needed)
+        // Set interval to update unread count every 30 seconds (adjust as needed)
         setInterval(function() {
             updateUnreadCount();
-        }, 3000); // 30 seconds interval
+        }, 15000); // 30 seconds interval
     });
 </script>
+@endpush
+

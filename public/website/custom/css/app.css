@@ -56,6 +56,20 @@ body {
     color: #f4f4f4;
     font-family: "Nunito";
 }
+
+.card {
+    border: 1.5px solid #ffffff45;
+    --bs-card-border-color: transparent;
+}
+
+.form-control:focus {
+    color: #212529;
+    background-color: #fff;
+    border-color: rgb(168, 49, 247);
+    outline: 0;
+    box-shadow: none;
+}
+
 @media (min-width: 1279px) {
     .col-md-9 {
         width: 75%;

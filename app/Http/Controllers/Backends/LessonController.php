@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Backends;
 use Exception;
 use App\Models\Lesson;
 use App\Models\Translation;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\helpers\ImageManager;
 use App\Models\LessonCategory;
@@ -100,6 +101,7 @@ class LessonController extends Controller
 
             $lesson = new Lesson();
             $lesson->title = $request->title[array_search('en', $request->lang)];
+            $lesson->slug = Str::slug($lesson->title . '-');
             $lesson->description = $request->description[array_search('en', $request->lang)];
             $lesson->category_id = $request->category;
             $lesson->type = $request->type;
@@ -234,6 +236,7 @@ class LessonController extends Controller
 
             $lesson = Lesson::findOrFail($id);
             $lesson->title = $request->title[array_search('en', $request->lang)];
+            $lesson->slug = Str::slug($lesson->title . '-');
             $lesson->description = $request->description[array_search('en', $request->lang)];
             $lesson->category_id = $request->category;
 

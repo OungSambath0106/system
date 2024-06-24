@@ -46,17 +46,17 @@
                         </p>
                     </a>
                 </li>
-
-                <li class="nav-item">
-                    <a href="{{ route('admin.course.index') }}"
-                        class="nav-link @if (request()->routeIs('admin.course*')) active @endif">
-                        <i class="nav-icon fa-solid fa-book"></i>
-                        <p>
-                            {{ __('Course') }}
-                        </p>
-                    </a>
-                </li>
-
+                @if (auth()->user()->can('course.view'))
+                    <li class="nav-item">
+                        <a href="{{ route('admin.course.index') }}"
+                            class="nav-link @if (request()->routeIs('admin.course*')) active @endif">
+                            <i class="nav-icon fa-solid fa-book"></i>
+                            <p>
+                                {{ __('Course') }}
+                            </p>
+                        </a>
+                    </li>
+                @endif
                 <li class="nav-item @if (request()->routeIs('admin.lesson*')) menu-is-opening menu-open @endif">
                     {{-- menu-open --}}
                     <a href="#" class="nav-link @if (request()->routeIs('admin.lesson*')) active @endif">
@@ -67,20 +67,24 @@
                         </p>
                     </a>
                     <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a href="{{ route('admin.lesson.index') }}"
-                                class="nav-link @if (request()->routeIs('admin.lesson.*')) active @endif">
-                                <i class="nav-icon fa-solid fa-circle"></i>
-                                <p>{{ __('Lesson') }}</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ route('admin.lesson-category.index') }}"
-                                class="nav-link @if (request()->routeIs('admin.lesson-category*')) active @endif">
-                                <i class="nav-icon fa-solid fa-circle"></i>
-                                <p>{{ __('Lesson Category') }}</p>
-                            </a>
-                        </li>
+                        @if (auth()->user()->can('lesson.view'))
+                            <li class="nav-item">
+                                <a href="{{ route('admin.lesson.index') }}"
+                                    class="nav-link @if (request()->routeIs('admin.lesson.*')) active @endif">
+                                    <i class="nav-icon fa-solid fa-circle"></i>
+                                    <p>{{ __('Lesson') }}</p>
+                                </a>
+                            </li>
+                        @endif
+                        @if (auth()->user()->can('lesson_categories.view'))
+                            <li class="nav-item">
+                                <a href="{{ route('admin.lesson-category.index') }}"
+                                    class="nav-link @if (request()->routeIs('admin.lesson-category*')) active @endif">
+                                    <i class="nav-icon fa-solid fa-circle"></i>
+                                    <p>{{ __('Lesson Category') }}</p>
+                                </a>
+                            </li>
+                        @endif
                     </ul>
                 </li>
 
@@ -94,23 +98,28 @@
                         </p>
                     </a>
                     <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a href="{{ route('admin.user.index') }}"
-                                class="nav-link @if (request()->routeIs('admin.user*')) active @endif">
-                                <i class="nav-icon fas fa-user-alt"></i>
+                        @if (auth()->user()->can('user.view'))
+                            <li class="nav-item">
+                                <a href="{{ route('admin.user.index') }}"
+                                    class="nav-link @if (request()->routeIs('admin.user*')) active @endif">
+                                    <i class="nav-icon fas fa-user-alt"></i>
 
-                                <p>
-                                    {{ __('User') }}
-                                </p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ route('admin.role.index') }}"
-                                class="nav-link @if (request()->routeIs('admin.role*')) active @endif">
-                                <i class="nav-icon fas fa-user-alt"></i>
-                                <p>{{ __('Role') }}</p>
-                            </a>
-                        </li>
+                                    <p>
+                                        {{ __('User') }}
+                                    </p>
+                                </a>
+                            </li>
+                        @endif
+                        @if (auth()->user()->can('role.view'))
+                            <li class="nav-item">
+                                <a href="{{ route('admin.role.index') }}"
+                                    class="nav-link @if (request()->routeIs('admin.role*')) active @endif">
+                                    <i class="nav-icon fas fa-user-alt"></i>
+                                    <p>{{ __('Role') }}</p>
+                                </a>
+                            </li>
+                        @endif
+
                     </ul>
                 </li>
 
@@ -123,38 +132,45 @@
                         </p>
                     </a>
                     <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a href="{{ route('admin.contact.index') }}"
-                                class="nav-link treeview-link @if (request()->routeIs('admin.contact.index')) active @endif">
-                                <i class="nav-icon fa-solid fa-message"></i>
+                        @if (auth()->user()->can('message.view'))
+                            <li class="nav-item">
+                                <a href="{{ route('admin.contact.index') }}"
+                                    class="nav-link treeview-link @if (request()->routeIs('admin.contact.index')) active @endif">
+                                    <i class="nav-icon fa-solid fa-message"></i>
 
-                                <p>
-                                    {{ __('Mail') }}
-                                </p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ route('admin.email_config_form') }}"
-                                class="nav-link treeview-link @if (request()->routeIs('admin.email_config_form*')) active @endif">
-                                <i class="nav-icon fas fa-cog"></i>
-                                <p>
-                                    {{ __('Email Config') }}
-                                </p>
-                            </a>
-                        </li>
+                                    <p>
+                                        {{ __('Message') }}
+                                    </p>
+                                </a>
+                            </li>
+                        @endif
+                        @if (auth()->user()->can('configemail.view'))
+                            <li class="nav-item">
+                                <a href="{{ route('admin.email_config_form') }}"
+                                    class="nav-link treeview-link @if (request()->routeIs('admin.email_config_form*')) active @endif">
+                                    <i class="nav-icon fas fa-cog"></i>
+                                    <p>
+                                        {{ __('Email Config') }}
+                                    </p>
+                                </a>
+                            </li>
+                        @endif
+
                     </ul>
                 </li>
 
+                @if (auth()->user()->can('setting.view'))
+                    <li class="nav-item">
+                        <a href="{{ route('admin.setting.index') }}"
+                            class="nav-link @if (request()->routeIs('admin.setting*')) active @endif">
+                            <i class="nav-icon fas fa-cog"></i>
+                            <p>
+                                {{ __('Setting') }}
+                            </p>
+                        </a>
+                    </li>
+                @endif
 
-                <li class="nav-item">
-                    <a href="{{ route('admin.setting.index') }}"
-                        class="nav-link @if (request()->routeIs('admin.setting*')) active @endif">
-                        <i class="nav-icon fas fa-cog"></i>
-                        <p>
-                            {{ __('Setting') }}
-                        </p>
-                    </a>
-                </li>
 
 
             </ul>
