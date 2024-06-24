@@ -39,7 +39,6 @@
                                                     </li>
                                                 @endif
                                             @endforeach
-
                                         </ul>
                                         <div class="tab-content" id="custom-content-below-tabContent">
                                             @foreach (json_decode($language, true) as $lang)

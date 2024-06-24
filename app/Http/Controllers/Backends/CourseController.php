@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers\Backends;
 
-use App\helpers\ImageManager;
 use Exception;
 use App\Models\Course;
 use App\Models\Category;
 use App\Models\Translation;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use App\helpers\ImageManager;
 use App\Models\BusinessSetting;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
@@ -85,6 +86,7 @@ class CourseController extends Controller
 
             $course = new Course();
             $course->title = $request->title[array_search('en', $request->lang)];
+            $course->slug = Str::slug($course->title . '-');
             $course->description = $request->description[array_search('en', $request->lang)];
 
             if ($request->hasFile('image')) {
@@ -204,6 +206,7 @@ class CourseController extends Controller
 
             $course =  Course::findOrFail($id);
             $course->title = $request->title[array_search('en', $request->lang)];
+            $course->slug = Str::slug($course->title . '-');
             $course->description = $request->description[array_search('en', $request->lang)];
 
             if ($request->hasFile('image')) {

@@ -23,33 +23,36 @@ class CourseController extends Controller
         $lessons = Lesson::where('category_id', $categoryId)->get();
         return response()->json($lessons);
 
-        return view('website.lesson_and_course_detail.course_detail',compact('courses'));
+        return view('website.lesson_and_course_detail.course_detail', compact('courses'));
     }
 
-    public function show($id)
+    public function show($slug)
     {
-        $course = Course::findOrFail($id);
+        $course = Course::where('slug', $slug)->first();
+        if (!$course) {
+            abort(404, 'Course not found');
+        }
         $categories = $course->lessonCategories()
             ->where('status', 1)
             ->orderBy('order', 'asc')
             ->withCount(['lessons' => function ($query) {
-                $query->where('category_id', '!=', null); // Adjust this line if necessary
+                $query->where('category_id', '!=', null);
             }])
             ->get();
         return view('website.lesson_and_course_detail.course_detail', compact('course', 'categories'));
     }
 
-    public function showLessonDetail($id)
+    public function showLessonDetail($slug)
     {
-        $lesson = Lesson::find($id);
+        $lesson = Lesson::where('slug',$slug)->first();
 
         if (!$lesson) {
             abort(404, 'Lesson not found');
         }
 
         $lessons = Lesson::where('category_id', $lesson->category_id)
-                        ->where('status', 1)
-                        ->get();
+            ->where('status', 1)
+            ->get();
         $course = $lesson->category->course;
 
         return view('website.lesson_and_course_detail.lesson_detail', compact('lesson', 'lessons', 'course'));

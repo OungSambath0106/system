@@ -8,21 +8,21 @@
                 @if ($index < 2)
                     <!-- Display the first two courses in the first card template -->
                     <div class="card col-sm-3 col-3 col-lg-3 p-3 h-100 right-card">
-                        <a href="{{ route('course.show', $course->id) }}" class="link-title">
+                        <a href="{{ route('course.show', $course->slug) }}" class="link-title">
                             <div class="card-title-outside p-1 text-center m-0">
                                 <strong class="title w-100">{{ $course->title }}</strong>
                             </div>
                         </a>
                         <div class="card-content px-0 pt-3 text-start">
                             <div class="card-img">
-                                <a href="{{ route('course.show', $course->id) }}" class="icon">
+                                <a href="{{ route('course.show', $course->slug) }}" class="icon">
                                     <i class="fas fa-chevron-right"></i>
                                 </a>
                                 <img src="{{ asset('uploads/course/' . $course->image) }}" alt=""
                                     class="img-fluid object-fit-cover">
                             </div>
                             <div class="center-card">
-                                <a href="{{ route('course.show', $course->id) }}" class="link-title">
+                                <a href="{{ route('course.show', $course->slug) }}" class="link-title">
                                     <div class="card-title-inside p-1 text-center m-0">
                                         <strong class="title w-100">{{ $course->title }}</strong>
                                     </div>
@@ -31,13 +31,13 @@
                                     <span>{{ Str::limit($course->description, 195) }}</span>
                                 </div>
                                 <div class="card-button-inside text-center mt-3">
-                                    <a href="{{ route('course.show', $course->id) }}"
+                                    <a href="{{ route('course.show', $course->slug) }}"
                                         class="btn btn-sm btn-learn w-100">Let's Learn</a>
                                 </div>
                             </div>
                         </div>
                         <div class="card-button-outside text-center mt-3">
-                            <a href="{{ route('course.show', $course->id) }}" class="btn btn-sm btn-learn w-100">Let's
+                            <a href="{{ route('course.show', $course->slug) }}" class="btn btn-sm btn-learn w-100">Let's
                                 Learn</a>
                         </div>
                     </div>
@@ -53,7 +53,7 @@
                                     <div class="row">
                                         <div class="card-left col-md-4">
                                             <div class="card-img">
-                                                <a href="{{ route('course.show', $course->id) }}" class="icon">
+                                                <a href="{{ route('course.show', $course->slug) }}" class="icon">
                                                     <i class="fas fa-chevron-right"></i>
                                                 </a>
                                                 <img src="{{ asset('uploads/course/' . $course->image) }}" alt=""
@@ -61,7 +61,7 @@
                                             </div>
                                         </div>
                                         <div class="card-right col-md-8">
-                                            <a href="{{ route('course.show', $course->id) }}" class="link-title">
+                                            <a href="{{ route('course.show', $course->slug) }}" class="link-title">
                                                 <div class="card-title p-1 text-center m-0">
                                                     <strong class="title w-100">{{ $course->title }}</strong>
                                                 </div>
@@ -72,7 +72,7 @@
                                                 </div>
                                             </div>
                                             <div class="card-button text-center">
-                                                <a href="{{ route('course.show', $course->id) }}"
+                                                <a href="{{ route('course.show', $course->slug) }}"
                                                     class="btn btn-sm btn-learn w-100">Let's Learn</a>
                                             </div>
                                         </div>

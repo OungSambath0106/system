@@ -63,14 +63,14 @@
                             </div>
                             <div class="card-body">
                                 @foreach ($lessons as $otherLesson)
-                                    @if ($otherLesson->id !== $lesson->id)
+                                    @if ($otherLesson->slug !== $lesson->slug)
                                         <div class="col-12 shadow rounded">
                                             <div class="d-flex justify-content-center">
                                                 <div class="listimg p-2">
                                                     <img width="100%"
                                                         src="{{ asset('uploads/lessons/' . $otherLesson->thumbnail) }}"
                                                         alt="Not found">
-                                                    <a href="{{ route('lesson.detail', $otherLesson->id) }}"
+                                                    <a href="{{ route('lesson.detail', $otherLesson->slug) }}"
                                                         class="menuplayvideo">
                                                         <i class="fa-solid fa-play fa-lg" style="color: white"></i>
                                                     </a>
