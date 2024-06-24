@@ -265,10 +265,13 @@
 
                                         <div class="row">
                                             <div class="col-12 mb-3">
-                                                <button type="submit" class="btn btn-primary float-right">
-                                                    <i class="fas fa-save"></i>
-                                                    {{ __('Save') }}
-                                                </button>
+                                                @if (auth()->user()->can('setting.update'))
+                                                    <button type="submit" class="btn btn-primary float-right">
+                                                        <i class="fas fa-save"></i>
+                                                        {{ __('Save') }}
+                                                    </button>
+                                                @endif
+
                                             </div>
                                         </div>
                                     </div>

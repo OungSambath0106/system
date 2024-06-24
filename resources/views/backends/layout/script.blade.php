@@ -64,7 +64,7 @@
         $(document).on("click", ".btn-modal", function(e) {
             e.preventDefault();
             var container = $(this).data("container");
-
+                    
             $.ajax({
                 url: $(this).data("href"),
                 dataType: "html",

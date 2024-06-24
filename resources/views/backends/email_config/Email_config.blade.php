@@ -29,19 +29,18 @@
                                     </div>
                                     <div class="form-group col-md-6 ">
                                         <label for="MAIL_HOST">Mail Host:</label><br>
-                                        <input type="text" id="MAIL_HOST" name="MAIL_HOST"
-                                            value="{{ env('MAIL_HOST') }}" class="form-control">
+                                        <input type="text" id="MAIL_HOST" name="MAIL_HOST" value="{{ env('MAIL_HOST') }}"
+                                            class="form-control">
                                     </div>
                                     <div class="form-group col-md-6 ">
                                         <label for="MAIL_PORT">Mail Port:</label><br>
-                                        <input type="number" id="MAIL_PORT" name="MAIL_PORT"
-                                            value="{{ env('MAIL_PORT') }}" class="form-control">
+                                        <input type="number" id="MAIL_PORT" name="MAIL_PORT" value="{{ env('MAIL_PORT') }}"
+                                            class="form-control">
                                     </div>
                                     <div class="form-group col-md-6 ">
                                         <label for="MAIL_USERNAME">Mail Username:</label><br>
                                         <input type="text" id="MAIL_USERNAME" name="MAIL_USERNAME"
-                                            value="{{ env('MAIL_USERNAME') }}"
-                                            class="form-control">
+                                            value="{{ env('MAIL_USERNAME') }}" class="form-control">
                                     </div>
                                     <div class="form-group col-md-6 ">
                                         <label for="MAIL_PASSWORD">Mail Password:</label><br>
@@ -56,8 +55,7 @@
                                     <div class="form-group col-md-6 ">
                                         <label for="MAIL_FROM_ADDRESS">Mail From Address:</label><br>
                                         <input type="email" id="MAIL_FROM_ADDRESS" name="MAIL_FROM_ADDRESS"
-                                            value="{{ env('MAIL_FROM_ADDRESS') }}"
-                                            class="form-control">
+                                            value="{{ env('MAIL_FROM_ADDRESS') }}" class="form-control">
                                     </div>
                                     <div class="form-group col-md-6 ">
                                         <label for="MAIL_FROM_NAME">Mail From Name:</label><br>
@@ -69,10 +67,13 @@
                         </div>
                         <div class="row">
                             <div class="col-12 form-group">
-                                <button type="submit" class="btn btn-primary float-right">
-                                    <i class="fa fa-save"></i>
-                                    {{ __('Update') }}
-                                </button>
+                                @if (auth()->user()->can('emailconfig.update'))
+                                    <button type="submit" class="btn btn-primary float-right">
+                                        <i class="fa fa-save"></i>
+                                        {{ __('Update') }}
+                                    </button>
+                                @endif
+
                             </div>
                         </div>
                     </form>

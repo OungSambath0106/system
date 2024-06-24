@@ -147,7 +147,7 @@ Route::middleware(['auth', 'CheckUserLogin', 'SetSessionData'])->group(function 
 
 
         Route::get('/contact-us', [ContactController::class, 'index'])->name('contact.index');
-        //click view for reply sms//
+        //click reply sms//
         Route::get('/contact-us/{id}', [ContactController::class, 'show'])->name('contact.replysms');
         //sent sms//
         Route::post('/contact-us/sent-sms', [ContactController::class, 'replycustomer'])->name('messages.sendReply');
