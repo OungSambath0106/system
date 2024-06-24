@@ -212,4 +212,28 @@
     </div>
 @endsection
 @push('js')
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var ctx = document.getElementById('bar-chart').getContext('2d');
+        var myChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['Category 1', 'Category 2', 'Category 3'],
+                datasets: [{
+                    label: 'Total Views',
+                    data: [1500, 3000, 1200],
+                    backgroundColor: 'skyblue'
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    });
+</script>
 @endpush
