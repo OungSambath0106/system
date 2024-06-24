@@ -94,6 +94,10 @@ Route::middleware(['SetFrontendSession'])->group(function () {
     Route::get('/contact-us',[WebsiteContactController::class,'index'])->name('contactus');
     //website contact//
     Route::post('/contact-us', [WebsiteContactController::class, 'store'])->name('contact.store');
+
+    //store total_view
+    Route::post('/lessons/update-view-count', [WebsiteCourseController::class, 'updateViewCount'])->name('lessons.updateViewCount');
+
 });
 
 

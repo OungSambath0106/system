@@ -57,4 +57,23 @@ class CourseController extends Controller
 
         return view('website.lesson_and_course_detail.lesson_detail', compact('lesson', 'lessons', 'course'));
     }
+    
+    public function updateViewCount(Request $request)
+    {
+        $id = $request->id;
+        $lesson = Lesson::findOrFail($id);
+
+        if (!in_array($lesson->id, $request->session()->get('key_lesson', []))) {
+            $lesson->total_views = $lesson->total_views + 1;
+            $lesson->save();
+
+            $existingArray = session('key_lesson', []);
+            $newArray = [$lesson->id];
+            $mergedArray = array_merge($existingArray, $newArray);
+            session(['key_lesson' => $mergedArray]);
+        }
+
+        // Return a response if needed, but in this case, it's not necessary for AJAX
+        return response()->json(['message' => 'View count updated successfully.']);
+    }
 }

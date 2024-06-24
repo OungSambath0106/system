@@ -9,10 +9,6 @@
                         <h4 class="text-primary title-video py-2"> {{ $lesson->title }} </h4>
                         <div
                             class="lessoning mb-2 justify-content-center align-content-center text-center position-relative">
-                            {{-- <video class="show-video" width="100%" src="{{ asset('uploads/lessons/' . $lesson->video) }}"
-                                disabled>
-                                Your browser does not support the video tag.
-                            </video> --}}
                             <img src="{{ asset('uploads/lessons/' . $lesson->thumbnail) }}" class="show-video" alt=""
                                 height="100%" width="100%">
                             <button class="playvideo" data-bs-toggle="modal" data-bs-target="#exampleModal">
@@ -63,7 +59,7 @@
                             </div>
                             <div class="card-body">
                                 @foreach ($lessons as $otherLesson)
-                                    @if ($otherLesson->slug !== $lesson->slug)
+                                    @if ($otherLesson->id !== $lesson->id)
                                         <div class="col-12 shadow rounded">
                                             <div class="d-flex justify-content-center">
                                                 <div class="listimg p-2">
@@ -121,6 +117,34 @@
                 if (iframe) {
                     iframe.src = iframe.src;
                 }
+            });
+        });
+    </script>
+
+    <!-- Ensure jQuery is included if not already included -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            $('.playvideo').on('click', function() {
+                // Send AJAX request to update view count
+                var lessonId = {{ $lesson->id }};
+                $.ajax({
+                    url: "{{ route('lessons.updateViewCount') }}",
+                    method: 'POST',
+                    data: {
+                        _token: '{{ csrf_token() }}',
+                        id: lessonId
+                    },
+                    success: function(response) {
+                        console.log('View count updated successfully.');
+                        // Handle modal opening here if needed
+                    },
+                    error: function(xhr) {
+                        console.error('Error updating view count.');
+                        // Handle error if needed
+                    }
+                });
             });
         });
     </script>
