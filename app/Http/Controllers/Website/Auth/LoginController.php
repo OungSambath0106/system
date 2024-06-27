@@ -29,6 +29,14 @@ class LoginController extends Controller
                 if (in_array($user_roles[0], ['normal-user'])) {
                     return redirect()->route('home');
                 }
+                if ($user->status == 'request') {
+                    Auth::logout();
+                    return redirect()->back()->with(['success' => 1, 'msg' => __('Register successfully. Please wait for approve by admin')]);
+                }
+                if ($user->status == 'rejected') {
+                    Auth::logout();
+                    return redirect()->back()->with(['success' => 1, 'msg' => __('Your account has been rejected!')]);
+                }
 
             } else {
                 // dd(0);
