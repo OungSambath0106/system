@@ -179,5 +179,54 @@
                 }
             });
         });
+
+        $(document).on('click', '.dropdown .dropdown-menu a.user_status', function(e) {
+            e.preventDefault();
+            var id = $(this).data('id');
+            var value = $(this).data('value');
+            $.ajax({
+                type: "POST",
+                url: '{{ route('admin.user_change_status') }}',
+                data: {
+                    '_token': '{{ csrf_token() }}',
+                    'selected_status': value,
+                    'id': id
+                },
+                dataType: "json",
+                success: function(response) {
+                    if (response.success == true) {
+                        toastr.success(response.msg);
+                    }
+                    if (response.success == false) {
+                        toastr.error(response.msg);
+                    }
+
+                    location.reload();
+                }
+            });
+        });
+        // $(document).on('click', '.dropdown .dropdown-menu a.user_status', function(e) {
+        //     e.preventDefault();
+        //     var id = $(this).data('id');
+        //     var value = $(this).data('value');
+        //     $.ajax({
+        //         type: "POST",
+        //         url: '{{ route('admin.user_change_status') }}',
+        //         data: {
+        //             '_token': '{{ csrf_token() }}',
+        //             'selected_status': value,
+        //             'id': id
+        //         },
+        //         dataType: "json",
+        //         success: function(response) {
+        //             if (response.success) {
+        //                 toastr.success(response.msg);
+        //             } else {
+        //                 toastr.error(response.msg);
+        //             }
+        //             location.reload();
+        //         }
+        //     });
+        // });
     </script>
 @endpush

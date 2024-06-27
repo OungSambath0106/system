@@ -9,7 +9,7 @@
                 <th>{{ __('Username') }}</th>
                 <th>{{ __('Phone') }}</th>
                 <th>{{ __('Email') }}</th>
-                {{-- <th>Created by</th> --}}
+                <th>{{ __('Status') }}</th>
                 <th>{{ __('Created date') }}</th>
                 <th>{{ __('Action') }}</th>
             </tr>
@@ -31,6 +31,86 @@
                     <td>{{ $user->name }}</td>
                     <td>{{ $user->phone }}</td>
                     <td>{{ $user->email }}</td>
+                    <td>
+                        @if (auth()->user()->hasRole('admin'))
+                            <div class="dropdown">
+                                @if ($user->status == 'request')
+                                    <button type="button"
+                                        class="btn btn-xs @if ($user->status == 'request') btn-secondary @elseif($user->status == 'confirmed') btn-success @elseif($user->status == 'rejected') btn-danger @endif dropdown-toggle"
+                                        data-toggle="dropdown">
+                                        {{ $user->status }}
+                                    </button>
+                                    <div class="dropdown-menu">
+                                        @foreach ($status as $key => $item)
+                                            <a class="dropdown-item user_status" href="#"
+                                                data-id="{{ $user->id }}"
+                                                data-value="{{ $key }}">{{ $item }}</a>
+                                        @endforeach
+                                    </div>
+                                @else
+                                    <button type="button"
+                                        class="btn btn-xs @if ($user->status == 'request') btn-secondary @elseif($user->status == 'confirmed') btn-success @elseif($user->status == 'rejected') btn-danger @endif"
+                                        data-toggle="dropdown">
+                                        {{ $user->status }}
+                                    </button>
+                                @endif
+
+
+                            </div>
+                        @else
+                            @php
+                                $badgecolor = '';
+                                if ($user->status == 'request') {
+                                    $badgecolor = 'badge-secondary';
+                                }
+                                if ($user->status == 'confirmed') {
+                                    $badgecolor = 'badge-success';
+                                }
+                                if ($user->status == 'rejected') {
+                                    $badgecolor = 'badge-danger';
+                                }
+                            @endphp
+                            <span class="badge {{ $badgecolor }} text-uppercase">{{ $user->status }}</span>
+                        @endif
+                    </td>
+                    {{-- <td>
+                        @if (auth()->user()->hasRole('partner'))
+                            @php
+                                switch ($user->status) {
+                                    case 'request':
+                                        $badgecolor = 'badge-secondary';
+                                        break;
+                                    case 'confirmed':
+                                        $badgecolor = 'badge-success';
+                                        break;
+                                    case 'reject':
+                                        $badgecolor = 'badge-danger';
+                                        break;
+                                    default:
+                                        $badgecolor = '';
+                                        break;
+                                }
+                            @endphp
+                            <span class="badge {{ $badgecolor }} text-uppercase">{{ $user->status }}</span>
+                        @elseif (auth()->user()->hasRole('admin'))
+                            <div class="dropdown">
+                                <button type="button"
+                                    class="btn btn-xs @if ($user->status == 'request') btn-secondary @elseif($user->status == 'confirm') btn-success @elseif($user->status == 'reject') btn-danger @endif dropdown-toggle"
+                                    data-toggle="dropdown">
+                                    {{ $user->status }}
+                                </button>
+
+                                <div class="dropdown-menu">
+                                    @foreach ($status as $key => $item)
+                                        <a class="dropdown-item user_status" href="#"
+                                            data-id="{{ $user->id }}"
+                                            data-value="{{ $key }}">{{ $item }}</a>
+                                    @endforeach
+                                </div>
+                            </div>
+                        @endif
+                    </td> --}}
+
                     <td>{{ $user->created_at->format('d M Y h:i A') }}</td>
                     <td>
                         @if (auth()->user()->can('user.edit'))

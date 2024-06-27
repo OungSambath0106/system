@@ -124,8 +124,8 @@
                 </li>
                 <!-- Menu Footer-->
                 <li class="user-footer">
-                    @if ($user && $user->can('user.edit'))
-                        <a href="{{ route('admin.header.edit', $user->id) }}"
+                    @if (auth()->user() && auth()->user()->can('user.edit'))
+                        <a href="{{ route('admin.header.edit', auth()->user()->id) }}"
                             class="btn btn-primary btn-flat float-left">
                             <i class="fas fa-pencil-alt"></i>
                             {{ __('Edit') }}

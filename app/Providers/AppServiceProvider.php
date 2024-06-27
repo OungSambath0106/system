@@ -10,6 +10,7 @@ use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\View;
+use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
 
@@ -83,10 +84,11 @@ class AppServiceProvider extends ServiceProvider
             // }
         });
 
-        View::composer('*', function ($view) {
-            $view->with('user', Auth::user());
-        });
+        // View::composer('*', function ($view) {
+        //     $view->with('user', Auth::user());
+        // });
+
+
 
     }
-
 }

@@ -13,6 +13,14 @@ class Lesson extends Model
     use HasFactory;
 
     protected $guarded = ['id'];
+    /**
+     * The attributes that should be cast.
+     *
+     * @var array
+     */
+    // protected $casts = [
+    //     'total_views' => 'double',
+    // ];
 
     public function getNameAttribute($name)
     {
@@ -21,7 +29,7 @@ class Lesson extends Model
         }
         return $this->translations[0]->value ?? $name;
     }
-    
+
     public function getDescriptionAttribute($description)
     {
         if (strpos(url()->current(), '/admin')) {
@@ -30,7 +38,7 @@ class Lesson extends Model
         return $this->translations[1]->value ?? $description;
     }
 
-    public function category ()
+    public function category()
     {
         return $this->belongsTo(LessonCategory::class, 'category_id');
     }
