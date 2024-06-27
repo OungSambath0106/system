@@ -34,19 +34,28 @@
                     <td>
                         @if (auth()->user()->hasRole('admin'))
                             <div class="dropdown">
-                                <button type="button"
-                                    class="btn btn-xs @if ($user->status == 'request') btn-secondary @elseif($user->status == 'confirmed') btn-success @elseif($user->status == 'rejected') btn-danger @endif dropdown-toggle"
-                                    data-toggle="dropdown">
-                                    {{ $user->status }}
-                                </button>
+                                @if ($user->status == 'request')
+                                    <button type="button"
+                                        class="btn btn-xs @if ($user->status == 'request') btn-secondary @elseif($user->status == 'confirmed') btn-success @elseif($user->status == 'rejected') btn-danger @endif dropdown-toggle"
+                                        data-toggle="dropdown">
+                                        {{ $user->status }}
+                                    </button>
+                                    <div class="dropdown-menu">
+                                        @foreach ($status as $key => $item)
+                                            <a class="dropdown-item user_status" href="#"
+                                                data-id="{{ $user->id }}"
+                                                data-value="{{ $key }}">{{ $item }}</a>
+                                        @endforeach
+                                    </div>
+                                @else
+                                    <button type="button"
+                                        class="btn btn-xs @if ($user->status == 'request') btn-secondary @elseif($user->status == 'confirmed') btn-success @elseif($user->status == 'rejected') btn-danger @endif"
+                                        data-toggle="dropdown">
+                                        {{ $user->status }}
+                                    </button>
+                                @endif
 
-                                <div class="dropdown-menu">
-                                    @foreach ($status as $key => $item)
-                                        <a class="dropdown-item user_status" href="#"
-                                            data-id="{{ $user->id }}"
-                                            data-value="{{ $key }}">{{ $item }}</a>
-                                    @endforeach
-                                </div>
+
                             </div>
                         @else
                             @php
