@@ -1,6 +1,7 @@
 @extends('website.app')
 @section('content')
     @include('website.lesson_and_course_detail.lesson_style')
+    @include('website.layout.modal_login')
     <div class="container mt-3">
         <div class="justify-content-center">
             <div class="col-12 col-md-12 col-lg-12 card-content">
@@ -66,10 +67,17 @@
                                                     <img width="100%"
                                                         src="{{ asset('uploads/lessons/' . $otherLesson->thumbnail) }}"
                                                         alt="Not found">
-                                                    <a href="{{ route('lesson.detail', $otherLesson->slug) }}"
-                                                        class="menuplayvideo">
-                                                        <i class="fa-solid fa-play fa-lg" style="color: white"></i>
-                                                    </a>
+                                                    @if (Auth::check() || $otherLesson->isfree == 1)
+                                                        <a href="{{ route('lesson.detail', $otherLesson->slug) }}"
+                                                            class="menuplayvideo">
+                                                            <i class="fa-solid fa-play fa-lg" style="color: white"></i>
+                                                        </a>
+                                                    @else
+                                                        <a href="#" class="menuplayvideo" data-toggle="modal"
+                                                            data-target="#staticBackdrop">
+                                                            <i class="fa-solid fa-play fa-lg" style="color: white"></i>
+                                                        </a>
+                                                    @endif
                                                 </div>
                                                 <div class="body-text">
                                                     <div class="card-tittle">
