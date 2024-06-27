@@ -24,7 +24,7 @@
                         @else
                             {{ asset('uploads/default-profile.png') }} @endif
                         "
-                            alt="" class="profile_img_table">
+                            alt="" class="profile_img_table img-circle">
                     </td>
                     <td>{{ $user->first_name }}</td>
                     <td>{{ $user->last_name }}</td>
@@ -138,16 +138,17 @@
         </tbody>
     </table>
 
-    {{-- <div class="row">
+    <div class="row">
         <div class="col-12 d-flex flex-row flex-wrap">
             <div class="row" style="width: -webkit-fill-available;">
                 <div class="col-12 col-sm-6 text-center text-sm-left pl-3" style="margin-block: 20px">
-                    {{ __('Showing') }} {{ $grades->firstItem() }} {{ __('to') }} {{ $grades->lastItem() }} {{ __('of') }} {{ $grades->total() }} {{ __('entries') }}
+                    {{ __('Showing') }} {{ $users->firstItem() }} {{ __('to') }} {{ $users->lastItem() }}
+                    {{ __('of') }} {{ $users->total() }} {{ __('entries') }}
                 </div>
-                <div class="col-12 col-sm-6 pagination-nav pr-3"> {{ $grades->links() }}</div>
+                <div class="col-12 col-sm-6 pagination-nav pr-3"> {{ $users->links() }}</div>
             </div>
         </div>
-    </div> --}}
+    </div>
 
 
 </div>

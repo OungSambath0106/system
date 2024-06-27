@@ -21,36 +21,38 @@ class LoginController extends Controller
                 // $user = Auth::user()->getRoleNames();
                 $user = User::findOrFail(auth()->user()->id);
                 $user_roles = $user->getRoleNames()->toArray();
-
-                // dd($user_roles);
-                if (in_array('admin', $user_roles)) {
-                    return redirect()->route('admin.dashboard');
-                }
-                if (in_array($user_roles[0], ['normal-user'])) {
-                    return redirect()->route('home');
-                }
                 if ($user->status == 'request') {
                     Auth::logout();
-                    return redirect()->back()->with(['success' => 1, 'msg' => __('Register successfully. Please wait for approve by admin')]);
+                    return redirect()->back()->with(['warning' => 1, 'msg' => __('Your account not yet approve by admin!')]);
                 }
                 if ($user->status == 'rejected') {
                     Auth::logout();
-                    return redirect()->back()->with(['success' => 1, 'msg' => __('Your account has been rejected!')]);
+                    return redirect()->back()->with(['warning' => 1, 'msg' => __('Your account has been rejected!')]);
                 }
+                // dd($user_roles);
+                if (in_array('admin', $user_roles)) {
+                    return redirect()->route('admin.dashboard')->with(['success' => 1, 'msg' => __('Login successfully.')]);
+                }
+                if (in_array($user_roles[0], ['normal-user'])) {
+                    return redirect()->route('home')->with(['success' => 1, 'msg' => __('Login successfully.')]);
+                }
+                
 
             } else {
                 // dd(0);
-                return response()->json([
-                    'status' => 0,
-                    'msg' => __('Invalid credentials')
-                ]);
+                // return response()->json([
+                //     'status' => 0,
+                //     'msg' => __('Invalid credentials')
+                // ]);
+                return redirect()->back()->with(['warning' => 1, 'msg' => __('Invalid credentials!')]);
             }
 
         } catch (Exception $e) {
-                return response()->json([
-                    'status' => 0,
-                    'msg' => __('Something went wrong')
-                ]);
+                // return response()->json([
+                //     'status' => 0,
+                //     'msg' => __('Something went wrong')
+                // ]);
+                return redirect()->back()->with(['danger' => 1, 'msg' => __('Something went wrong!')]);
         }
 
     }

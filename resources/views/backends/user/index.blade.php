@@ -10,6 +10,12 @@
         .tab-pane {
             margin-top: 20px
         }
+
+        .img-circle {
+            height: 50px;
+            width: 50px;
+            object-fit: cover;
+        }
     </style>
 @endpush
 @section('contents')
