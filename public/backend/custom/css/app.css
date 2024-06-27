@@ -147,3 +147,6 @@ select.form-control-sm
     color: #ebebeb;
     background-color: #858585;
 }
+.close {
+    background-color: aqua !important;
+}

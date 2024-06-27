@@ -1,3 +1,31 @@
+<style>
+    .btn-login {
+        background: linear-gradient(90deg,
+                rgba(243, 49, 247, 1) 8%,
+                rgba(87, 158, 255, 1) 70%) !important;
+        color: #ffffffff !important;
+    }
+
+    .btn-login:hover {
+        color: #ffffffff !important;
+    }
+
+    .dropdown-item {
+        background-color: #ffffffff !important;
+    }
+
+    .dropdown-toggle {
+        border: none;
+        border-radius: 10px;
+    }
+
+    @media (max-width: 565px) {
+        .dropstart {
+            margin-bottom: 40px;
+        }
+    }
+</style>
+
 <nav class="navbar bg-body-tertiary">
     <div class="container-fluid justify-content-around">
         <div class="nav-leftside text-center col-md-3">
@@ -18,10 +46,6 @@
                             (isset($currentCourse) && $currentCourse->slug == $course->slug) ||
                             (isset($lesson) && $lesson->category->course->slug == $course->slug);
                     @endphp
-                    <!-- Debugging -->
-                    {{-- <div>
-                        Course ID: {{ $course->id }} | Is Active: {{ $isActive ? 'Yes' : 'No' }}
-                    </div> --}}
                     <a href="{{ route('course.show', ['slug' => $course->slug]) }}"
                         class="p-2 nav-link{{ $isActive ? ' active' : '' }}" type="button">
                         {{ $course->title }}
@@ -32,11 +56,34 @@
                 style="border-radius: 8px;">
                 <i class="fas fa-headset"></i> Contact Us
             </a>
+            @guest
+                <button type="button" class="p-2 btn-login nav-link" data-toggle="modal" data-target="#staticBackdrop">
+                    {{ __('Login') }}
+                </button>
+            @endguest
+            @auth
+                <div class="dropdown dropstart text-end mt-1">
+                    <button type="button" class="btn btn-login dropdown-toggle" data-bs-toggle="dropdown">
+                        {{ auth()->user()->name }}
+                    </button>
+                    <ul class="dropdown-menu">
+                        <a href="{{ route('account.profile') }}" class="dropdown-item">
+                            <i class="fa fa-user"></i>
+                            {{ __('Profile') }}
+                        </a>
+                        <a href="{{ route('web.logout') }}" class="dropdown-item text-danger">
+                            <i class="fa fa-sign-out-alt"></i>
+                            {{ __('Logout') }}
+                        </a>
+                    </ul>
+                </div>
+            @endauth
         </div>
         <a href="#" class="navbar-toggler d-md-none" type="button" onclick="toggleNavbar()">
             <i class="fas fa-bars"></i>
         </a>
     </div>
+    @include('website.layout.modal_login')
 </nav>
 <script>
     function toggleNavbar() {

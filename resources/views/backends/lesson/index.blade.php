@@ -221,5 +221,25 @@
                 }
             });
         });
+
+        $('input.isfree').on('change', function() {
+            console.log($(this).data('id'));
+            $.ajax({
+                type: "get",
+                url: "{{ route('admin.lesson.update_status_free') }}",
+                data: {
+                    "id": $(this).data('id')
+                },
+                dataType: "json",
+                success: function(response) {
+                    console.log(response);
+                    if (response.status == 1) {
+                        toastr.success(response.msg);
+                    } else {
+                        toastr.error(response.msg);
+                    }
+                }
+            });
+        });
     </script>
 @endpush

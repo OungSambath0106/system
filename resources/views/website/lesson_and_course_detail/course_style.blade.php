@@ -84,7 +84,7 @@
         font-size: 20px;
     }
 
-    span {
+    .date {
         color: gray;
         font-size: 20px;
     }
@@ -114,7 +114,7 @@
         font-weight: 600;
     }
 
-    label {
+    .label-course {
         color: rgba(21, 119, 255, 1);
         font-weight: 600;
         margin-bottom: 7px;
@@ -303,7 +303,7 @@
             font-size: 17px;
         }
 
-        span {
+        .date {
             color: gray;
             font-size: 18px;
         }
@@ -464,7 +464,7 @@
             font-size: 15px;
         }
 
-        span {
+        .date {
             color: gray;
             font-size: 17px;
         }
@@ -763,7 +763,7 @@
             font-size: 20px;
         }
 
-        span {
+        .date {
             color: gray;
             font-size: 16px;
         }
@@ -917,7 +917,7 @@
             font-size: 20px;
         }
 
-        span {
+        .date {
             color: gray;
             font-size: 16px;
         }
@@ -1073,7 +1073,7 @@
             font-size: 20px;
         }
 
-        span {
+        .date {
             color: gray;
             font-size: 16px;
         }
@@ -1247,7 +1247,7 @@
             font-size: 16px;
         }
 
-        span {
+        .date {
             color: gray;
             font-size: 13px;
         }

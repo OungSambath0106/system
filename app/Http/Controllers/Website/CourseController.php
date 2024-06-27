@@ -20,7 +20,9 @@ class CourseController extends Controller
 
     public function getLessonsByCategory($categoryId)
     {
-        $lessons = Lesson::where('category_id', $categoryId)->get();
+        $lessons = Lesson::where('category_id', $categoryId)
+                     ->where('status', 1)
+                     ->get();
         return response()->json($lessons);
 
         return view('website.lesson_and_course_detail.course_detail', compact('courses'));
@@ -33,12 +35,12 @@ class CourseController extends Controller
             abort(404, 'Course not found');
         }
         $categories = $course->lessonCategories()
-            ->where('status', 1)
-            ->orderBy('order', 'asc')
-            ->withCount(['lessons' => function ($query) {
-                $query->where('category_id', '!=', null);
-            }])
-            ->get();
+                ->orderBy('order', 'asc')
+                ->withCount(['lessons' => function ($query) {
+                    $query->where('status', 1);
+                }])
+                ->get();
+
         return view('website.lesson_and_course_detail.course_detail', compact('course', 'categories'));
     }
 

@@ -18,6 +18,7 @@
     <div class="buttomimg1">
         <img width="90%" src="/upload/social_media/Ellipse1.png" alt="err">
     </div>
+    @include('website.layout.modal_login')
     <div class="container">
         <div class="row" style="margin-right: 0;">
             <div class="col-12 col-md-12 col-lg-12 pl-0">
@@ -30,7 +31,7 @@
                             alt="" class="card-img-top">
                         <div class="card-body">
                             <h4 class="card-title m-0">{{ $course->title }}</h4>
-                            <span>Publish date {{ $course->created_at->format('d-m-Y') }}</span>
+                            <span class="date">Publish date {{ $course->created_at->format('d-m-Y') }}</span>
                             <p class="card-text mt-3">{{ $course->description }}</p>
                         </div>
                     </div>
@@ -48,7 +49,7 @@
                         </div>
                     </div>
                     <div class="col-12 mt-3">
-                        <label>Content Courses</label>
+                        <label class="label-course">Content Courses</label>
                     </div>
                     @foreach ($categories as $category)
                         <div class="col-12">
@@ -73,6 +74,8 @@
         </div>
     </div>
     <script>
+        var isLoggedIn = @json(auth()->check());
+
         document.addEventListener("DOMContentLoaded", function() {
             var lessonsContainer = document.getElementById('lessons-container');
 
@@ -124,12 +127,12 @@
                                 <div class="col-12 d-flex">
                                     <div class=" card-img position-relative">
                                         <img id="menu-img" class="menuimg" src="/uploads/lessons/${lesson.thumbnail}" alt="Not found">
-                                        <a href="#" class="playvideo" data-id="${lesson.slug}" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                        <a href="#" class="playvideo" data-id="${lesson.slug}" data-isfree="${lesson.isfree}" data-bs-toggle="modal" data-bs-target="#exampleModal">
                                             <i class="fa-solid fa-play fa-lg" style="color: white"></i>
                                         </a>
                                     </div>
                                     <div class="card-body-menu">
-                                         <h4 class="card-title"> ${lesson.title} </h4>
+                                        <h4 class="card-title"> ${lesson.title} </h4>
                                         <p class="card-text-menu"> ${truncatedDescription} </p>
                                     </div>
                                 </div>
@@ -142,10 +145,19 @@
                         const target = event.target;
                         if (target.closest('.playvideo')) {
                             event.preventDefault();
-                            const lessonId = target.closest('.playvideo').getAttribute('data-id');
-                            window.location.href = `/lesson-detail/${lessonId}`;
+                            const playButton = target.closest('.playvideo');
+                            const lessonId = playButton.getAttribute('data-id');
+                            const isFree = playButton.getAttribute('data-isfree');
+
+                            if (isFree == '0' && !isLoggedIn) {
+                                // Show the login modal
+                                $('#staticBackdrop').modal('show');
+                            } else {
+                                window.location.href = `/lesson-detail/${lessonId}`;
+                            }
                         }
                     });
+
                 });
         }
 

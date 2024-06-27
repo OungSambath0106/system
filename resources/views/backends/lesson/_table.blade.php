@@ -6,6 +6,7 @@
                 <th class="">{{ __('Title') }}</th>
                 <th>{{ __('Category') }}</th>
                 {{-- <th>{{ __('Description') }}</th> --}}
+                <th>{{ __('Video Free') }}</th>
                 <th>{{ __('Status') }}</th>
                 <th>{{ __('Action') }}</th>
             </tr>
@@ -19,7 +20,14 @@
                     {{-- <td>
                         {{ Str::limit($lesson->description, 40) }}
                     </td> --}}
-
+                    <td>
+                        <div class="custom-control custom-switch">
+                            <input type="checkbox" class="custom-control-input switcher_input isfree"
+                                id="isfree_{{ $lesson->id }}" data-id="{{ $lesson->id }}"
+                                {{ $lesson->isfree == 1 ? 'checked' : '' }} name="isfree">
+                            <label class="custom-control-label" for="isfree_{{ $lesson->id }}"></label>
+                        </div>
+                    </td>
                     <td>
                         <div class="custom-control custom-switch">
                             <input type="checkbox" class="custom-control-input switcher_input status"

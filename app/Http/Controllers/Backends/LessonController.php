@@ -364,4 +364,25 @@ class LessonController extends Controller
 
         return response()->json($output);
     }
+
+    public function updateStatusFree(Request $request)
+    {
+        try {
+            DB::beginTransaction();
+
+            $lesson = Lesson::findOrFail($request->id);
+            $lesson->isfree = $lesson->isfree == 1 ? 0 : 1;
+            $lesson->save();
+
+            $output = ['status' => 1, 'msg' => __('Status updated')];
+
+            DB::commit();
+        } catch (Exception $e) {
+
+            $output = ['status' => 0, 'msg' => __('Something went wrong')];
+            DB::rollBack();
+        }
+
+        return response()->json($output);
+    }
 }

@@ -45,6 +45,9 @@ use App\Http\Controllers\Backends\HeaderController;
 use App\Http\Controllers\Backends\NavigationController;
 use App\Http\Controllers\Backends\PartnerCategoryController;
 use App\Http\Controllers\Backends\ServiceForVisitorController;
+use App\Http\Controllers\Web\Auth\LoginController as AuthLoginController;
+use App\Http\Controllers\Website\AccountController;
+use App\Http\Controllers\Website\Auth\LoginController as WebsiteAuthLoginController;
 use App\Http\Controllers\Website\HomeController as WebsiteHomeController;
 use App\Http\Controllers\Website\CourseController as WebsiteCourseController;
 use App\Http\Controllers\Website\ContactController as WebsiteContactController;
@@ -76,6 +79,7 @@ Auth::routes();
 
 // save temp file
 Route::post('save_temp_file', [FileManagerController::class, 'saveTempFile'])->name('save_temp_file');
+Route::get('remove_temp_file', [FileManagerController::class, 'removeTempFile'])->name('remove_temp_file');
 
 // Route::get('/', function () {
 //     return view('website.app');
@@ -84,6 +88,14 @@ Route::post('save_temp_file', [FileManagerController::class, 'saveTempFile'])->n
 
 Route::middleware(['SetFrontendSession'])->group(function () {
     Route::get('/', [WebsiteHomeController::class, 'index'])->name('home');
+
+    Route::post('/web/login', [WebsiteAuthLoginController::class, 'login'])->name('web.login');
+    Route::get('/web/logout', [WebsiteAuthLoginController::class, 'logout'])->name('web.logout');
+
+    // Account page
+    Route::get('/account/profile', [AccountController::class, 'profile'])->name('account.profile');
+    Route::put('/account/profile/{id}/update', [AccountController::class, 'profileUpdate'])->name('account.profile.update');
+    Route::post('/account/profile/store', [AccountController::class, 'profileStore'])->name('account.profile.store');
 
     Route::get('/course-detail',[WebsiteCourseController::class,'index'])->name('coursedetail');
     Route::get('/course/{slug}', [WebsiteCourseController::class, 'show'])->name('course.show');
@@ -147,6 +159,7 @@ Route::middleware(['auth', 'CheckUserLogin', 'SetSessionData'])->group(function 
         Route::resource('lesson-category', LessonCategoryController::class);
 
         Route::get('lesson/update_status', [LessonController::class, 'updateStatus'])->name('lesson.update_status');
+        Route::get('lesson/update_status_free', [LessonController::class, 'updateStatusFree'])->name('lesson.update_status_free');
         Route::resource('lesson', LessonController::class);
 
 
