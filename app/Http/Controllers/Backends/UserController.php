@@ -15,6 +15,16 @@ use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller
 {
+    public $status;
+    public function __construct()
+    {
+        $this->status = [
+            'request' => __('Request'),
+            'confirmed' => __('Confirm'),
+            'rejected' => __('Reject')
+        ];
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -22,13 +32,15 @@ class UserController extends Controller
      */
     public function index(Request $request)
     {
+
         $users = User::when($request->start_date && $request->end_date, function ($query) use ($request) {
             $query->whereDate('created_at', '>=', $request->start_date)
                 ->whereDate('created_at', '<=', $request->end_date);
         })
             ->latest('id')
             ->paginate(10);
-        return view('backends.user.index', compact('users'));
+        $data['status'] = $this->status;
+        return view('backends.user.index', compact('users'), $data);
     }
 
     /**
@@ -38,8 +50,8 @@ class UserController extends Controller
      */
     public function create()
     {
-        $roles = Role::select('name','id')
-                ->pluck('name','id');
+        $roles = Role::select('name', 'id')
+            ->pluck('name', 'id');
 
         return view('backends.user.create', compact('roles'));
     }
@@ -65,9 +77,9 @@ class UserController extends Controller
 
         if ($validator->fails()) {
             return redirect()->back()
-                    ->withErrors($validator)
-                    ->withInput()
-                    ->with(['success' => 0, 'msg' => __('Invalid form input')]);
+                ->withErrors($validator)
+                ->withInput()
+                ->with(['success' => 0, 'msg' => __('Invalid form input')]);
         }
 
         try {
@@ -127,8 +139,8 @@ class UserController extends Controller
     public function edit($id)
     {
         $user = User::findOrFail($id);
-        $roles = Role::select('name','id')
-                ->pluck('name','id');
+        $roles = Role::select('name', 'id')
+            ->pluck('name', 'id');
         return view('backends.user.edit', compact('user', 'roles'));
     }
 
@@ -157,9 +169,9 @@ class UserController extends Controller
 
         if ($validator->fails()) {
             return redirect()->back()
-                    ->withErrors($validator)
-                    ->withInput()
-                    ->with(['success' => 0, 'msg' => __('Invalid form input')]);
+                ->withErrors($validator)
+                ->withInput()
+                ->with(['success' => 0, 'msg' => __('Invalid form input')]);
         }
 
         try {
@@ -246,5 +258,30 @@ class UserController extends Controller
         }
 
         return response()->json($output);
+    }
+
+    public function ChangeUserStatus(Request $request)
+    {
+
+        DB::beginTransaction();
+        // dd($request->all());
+        $user = User::findOrFail($request->id);
+        if ($user->status == 'confirmed') {
+
+            return response()->json([
+                'success' => false,
+                'msg' => 'Unable to change status. This  user has already confirmed!'
+            ]);
+        }
+        $user->status =  $request->selected_status;
+        $user->save();
+
+        DB::commit();
+        if ($request->ajax()) {
+            return response()->json([
+                'success' => true,
+                'msg' => 'Updated status successfully.'
+            ]);
+        }
     }
 }

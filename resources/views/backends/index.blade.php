@@ -92,7 +92,7 @@
                             </div>
                         </div>
                         <div class="inner text-right">
-                            <h4>{{ 10 }}</h4>
+                            <h4>{{ $totalusers }}</h4>
                             <p class="m-0 text-uppercase">{{ __('Total User') }}</p>
                         </div>
                     </div>
@@ -132,65 +132,77 @@
                     </div>
                 </div>
 
-                <div class="col-md-6">
-                    <div class="card card-primary card-outline">
-                        <div class="card-header">
-                            <h3 class="card-title">
-                                <i class="far fa-chart-bar"></i>
-                                Bar Chart
-                            </h3>
-                            <div class="card-tools">
-                                <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                                    <i class="fas fa-minus"></i>
-                                </button>
-                                <button type="button" class="btn btn-tool" data-card-widget="remove">
-                                    <i class="fas fa-times"></i>
-                                </button>
+                <section class=" col-md-12 ">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="card card-primary card-outline">
+                                <div class="card-header">
+                                    <h3 class="card-title">
+                                        <i class="far fa-chart-bar"></i>
+                                        Top Views
+                                    </h3>
+                                    <div class="card-tools">
+                                        <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                                            <i class="fas fa-minus"></i>
+                                        </button>
+                                        <button type="button" class="btn btn-tool" data-card-widget="remove">
+                                            <i class="fas fa-times"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                    <canvas id="bar-chartTopviews" style="height: 400px;"></canvas>
+                                </div>
+
                             </div>
                         </div>
-                        <div class="card-body">
-                            <div id="bar-chart" style="height: 300px; padding: 0px; position: relative;"><canvas
-                                    class="flot-base" width="527" height="375"
-                                    style="direction: ltr; position: absolute; left: 0px; top: 0px; width: 421.6px; height: 300px;"></canvas><canvas
-                                    class="flot-overlay" width="527" height="375"
-                                    style="direction: ltr; position: absolute; left: 0px; top: 0px; width: 421.6px; height: 300px;"></canvas>
-                                <div class="flot-svg"
-                                    style="position: absolute; top: 0px; left: 0px; height: 100%; width: 100%; pointer-events: none;">
-                                    <svg style="width: 100%; height: 100%;">
-                                        <g class="flot-x-axis flot-x1-axis xAxis x1Axis"
-                                            style="position: absolute; inset: 0px;"><text x="83.13203048706055" y="294"
-                                                class="flot-tick-label tickLabel"
-                                                style="position: absolute; text-align: center;">February</text><text
-                                                x="158.14999885559084" y="294" class="flot-tick-label tickLabel"
-                                                style="position: absolute; text-align: center;">March</text><text
-                                                x="227.91875019073487" y="294" class="flot-tick-label tickLabel"
-                                                style="position: absolute; text-align: center;">April</text><text
-                                                x="295.2519527435303" y="294" class="flot-tick-label tickLabel"
-                                                style="position: absolute; text-align: center;">May</text><text
-                                                x="20.69218711853027" y="294" class="flot-tick-label tickLabel"
-                                                style="position: absolute; text-align: center;">January</text><text
-                                                x="357.73203163146974" y="294" class="flot-tick-label tickLabel"
-                                                style="position: absolute; text-align: center;">June</text></g>
-                                        <g class="flot-y-axis flot-y1-axis yAxis y1Axis"
-                                            style="position: absolute; inset: 0px;"><text x="8.952343940734863" y="269"
-                                                class="flot-tick-label tickLabel"
-                                                style="position: absolute; text-align: right;">0</text><text
-                                                x="8.952343940734863" y="205.5" class="flot-tick-label tickLabel"
-                                                style="position: absolute; text-align: right;">5</text><text x="1"
-                                                y="15" class="flot-tick-label tickLabel"
-                                                style="position: absolute; text-align: right;">20</text><text x="1"
-                                                y="142" class="flot-tick-label tickLabel"
-                                                style="position: absolute; text-align: right;">10</text><text x="1"
-                                                y="78.5" class="flot-tick-label tickLabel"
-                                                style="position: absolute; text-align: right;">15</text></g>
-                                    </svg>
+                        <div class="col-md-6">
+                            <div class="card card-primary card-outline">
+                                <div class="card-header">
+                                    <h3 class="card-title">
+                                        <i class="far fa-chart-bar"></i>
+                                        Top Views of Month
+                                    </h3>
+                                    <div class="card-tools">
+                                        <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                                            <i class="fas fa-minus"></i>
+                                        </button>
+                                        <button type="button" class="btn btn-tool" data-card-widget="remove">
+                                            <i class="fas fa-times"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                    <canvas id="bar-chartcountbymonth" style="height: 400px;"></canvas>
+                                </div>
+
+                            </div>
+                        </div>
+                        {{-- <div class="col-md-6">
+                            <div class="card card-primary card-outline">
+                                <div class="card-header">
+                                    <h3 class="card-title">
+                                        <i class="far fa-chart-bar"></i>
+                                        Top Views of month
+                                    </h3>
+                                    <div class="card-tools">
+                                        <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                                            <i class="fas fa-minus"></i>
+                                        </button>
+                                        <button type="button" class="btn btn-tool" data-card-widget="remove">
+                                            <i class="fas fa-times"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                    <canvas id="myChart" width="1448" height="730px"
+                                        style="display: block; height: 579px; width: 1159px;"></canvas>
                                 </div>
                             </div>
-                        </div>
-
+                        </div> --}}
                     </div>
-                </div>
-                <section class="card col-md-12 ">
+                </section>
+                {{-- <section class="card col-md-12 ">
                     <div class="card-body ">
                         <div class="chartjs-size-monitor"
                             style="position: absolute; inset: 0px; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;">
@@ -206,34 +218,149 @@
                         <canvas id="myChart" width="1448" height="723"
                             style="display: block; height: 579px; width: 1159px;" class="chartjs-render-monitor"></canvas>
                     </div>
-                </section>
+                </section> --}}
             </div>
         </div>
     </div>
 @endsection
 @push('js')
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        var ctx = document.getElementById('bar-chart').getContext('2d');
-        var myChart = new Chart(ctx, {
-            type: 'bar',
-            data: {
-                labels: ['Category 1', 'Category 2', 'Category 3'],
-                datasets: [{
-                    label: 'Total Views',
-                    data: [1500, 3000, 1200],
-                    backgroundColor: 'skyblue'
-                }]
-            },
-            options: {
-                responsive: true,
-                scales: {
-                    y: {
-                        beginAtZero: true
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var ctx = document.getElementById('bar-chartTopviews').getContext('2d');
+            var rankedLessons = @json($rankedLessons); // Convert PHP array to JavaScript array
+
+            var lessonTitles = [];
+            var lessonViews = [];
+
+            // Extract lesson titles and views for top 5 lessons
+            rankedLessons.forEach(function(lesson) {
+                lessonTitles.push(lesson.title);
+                lessonViews.push(lesson.total_views);
+            });
+
+            var myChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: [
+                        'Top 1', 'Top 2', 'Top 3', 'Top 4', 'Top 5'
+                    ],
+                    datasets: [{
+                        label: 'Top Lessons by Views',
+                        data: lessonViews,
+                        backgroundColor: [
+                            'rgba(31, 58, 147, 1)',
+                            'rgba(37, 116, 169, 1)',
+                            'rgba(92, 151, 191, 1)',
+                            'rgb(200, 247, 197)',
+                            'rgb(77, 175, 124)',
+                            'rgb(30, 130, 76)'
+                        ],
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    },
+                    plugins: {
+                        tooltip: {
+                            callbacks: {
+                                label: function(tooltipItem) {
+                                    var index = tooltipItem.dataIndex;
+                                    var value = tooltipItem.raw;
+                                    return lessonTitles[index] + ': ' + value;
+                                }
+                            }
+                        }
                     }
                 }
-            }
+            });
         });
-    });
-</script>
+    </script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var ctx = document.getElementById('bar-chartcountbymonth').getContext('2d');
+            var topLessons = @json($topLessons); // Convert PHP array to JavaScript array
+            var viewsByMonth = @json($viewsByMonth); 
+
+            var lessonTitles = [];
+            var lessonViews = [];
+
+            // Extract lesson titles and views for top 5 lessons
+            topLessons.forEach(function(lesson) {
+                lessonTitles.push(lesson.title);
+                lessonViews.push(lesson.total_views);
+            });
+
+            // Initialize an array to store total views by month (Jan to Dec)
+            var dataByMonth = Array(12).fill(0);
+
+            // Map the viewsByMonth data to the correct month index
+            viewsByMonth.forEach(function(item) {
+                dataByMonth[item.month - 1] = item.total_views;
+            });
+
+            // Configuration options for the chart
+            var config = {
+                type: 'bar',
+                data: {
+                    labels: [
+                        'Top 1', 'Top 2', 'Top 3', 'Top 4', 'Top 5'
+                    ],
+                    datasets: [{
+                        label: 'Top Lessons by Views',
+                        data: lessonViews,
+                        backgroundColor: [
+                            'rgba(255, 99, 132, 0.5)', // Red
+                            'rgba(54, 162, 235, 0.5)', // Blue
+                            'rgba(255, 206, 86, 0.5)', // Yellow
+                            'rgba(75, 192, 192, 0.5)', // Teal
+                            'rgba(153, 102, 255, 0.5)' // Purple
+                        ],
+
+                    }, {
+                        label: 'Views by Month',
+                        data: dataByMonth,
+                        backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                        borderColor: 'rgba(255, 99, 132, 1)',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    },
+                    plugins: {
+                        tooltip: {
+                            callbacks: {
+                                label: function(tooltipItem) {
+                                    var dataset = tooltipItem.dataset;
+                                    var index = tooltipItem.dataIndex;
+                                    var label = dataset.label ? dataset.label : '';
+                                    var value = dataset.data[index];
+                                    if (label === 'Views by Month') {
+                                        return 'Views in Month ' + (index + 1) + ': ' + value;
+                                    } else {
+                                        return lessonTitles[index] + ': ' + value;
+                                    }
+                                }
+                            }
+                        },
+                        legend: {
+                            display: false // Hide the legend
+                        }
+                    }
+                }
+            };
+
+            // Initialize the chart
+            var myChart = new Chart(ctx, config);
+        });
+    </script>
 @endpush

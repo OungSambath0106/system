@@ -133,6 +133,8 @@ Route::middleware(['auth', 'CheckUserLogin', 'SetSessionData'])->group(function 
         });
 
         Route::resource('user', UserController::class);
+        Route::post('user/change-status', [UserController::class, 'ChangeUserStatus'])->name('user_change_status');
+
         Route::resource('role', RoleController::class);
         Route::resource('header', NavigationController::class);
 
@@ -148,7 +150,7 @@ Route::middleware(['auth', 'CheckUserLogin', 'SetSessionData'])->group(function 
 
         Route::get('lesson/update_status', [LessonController::class, 'updateStatus'])->name('lesson.update_status');
         Route::resource('lesson', LessonController::class);
-
+        // Route::get('/dashboard', [DashboardController::class, 'topViews'])->name('dashboard');
 
         Route::get('/contact-us', [ContactController::class, 'index'])->name('contact.index');
         //click reply sms//
