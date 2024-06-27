@@ -29,10 +29,15 @@
 
     .preview {
         width: 150px !important;
+        height: 150px !important;
         border: none !important;
         border-radius: 50% !important;
         outline: 2px solid blue;
         outline-offset: 3px;
+    }
+
+    #imagePreviewFront {
+        object-fit: cover !important;
     }
 
     .update_image_front {
@@ -150,5 +155,39 @@
         event.preventDefault(); // Prevent the default link behavior
         $('#staticBackdrop').modal('hide'); // Hide the current modal
         $('#modalRegister').modal('show'); // Show the new modal
+    });
+    document.getElementById('showLoginModal').addEventListener('click', function(event) {
+        event.preventDefault(); // Prevent the default link behavior
+        $('#modalRegister').modal('hide'); // Hide the current modal
+        $('#staticBackdrop').modal('show'); // Show the new modal
+    });
+</script>
+<script>
+    function triggerFileInputFront() {
+        document.getElementById('exampleInputFileFront').click();
+    }
+
+    function previewImageFront(event) {
+        var reader = new FileReader();
+        reader.onload = function() {
+            var output = document.getElementById('imagePreviewFront');
+            output.src = reader.result;
+        };
+        reader.readAsDataURL(event.target.files[0]);
+    }
+</script>
+
+<!-- Script to close the modal -->
+<script>
+    $(document).ready(function() {
+        $('.cus-login-close-btn').click(function() {
+            $('#modalRegister').modal('hide');
+        });
+    });
+
+    $(document).ready(function() {
+        $('.cus-login-close-btn').click(function() {
+            $('#staticBackdrop').modal('hide');
+        });
     });
 </script>

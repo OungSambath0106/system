@@ -1,11 +1,17 @@
 <style>
-    @media (max-width: 767.9px) {
+    @media (max-width: 991.9px) {
         .col-4 {
             width: 100%;
         }
 
         .btn-save-register {
             width: 100% !important;
+        }
+    }
+
+    @media (min-width: 768px) {
+        .col-md-6 {
+            padding-right: 0;
         }
     }
 
@@ -25,8 +31,7 @@
 
             <div class="modal-header bg-style-1">
                 <h5 class="modal-title text-uppercase" id="staticBackdropLabel">{{ __('Register') }}</h5>
-                <button type="button" class="close text-white cus-login-close-btn" data-dismiss="modal"
-                    aria-label="Close">
+                <button type="button" class="close cus-login-close-btn" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true" class="cus-login-close">&times;</span>
                 </button>
             </div>
@@ -39,23 +44,22 @@
                         <div class="form-group col-4 mb-3 text-center d-flex justify-content-center align-items-center">
                             <div class="input-group d-none">
                                 <div class="custom-file">
-                                    <input type="hidden" name="image_names" class="image_names_hidden">
-                                    <input type="file" class="register-profile-input" id="exampleInputFile"
-                                        name="image" accept="image/png, image/jpeg">
+                                    <input type="file" class="register-profile-input" id="exampleInputFileFront"
+                                        name="image" accept="image/png, image/jpeg"
+                                        onchange="previewImageFront(event)">
                                     <label class="custom-file-label"
                                         for="exampleInputFile">{{ $user->image ?? __('Choose file') }}</label>
                                 </div>
                             </div>
-                            <div class="preview preview-multiple text-center border rounded mt-2 w-100" style="">
-                                <div class="update_image h-100 update_image_front">
-                                    <img src="{{ asset('uploads/default-profile.png') }}" height="100%" width="100%"
+                            <div class="preview preview-front preview-multiple text-center border rounded mt-2 w-100">
+                                <div class="update_image h-100 update_image_front" onclick="triggerFileInputFront()">
+                                    <img id="imagePreviewFront" src="{{ asset('uploads/default-profile.png') }}"
                                         alt="">
                                 </div>
-
                             </div>
                         </div>
 
-                        <div class="col-12 col-xs-12 col-sm-12 col-md-8 col-lg-8">
+                        <div class="col-12 col-xs-12 col-sm-12 col-md-12 col-lg-8">
                             <div class="row">
                                 <div class="col-12 col-xs-12 col-sm-6 col-md-6 col-lg-6 mb-2">
                                     <div class="form-group">
@@ -146,6 +150,10 @@
                             <button type="submit" id="submit" class="btn btn-save-register float-right"
                                 style="width: 30%"> <i class="fas fa-save"></i> {{ __('Save') }}</button>
                         </div>
+                        <p class="text-center pt-3">Already have an account?
+                            <a href="#" id="showLoginModal" style="text-decoration: none;"
+                                data-dismiss="modal" aria-label="Close"> Sign in </a>
+                        </p>
                     </div>
                 </form>
             </div>

@@ -1,3 +1,8 @@
+<style>
+    .img-circle {
+        object-fit: cover;
+    }
+</style>
 <nav class="main-header navbar navbar-expand navbar-white navbar-light">
     <!-- Left navbar links -->
     <ul class="navbar-nav">
@@ -141,34 +146,33 @@
 
 {{-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> --}}
 @push('js')
-<script>
-    $(document).ready(function() {
-        // Function to update unread count
-        function updateUnreadCount() {
-            $.ajax({
-                url: "{{ route('admin.unread.messages.count') }}",
-                type: "GET",
-                dataType: "json",
-                success: function(response) {
-                    // Update the unread count in the badge
-                    $('.navbar-badge').text(response.unread_count);
-                },
-                error: function(xhr, status, error) {
-                    console.error("Error fetching unread count:", error);
-                }
-            });
-        }
+    <script>
+        $(document).ready(function() {
+            // Function to update unread count
+            function updateUnreadCount() {
+                $.ajax({
+                    url: "{{ route('admin.unread.messages.count') }}",
+                    type: "GET",
+                    dataType: "json",
+                    success: function(response) {
+                        // Update the unread count in the badge
+                        $('.navbar-badge').text(response.unread_count);
+                    },
+                    error: function(xhr, status, error) {
+                        console.error("Error fetching unread count:", error);
+                    }
+                });
+            }
 
-        // Initially fetch and update unread count with a delay
-        setTimeout(function() {
-            updateUnreadCount();
-        }, 3000); // 3 seconds delay
+            // Initially fetch and update unread count with a delay
+            setTimeout(function() {
+                updateUnreadCount();
+            }, 3000); // 3 seconds delay
 
-        // Set interval to update unread count every 30 seconds (adjust as needed)
-        setInterval(function() {
-            updateUnreadCount();
-        }, 15000); // 30 seconds interval
-    });
-</script>
+            // Set interval to update unread count every 30 seconds (adjust as needed)
+            setInterval(function() {
+                updateUnreadCount();
+            }, 15000); // 30 seconds interval
+        });
+    </script>
 @endpush
-
