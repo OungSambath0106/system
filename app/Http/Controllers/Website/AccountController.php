@@ -120,6 +120,7 @@ class AccountController extends Controller
             return redirect()->route('home')->with($output);
 
         } catch (Exception $e) {
+            // dd($e);
             DB::rollBack();
             $output = [
                 'success' => false,
