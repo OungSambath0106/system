@@ -106,18 +106,20 @@ class AccountController extends Controller
                 $user->password = Hash::make($request['password']);
             }
             $user->assignRole('normal-user');
+            $user->status = 'request';
 
             if ($request->hasFile('image')) {
                 $user->image = ImageManager::update('uploads/users/', $user->image, $request->image);
             }
 
             $user->save();
-            Auth::attempt(['email' => $user->email, 'password' => $request['password']]);
+            // Auth::attempt(['email' => $user->email, 'password' => $request['password']]);
 
             DB::commit();
 
-            $output = ['success' =>true, 'msg' => __('Store successfully')];
-            return redirect()->route('home')->with($output);
+            // $output = ['success' =>true, 'msg' => __('Register successfully. Please wait approve by admin')];
+            // return redirect()->route('home')->with($output);
+            return redirect()->back()->with(['success' => 1, 'msg' => __('Your account has been register. Please wait for admin approval.')]);
 
         } catch (Exception $e) {
             // dd($e);
