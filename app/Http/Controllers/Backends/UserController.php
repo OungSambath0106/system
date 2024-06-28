@@ -9,6 +9,7 @@ use App\helpers\ImageManager;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\DB;
 use Spatie\Permission\Models\Role;
+use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -250,7 +251,7 @@ class UserController extends Controller
             ];
         } catch (Exception $e) {
             DB::rollBack();
-
+          //  Log::error('Error deleting user: ' . $e->getMessage());
             $output = [
                 'status' => 0,
                 'msg' => __('Something when wrong')
