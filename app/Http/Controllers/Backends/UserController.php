@@ -40,8 +40,13 @@ class UserController extends Controller
         })
             ->latest('id')
             ->paginate(10);
-        $data['status'] = $this->status;
-        return view('backends.user.index', compact('users'), $data);
+        // $data['status'] = $this->status;
+        $data = [
+            'users' => $users,
+            'status' => $this->status
+        ];
+        // return view('backends.user.index', compact('users'), $data);
+        return view('backends.user.index', $data);
     }
 
     /**
@@ -250,6 +255,7 @@ class UserController extends Controller
                 'msg' => __('User Deleted successfully')
             ];
         } catch (Exception $e) {
+            // dd($e);
             DB::rollBack();
           //  Log::error('Error deleting user: ' . $e->getMessage());
             $output = [
