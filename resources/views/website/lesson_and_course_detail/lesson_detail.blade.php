@@ -59,38 +59,42 @@
                                 <h3 class="mt-1">Up Next</h3>
                             </div>
                             <div class="card-body">
-                                @foreach ($lessons as $otherLesson)
-                                    @if ($otherLesson->id !== $lesson->id)
-                                        <div class="col-12 shadow rounded">
-                                            <div class="d-flex justify-content-center">
-                                                <div class="listimg p-2">
-                                                    <img width="100%"
-                                                        src="{{ asset('uploads/lessons/' . $otherLesson->thumbnail) }}"
-                                                        alt="Not found">
-                                                    @if (Auth::check() || $otherLesson->isfree == 1)
-                                                        <a href="{{ route('lesson.detail', $otherLesson->slug) }}"
-                                                            class="menuplayvideo">
-                                                            <i class="fa-solid fa-play fa-lg" style="color: white"></i>
-                                                        </a>
-                                                    @else
-                                                        <a href="#" class="menuplayvideo" data-toggle="modal"
-                                                            data-target="#staticBackdrop">
-                                                            <i class="fa-solid fa-play fa-lg" style="color: white"></i>
-                                                        </a>
-                                                    @endif
-                                                </div>
-                                                <div class="body-text">
-                                                    <div class="card-tittle">
-                                                        <h4> {{ $otherLesson->title }} </h4>
+                                @if ($lessons->count() <= 1)
+                                    <h5 class="text-center">No lessons available</h5>
+                                @else
+                                    @foreach ($lessons as $otherLesson)
+                                        @if ($otherLesson->id !== $lesson->id)
+                                            <div class="col-12 shadow rounded">
+                                                <div class="d-flex justify-content-center">
+                                                    <div class="listimg p-2">
+                                                        <img width="100%"
+                                                            src="{{ asset('uploads/lessons/' . $otherLesson->thumbnail) }}"
+                                                            alt="Not found">
+                                                        @if (Auth::check() || $otherLesson->isfree == 1)
+                                                            <a href="{{ route('lesson.detail', $otherLesson->slug) }}"
+                                                                class="menuplayvideo">
+                                                                <i class="fa-solid fa-play fa-lg" style="color: white"></i>
+                                                            </a>
+                                                        @else
+                                                            <a href="#" class="menuplayvideo" data-toggle="modal"
+                                                                data-target="#staticBackdrop">
+                                                                <i class="fa-solid fa-play fa-lg" style="color: white"></i>
+                                                            </a>
+                                                        @endif
                                                     </div>
-                                                    <div class="discription">
-                                                        <p> {!! $otherLesson->description !!} </p>
+                                                    <div class="body-text">
+                                                        <div class="card-tittle">
+                                                            <h4> {{ $otherLesson->title }} </h4>
+                                                        </div>
+                                                        <div class="discription">
+                                                            <p> {!! $otherLesson->description !!} </p>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                    @endif
-                                @endforeach
+                                        @endif
+                                    @endforeach
+                                @endif
                             </div>
                         </div>
                     </div>

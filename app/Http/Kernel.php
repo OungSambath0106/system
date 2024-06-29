@@ -68,5 +68,6 @@ class Kernel extends HttpKernel
         'CheckUserLogin' => \App\Http\Middleware\CheckUserLogin::class,
         'SetSessionData' => \App\Http\Middleware\SetSessionData::class,
         'SetFrontendSession' => \App\Http\Middleware\SetFrontendSession::class,
+        'admin' => \App\Http\Middleware\AdminMiddleware::class,
     ];
 }
