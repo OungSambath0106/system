@@ -120,7 +120,7 @@ Route::get('remove_temp_file', [FileManagerController::class, 'removeTempFile'])
 // back-end
 Route::middleware(['auth', 'CheckUserLogin', 'SetSessionData'])->group(function () {
 
-    Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
+    Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth', 'admin']], function () {
         Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
         // setting
