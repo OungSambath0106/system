@@ -126,6 +126,18 @@
                                             </div>
                                         </div>
                                     </div>
+                                    <div class="form-group col-md-6 ">
+                                        <label class="required_lable">{{ __('Publish Date') }}</label>
+                                        <input type="date"
+                                            class="form-control @error('publish_date') is-invalid @enderror"
+                                            value="{{ old('publish_date', $course->publish_date) }}" name="publish_date"
+                                            placeholder="{{ __('Enter Publish Date') }}">
+                                        @error('publish_date')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -148,7 +160,7 @@
 
 @push('js')
     <script>
-        $('.custom-file-input').change(function (e) {
+        $('.custom-file-input').change(function(e) {
             var reader = new FileReader();
             var preview = $(this).closest('.form-group').find('.preview img');
             reader.onload = function(e) {

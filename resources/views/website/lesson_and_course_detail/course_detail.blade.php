@@ -31,7 +31,10 @@
                             alt="" class="card-img-top">
                         <div class="card-body">
                             <h4 class="card-title m-0">{{ $course->title }}</h4>
-                            <span class="date">Publish date {{ $course->created_at->format('d-m-Y') }}</span>
+                            {{-- <span class="date">Publish date {{ $course->created_at->format('d-m-Y') }}</span> --}}
+                            <span class="date">Publish date
+                                {{ \Carbon\Carbon::parse($course->publish_date)->format('d-m-Y') }}
+                            </span>
                             <p class="card-text mt-3">{{ $course->description }}</p>
                         </div>
                     </div>

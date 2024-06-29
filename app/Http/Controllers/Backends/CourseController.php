@@ -53,7 +53,6 @@ class CourseController extends Controller
         $validator = Validator::make($request->all(), [
             'title' => 'required',
             'description' => 'required',
-            'image' => 'nullable',
 
         ]);
 
@@ -88,6 +87,7 @@ class CourseController extends Controller
             $course->title = $request->title[array_search('en', $request->lang)];
             $course->slug = Str::slug($course->title . '-');
             $course->description = $request->description[array_search('en', $request->lang)];
+            $course->publish_date = $request->publish_date;
 
             if ($request->hasFile('image')) {
                 $course->image = ImageManager::upload('uploads/course/', $request->image);
@@ -208,6 +208,7 @@ class CourseController extends Controller
             $course->title = $request->title[array_search('en', $request->lang)];
             $course->slug = Str::slug($course->title . '-');
             $course->description = $request->description[array_search('en', $request->lang)];
+            $course->publish_date = $request->publish_date;
 
             if ($request->hasFile('image')) {
                 $course->image = ImageManager::update('uploads/course/', $course->image, $request->image);
