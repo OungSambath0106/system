@@ -417,6 +417,22 @@
                                                 </div>
                                             </div>
                                         </div>
+                                         <div class="col-md-3">
+                                            <div class="form-group">
+                                                <div class="input-group mb-3">
+                                                    <div class="d-flex align-items-center">
+                                                        <label class="switch">
+                                                            <input type="checkbox" id="edit_status" name="permissions[]"
+                                                              @if (in_array('lesson.status', $role_permissions)) checked @endif
+                                                                value="lesson.status">
+                                                            <span class="slider round"></span>
+                                                        </label>
+                                                        <label class="ml-2"
+                                                            for="edit_status">{{ __('Edit Status') }}</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                     <hr>
                                 </div>

@@ -245,7 +245,7 @@
                         'Top 1', 'Top 2', 'Top 3', 'Top 4', 'Top 5'
                     ],
                     datasets: [{
-                        label: 'Top Lessons by Views',
+                        label: 'Top Lessons Views',
                         data: lessonViews,
                         backgroundColor: [
                             'rgba(31, 58, 147, 1)',
@@ -284,7 +284,7 @@
         document.addEventListener('DOMContentLoaded', function() {
             var ctx = document.getElementById('bar-chartcountbymonth').getContext('2d');
             var topLessons = @json($topLessons); // Convert PHP array to JavaScript array
-            var viewsByMonth = @json($viewsByMonth); 
+            var viewsByMonth = @json($viewsByMonth);
 
             var lessonTitles = [];
             var lessonViews = [];

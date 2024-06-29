@@ -12,19 +12,20 @@ use Spatie\Permission\Models\Role;
 use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Lang;
 use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller
 {
     public $status;
-    public function __construct()
-    {
-        $this->status = [
-            'request' => __('Request'),
-            'confirmed' => __('Confirm'),
-            'rejected' => __('Reject')
-        ];
-    }
+    // public function __construct()
+    // {
+    //     $this->status = [
+    //         'request' => __('Request'),
+    //         'confirmed' => __('Confirm'),
+    //         'rejected' => __('Reject')
+    //     ];
+    // }
 
     /**
      * Display a listing of the resource.
@@ -33,7 +34,7 @@ class UserController extends Controller
      */
     public function index(Request $request)
     {
-
+        $status = ['confirmed' => 'Confirm', 'rejected' => 'Reject', 'request' => 'Request'];
         $users = User::when($request->start_date && $request->end_date, function ($query) use ($request) {
             $query->whereDate('created_at', '>=', $request->start_date)
                 ->whereDate('created_at', '<=', $request->end_date);
@@ -41,12 +42,12 @@ class UserController extends Controller
             ->latest('id')
             ->paginate(10);
         // $data['status'] = $this->status;
-        $data = [
-            'users' => $users,
-            'status' => $this->status
-        ];
-        // return view('backends.user.index', compact('users'), $data);
-        return view('backends.user.index', $data);
+        // $data = [
+        //     'users' => $users,
+        //     'status' => $this->status
+        // ];
+        return view('backends.user.index', compact('users', 'status'));
+        // return view('backends.user.index', $data);
     }
 
     /**
@@ -252,15 +253,15 @@ class UserController extends Controller
             $output = [
                 'status' => 1,
                 'view'  => $view,
-                'msg' => __('User Deleted successfully')
+                'msg' => trans('User Deleted successfully')
             ];
         } catch (Exception $e) {
             // dd($e);
             DB::rollBack();
-          //  Log::error('Error deleting user: ' . $e->getMessage());
+            Log::error('Error deleting user: ' . $e->getMessage());
             $output = [
                 'status' => 0,
-                'msg' => __('Something when wrong')
+                'msg' => trans('Something when wrong')
             ];
         }
 

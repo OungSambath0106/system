@@ -21,22 +21,27 @@
                         {{ Str::limit($lesson->description, 40) }}
                     </td> --}}
                     <td>
-                        <div class="custom-control custom-switch">
-                            <input type="checkbox" class="custom-control-input switcher_input isfree"
-                                id="isfree_{{ $lesson->id }}" data-id="{{ $lesson->id }}"
-                                {{ $lesson->isfree == 1 ? 'checked' : '' }} name="isfree">
-                            <label class="custom-control-label" for="isfree_{{ $lesson->id }}"></label>
-                        </div>
+                        @if (auth()->user()->can('lesson.status'))
+                            <div class="custom-control custom-switch">
+                                <input type="checkbox" class="custom-control-input switcher_input isfree"
+                                    id="isfree_{{ $lesson->id }}" data-id="{{ $lesson->id }}"
+                                    {{ $lesson->isfree == 1 ? 'checked' : '' }} name="isfree">
+                                <label class="custom-control-label" for="isfree_{{ $lesson->id }}"></label>
+                            </div>
+                        @endif
                     </td>
                     <td>
-                        <div class="custom-control custom-switch">
-                            <input type="checkbox" class="custom-control-input switcher_input status"
-                                id="status_{{ $lesson->id }}" data-id="{{ $lesson->id }}"
-                                {{ $lesson->status == 1 ? 'checked' : '' }} name="status">
-                            <label class="custom-control-label" for="status_{{ $lesson->id }}"></label>
-                        </div>
+                        @if (auth()->user()->can('lesson.status'))
+                            <div class="custom-control custom-switch">
+                                <input type="checkbox" class="custom-control-input switcher_input status"
+                                    id="status_{{ $lesson->id }}" data-id="{{ $lesson->id }}"
+                                    {{ $lesson->status == 1 ? 'checked' : '' }} name="status">
+                                <label class="custom-control-label" for="status_{{ $lesson->id }}"></label>
+                            </div>
+                        @endif
                     </td>
                     <td>
+
                         @if (auth()->user()->can('lesson.edit'))
                             <a href="{{ route('admin.lesson.edit', $lesson->id) }}"
                                 class="btn btn-info btn-sm btn-edit">

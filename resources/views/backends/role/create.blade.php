@@ -401,6 +401,21 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        <div class="col-md-3">
+                                            <div class="form-group">
+                                                <div class="input-group mb-3">
+                                                    <div class="d-flex align-items-center">
+                                                        <label class="switch">
+                                                            <input type="checkbox" id="edit_status" name="permissions[]"
+                                                                value="lesson.status">
+                                                            <span class="slider round"></span>
+                                                        </label>
+                                                        <label class="ml-2"
+                                                            for="edit_status">{{ __('Edit Status') }}</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                     <hr>
                                 </div>
@@ -500,8 +515,8 @@
                                                 <div class="input-group mb-3">
                                                     <div class="d-flex align-items-center">
                                                         <label class="switch">
-                                                            <input type="checkbox" id="message_reply" name="permissions[]"
-                                                                value="message.reply">
+                                                            <input type="checkbox" id="message_reply"
+                                                                name="permissions[]" value="message.reply">
                                                             <span class="slider round"></span>
                                                         </label>
                                                         <label class="ml-2"
@@ -539,8 +554,8 @@
                                                 <div class="input-group mb-3">
                                                     <div class="d-flex align-items-center">
                                                         <label class="switch">
-                                                            <input type="checkbox" id="configemail_view" name="permissions[]"
-                                                                value="configemail.view">
+                                                            <input type="checkbox" id="configemail_view"
+                                                                name="permissions[]" value="configemail.view">
                                                             <span class="slider round"></span>
                                                         </label>
                                                         <label class="ml-2"
