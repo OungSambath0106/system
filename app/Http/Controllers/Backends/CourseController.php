@@ -204,6 +204,7 @@ class CourseController extends Controller
         try {
             DB::beginTransaction();
 
+            // dd($request->all());
             $course =  Course::findOrFail($id);
             $course->title = $request->title[array_search('en', $request->lang)];
             $course->slug = Str::slug($course->title . '-');
@@ -217,30 +218,42 @@ class CourseController extends Controller
             $course->save();
 
 
-            $data = [];
             foreach ($request->lang as $index => $key) {
                 if (isset($request->title[$index]) && $key != 'en') {
-                    array_push($data, array(
-                        'translationable_type' => 'App\Models\Course',
-                        'translationable_id' => $course->id,
-                        'locale' => $key,
-                        'key' => 'title',
-                        'value' => $request->title[$index],
-                    ));
+                    // array_push($data, array(
+                    //     'translationable_type' => 'App\Models\Course',
+                    //     'translationable_id' => $course->id,
+                    //     'locale' => $key,
+                    //     'key' => 'title',
+                    //     'value' => $request->title[$index],
+                    // ));
+                    Translation::updateOrInsert(
+                        ['translationable_type' => 'App\Models\Course',
+                            'translationable_id' => $course->id,
+                            'locale' => $key,
+                            'key' => 'title'],
+                        ['value' => $request->title[$index]]
+                    );
                 }
             }
             foreach ($request->lang as $index => $key) {
                 if (isset($request->description[$index]) && $key != 'en') {
-                    array_push($data, array(
-                        'translationable_type' => 'App\Models\Course',
-                        'translationable_id' => $course->id,
-                        'locale' => $key,
-                        'key' => 'description',
-                        'value' => $request->description[$index],
-                    ));
+                    // array_push($data, array(
+                    //     'translationable_type' => 'App\Models\Course',
+                    //     'translationable_id' => $course->id,
+                    //     'locale' => $key,
+                    //     'key' => 'description',
+                    //     'value' => $request->description[$index],
+                    // ));
+                    Translation::updateOrInsert(
+                        ['translationable_type' => 'App\Models\Course',
+                            'translationable_id' => $course->id,
+                            'locale' => $key,
+                            'key' => 'description'],
+                        ['value' => $request->description[$index]]
+                    );
                 }
             }
-            Translation::insert($data);
 
             DB::commit();
             $output = [

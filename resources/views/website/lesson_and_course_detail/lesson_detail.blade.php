@@ -46,7 +46,8 @@
                                 </div>
 
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-secondary"
+                                        data-bs-dismiss="modal">{{ __('Close') }}</button>
                                     {{-- <button type="button" class="btn btn-primary">Save changes</button> --}}
                                 </div>
                             </div>
@@ -56,11 +57,11 @@
                     <div class="col-5 col-md-5 col-lg-5 mb-4">
                         <div class="card bg-white">
                             <div class="card-header text-center text-white p-2">
-                                <h3 class="mt-1">Up Next</h3>
+                                <h3 class="mt-1">{{ __('Up Next') }}</h3>
                             </div>
                             <div class="card-body">
                                 @if ($lessons->count() <= 1)
-                                    <h5 class="text-center">No lessons available</h5>
+                                    <h5 class="text-center">{{ __('No lessons available') }}</h5>
                                 @else
                                     @foreach ($lessons as $otherLesson)
                                         @if ($otherLesson->id !== $lesson->id)

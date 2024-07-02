@@ -9,6 +9,27 @@
     src: url(https://fonts.gstatic.com/s/nunito/v26/XRXI3I6Li01BKofiOc5wtlZ2di8HDLshdTA3j77e.woff2)
         format("woff2");
 }
+.kantumruy-pro-normal {
+    font-family: "Kantumruy Pro", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.kantumruy-pro-bold {
+    font-family: "Kantumruy Pro", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 700;
+    font-style: normal;
+}
+
+.kantumruy-pro-italic {
+    font-family: "Kantumruy Pro", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: italic;
+}
+
 body {
     background-color: #f2f6ff;
 }
@@ -92,10 +113,10 @@ body {
 }
 @media (max-width: 1279px) {
     .col-md-9 {
-        width: 75%;
+        width: 85%;
     }
     .col-md-3 {
-        width: 25%;
+        width: 15%;
     }
     /* .nav-rightside {
         gap: 1.8rem !important;
@@ -120,10 +141,13 @@ body {
         align-content: center;
     }
     .col-md-9 {
-        width: 75%;
+        width: 85%;
     }
     .col-md-3 {
-        width: 25%;
+        width: 15%;
+    }
+    .logo {
+        width: 80%;
     }
     /* .nav-rightside {
         gap: 1rem !important;

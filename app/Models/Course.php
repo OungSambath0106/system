@@ -14,12 +14,20 @@ class Course extends Model
 
     protected $guarded = [];
 
-    public function getNameAttribute($name)
+    public function getTitleAttribute($title)
     {
         if (strpos(url()->current(), '/admin')) {
-            return $name;
+            return $title;
         }
-        return $this->translations[0]->value ?? $name;
+        return $this->translations->where('key', 'title')->sortDesc()->first()->value ?? $title;
+    }
+
+    public function getDescriptionAttribute($description)
+    {
+        if (strpos(url()->current(), '/admin')) {
+            return $description;
+        }
+        return $this->translations->where('key', 'description')->sortDesc()->first()->value ?? $description;
     }
 
     public function lessonCategories()

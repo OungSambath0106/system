@@ -21,8 +21,9 @@
                     <div class="col-10 mx-auto ">
                         <div class="card-head">
                             <div class="card-text mb-5 mt-5">
-                                <h2 class="text-primary text-center">Contact Us</h2>
-                                <h4 class="text-primary text-center">Any questions or remarks? Just write us a message!
+                                <h2 class="text-primary text-center">{{ __('Contact Us') }}</h2>
+                                <h4 class="text-primary text-center">
+                                    {{ __('Any questions or remarks? Just write us a message!') }}
                                 </h4>
                             </div>
                             <div class="row justify-content-center">
@@ -31,9 +32,9 @@
                                         action="{{ route('contact.store') }}" method="POST">
                                         @csrf
                                         <div class="form-group col-5 mb-3">
-                                            <label for="name" class="mb-2">Name</label>
-                                            <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name"
-                                                placeholder="Enter your name">
+                                            <label for="name" class="mb-2">{{ __('Name') }}</label>
+                                            <input type="text" class="form-control @error('name') is-invalid @enderror"
+                                                id="name" name="name" placeholder="{{ __('Enter your name') }}">
                                             {{-- @error('name')
                                                 <span class="invalid-feedback" role="alert">
                                                     <strong>{{ $message }}</strong>
@@ -41,9 +42,10 @@
                                             @enderror --}}
                                         </div>
                                         <div class="form-group col-5 mb-3">
-                                            <label for="email" class="mb-2">Email</label>
+                                            <label for="email" class="mb-2">{{ __('Email') }}</label>
                                             <input type="email" class="form-control @error('email') is-invalid @enderror"
-                                                id="email" name="email" placeholder="Enter a valid email address">
+                                                id="email" name="email"
+                                                placeholder="{{ __('Enter a valid email address') }}">
                                             {{-- @error('email')
                                                 <span class="invalid-feedback" role="alert">
                                                     <strong>{{ $message }}</strong>
@@ -51,9 +53,9 @@
                                             @enderror --}}
                                         </div>
                                         <div class="form-group col-10 mb-3">
-                                            <label for="message" class="mb-2">Message</label>
-                                            <textarea name="message" id="message" cols="20" rows="5" class="form-control @error('message') is-invalid @enderror""
-                                                placeholder="Enter your message"></textarea>
+                                            <label for="message" class="mb-2">{{ __('Message') }}</label>
+                                            <textarea name="message" id="message" cols="20" rows="5"
+                                                class="form-control @error('message') is-invalid @enderror" placeholder="{{ __('Enter your message') }}"></textarea>
                                             {{-- @error('message')
                                                 <span class="invalid-feedback" role="alert">
                                                     <strong>{{ $message }}</strong>
@@ -62,7 +64,8 @@
                                         </div>
                                         <input type="hidden" name="isRead" value="0">
                                         <div class="form-group col-10 mt-4">
-                                            <button type="submit" class="btn btn-primary col-12">Submit</button>
+                                            <button type="submit"
+                                                class="btn btn-primary col-12">{{ __('Submit') }}</button>
                                         </div>
                                     </form>
                                 </div>
@@ -79,7 +82,7 @@
                                         <i class="fa-solid fa-person-running fa-lg" style="color: #ffffff;"></i>
                                     </div>
                                     <div class="texticon">
-                                        <h5>About Club</h5>
+                                        <h5>{{ __('About Club') }}</h5>
                                         <p>{{ session()->get('about_club') }}</p>
                                     </div>
                                 </div>
@@ -89,7 +92,7 @@
                                         <i class="fa-solid fa-phone fa-lg" style="color: #ffffff;"></i>
                                     </div>
                                     <div class="texticon text-center">
-                                        <h5>Phone Number</h5>
+                                        <h5>{{ __('Phone Number') }}</h5>
                                         <p class="px-5">{{ session()->get('phone') }}</p>
                                     </div>
                                 </div>
@@ -99,7 +102,7 @@
                                         <img class="telegram" src="/upload/social_media/telegram.png" alt="">
                                     </div>
                                     <div class="texticon text-center">
-                                        <h5>Telegram</h5>
+                                        <h5>{{ __('Telegram') }}</h5>
                                         <p class="px-5">{{ session()->get('telegram') }}</p>
                                     </div>
                                 </div>
@@ -109,7 +112,7 @@
                                         <i class="fa-solid fa-location-dot fa-lg" style="color: #ffffff;"></i>
                                     </div>
                                     <div class="texticon">
-                                        <h5>Our Location</h5>
+                                        <h5>{{ __('Our Location') }}</h5>
                                         <p>{{ session()->get('company_address') }}</p>
                                     </div>
                                 </div>
@@ -122,4 +125,3 @@
         </div>
     </div>
 @endsection
-

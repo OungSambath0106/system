@@ -105,7 +105,7 @@
                 <form action="{{ route('web.login') }}" method="POST" class="form-login">
                     @csrf
                     <div class="form-group mb-3">
-                        <label class="label" for="name">Email</label>
+                        <label class="label" for="name">{{ __('Email') }}</label>
                         <input id="email" type="email" class="form-control @error('email') is-invalid @enderror"
                             name="email" value="{{ old('email') }}" required autocomplete="Email" autofocus>
                         @error('email')
@@ -115,7 +115,7 @@
                         @enderror
                     </div>
                     <div class="form-group mb-3">
-                        <label class="label" for="password">Password</label>
+                        <label class="label" for="password">{{ __('Password') }}</label>
                         <input id="password" type="password"
                             class="form-control @error('password') is-invalid @enderror" name="password" required
                             autocomplete="current-password">
@@ -125,24 +125,25 @@
                             </span>
                         @enderror
                     </div>
-                    <span style="color: gray;">Please enter your email & passwod for login </span>
+                    <span style="color: gray;"> {{ __('Please enter your email & passwod for login') }}</span>
 
                     <div class="form-group d-md-flex mb-4">
                         <div class="w-50 text-left">
                             <input type="checkbox" name="remember" id="remember"
                                 {{ old('remember') ? 'checked' : '' }}>
                             <span class="checkmark"></span>
-                            <label class="checkbox-wrap checkbox-primary mb-0" style="color: #4d7eb2">Remember Me
+                            <label class="checkbox-wrap checkbox-primary mb-0"
+                                style="color: #4d7eb2">{{ __('Remember Me') }}
                             </label>
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <button type="submit" class="btn btn-block w-100 btn-modal-login">Log In</button>
+                        <button type="submit" class="btn btn-block w-100 btn-modal-login">{{ __('Log In') }}</button>
                     </div>
-                    <p class="text-center pt-3">Don't have an account?
+                    <p class="text-center pt-3 text-dark">{{ __("Don't have an account?") }}
                         <a href="#" id="showRegisterModal" style="text-decoration: none;" data-dismiss="modal"
-                            aria-label="Close"> Sign up </a>
+                            aria-label="Close">{{ __('Sign up') }}</a>
                     </p>
                 </form>
             </div>

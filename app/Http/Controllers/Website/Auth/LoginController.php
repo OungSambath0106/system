@@ -39,19 +39,10 @@ class LoginController extends Controller
                 
 
             } else {
-                // dd(0);
-                // return response()->json([
-                //     'status' => 0,
-                //     'msg' => __('Invalid credentials')
-                // ]);
                 return redirect()->back()->with(['warning' => 1, 'msg' => __('Invalid credentials!')]);
             }
 
         } catch (Exception $e) {
-                // return response()->json([
-                //     'status' => 0,
-                //     'msg' => __('Something went wrong')
-                // ]);
                 return redirect()->back()->with(['danger' => 1, 'msg' => __('Something went wrong!')]);
         }
 

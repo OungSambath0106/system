@@ -22,6 +22,14 @@
         color: #f4f4f4 !important;
         border-radius: 10px;
     }
+
+    div:where(.swal2-container) .swal2-html-container {
+        padding: .3em 1.6em .3em !important;
+    }
+
+    .swal2-title {
+        margin-bottom: 0 !important;
+    }
 </style>
 <!-- website/layout/modal_register.blade.php -->
 <div class="modal modal-register m-0 fade modal-login" id="modalRegister" tabindex="-1" role="dialog"
@@ -150,9 +158,9 @@
                             <button type="submit" id="submit" class="btn btn-save-register float-right"
                                 style="width: 30%"> <i class="fas fa-save"></i> {{ __('Save') }}</button>
                         </div>
-                        <p class="text-center pt-3">Already have an account?
+                        <p class="text-center pt-3 text-dark">{{ __('Already have an account?') }}
                             <a href="#" id="showLoginModal" style="text-decoration: none;"
-                                data-dismiss="modal" aria-label="Close"> Sign in </a>
+                                data-dismiss="modal" aria-label="Close">{{ __('Sign in') }}</a>
                         </p>
                     </div>
                 </form>
@@ -161,3 +169,16 @@
         </div>
     </div>
 </div>
+@if (session('register') === true)
+    <script>
+        Swal.fire({
+            title: "{{ __('Register successfully.') }}",
+            text: "{{ __('Please wait for admin approval.') }}",
+            imageUrl: "{{ asset('uploads/gifs/clock.gif') }}",
+            imageWidth: 200,
+            imageHeight: 150,
+            imageAlt: "Custom image",
+            confirmButtonText: "{{ __('OK') }}"
+        });
+    </script>
+@endif

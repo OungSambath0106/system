@@ -82,14 +82,23 @@ class AccountController extends Controller
             'first_name'    => 'required',
             'last_name'     => 'required',
             'name'          => 'required',
-            'phone'         => 'required|unique:users',
+            'phone'         => 'required',
             'email'         => 'required|unique:users',
             'password'      => 'nullable|min:8|confirmed',
         ];
 
         $validator = Validator::make($request->all(), $rules);
         if ($validator->fails()) {
-            return $output = ['success' =>false, 'msg' => $validator->messages()->first()];
+            $errorMessage = '';
+            // Check for specific validation errors
+            if ($validator->errors()->has('email')) {
+                $errorMessage = __('The email has already been taken');
+            } elseif ($validator->errors()->has('password')) {
+                $errorMessage = __('Password are not match');
+            } else {
+                $errorMessage = $validator->errors()->first(); // Default to the first error message
+            }
+            return redirect()->back()->with(['warning' => 1, 'msg' => $errorMessage]);
         }
 
         try {
@@ -119,12 +128,13 @@ class AccountController extends Controller
 
             // $output = ['success' =>true, 'msg' => __('Register successfully. Please wait approve by admin')];
             // return redirect()->route('home')->with($output);
-            return redirect()->back()->with(['success' => 1, 'msg' => __('Your account has been register. Please wait for admin approval.')]);
+            // return redirect()->back()->with(['success' => 1, 'msg' => __('Your account has been register. Please wait for admin approval.')]);
+            return redirect()->back()->with(['register' => true]);
 
         } catch (Exception $e) {
             DB::rollBack();
             $output = [
-                'success' => false,
+                'danger' => 1,
                 'msg' => __('Something went wrong.')
             ];
             return redirect()->route('home')->with($output);

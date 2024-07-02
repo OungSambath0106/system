@@ -37,8 +37,8 @@
                             </div>
                         </div>
                         <div class="card-button-outside text-center mt-3">
-                            <a href="{{ route('course.show', $course->slug) }}" class="btn btn-sm btn-learn w-100">Let's
-                                Learn</a>
+                            <a href="{{ route('course.show', $course->slug) }}"
+                                class="btn btn-sm btn-learn w-100">{{ __("Let's Learn") }}</a>
                         </div>
                     </div>
                 @endif
@@ -73,7 +73,7 @@
                                             </div>
                                             <div class="card-button text-center">
                                                 <a href="{{ route('course.show', $course->slug) }}"
-                                                    class="btn btn-sm btn-learn w-100">Let's Learn</a>
+                                                    class="btn btn-sm btn-learn w-100">{{ __("Let's Learn") }}</a>
                                             </div>
                                         </div>
                                     </div>

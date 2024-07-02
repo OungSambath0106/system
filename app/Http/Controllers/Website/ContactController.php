@@ -84,14 +84,14 @@ class ContactController extends Controller
             $data = ContactMessage::create($request->all());
             DB::commit();
             $output = [
-                'success' => true,
+                'success' => 1,
                 'msg' => __('Your message has been sent!')
             ];
         } catch (Exception $e) {
             DB::rollBack();
             $output = [
-                'success' => false,
-                'msg' => __('Something went wrong')
+                'danger' => 1, 
+                'msg' => __('Something went wrong!')
             ];
         }
 

@@ -10,10 +10,6 @@
         color: #ffffffff !important;
     }
 
-    .dropdown-item {
-        background-color: #ffffffff !important;
-    }
-
     .dropdown-toggle {
         border: none;
         border-radius: 10px;
@@ -23,6 +19,10 @@
         .dropstart {
             margin-bottom: 40px;
         }
+    }
+
+    .flag-country {
+        background: none !important;
     }
 </style>
 
@@ -35,8 +35,10 @@
             </a>
         </div>
         <div class="nav-rightside justify-content-between col-md-9 d-flex hidden" id="navRightside">
-            <a href="{{ route('home') }}" class="p-2 nav-link{{ Request::is('/') ? ' active' : '' }}" type="button">
-                Home
+            <a href="{{ route('home') }}"
+                class="p-2 text-center justify-content-center nav-link{{ Request::is('/') ? ' active' : '' }}"
+                type="button">
+                {{ __('Home') }}
             </a>
             @if (isset($courses))
                 @foreach ($courses as $course)
@@ -47,14 +49,40 @@
                             (isset($lesson) && $lesson->category->course->slug == $course->slug);
                     @endphp
                     <a href="{{ route('course.show', ['slug' => $course->slug]) }}"
-                        class="p-2 nav-link{{ $isActive ? ' active' : '' }}" type="button">
+                        class="p-2 text-center justify-content-center nav-link{{ $isActive ? ' active' : '' }}"
+                        type="button">
                         {{ $course->title }}
                     </a>
                 @endforeach
             @endif
-            <a href="{{ route('contactus') }}" class="btn btn-sm btn-primary h-50 btn-contact" type="button"
+            <div class="dropdown align-content-center text-center">
+                <a class="nav-link flag-country" data-toggle="dropdown" href="#">
+                    <i class="flag-icon flag-icon-{{ $current_locale == 'en' ? 'gb' : $current_locale }}"></i>
+                </a>
+                <div class="dropdown-menu dropdown-menu-right p-0">
+                    @foreach ($available_locales as $locale_name => $available_locale)
+                        @if ($available_locale === $current_locale)
+                            <a href="{{ route('change_language', $available_locale) }}"
+                                class="dropdown-item text-capitalize active">
+                                <i
+                                    class="flag-icon flag-icon-{{ $available_locale == 'en' ? 'gb' : $available_locale }} mr-2"></i>
+                                {{ $locale_name }}
+                            </a>
+                        @else
+                            <a href="{{ route('change_language', $available_locale) }}"
+                                class="dropdown-item text-capitalize">
+                                <i
+                                    class="flag-icon flag-icon-{{ $available_locale == 'en' ? 'gb' : $available_locale }} mr-2"></i>
+                                {{ $locale_name }}
+                            </a>
+                        @endif
+                    @endforeach
+                </div>
+            </div>
+            <a href="{{ route('contactus') }}"
+                class="btn btn-sm btn-primary text-center justify-content-center h-50 btn-contact" type="button"
                 style="border-radius: 8px;">
-                <i class="fas fa-headset"></i> Contact Us
+                <i class="fas fa-headset"></i> {{ __('Contact Us') }}
             </a>
             @guest
                 <button type="button" class="p-2 btn-login nav-link" data-toggle="modal" data-target="#staticBackdrop">
@@ -62,7 +90,7 @@
                 </button>
             @endguest
             @auth
-                <div class="dropdown dropstart text-end mt-1">
+                <div class="dropdown dropdown-profile dropstart text-end mt-1">
                     <button type="button" class="btn btn-login dropdown-toggle" data-bs-toggle="dropdown">
                         {{ auth()->user()->name }}
                     </button>

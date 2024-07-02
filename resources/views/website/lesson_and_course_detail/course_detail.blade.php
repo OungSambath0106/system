@@ -32,7 +32,7 @@
                         <div class="card-body">
                             <h4 class="card-title m-0">{{ $course->title }}</h4>
                             {{-- <span class="date">Publish date {{ $course->created_at->format('d-m-Y') }}</span> --}}
-                            <span class="date">Publish date
+                            <span class="date">{{ __('Publish date') }}
                                 {{ \Carbon\Carbon::parse($course->publish_date)->format('d-m-Y') }}
                             </span>
                             <p class="card-text mt-3">{{ $course->description }}</p>
@@ -46,13 +46,13 @@
                 <div class="card search">
                     <div class="col-12">
                         <div class="group-search">
-                            <label for="search">Search</label>
+                            <label for="search">{{ __('Search') }}</label>
                             <input type="text" id="search" class="form-control" placeholder="Search Course">
                             <i class="fa-solid fa-magnifying-glass fa-lg"></i>
                         </div>
                     </div>
                     <div class="col-12 mt-3">
-                        <label class="label-course">Content Courses</label>
+                        <label class="label-course">{{ __('Content Courses') }}</label>
                     </div>
                     @foreach ($categories as $category)
                         <div class="col-12">
