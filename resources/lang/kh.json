@@ -178,8 +178,8 @@
     "Enter User ID": "បញ្ចូល​ User ID",
     "Enter Phone Number": "បញ្ចូលលេខទូរសព្ទ ",
     "Telegram Number": "លេខតេលេក្រាម",
-    "Top Views of Month": "ចំនួនអ្នកមើលខ្ពស់ក្នុងមួយខែ",
-    "Top Views": "ចំនួនអ្នកមើលខ្ពស់",
+    "Top Views of Month": "មេរៀនដែលមានអ្នកចូលមើលខ្ពស់ជាងគេក្នុងមួយខែ",
+    "Top Views": "មេរៀនដែលមានអ្នកចូលមើលខ្ពស់ជាងគេ",
     "Total User": "អ្នកប្រើប្រាស់សរុប",
     "Total Lessons": "មេរៀនសរុប",
     "Total Course": "វគ្គសិក្សាសរុប",
@@ -193,5 +193,7 @@
     "User ID": "លេខ​សម្គាល់​អ្នក​ប្រើ",
     "Enter Telegram Number": "បញ្ចូលលេខតេលេក្រាម",
     "Enter Email": "បញ្ចូលអ៊ីមែល",
-    "Enter Password": "បញ្ចូលពាក្យសម្ងាត់"
+    "Enter Password": "បញ្ចូលពាក្យសម្ងាត់",
+    "Password are not match": "ពាក្យសម្ងាត់មិនត្រូវគ្នា",
+    "Fav icon": "រូបតំណាងវែបសាយត៍"
 }

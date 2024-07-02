@@ -194,5 +194,7 @@
     "User ID": "User ID",
     "Enter Telegram Number": "Enter Telegram Number",
     "Enter Email": "Enter Email",
-    "Enter Password": "Enter Password"
+    "Enter Password": "Enter Password",
+    "Password are not match": "Password are not match",
+    "Fav icon": "Fav icon"
 }

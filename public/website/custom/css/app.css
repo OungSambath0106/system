@@ -2,7 +2,14 @@
     padding: 0;
     margin: 0;
     box-sizing: border-box;
+    /* font-family: "Nunito"; */
+    /* font-family: "Kantumruy Pro", sans-serif; */
+}
+body.en *:not(i):not(svg) {
     font-family: "Nunito";
+}
+body:not(.en) *:not(i):not(svg) {
+    font-family: "Kantumruy Pro", sans-serif;
 }
 @font-face {
     font-family: "Nunito";

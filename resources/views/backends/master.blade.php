@@ -3,7 +3,7 @@
 @include('backends.layout.head')
 {{-- <body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed"> --}}
 
-<body class="sidebar-mini layout-fixed layout-navbar-fixed text-sm">
+<body class="sidebar-mini layout-fixed layout-navbar-fixed text-sm {{ app()->getLocale() }}">
 
     <!-- Site wrapper -->
     <div class="wrapper">
@@ -47,7 +47,6 @@
                 "responsive": true,
             });
         });
-
     </script>
 </body>
 

@@ -3,7 +3,7 @@
 
 @include('website.layout.header')
 
-<body>
+<body class="{{ app()->getLocale() }}">
     <div class="wrapper">
         <!-- Navbar -->
         @include('website.layout.navbar')
