@@ -182,7 +182,7 @@
                                                 <source
                                                     src="{{ $lesson->video ? asset('uploads/lessons/' . $lesson->video) : asset('uploads/default.mp4') }}"
                                                     accept="video/*">
-                                                Your browser does not support the video tag.
+                                                {{ __('Your browser does not support the video tag') }}
                                             </video>
                                         </div>
                                     </div>
@@ -264,7 +264,7 @@
             $('#type').trigger('change');
         });
 
-           $(document).on('click', '.nav-tabs .nav-link', function(e) {
+        $(document).on('click', '.nav-tabs .nav-link', function(e) {
             if ($(this).data('lang') != 'en') {
                 $('.no_translate_wrapper').addClass('d-none');
             } else {

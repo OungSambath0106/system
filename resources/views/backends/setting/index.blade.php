@@ -47,58 +47,135 @@
                                                 <h3 class="card-title">{{ __('Company Information') }}</h3>
                                             </div>
                                             <div class="card-body">
-                                                <div class="row">
-                                                    <div class="col-12 col-sm-6 col-md-4">
-                                                        <div class="form-group">
-                                                            <label for="company_name">{{ __('Company Name') }}</label>
-                                                            <input type="text" name="company_name" id="company_name"
-                                                                class="form-control" value="{{ $company_name }}">
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-12 col-sm-6 col-md-4">
-                                                        <div class="form-group">
-                                                            <label for="copy_right_text">{{ __('Copyright Text') }}</label>
-                                                            <input type="text" name="copy_right_text"
-                                                                id="copy_right_text" class="form-control"
-                                                                value="{{ $copy_right_text }}">
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-12 col-sm-6 col-md-4">
-                                                        <div class="form-group">
-                                                            <label for="">{{ __('Email') }}</label>
-                                                            <input type="text" name="email" id="email"
-                                                                class="form-control" value="{{ $email }}">
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-12 col-sm-6 col-md-4">
-                                                        <div class="form-group">
-                                                            <label for="phone">{{ __('Phone') }}</label>
-                                                            <input type="text" name="phone" id="phone"
-                                                                class="form-control" value="{{ $phone }}">
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-12 col-sm-6 col-md-4">
-                                                        <div class="form-group">
-                                                            <label for="telegram">{{ __('Telegram') }}</label>
-                                                            <input type="text" name="telegram" id="telegram"
-                                                                class="form-control" value="{{ $telegram }}">
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-12 col-sm-6 col-md-4">
-                                                        <div class="form-group">
-                                                            <label for="about_club">{{ __('About Club') }}</label>
-                                                            <input type="text" name="about_club" id="about_club"
-                                                                class="form-control" value="{{ $about_club }}">
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-12 col-sm-6 col-md-12">
-                                                        <div class="form-group">
-                                                            <label
-                                                                for="company_address">{{ __('Company Address') }}</label>
-                                                            <textarea name="company_address" id="company_address" class="form-control">{{ $company_address }}</textarea>
-                                                        </div>
-                                                    </div>
 
+
+                                                <div class="row">
+                                                    <div class="col-12">
+                                                        @include('backends.setting.partials._lang_tab', [
+                                                            'tab_id' => 'bank',
+                                                        ])
+                                                        <div class="tab-content" id="custom-content-below-tabContent">
+                                                            @foreach (json_decode($language, true) as $key => $lang)
+                                                                @if ($lang['status'] == 1)
+                                                                    <?php
+                                                                    $translate = [];
+                                                                    foreach ($settings as $setting) {
+                                                                        if (count($setting['translations'])) {
+                                                                            // dd($setting['translations']);
+                                                                            foreach ($setting['translations'] as $t) {
+                                                                                // dd($t);
+                                                                                if ($t->locale == $lang['code'] && $t->key == 'about_club') {
+                                                                                    $translate[$lang['code']]['about_club'] = $t->value;
+                                                                                }
+                                                                                 if ($t->locale == $lang['code'] && $t->key == 'company_address') {
+                                                                                    $translate[$lang['code']]['company_address'] = $t->value;
+                                                                                }
+                                                                                 if ($t->locale == $lang['code'] && $t->key == 'copy_right_text') {
+                                                                                    $translate[$lang['code']]['copy_right_text'] = $t->value;
+                                                                                }
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                    ?>
+                                                                    <div class="tab-pane fade {{ $lang['code'] == $default_lang ? 'show active' : '' }} mt-3"
+                                                                        id="bank_lang_{{ $lang['code'] }}" role="tabpanel"
+                                                                        aria-labelledby="lang_{{ $lang['code'] }}-tab">
+                                                                        <input type="hidden" name="lang[]"
+                                                                            value="{{ $lang['code'] }}">
+                                                                        <div class="row">
+                                                                            @if ($lang['code'] == 'en')
+                                                                                <div class="col-12 col-sm-6 col-md-6">
+                                                                                    <div class="form-group">
+                                                                                        <label
+                                                                                            for="company_name">{{ __('Company Name') }}</label>
+                                                                                        <input type="text"
+                                                                                            name="company_name"
+                                                                                            id="company_name"
+                                                                                            class="form-control"
+                                                                                            value="{{ $company_name }}">
+                                                                                    </div>
+                                                                                </div>
+                                                                                {{-- <div class="col-12 col-sm-6 col-md-4">
+                                                                                    <div class="form-group">
+                                                                                        <label
+                                                                                            for="copy_right_text">{{ __('Copyright Text') }}</label>
+                                                                                        <input type="text"
+                                                                                            name="copy_right_text"
+                                                                                            id="copy_right_text"
+                                                                                            class="form-control"
+                                                                                            value="{{ $copy_right_text }}">
+                                                                                    </div>
+                                                                                </div> --}}
+                                                                                <div class="col-12 col-sm-6 col-md-6">
+                                                                                    <div class="form-group">
+                                                                                        <label
+                                                                                            for="">{{ __('Email') }}</label>
+                                                                                        <input type="text" name="email"
+                                                                                            id="email"
+                                                                                            class="form-control"
+                                                                                            value="{{ $email }}">
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="col-12 col-sm-6 col-md-6">
+                                                                                    <div class="form-group">
+                                                                                        <label
+                                                                                            for="phone">{{ __('Phone') }}</label>
+                                                                                        <input type="text" name="phone"
+                                                                                            id="phone"
+                                                                                            class="form-control"
+                                                                                            value="{{ $phone }}">
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="col-12 col-sm-6 col-md-6">
+                                                                                    <div class="form-group">
+                                                                                        <label
+                                                                                            for="telegram">{{ __('Telegram') }}</label>
+                                                                                        <input type="text"
+                                                                                            name="telegram" id="telegram"
+                                                                                            class="form-control"
+                                                                                            value="{{ $telegram }}">
+                                                                                    </div>
+                                                                                </div>
+                                                                                {{-- <div class="col-12 col-sm-6 col-md-4">
+                                                                                    <div class="form-group">
+                                                                                        <label
+                                                                                            for="about_club">{{ __('About Club') }}</label>
+                                                                                        <input type="text"
+                                                                                            name="about_club"
+                                                                                            id="about_club"
+                                                                                            class="form-control"
+                                                                                            value="{{ $about_club }}">
+                                                                                    </div>
+                                                                                </div> --}}
+                                                                                {{-- <div class="col-12 col-sm-6 col-md-12">
+                                                                                    <div class="form-group">
+                                                                                        <label
+                                                                                            for="company_address">{{ __('Company Address') }}</label>
+                                                                                        <textarea name="company_address" id="company_address" class="form-control">{{ $company_address }}</textarea>
+                                                                                    </div>
+                                                                                </div> --}}
+                                                                            @endif
+                                                                            <div class="form-group col-md-6">
+                                                                                <label
+                                                                                    for="about_club_{{ $lang['code'] }}">{{ __('About Club') }}({{ strtoupper($lang['code']) }})</label>
+                                                                                <textarea name="about_club[]" id="about_club_{{ $lang['code'] }}" class="form-control" rows="3">{{ $translate[$lang['code']]['about_club'] ?? $about_club }}</textarea>
+                                                                            </div>
+                                                                            <div class="form-group col-md-6">
+                                                                                <label
+                                                                                    for="company_address_{{ $lang['code'] }}">{{ __('Company Address') }}({{ strtoupper($lang['code']) }})</label>
+                                                                                <textarea name="company_address[]" id="company_address_{{ $lang['code'] }}" class="form-control" rows="3">{{ $translate[$lang['code']]['company_address'] ?? $company_address }}</textarea>
+                                                                            </div>
+                                                                            <div class="form-group col-md-12">
+                                                                                <label
+                                                                                    for="copy_right_text_{{ $lang['code'] }}">{{ __('Copyright Text') }}({{ strtoupper($lang['code']) }})</label>
+                                                                                <textarea name="copy_right_text[]" id="copy_right_text_{{ $lang['code'] }}" class="form-control" rows="3">{{ $translate[$lang['code']]['copy_right_text'] ?? $copy_right_text }}</textarea>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                @endif
+                                                            @endforeach
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -200,10 +277,9 @@
                                                     </div>
                                                 </div> --}}
                                                 <div class="row">
-                                                    <div class="col-4">
+                                                    <div class="col-6">
                                                         <div class="form-group">
-                                                            <label
-                                                                for="web_header_logo">{{ __('Website head logo') }}</label>
+                                                            <label for="web_header_logo">{{ __('Website logo') }}</label>
                                                             <div class="preview">
                                                                 <img src="
                                                             @if ($web_header_logo && file_exists('uploads/business_settings/' . $web_header_logo)) {{ asset('uploads/business_settings/' . $web_header_logo) }}
@@ -220,7 +296,7 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div class="col-4">
+                                                    {{-- <div class="col-4">
                                                         <div class="form-group">
                                                             <label
                                                                 for="web_banner_logo">{{ __('Website banner logo') }}</label>
@@ -239,8 +315,8 @@
                                                                     for="customFile">{{ __('Choose file') }}</label>
                                                             </div>
                                                         </div>
-                                                    </div>
-                                                    <div class="col-4">
+                                                    </div> --}}
+                                                    <div class="col-6">
                                                         <div class="form-group">
                                                             <label for="fav_icon">{{ __('Fav icon') }}</label>
                                                             <div class="preview">

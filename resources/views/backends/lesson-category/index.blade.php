@@ -49,7 +49,7 @@
                                             <select name="course_id" id="course_id" class="form-control select2">
                                                 <option value="" class="form-control"
                                                     {{ !request()->filled('courses') ? 'selected' : '' }}>
-                                                    {{ __('All Course') }}
+                                                    {{ __('Please Select') }}
                                                 </option>
                                                 @foreach ($courses as $course)
                                                     <option value="{{ $course->id }}" class="form-control"

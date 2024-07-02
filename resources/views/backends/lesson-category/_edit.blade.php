@@ -74,7 +74,7 @@
                             <label class="required_label" for="course">{{ __('Course') }}</label>
                             <select name="course" id="course"
                                 class="form-control select2 @error('course') is-invalid @enderror">
-                                <option value="">{{ __('Select course') }}</option>
+                                <option value="">{{ __('Select Course') }}</option>
                                 @foreach ($courses as $course)
                                     <option value="{{ $course->id }}"
                                         {{ old('course', $currentCourseId) == $course->id ? 'selected' : '' }}>

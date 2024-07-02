@@ -89,7 +89,6 @@
                             <form class="form-material form-horizontal" action="{{ route('admin.role.store') }}"
                                 method="POST">
                                 @csrf
-
                                 <div class="row">
                                     <div class="col-md-12">
 
@@ -98,7 +97,7 @@
                                             <div class="input-group mb-3">
                                                 <input type="text" id="name" name="name"
                                                     class="form-control @error('name') is-invalid @enderror"
-                                                    placeholder="@lang('Type name permission')">
+                                                    placeholder="@lang('Enter name permission')">
                                                 @error('name')
                                                     <div class="invalid-feedback">
                                                         {{ $message }}
@@ -119,11 +118,11 @@
                                 <hr>
                                 <br>
                                 <div class="col-12 mb-3">
-                                    <button type="button" id="check-all" class="btn btn-primary">Check All</button>
+                                    <button type="button" id="check-all" class="btn btn-primary">{{__('Check All')}}</button>
                                 </div>
                                 <div class="User">
                                     <div class="d-flex">
-                                        <label for="" class="mr-2 mb-3">{{ __('User Setup') }}</label>
+                                        <label for="" class="mr-2 mb-3">{{ __('User Set up') }}</label>
                                     </div>
 
                                     <div class="row">
@@ -193,7 +192,7 @@
                                 </div>
                                 <div class="Role">
                                     <div class="d-flex">
-                                        <label for="" class="mr-2 mb-3">{{ __('Role Setup') }}</label>
+                                        <label for="" class="mr-2 mb-3">{{ __('Role Set up') }}</label>
                                     </div>
                                     <div class="row">
                                         <div class="col-md-3">
@@ -264,7 +263,7 @@
                                 </div>
                                 <div class="Course">
                                     <div class="d-flex">
-                                        <label for="" class="mr-2 mb-3">{{ __('Course Setup') }}</label>
+                                        <label for="" class="mr-2 mb-3">{{ __('Course Set up') }}</label>
                                     </div>
                                     <div class="row">
                                         <div class="col-md-3">
@@ -293,7 +292,7 @@
                                                             <span class="slider round"></span>
                                                         </label>
                                                         <label class="ml-2"
-                                                            for="blog_create">{{ __('Create course') }}</label>
+                                                            for="blog_create">{{ __('Create Course') }}</label>
                                                     </div>
                                                 </div>
                                             </div>
@@ -335,7 +334,7 @@
                                 </div>
                                 <div class="Lesson">
                                     <div class="d-flex">
-                                        <label for="" class="mr-2 mb-3">{{ __('Lesson Setup') }}</label>
+                                        <label for="" class="mr-2 mb-3">{{ __('Lesson Set up') }}</label>
                                     </div>
                                     <div class="row">
                                         <div class="col-md-3">
@@ -421,7 +420,7 @@
                                 </div>
                                 <div class="Categories">
                                     <div class="d-flex">
-                                        <label for="" class="mr-2 mb-3">{{ __('Categories Setup') }}</label>
+                                        <label for="" class="mr-2 mb-3">{{ __('Category Set up') }}</label>
                                     </div>
                                     <div class="row">
                                         <div class="col-md-3">
@@ -434,7 +433,7 @@
                                                             <span class="slider round"></span>
                                                         </label>
                                                         <label class="ml-2"
-                                                            for="view_blog">{{ __('View Categories') }}</label>
+                                                            for="view_blog">{{ __('View Category') }}</label>
                                                     </div>
                                                 </div>
                                             </div>
@@ -450,7 +449,7 @@
                                                             <span class="slider round"></span>
                                                         </label>
                                                         <label class="ml-2"
-                                                            for="blog_create">{{ __('Create Categories') }}</label>
+                                                            for="blog_create">{{ __('Create Category') }}</label>
                                                     </div>
                                                 </div>
                                             </div>
@@ -467,7 +466,7 @@
                                                             <span class="slider round"></span>
                                                         </label>
                                                         <label class="ml-2"
-                                                            for="blog_edit">{{ __('Edit Categories') }}</label>
+                                                            for="blog_edit">{{ __('Edit Category') }}</label>
                                                     </div>
                                                 </div>
                                             </div>
@@ -482,7 +481,7 @@
                                                             <span class="slider round"></span>
                                                         </label>
                                                         <label class="ml-2"
-                                                            for="blog_delete">{{ __('Delete Categories') }}</label>
+                                                            for="blog_delete">{{ __('Delete Category') }}</label>
                                                     </div>
                                                 </div>
                                             </div>
@@ -492,7 +491,7 @@
                                 </div>
                                 <div class="Mail">
                                     <div class="d-flex">
-                                        <label for="" class="mr-2 mb-3">{{ __('Message Setup') }}</label>
+                                        <label for="" class="mr-2 mb-3">{{ __('Message Set up') }}</label>
                                     </div>
                                     <div class="row">
                                         <div class="col-md-3">
@@ -575,7 +574,7 @@
                                                             <span class="slider round"></span>
                                                         </label>
                                                         <label class="ml-2"
-                                                            for="emailconfig_update">{{ __('Update EmailConfig') }}</label>
+                                                            for="emailconfig_update">{{ __('Update Email Config') }}</label>
                                                     </div>
                                                 </div>
                                             </div>
@@ -585,7 +584,7 @@
                                 </div>
                                 <div class="Setting">
                                     <div class="d-flex">
-                                        <label for="" class="mr-2 mb-3">{{ __('Setting Setup') }}</label>
+                                        <label for="" class="mr-2 mb-3">{{ __('Setting') }}</label>
                                     </div>
                                     <div class="row">
                                         <div class="col-md-3">

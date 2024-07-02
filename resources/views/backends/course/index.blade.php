@@ -35,7 +35,7 @@
                         <div class="card-header">
                             <div class="row align-items-center">
                                 <div class="col-sm-6">
-                                    <h3 class="card-title">{{ __('Course List') }}</h3>
+                                    <h3 class="card-title">{{ __('Course list') }}</h3>
                                 </div>
                                 {{-- <span class="badge bg-warning total-count">{{ $grades->total() }}</span> --}}
                                 <div class="col-sm-6">

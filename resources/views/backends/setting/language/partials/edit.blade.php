@@ -3,7 +3,7 @@
 <div class="modal-dialog modal-md modal-dialog-centered">
     <div class="modal-content">
         <div class="modal-header">
-            <h5 class="modal-title">{{ __('Update Language') }}</h5>
+            <h5 class="modal-title">{{ __('Edit Language') }}</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">×</span>
             </button>
