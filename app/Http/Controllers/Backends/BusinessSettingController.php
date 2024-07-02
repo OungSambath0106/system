@@ -2,20 +2,27 @@
 
 namespace App\Http\Controllers\Backends;
 
-use App\Http\Controllers\Controller;
 use Exception;
 use App\Models\Setting;
+use App\Models\Translation;
 use Illuminate\Http\Request;
 use App\helpers\ImageManager;
 use App\Models\BusinessSetting;
 use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
 
 class BusinessSettingController extends Controller
 {
-    public function index ()
+    public function index()
     {
         $data = [];
+        $language = BusinessSetting::where('type', 'language')->first();
+        $data['language'] = $language->value ?? null;
+        $default_lang = 'en';
+        $data['default_lang'] = json_decode($data['language'], true)[0]['code'];
+
         $setting = new BusinessSetting();
+        $data['settings'] = BusinessSetting::withoutGlobalScopes()->with('translations')->get();
         $data['company_name'] = @$setting->where('type', 'company_name')->first()->value;
         $data['phone'] = @$setting->where('type', 'phone')->first()->value;
         $data['email'] = @$setting->where('type', 'email')->first()->value;
@@ -55,11 +62,9 @@ class BusinessSettingController extends Controller
         return view('backends.setting.index', $data);
     }
 
-    public function update (Request $request)
+    public function update(Request $request)
     {
-        $request->validate([
-
-        ]);
+        $request->validate([]);
         try {
             DB::beginTransaction();
             $all_input = $request->all();
@@ -72,7 +77,8 @@ class BusinessSettingController extends Controller
                     BusinessSetting::updateOrCreate(
                         [
                             'type' => $input_name,
-                        ], [
+                        ],
+                        [
                             'value' => $image,
                         ]
                     );
@@ -80,15 +86,62 @@ class BusinessSettingController extends Controller
                 }
 
                 // save text
-                if (!in_array($input_name, ['_token', '_method', 'social_media'])) {
-                    BusinessSetting::updateOrCreate(
-                        [
-                            'type' => $input_name,
-                        ], [
-                            'value' => $input_value,
-                        ]
-                    );
+                // if (!in_array($input_name, ['_token', '_method', 'social_media'])) {
+                //     BusinessSetting::updateOrCreate(
+                //         [
+                //             'type' => $input_name,
+                //         ], [
+                //             'value' => $input_value,
+                //         ]
+                //     );
+                // }
+                if (!in_array($input_name, ['_token', '_method', 'social_media', 'lang'])) {
+                    if (in_array($input_name, ['about_club', 'company_address', 'copy_right_text'])) {
+                        // dd($request->all());
+
+                        // Ensure lang is an array
+                        $languages = is_array($request->lang) ? $request->lang : [];
+                        // dd($languages);
+
+                        // Save the default language (English) description
+                        BusinessSetting::updateOrCreate(
+                            [
+                                'type' => $input_name,
+                            ],
+                            [
+                                'value' => $input_value[array_search('en', $languages)] ?? '',
+                            ]
+                        );
+                        $setting = BusinessSetting::where('type', $input_name)->first();
+
+                        // Save translations for other languages
+                        foreach ($languages as $index => $key) {
+                            if (isset($input_value[$index])) {
+                                Translation::updateOrInsert(
+                                    [
+                                        'translationable_type' => 'App\Models\BusinessSetting',
+                                        'translationable_id' => $setting->id,
+                                        'locale' => $key,
+                                        'key' => $input_name,
+                                    ],
+                                    [
+                                        'value' => $input_value[$index],
+                                    ]
+                                );
+                            }
+                        }
+                    } else {
+                        BusinessSetting::updateOrCreate(
+                            [
+                                'type' => $input_name,
+                            ],
+                            [
+                                'value' => $input_value,
+                            ]
+                        );
+                    }
                 }
+
             }
 
             // social media
@@ -100,10 +153,10 @@ class BusinessSettingController extends Controller
 
                     $request_icon = $request->social_media['icon'] ?? 0;
 
-                    if($request_icon != 0) {
+                    if ($request_icon != 0) {
                         if (in_array($key, array_keys($request->social_media['icon']))) {
                             $icon = ImageManager::update('uploads/social_media/', $request->social_media['old_icon'][$key], $request->social_media['icon'][$key]);
-                            $item['icon'] = asset('uploads/social_media/'.$icon);
+                            $item['icon'] = asset('uploads/social_media/' . $icon);
                         } else {
                             $item['icon'] = $request->social_media['old_icon'][$key] ?? null;
                         }
@@ -111,7 +164,7 @@ class BusinessSettingController extends Controller
                         $item['icon'] = $request->social_media['old_icon'][$key];
                     }
 
-                    if (array_key_exists('status_'. $key, $request->social_media)) {
+                    if (array_key_exists('status_' . $key, $request->social_media)) {
                         $item['status'] = 1;
                     } else {
                         $item['status'] = 0;
@@ -125,7 +178,8 @@ class BusinessSettingController extends Controller
             BusinessSetting::updateOrCreate(
                 [
                     'type' => 'social_media',
-                ], [
+                ],
+                [
                     'value' => json_encode($social_media),
                 ]
             );
@@ -135,7 +189,6 @@ class BusinessSettingController extends Controller
                 'success' => 1,
                 'msg' => __('Updated sucessfully')
             ]);
-
         } catch (Exception $e) {
             dd($e);
             DB::rollBack();
@@ -143,12 +196,10 @@ class BusinessSettingController extends Controller
                 'success' => 0,
                 'msg' => __('Something went wrong')
             ]);
-
         }
-
     }
 
-    public function webContent ()
+    public function webContent()
     {
         $data = [];
         $setting = new BusinessSetting();
@@ -175,13 +226,12 @@ class BusinessSettingController extends Controller
                     'tr' => $tr
                 ]);
             }
-
         }
 
         return view('backends.setting.web_content', $data);
     }
 
-    public function webContentUpdate (Request $request)
+    public function webContentUpdate(Request $request)
     {
         // return $request->all();
         try {
@@ -197,7 +247,8 @@ class BusinessSettingController extends Controller
                     BusinessSetting::updateOrCreate(
                         [
                             'type' => $input_name,
-                        ], [
+                        ],
+                        [
                             'value' => $file,
                         ]
                     );
@@ -209,7 +260,8 @@ class BusinessSettingController extends Controller
                     BusinessSetting::updateOrCreate(
                         [
                             'type' => $input_name,
-                        ], [
+                        ],
+                        [
                             'value' => $input_value,
                         ]
                     );
@@ -228,7 +280,8 @@ class BusinessSettingController extends Controller
                 BusinessSetting::updateOrCreate(
                     [
                         'type' => 'why_ci',
-                    ], [
+                    ],
+                    [
                         'value' => json_encode($why_ci),
                     ]
                 );
@@ -246,7 +299,8 @@ class BusinessSettingController extends Controller
                 BusinessSetting::updateOrCreate(
                     [
                         'type' => 'how_to_enter',
-                    ], [
+                    ],
+                    [
                         'value' => json_encode($how_to_enter),
                     ]
                 );
@@ -260,10 +314,10 @@ class BusinessSettingController extends Controller
 
                     $request_icon = $request->why_should_i_sponsor['icon'] ?? 0;
 
-                    if($request_icon != 0) {
+                    if ($request_icon != 0) {
                         if (in_array($key, array_keys($request->why_should_i_sponsor['icon']))) {
                             $icon = ImageManager::update('uploads/business_settings/', $request->why_should_i_sponsor['old_icon'][$key], $request->why_should_i_sponsor['icon'][$key]);
-                            $item['icon'] = asset('uploads/business_settings/'.$icon);
+                            $item['icon'] = asset('uploads/business_settings/' . $icon);
                         } else {
                             $item['icon'] = $request->why_should_i_sponsor['old_icon'][$key] ?? null;
                         }
@@ -282,7 +336,8 @@ class BusinessSettingController extends Controller
                 BusinessSetting::updateOrCreate(
                     [
                         'type' => 'why_should_i_sponsor',
-                    ], [
+                    ],
+                    [
                         'value' => json_encode($why_should_i_sponsor),
                     ]
                 );
@@ -293,7 +348,6 @@ class BusinessSettingController extends Controller
                 'success' => 1,
                 'msg' => __('Updated sucessfully')
             ]);
-
         } catch (Exception $e) {
             dd($e);
             DB::rollBack();
@@ -301,8 +355,6 @@ class BusinessSettingController extends Controller
                 'success' => 0,
                 'msg' => __('Something went wrong')
             ]);
-
         }
     }
-
 }

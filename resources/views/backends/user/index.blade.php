@@ -54,12 +54,12 @@
                                         <div class="row">
                                             <div class=" col-9 d-flex">
                                                 <div class="col-sm-6 filter">
-                                                    <label for="start_date">Start Date</label>
+                                                    <label for="start_date">{{__('Start Date')}}</label>
                                                     <input type="date" id="start_date" class="form-control"
                                                         name="start_date" value="{{ request('start_date') }}">
                                                 </div>
                                                 <div class="col-sm-6 filter">
-                                                    <label for="end_date">End Date</label>
+                                                    <label for="end_date">{{__('End Date')}}</label>
                                                     <input type="date" id="end_date" class="form-control"
                                                         name="end_date" value="{{ request('end_date') }}">
                                                 </div>

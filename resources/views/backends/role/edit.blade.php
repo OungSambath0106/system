@@ -117,7 +117,7 @@
                                 <hr>
                                 <br>
                                 <div class="col-12 mb-3">
-                                    <button type="button" id="check-all" class="btn btn-primary">Check All</button>
+                                    <button type="button" id="check-all" class="btn btn-primary">{{__('Check All')}}</button>
                                 </div>
                                 <div class="User">
                                     <div class="d-flex">
@@ -417,12 +417,28 @@
                                                 </div>
                                             </div>
                                         </div>
+                                         <div class="col-md-3">
+                                            <div class="form-group">
+                                                <div class="input-group mb-3">
+                                                    <div class="d-flex align-items-center">
+                                                        <label class="switch">
+                                                            <input type="checkbox" id="edit_status" name="permissions[]"
+                                                              @if (in_array('lesson.status', $role_permissions)) checked @endif
+                                                                value="lesson.status">
+                                                            <span class="slider round"></span>
+                                                        </label>
+                                                        <label class="ml-2"
+                                                            for="edit_status">{{ __('Edit Status') }}</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                     <hr>
                                 </div>
                                 <div class="Categories">
                                     <div class="d-flex">
-                                        <label for="" class="mr-2 mb-3">{{ __('Categories Setup') }}</label>
+                                        <label for="" class="mr-2 mb-3">{{ __('Category Set up') }}</label>
                                     </div>
                                     <div class="row">
                                         <div class="col-md-3">
@@ -437,7 +453,7 @@
                                                             <span class="slider round"></span>
                                                         </label>
                                                         <label class="ml-2"
-                                                            for="lesson_categories_view">{{ __('View Lesson_categories') }}</label>
+                                                            for="lesson_categories_view">{{ __('View Category') }}</label>
                                                     </div>
                                                 </div>
                                             </div>
@@ -455,7 +471,7 @@
                                                             <span class="slider round"></span>
                                                         </label>
                                                         <label class="ml-2"
-                                                            for="lesson_categories_create">{{ __('Create Lesson_categories') }}</label>
+                                                            for="lesson_categories_create">{{ __('Create Category') }}</label>
                                                     </div>
                                                 </div>
                                             </div>
@@ -474,7 +490,7 @@
                                                             <span class="slider round"></span>
                                                         </label>
                                                         <label class="ml-2"
-                                                            for="lesson_categories_edit">{{ __('Edit Lesson_categories') }}</label>
+                                                            for="lesson_categories_edit">{{ __('Edit Category') }}</label>
                                                     </div>
                                                 </div>
                                             </div>
@@ -491,7 +507,7 @@
                                                             <span class="slider round"></span>
                                                         </label>
                                                         <label class="ml-2"
-                                                            for="lesson_categories_delete">{{ __('Delete Lesson_categories') }}</label>
+                                                            for="lesson_categories_delete">{{ __('Delete Category') }}</label>
                                                     </div>
                                                 </div>
                                             </div>
@@ -590,7 +606,7 @@
                                                             <span class="slider round"></span>
                                                         </label>
                                                         <label class="ml-2"
-                                                            for="emailconfig_update">{{ __('Update EmailConfig') }}</label>
+                                                            for="emailconfig_update">{{ __('Update Email Config') }}</label>
                                                     </div>
                                                 </div>
                                             </div>

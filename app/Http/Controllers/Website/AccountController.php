@@ -132,6 +132,7 @@ class AccountController extends Controller
             return redirect()->back()->with(['register' => true]);
 
         } catch (Exception $e) {
+            // dd($e);
             DB::rollBack();
             $output = [
                 'danger' => 1,

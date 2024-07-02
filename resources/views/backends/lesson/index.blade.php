@@ -49,7 +49,7 @@
                                             <select name="category_id" id="category_id" class="form-control select2">
                                                 <option value=""
                                                     {{ !request()->filled('categories') ? 'selected' : '' }}>
-                                                    {{ __('All Department') }}
+                                                    {{ __('Please Select') }}
                                                 </option>
                                                 @foreach ($categories as $cat)
                                                     <option value="{{ $cat->id }}"

@@ -190,19 +190,15 @@
                                             style="height: 150px">
                                             <video id="videoPreview" controls style="max-height: 150px; display: none;">
                                                 <source src="" id="videoPreviewSource">
-                                                Your browser does not support the video tag.
+                                              {{__('Your browser does not support the video tag')}}
                                             </video>
                                         </div>
                                     </div>
-
-
-
 
                                     <div id="urlInput" class="form-group col-md-6" style="display: none;">
                                         <label for="videoUrl">{{ __('URL') }}</label>
                                         <input type="url" class="form-control" id="videoUrl" name="url">
                                     </div>
-
 
                                 </div>
                             </div>

@@ -42,7 +42,7 @@
                     </g>
 
                 </svg>
-                Go to website
+                {{__('Go to website')}}
             </a>
         </li>
         <li class="nav-item dropdown">
@@ -131,7 +131,7 @@
                             {{ __('Edit') }}
                         </a>
                     @endif
-                    <a href="{{ route('logout') }}" class="btn btn-default btn-flat float-right">Sign out</a>
+                    <a href="{{ route('logout') }}" class="btn btn-default btn-flat float-right">{{__('Sign out')}}</a>
                 </li>
             </ul>
         </li>

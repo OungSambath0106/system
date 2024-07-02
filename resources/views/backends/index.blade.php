@@ -139,7 +139,7 @@
                                 <div class="card-header">
                                     <h3 class="card-title">
                                         <i class="far fa-chart-bar"></i>
-                                        Top Views
+                                        {{ __('Top Views') }}
                                     </h3>
                                     <div class="card-tools">
                                         <button type="button" class="btn btn-tool" data-card-widget="collapse">
@@ -161,7 +161,7 @@
                                 <div class="card-header">
                                     <h3 class="card-title">
                                         <i class="far fa-chart-bar"></i>
-                                        Top Views of Month
+                                        {{ __('Top Views of Month') }}
                                     </h3>
                                     <div class="card-tools">
                                         <button type="button" class="btn btn-tool" data-card-widget="collapse">
@@ -245,7 +245,7 @@
                         'Top 1', 'Top 2', 'Top 3', 'Top 4', 'Top 5'
                     ],
                     datasets: [{
-                        label: 'Top Lessons by Views',
+                        label: 'Top Lessons Views',
                         data: lessonViews,
                         backgroundColor: [
                             'rgba(31, 58, 147, 1)',
@@ -284,7 +284,7 @@
         document.addEventListener('DOMContentLoaded', function() {
             var ctx = document.getElementById('bar-chartcountbymonth').getContext('2d');
             var topLessons = @json($topLessons); // Convert PHP array to JavaScript array
-            var viewsByMonth = @json($viewsByMonth); 
+            var viewsByMonth = @json($viewsByMonth);
 
             var lessonTitles = [];
             var lessonViews = [];
@@ -363,4 +363,91 @@
             var myChart = new Chart(ctx, config);
         });
     </script>
+    {{-- <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var ctx = document.getElementById('bar-chartcountbymonth').getContext('2d');
+            var topLessons = @json($topLessons); // Convert PHP array to JavaScript array
+            var viewsByMonth = @json($viewsByMonth);
+
+            var lessonTitles = [];
+            var lessonViews = [];
+
+            // Extract lesson titles and views for top 5 lessons
+            topLessons.forEach(function(lesson) {
+                lessonTitles.push(lesson.title);
+                lessonViews.push(lesson.total_views);
+            });
+
+            // Initialize an array to store total views by month (Jan to Dec)
+            var dataByMonth = Array(12).fill(0);
+
+            // Map the viewsByMonth data to the correct month index
+            viewsByMonth.forEach(function(item) {
+                dataByMonth[item.month - 1] = item.total_views;
+            });
+
+            // Configuration options for the chart
+            var config = {
+                type: 'bar',
+                data: {
+                    labels: [
+                        'Top 1', 'Top 2', 'Top 3', 'Top 4', 'Top 5'
+                    ],
+                    datasets: [{
+                        label: 'Top Lessons by Views',
+                        data: lessonViews,
+                        backgroundColor: [
+                            'rgba(255, 99, 132, 0.5)', // Red
+                            'rgba(54, 162, 235, 0.5)', // Blue
+                            'rgba(255, 206, 86, 0.5)', // Yellow
+                            'rgba(75, 192, 192, 0.5)', // Teal
+                            'rgba(153, 102, 255, 0.5)' // Purple
+                        ],
+
+                    }, {
+                        label: 'Views by Month',
+                        data: dataByMonth,
+                        backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                        borderColor: 'rgba(255, 99, 132, 1)',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    },
+                    plugins: {
+                        tooltip: {
+                            callbacks: {
+                                label: function(tooltipItem) {
+                                    var dataset = tooltipItem.dataset;
+                                    var index = tooltipItem.dataIndex;
+                                    var label = dataset.label ? dataset.label : '';
+                                    var value = dataset.data[index];
+                                    if (label === 'Views by Month') {
+                                        var monthNames = ['January', 'February', 'March', 'April', 'May',
+                                            'June', 'July', 'August', 'September', 'October',
+                                            'November', 'December'
+                                        ];
+                                        return 'Views in ' + monthNames[index] + ': ' + value;
+                                    } else {
+                                        return lessonTitles[index] + ': ' + value;
+                                    }
+                                }
+                            }
+                        },
+                        legend: {
+                            display: false // Hide the legend
+                        }
+                    }
+                }
+            };
+
+            // Initialize the chart
+            var myChart = new Chart(ctx, config);
+        });
+    </script> --}}
 @endpush

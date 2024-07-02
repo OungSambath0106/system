@@ -62,7 +62,7 @@
                     <a href="#" class="nav-link @if (request()->routeIs('admin.lesson*')) active @endif">
                         <i class="nav-icon fa fa-boxes"></i>
                         <p>
-                            {{ __('Lesson Setup') }}
+                            {{ __('Lesson Management') }}
                             <i class="right fas fa-angle-left"></i>
                         </p>
                     </a>
@@ -127,7 +127,7 @@
                     <a href="#" class="nav-link @if (request()->routeIs('admin.contact*') || request()->routeIs('admin.email_config_form*')) active @endif">
                         <i class="nav-icon  fa-solid fa-envelope"></i>
                         <p>
-                            {{ __('Message') }}
+                            {{ __('Contact') }}
                             <i class="right fas fa-angle-left"></i>
                         </p>
                     </a>

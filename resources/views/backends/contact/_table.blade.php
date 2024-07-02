@@ -31,9 +31,9 @@
                     <td>
                         <div>
                             @if ($contact->isRead == 1)
-                                <span class="badge badge-success">Read</span>
+                                <span class="badge badge-success">{{__('Read')}}</span>
                             @else
-                                <span class="badge badge-danger">Unread</span>
+                                <span class="badge badge-danger">{{__('Unread')}}</span>
                             @endif
                         </div>
                     </td>
