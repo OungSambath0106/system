@@ -81,38 +81,9 @@ Auth::routes();
 Route::post('save_temp_file', [FileManagerController::class, 'saveTempFile'])->name('save_temp_file');
 Route::get('remove_temp_file', [FileManagerController::class, 'removeTempFile'])->name('remove_temp_file');
 
-// Route::get('/', function () {
-//     return view('website.app');
-// });
-// Route::redirect('/', '/admin/dashboard');
-
-Route::middleware(['SetFrontendSession'])->group(function () {
-    Route::get('/', [WebsiteHomeController::class, 'index'])->name('home');
-
-    Route::post('/web/login', [WebsiteAuthLoginController::class, 'login'])->name('web.login');
-    Route::get('/web/logout', [WebsiteAuthLoginController::class, 'logout'])->name('web.logout');
-
-    // Account page
-    Route::get('/account/profile', [AccountController::class, 'profile'])->name('account.profile');
-    Route::put('/account/profile/{id}/update', [AccountController::class, 'profileUpdate'])->name('account.profile.update');
-    Route::post('/account/profile/store', [AccountController::class, 'profileStore'])->name('account.profile.store');
-
-    Route::get('/course-detail',[WebsiteCourseController::class,'index'])->name('coursedetail');
-    Route::get('/course/{slug}', [WebsiteCourseController::class, 'show'])->name('course.show');
-    Route::get('/lessons-by-category/{categoryId}', [WebsiteCourseController::class, 'getLessonsByCategory']);
-
-    Route::get('/lesson-detail/{slug}', [WebsiteCourseController::class, 'showLessonDetail'])->name('lesson.detail');
-
-    Route::get('/contact-us',[WebsiteContactController::class,'index'])->name('contactus');
-    //website contact//
-    Route::post('/contact-us', [WebsiteContactController::class, 'store'])->name('contact.store');
-
-    //store total_view
-    Route::post('/lessons/update-view-count', [WebsiteCourseController::class, 'updateViewCount'])->name('lessons.updateViewCount');
-
+Route::get('/', function () {
+    return view('auth.login');
 });
-
-
 
 Route::post('save_temp_file', [FileManagerController::class, 'saveTempFile'])->name('save_temp_file');
 Route::get('remove_temp_file', [FileManagerController::class, 'removeTempFile'])->name('remove_temp_file');
@@ -120,7 +91,8 @@ Route::get('remove_temp_file', [FileManagerController::class, 'removeTempFile'])
 // back-end
 Route::middleware(['auth', 'CheckUserLogin', 'SetSessionData'])->group(function () {
 
-    Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth', 'admin']], function () {
+    // Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth', 'admin']], function () {
+    Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
         Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
         // setting

@@ -20,7 +20,7 @@
     <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">
         <li class="nav-item dropdown">
-            <a class="nav-link" href="{{ route('home') }}" target="_blank">
+            <a class="nav-link" href="" target="_blank">
 
                 <svg width="24px" height="24px" viewBox="0 0 24 24" fill="none"
                     xmlns="http://www.w3.org/2000/svg">
@@ -42,7 +42,7 @@
                     </g>
 
                 </svg>
-                {{__('Go to website')}}
+                {{ __('Go to website') }}
             </a>
         </li>
         <li class="nav-item dropdown">
@@ -131,7 +131,8 @@
                             {{ __('Edit') }}
                         </a>
                     @endif
-                    <a href="{{ route('logout') }}" class="btn btn-default btn-flat float-right">{{__('Sign out')}}</a>
+                    <a href="{{ route('logout') }}"
+                        class="btn btn-default btn-flat float-right">{{ __('Sign out') }}</a>
                 </li>
             </ul>
         </li>
