@@ -85,6 +85,7 @@ Route::get('/', function () {
     return view('auth.login');
 });
 
+
 Route::post('save_temp_file', [FileManagerController::class, 'saveTempFile'])->name('save_temp_file');
 Route::get('remove_temp_file', [FileManagerController::class, 'removeTempFile'])->name('remove_temp_file');
 
