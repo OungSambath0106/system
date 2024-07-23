@@ -24,7 +24,7 @@
                     <div class="row justify-content-center">
                         <div class="col-md-7 col-lg-5 text-center mb-3">
                             <h2 class="heading-section">
-                                <img src="{{ asset('uploads/cover.png') }}" alt="" width="300px">
+                                {{-- <img src="{{ asset('uploads/cover.png') }}" alt="" width="300px"> --}}
                             </h2>
                         </div>
                     </div>

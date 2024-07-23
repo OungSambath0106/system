@@ -46,7 +46,7 @@
                         </p>
                     </a>
                 </li>
-                @if (auth()->user()->can('course.view'))
+                {{-- @if (auth()->user()->can('course.view'))
                     <li class="nav-item">
                         <a href="{{ route('admin.course.index') }}"
                             class="nav-link @if (request()->routeIs('admin.course*')) active @endif">
@@ -56,8 +56,8 @@
                             </p>
                         </a>
                     </li>
-                @endif
-                <li class="nav-item @if (request()->routeIs('admin.lesson*')) menu-is-opening menu-open @endif">
+                @endif --}}
+                <li class="nav-item nav-drop @if (request()->routeIs('admin.lesson*')) menu-is-opening menu-open @endif">
                     {{-- menu-open --}}
                     <a href="#" class="nav-link @if (request()->routeIs('admin.lesson*')) active @endif">
                         <i class="nav-icon fa fa-boxes"></i>
@@ -88,7 +88,7 @@
                     </ul>
                 </li>
 
-                <li class="nav-item @if (request()->routeIs('admin.user*') || request()->routeIs('admin.role*')) menu-is-opening menu-open @endif">
+                <li class="nav-item nav-drop @if (request()->routeIs('admin.user*') || request()->routeIs('admin.role*')) menu-is-opening menu-open @endif">
                     <a href="#" class="nav-link @if (request()->routeIs('admin.user*') || request()->routeIs('admin.role*')) active @endif">
                         <i class="nav-icon fa-solid fa-user-gear"></i>
                         <p>
@@ -123,7 +123,7 @@
                     </ul>
                 </li>
 
-                <li class="nav-item @if (request()->routeIs('admin.contact*') || request()->routeIs('admin.email_config_form*')) menu-is-opening menu-open @endif">
+                {{-- <li class="nav-item @if (request()->routeIs('admin.contact*') || request()->routeIs('admin.email_config_form*')) menu-is-opening menu-open @endif">
                     <a href="#" class="nav-link @if (request()->routeIs('admin.contact*') || request()->routeIs('admin.email_config_form*')) active @endif">
                         <i class="nav-icon  fa-solid fa-envelope"></i>
                         <p>
@@ -157,7 +157,7 @@
                         @endif
 
                     </ul>
-                </li>
+                </li> --}}
 
                 @if (auth()->user()->can('setting.view'))
                     <li class="nav-item">

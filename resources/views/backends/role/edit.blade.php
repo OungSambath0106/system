@@ -752,4 +752,17 @@
             });
         });
     </script>
+    <script>
+        document.getElementById('check-all').addEventListener('click', function() {
+            if (this.textContent.trim() === "{{__('Check All')}}") {
+                this.textContent = "{{__('Remove All')}}";
+                this.classList.remove('btn-primary');
+                this.classList.add('btn-danger');
+            } else {
+                this.textContent = "{{__('Check All')}}";
+                this.classList.remove('btn-danger');
+                this.classList.add('btn-primary');
+            }
+        });
+    </script>
 @endpush

@@ -16,7 +16,7 @@
                 <tr>
                     <td>{{ $loop->iteration }}</td>
                     <td> {{ $lesson->title }} </td>
-                    <td> {{ $lesson->category->title }} </td>
+                    <td> {{ $lesson->category->title ?? 'Null'}} </td>
                     {{-- <td>
                         {{ Str::limit($lesson->description, 40) }}
                     </td> --}}
